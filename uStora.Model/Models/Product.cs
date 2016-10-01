@@ -47,10 +47,15 @@ namespace uStora.Model.Models
 
         public int? Quantity { get; set; }
 
+        public int? BrandID { get; set; }
+
         public string Tags { get; set; }
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { get; set; }
+
+        [ForeignKey("BrandID")]
+        public virtual Brand Brands { get; set; }
 
         public virtual IEnumerable<ProductTag> ProductTags { get; set; }
 
