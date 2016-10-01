@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201609301507562_InitialDb.Designer.cs">
       <DependentUpon>201609301507562_InitialDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610011531311_AddedWishListTbl.cs" />
+    <Compile Include="Migrations\201610011531311_AddedWishListTbl.Designer.cs">
+      <DependentUpon>201610011531311_AddedWishListTbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -109,6 +113,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609301507562_InitialDb.resx">
       <DependentUpon>201609301507562_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610011531311_AddedWishListTbl.resx">
+      <DependentUpon>201610011531311_AddedWishListTbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
