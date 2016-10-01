@@ -1,4 +1,4 @@
-namespace uStora.Data.Migrations
+﻿namespace uStora.Data.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -17,6 +17,7 @@ namespace uStora.Data.Migrations
         protected override void Seed(uStoraDbContext context)
         {
             CreateUser(context);
+            BrandDefault(context);
         }
 
         private void CreateUser(uStoraDbContext context)
@@ -33,7 +34,7 @@ namespace uStora.Data.Migrations
                     Email = "dvbtham@gmail.com",
                     EmailConfirmed = true,
                     BirthDay = DateTime.Now,
-                    FullName = "Th�m David",
+                    FullName = "Thâm David",
                     Address = "Gia Lai",
                     PhoneNumber = "01652130546"
                 };
@@ -49,6 +50,22 @@ namespace uStora.Data.Migrations
                 var adminUser = manager.FindByEmail("dvbtham@gmail.com");
 
                 manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            }
+        }
+
+        private void BrandDefault(uStoraDbContext context)
+        {
+            if(context.Brands.Count() == 0)
+            {
+                var brand = new Brand()
+                {
+                    Name = "Không xác định",
+                    Alias = "khong-xac-dinh",
+                    CreatedBy = "system",
+                    Status = true
+                };
+                context.Brands.Add(brand);
+                context.SaveChanges();
             }
         }
     }
