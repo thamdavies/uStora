@@ -22,6 +22,11 @@ namespace uStora.Web.Controllers
             this._productCategoryService = productCategoryService;
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Detail(long id)
         {
             var product = _productService.GetByID(id);

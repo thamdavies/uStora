@@ -335,6 +335,52 @@
     <Content Include="Assets\Admin\js\demo.js" />
     <Content Include="Assets\Admin\js\pages\dashboard.js" />
     <Content Include="Assets\Admin\js\pages\dashboard2.js" />
+    <Content Include="Assets\Client\cart.html" />
+    <Content Include="Assets\Client\checkout.html" />
+    <Content Include="Assets\Client\css\bootstrap.min.css" />
+    <Content Include="Assets\Client\css\customize.css" />
+    <Content Include="Assets\Client\css\font-awesome.min.css" />
+    <Content Include="Assets\Client\css\owl.carousel.css" />
+    <Content Include="Assets\Client\css\responsive.css" />
+    <Content Include="Assets\Client\css\search-box.css" />
+    <Content Include="Assets\Client\css\style.css" />
+    <Content Include="Assets\Client\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Client\img\brand1.png" />
+    <Content Include="Assets\Client\img\brand2.png" />
+    <Content Include="Assets\Client\img\brand3.png" />
+    <Content Include="Assets\Client\img\brand4.png" />
+    <Content Include="Assets\Client\img\brand5.png" />
+    <Content Include="Assets\Client\img\brand6.png" />
+    <Content Include="Assets\Client\img\crossword.png" />
+    <Content Include="Assets\Client\img\h4-slide.png" />
+    <Content Include="Assets\Client\img\h4-slide2.png" />
+    <Content Include="Assets\Client\img\h4-slide3.png" />
+    <Content Include="Assets\Client\img\h4-slide4.png" />
+    <Content Include="Assets\Client\img\h4-slide7.png" />
+    <Content Include="Assets\Client\img\logo.png" />
+    <Content Include="Assets\Client\img\product-1.jpg" />
+    <Content Include="Assets\Client\img\product-2.jpg" />
+    <Content Include="Assets\Client\img\product-3.jpg" />
+    <Content Include="Assets\Client\img\product-4.jpg" />
+    <Content Include="Assets\Client\img\product-5.jpg" />
+    <Content Include="Assets\Client\img\product-6.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-1.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-2.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-3.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-4.jpg" />
+    <Content Include="Assets\Client\js\bxslider.min.js" />
+    <Content Include="Assets\Client\js\cart.js" />
+    <Content Include="Assets\Client\js\jquery.easing.1.3.min.js" />
+    <Content Include="Assets\Client\js\jquery.sticky.js" />
+    <Content Include="Assets\Client\js\main.js" />
+    <Content Include="Assets\Client\js\owl.carousel.min.js" />
+    <Content Include="Assets\Client\js\script.slider.js" />
+    <Content Include="Assets\Client\js\scroll-startstop.events.jquery.js" />
+    <Content Include="Assets\Client\js\scroll.js" />
+    <Content Include="Assets\Client\js\search-box.js" />
+    <Content Include="Assets\Client\shop.html" />
+    <Content Include="Assets\Client\single-product.html" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.css" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.js" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.min.css" />
@@ -4772,10 +4818,7 @@
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\Client\" />
     <Folder Include="Libs\" />
-    <Folder Include="UploadefFiles\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -5056,6 +5099,21 @@
     <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\libs\ckeditor\skins\kama\readme.md" />
     <Content Include="Assets\libs\ckeditor\skins\moono\readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Client\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\Client\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\Client\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\Client\fonts\FontAwesome.otf" />
+    <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
