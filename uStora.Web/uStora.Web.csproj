@@ -4849,7 +4849,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppSeting.config" />
+    <Content Include="AppSettings.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConnectionString.config" />

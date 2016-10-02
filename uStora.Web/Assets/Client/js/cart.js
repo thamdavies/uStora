@@ -5,7 +5,7 @@ $(function(){
 		checkPostion();
 		addCartMobile();
 		flyToCart();
-		
+		flyToCartShop();
 	});
 
 	$(window).scroll(function () {
@@ -152,6 +152,98 @@ $(function(){
 		});
 		}
 		
+	}//end flyToCart
+
+	function flyToCartShop() {
+	    if (isMobileScreen()) {
+	        top = 5;
+	        left = 20;
+	        $('.add_to_cart_button').on('click', function (event) {
+	            event.preventDefault();
+	            var cart = $('.shopping-cart-fixed');
+	            var imgtodrag = $(this).parents('.single-shop-product').find("img").eq(0);
+	            if (imgtodrag) {
+	                var imgclone = imgtodrag.clone()
+					.offset({
+					    top: imgtodrag.offset().top,
+					    left: imgtodrag.offset().left
+					})
+					.css({
+					    'opacity': '0.5',
+					    'position': 'absolute',
+					    'height': '150px',
+					    'width': '150px',
+					    'z-index': '100'
+					})
+					.appendTo($('body'))
+					.animate({
+					    'top': cart.offset().top + top,
+					    'left': cart.offset().left + left,
+					    'width': 40,
+					    'height': 43
+					}, 1000, 'easeInOutExpo');
+
+	                setTimeout(function () {
+	                    cart.effect("shake", {
+	                        times: 2
+	                    }, 200);
+	                }, 1500);
+	                //product-count
+
+	                imgclone.animate({
+	                    'width': 0,
+	                    'height': 0
+	                }, function () {
+	                    $(this).detach()
+	                });
+	            }
+	        });
+	    }
+	    else {
+	        top = 45;
+	        left = 5;
+	        $('.add_to_cart_button').on('click', function (event) {
+	            event.preventDefault();
+	            var cart = $('.shopping-cart-fixed');
+	            var imgtodrag = $(this).parents('.single-shop-product').find("img").eq(0);
+	            if (imgtodrag) {
+	                var imgclone = imgtodrag.clone()
+					.offset({
+					    top: imgtodrag.offset().top,
+					    left: imgtodrag.offset().left
+					})
+					.css({
+					    'opacity': '0.5',
+					    'position': 'absolute',
+					    'height': '150px',
+					    'width': '150px',
+					    'z-index': '100'
+					})
+					.appendTo($('body'))
+					.animate({
+					    'top': cart.offset().top + top,
+					    'left': cart.offset().left + left,
+					    'width': 40,
+					    'height': 43
+					}, 1000, 'easeInOutExpo');
+
+	                setTimeout(function () {
+	                    cart.effect("shake", {
+	                        times: 2
+	                    }, 200);
+	                }, 1500);
+	                //product-count
+
+	                imgclone.animate({
+	                    'width': 0,
+	                    'height': 0
+	                }, function () {
+	                    $(this).detach()
+	                });
+	            }
+	        });
+	    }
+
 	}//end flyToCart
 
 	

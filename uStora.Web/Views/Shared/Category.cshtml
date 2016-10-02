@@ -2,6 +2,8 @@
 
 @foreach (var item in Model)
 {
-    <li><a href="/products/@(item.Alias)/@(item.ID).htm">@item.Name</a></li>
+    <li>
+        <a href="/category/@(item.Alias)/@(item.ID).htm">@item.Name</a>
+    </li>
 }
 
