@@ -57,6 +57,26 @@ namespace uStora.Web.Controllers
             return View(paginationSet);
         }
 
+        public ActionResult Shop(int page = 1, string sort = "")
+        {
+            int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));
+            int totalRow = 0;
+            var product = _productService.GetAllPaging(page, sort, pageSize, out totalRow);
+            var productVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(product);
+            int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
+
+            var paginationSet = new PaginationSet<ProductViewModel>()
+            {
+                Items = productVm,
+                MaxPage = int.Parse(ConfigHelper.GetByKey("maxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPages = totalPage
+            };
+
+            return View(paginationSet);
+        }
+
         public JsonResult GetProductsByName(string keyword)
         {
             var product = _productService.GetProductsByName(keyword);

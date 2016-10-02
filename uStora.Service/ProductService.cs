@@ -30,7 +30,7 @@ namespace uStora.Service
 
         IEnumerable<Product> GetRelatedProducts(long id, int top);
 
-        IEnumerable<Product> GetAllPaging(int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetAllPaging(int page,string sort, int pageSize, out int totalRow);
 
         Product GetByID(long id);
 
@@ -142,9 +142,26 @@ namespace uStora.Service
                 return _productRepository.GetAll();
         }
 
-        public IEnumerable<Product> GetAllPaging(int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetAllPaging(int page, string sort, int pageSize, out int totalRow)
         {
-            return _productRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+            var query = _productRepository.GetMulti(x => x.Status);
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "discount":
+                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public Product GetByID(long id)
@@ -240,7 +257,7 @@ namespace uStora.Service
 
         public IEnumerable<Product> ProductsByTag(string tagId, int page, int pageSize, out int totalRow)
         {
-            var model = _productRepository.GetProductsByTag(tagId, page, pageSize,out totalRow);
+            var model = _productRepository.GetProductsByTag(tagId, page, pageSize, out totalRow);
             totalRow = model.Count();
             return model;
         }
