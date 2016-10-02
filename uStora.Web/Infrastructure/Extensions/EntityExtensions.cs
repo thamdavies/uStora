@@ -100,6 +100,26 @@ namespace uStora.Web.Infrastructure.Extensions
             product.Status = productViewModel.Status;
         }
 
+        public static void UpdateSlide(this Slide slide, SlideViewModel slideViewModel)
+        {
+            slide.ID = slideViewModel.ID;
+            slide.Name = slideViewModel.Name;
+
+            slide.Description = slideViewModel.Description;
+            slide.Image = slideViewModel.Image;
+            slide.Content = slideViewModel.Content;
+            slide.URL = slideViewModel.URL;
+            slide.DisplayOrder = slideViewModel.DisplayOrder;
+
+            slide.CreatedDate = slideViewModel.CreatedDate;
+            slide.CreatedBy = slideViewModel.CreatedBy;
+            slide.UpdatedDate = slideViewModel.UpdatedDate;
+            slide.UpdatedBy = slideViewModel.UpdatedBy;
+            slide.MetaDescription = slideViewModel.MetaDescription;
+            slide.MetaKeyword = slideViewModel.MetaKeyword;
+            slide.Status = slideViewModel.Status;
+        }
+
         public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackViewModel)
         {
             feedback.ID = feedbackViewModel.ID;

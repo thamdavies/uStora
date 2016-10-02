@@ -1,6 +1,8 @@
-﻿namespace uStora.Web.Models
+﻿using uStora.Model.Abstracts;
+
+namespace uStora.Web.Models
 {
-    public class SlideViewModel
+    public class SlideViewModel : Auditable
     {
         public int ID { get; set; }
 
@@ -15,7 +17,5 @@
         public string URL { get; set; }
 
         public int? DisplayOrder { get; set; }
-
-        public bool Status { get; set; }
     }
 }

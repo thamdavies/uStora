@@ -3,6 +3,7 @@
     angular.module('uStora',
         ['uStora.products',
          'uStora.product_categories',
+         'uStora.slides',
          'uStora.common'])
         .config(config)
         .config(configAuthentication);

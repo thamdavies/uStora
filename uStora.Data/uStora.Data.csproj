@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201610011652436_AddedBrandTbl.Designer.cs">
       <DependentUpon>201610011652436_AddedBrandTbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610020742051_UpdatedSlide.cs" />
+    <Compile Include="Migrations\201610020742051_UpdatedSlide.Designer.cs">
+      <DependentUpon>201610020742051_UpdatedSlide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -123,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610011652436_AddedBrandTbl.resx">
       <DependentUpon>201610011652436_AddedBrandTbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020742051_UpdatedSlide.resx">
+      <DependentUpon>201610020742051_UpdatedSlide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

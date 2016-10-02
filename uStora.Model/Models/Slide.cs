@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using uStora.Model.Abstracts;
 
 namespace uStora.Model.Models
 {
     [Table("Slides")]
-    public class Slide
+    public class Slide :Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -28,8 +29,5 @@ namespace uStora.Model.Models
         public string URL { get; set; }
 
         public int? DisplayOrder { get; set; }
-
-        [Required]
-        public bool Status { get; set; }
     }
 }

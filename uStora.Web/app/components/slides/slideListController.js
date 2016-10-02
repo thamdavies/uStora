@@ -1,11 +1,11 @@
 ﻿/// <reference path="../../../Assets/admin/libs/angular/angular.js" />
 
 (function (app) {
-    app.controller('productListController', productListController);
+    app.controller('slideListController', slideListController);
 
-    productListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
-    function productListController($scope, apiService, notificationService, $ngBootbox, $filter) {
-        $scope.products = [];
+    slideListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
+    function slideListController($scope, apiService, notificationService, $ngBootbox, $filter) {
+        $scope.slides = [];
 
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -14,13 +14,13 @@
 
         $scope.search = search;
 
-        $scope.deleteProduct = deleteProduct;
+        $scope.deleteSlide = deleteSlide;
 
         $scope.selectAll = selectAll;
 
-        $scope.deleteProductMulti = deleteProductMulti;
+        $scope.deleteSlideMulti = deleteSlideMulti;
 
-        function deleteProductMulti() {
+        function deleteSlideMulti() {
             $ngBootbox.confirm('Tất cả dữ liệu đã chọn sẽ bị xóa. Bạn muốn tiếp tục?').then(function () {
 
                 var listId = [];
@@ -29,10 +29,10 @@
                 });
                 var config = {
                     params: {
-                        selectedProducts: JSON.stringify(listId)
+                        selectedSlides: JSON.stringify(listId)
                     }
                 }
-                apiService.del('/api/product/deletemulti', config, function (result) {
+                apiService.del('/api/slide/deletemulti', config, function (result) {
                     notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
                     search();
                 }, function (error) {
@@ -44,19 +44,19 @@
         $scope.isAll = false;
         function selectAll() {
             if ($scope.isAll === false) {
-                angular.forEach($scope.products, function (item) {
+                angular.forEach($scope.slides, function (item) {
                     item.checked = true;
                 });
                 $scope.isAll = true;
             } else {
-                angular.forEach($scope.products, function (item) {
+                angular.forEach($scope.slides, function (item) {
                     item.checked = false;
                 });
                 $scope.isAll = false;
             }
         }
 
-        $scope.$watch('products', function (n, o) {
+        $scope.$watch('slides', function (n, o) {
             var checked = $filter('filter')(n, { checked: true });
 
             if (checked.length) {
@@ -70,14 +70,14 @@
 
 
 
-        function deleteProduct(id) {
+        function deleteSlide(id) {
             $ngBootbox.confirm('Bạn chắc chắn muốn xóa bản ghi này?').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
-                apiService.del('/api/product/delete', config, function () {
+                apiService.del('/api/slide/delete', config, function () {
                     notificationService.displaySuccess('Đã xóa thành công.');
                     search();
                 }, function () {
@@ -87,12 +87,12 @@
         }
 
         function search() {
-            getProducts();
+            getSlides();
         }
 
-        $scope.getProducts = getProducts;
+        $scope.getSlides = getSlides;
 
-        function getProducts(page) {
+        function getSlides(page) {
             page = page || 0;
             var config = {
                 params: {
@@ -101,18 +101,18 @@
                     pageSize: 20
                 }
             }
-            apiService.get('/api/product/getall', config, function (result) {
+            apiService.get('/api/slide/getall', config, function (result) {
                 if (result.data.Count == 0) {
                     notificationService.displayWarning('Không có bản ghi nào!!!');
                 }
-                $scope.products = result.data.Items;
+                $scope.slides = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
             }, function () {
-                console.log('Không có sản phẩm nào!!!');
+                console.log('Không có slide nào!!!');
             });
         }
-        $scope.getProducts();
+        $scope.getSlides();
     }
-})(angular.module('uStora.products'));
+})(angular.module('uStora.slides'));
