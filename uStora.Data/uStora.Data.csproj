@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201610020742051_UpdatedSlide.Designer.cs">
       <DependentUpon>201610020742051_UpdatedSlide.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610020923513_UpdatedSlideTable.cs" />
+    <Compile Include="Migrations\201610020923513_UpdatedSlideTable.Designer.cs">
+      <DependentUpon>201610020923513_UpdatedSlideTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610020742051_UpdatedSlide.resx">
       <DependentUpon>201610020742051_UpdatedSlide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020923513_UpdatedSlideTable.resx">
+      <DependentUpon>201610020923513_UpdatedSlideTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

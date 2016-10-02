@@ -25,8 +25,8 @@ namespace uStora.Web.Controllers
         [OutputCache(Duration = 3600, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
-            //var listSlide = _commonService.GetSlides();
-            //var slideVm = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(listSlide);
+            var listSlide = _commonService.GetSlides();
+            var slideVm = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(listSlide);
 
             //var lastestProducts = _productService.GetLastest(3);
             //var topSaleProducts = _productService.GetTopSales(3);
@@ -34,12 +34,12 @@ namespace uStora.Web.Controllers
             //var lastestProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProducts);
             //var topSaleProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProducts);
 
-            //var homeVm = new HomeViewModel();
-            //homeVm.Slides = slideVm;
+            var homeVm = new HomeViewModel();
+            homeVm.Slides = slideVm;
             //homeVm.LatestProducts = lastestProductsVm;
             //homeVm.TopSaleProducts = topSaleProductsVm;
 
-            return View();
+            return View(homeVm);
         }
 
 

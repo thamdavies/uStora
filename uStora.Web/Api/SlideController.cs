@@ -84,7 +84,7 @@ namespace uStora.Web.Api
                     var newSlide = new Slide();
                     newSlide.UpdateSlide(slideVm);
                     newSlide.CreatedDate = DateTime.Now;
-                    newSlide.CreatedBy = User.Identity.Name;
+                    //newSlide.CreatedBy = User.Identity.Name;
                     _slideService.Add(newSlide);
                     _slideService.SaveChanges();
 

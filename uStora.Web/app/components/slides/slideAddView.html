@@ -26,7 +26,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="slide.Name" placeholder="tiêu đề">
+                        <textarea class="form-control" required ckeditor="ckeditorOptions" name="name" ng-model="slide.Name" placeholder="">Tiêu đề</textarea>
                         <span ng-show="frmAddSlide.name.$invalid" class="invalid">Phải nhập tiêu đề</span>
                         <span ng-show="frmAddSlide.name.$error.maxlength" class="invalid">Chỉ nhập tối đa 256 ký tự.</span>
                     </div>

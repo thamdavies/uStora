@@ -17,8 +17,7 @@ namespace uStora.Model.Models
 
         [MaxLength(500)]
         public string Description { get; set; }
-
-        [Required]
+        
         public string Content { get; set; }
 
         [Required]
