@@ -59,7 +59,7 @@
                             </li>*@
 
                             <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
+                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">Vietnamese </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Vietnamese</a></li>
                                     <li><a href="#">English</a></li>
@@ -143,12 +143,8 @@
 
     @RenderSection("homePage", required: false)
 
-    <div class="maincontent-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            @RenderBody()
-        </div>
-    </div> <!-- End main content area -->
+    @RenderBody()
+    
     @RenderSection("brand", required: false)
    
     @RenderSection("productStatistic",required:false)

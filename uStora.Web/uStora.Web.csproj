@@ -343,8 +343,6 @@
     <Content Include="Assets\Admin\js\demo.js" />
     <Content Include="Assets\Admin\js\pages\dashboard.js" />
     <Content Include="Assets\Admin\js\pages\dashboard2.js" />
-    <Content Include="Assets\Client\cart.html" />
-    <Content Include="Assets\Client\checkout.html" />
     <Content Include="Assets\Client\css\bootstrap.min.css" />
     <Content Include="Assets\Client\css\customize.css" />
     <Content Include="Assets\Client\css\font-awesome.min.css" />
@@ -387,8 +385,6 @@
     <Content Include="Assets\Client\js\scroll-startstop.events.jquery.js" />
     <Content Include="Assets\Client\js\scroll.js" />
     <Content Include="Assets\Client\js\search-box.js" />
-    <Content Include="Assets\Client\shop.html" />
-    <Content Include="Assets\Client\single-product.html" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.css" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.js" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.min.css" />

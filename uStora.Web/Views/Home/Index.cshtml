@@ -62,44 +62,50 @@
     </div> <!-- End promo area -->
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="latest-product">
-            <h2 class="section-title">Sản phẩm mới</h2>
-            <div class="product-carousel">
-                @foreach (var product in Model.Products)
-                {
-                    <div class="single-product">
-                        <div class="product-f-image">
-                            <img src="@product.Image" alt="@product.Name">
-                            <div class="product-hover">
-                                <a href="#" class="action-box">
-                                    <i class="fa fa-shopping-cart add-to-cart" data-toggle="tooltip" title="Thêm vào giỏ"></i>
-                                    <i class="fa fa-heart" data-toggle="tooltip" title="Yêu thích"></i>
-                                </a>
-                                <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="latest-product">
+                    <h2 class="section-title">Sản phẩm mới</h2>
+                    <div class="product-carousel">
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="@product.Image" alt="@product.Name">
+                                    <div class="product-hover">
+                                        <a href="#" class="action-box">
+                                            <i class="fa fa-shopping-cart add-to-cart" data-toggle="tooltip" title="Thêm vào giỏ"></i>
+                                            <i class="fa fa-heart" data-toggle="tooltip" title="Yêu thích"></i>
+                                        </a>
+                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="/product/@(product.Alias)/@(product.ID).htm">@product.Name</a></h2>
+
+                                <div class="product-carousel-price">
+                                    @if (product.PromotionPrice.HasValue)
+                                    {
+                                        <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
+                                        <del>@product.Price.Value.ToString("N0")</del>
+                                    }
+                                    else
+                                    {
+                                        <ins>@product.Price.Value.ToString("N0")</ins>
+                                    }
+                                </div>
                             </div>
-                        </div>
-
-                        <h2><a href="/product/@(product.Alias)/@(product.ID).htm">@product.Name</a></h2>
-
-                        <div class="product-carousel-price">
-                           @if (product.PromotionPrice.HasValue)
-                           {
-                            <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                            <del>@product.Price.Value.ToString("N0")</del>
-                           }
-                           else
-                           {
-                            <ins>@product.Price.Value.ToString("N0")</ins>
-                           }
-                        </div>
+                        }
                     </div>
-                }
+                </div>
             </div>
         </div>
     </div>
-</div>
+</div> <!-- End main content area -->
+
 
 @section brand{
     <div class="brands-area">
