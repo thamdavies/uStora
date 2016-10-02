@@ -107,13 +107,10 @@
                         <li><a href="shop.html">Cửa hàng</a></li>
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                Danh mục<b class="caret"></b>
+                                Danh mục sản phẩm<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Điện thoại</a></li>
-                                <li><a href="#">Laptop</a></li>
-                                <li><a href="#">TV</a></li>
-                                <li><a href="#">Phụ kiện</a></li>
+                                @{Html.RenderAction("Category","Home");}
                             </ul>
                         </li>
                         <li><a href="#">Giới thiệu</a></li>

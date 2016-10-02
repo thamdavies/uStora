@@ -1,0 +1,7 @@
+﻿@model IEnumerable<uStora.Web.Models.ProductCategoryViewModel>
+
+@foreach (var item in Model)
+{
+    <li><a href="/product/@(item.Alias)/@(item.ID).htm">@item.Name</a></li>
+}
+
