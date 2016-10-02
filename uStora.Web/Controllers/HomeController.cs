@@ -28,16 +28,22 @@ namespace uStora.Web.Controllers
             var listSlide = _commonService.GetSlides();
             var slideVm = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(listSlide);
 
-            //var lastestProducts = _productService.GetLastest(3);
-            //var topSaleProducts = _productService.GetTopSales(3);
+            var lastestProducts = _productService.GetLastest(3);
+            var listProducts = _productService.GetLastest(_productService.GetAll().Count());
+            var topSaleProducts = _productService.GetTopSales(3);
+            var topViews = _productService.GetTopView(3);
 
-            //var lastestProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProducts);
-            //var topSaleProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProducts);
+            var listProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProducts);
+            var lastestProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProducts);
+            var topSaleProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProducts);
+            var topViewsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topViews);
 
             var homeVm = new HomeViewModel();
             homeVm.Slides = slideVm;
-            //homeVm.LatestProducts = lastestProductsVm;
-            //homeVm.TopSaleProducts = topSaleProductsVm;
+            homeVm.Products = listProductsVm;
+            homeVm.TopViews = topViewsVm;
+            homeVm.LatestProducts = lastestProductsVm;
+            homeVm.TopSaleProducts = topSaleProductsVm;
 
             return View(homeVm);
         }

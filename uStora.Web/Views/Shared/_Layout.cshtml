@@ -50,19 +50,19 @@
                 <div class="col-md-4">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
+                            @*<li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">USD</a></li>
                                     <li><a href="#">VND</a></li>
                                 </ul>
-                            </li>
+                            </li>*@
 
                             <li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
                                     <li><a href="#">Vietnamese</a></li>
+                                    <li><a href="#">English</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -160,7 +160,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
                         <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <p>Là trang web bán hàng online, chuyên cung cấp món hàng trong lĩnh vực thiết bị số: Điện thoại, máy tính cá nhân, máy ảnh,... và một số dịch vụ kèm theo khi mua hàng.</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -172,11 +172,12 @@
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <h2 class="footer-wid-title">Hoạt động của bạn </h2>
                         <ul>
                             <li><a href="#">Tài khoản của tôi</a></li>
                             <li><a href="#">Lịch sử mua hàng</a></li>
                             <li><a href="#">Yêu thích</a></li>
+                            <li><a href="#">Thanh toán</a></li>
                         </ul>
                     </div>
                 </div>
@@ -185,10 +186,7 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Danh mục</h2>
                         <ul>
-                            <li><a href="#">Điện thoại</a></li>
-                            <li><a href="#">Laptop</a></li>
-                            <li><a href="#">TV</a></li>
-                            <li><a href="#">Phụ kiện</a></li>
+                            @{Html.RenderAction("Category", "Home");}
                         </ul>
                     </div>
                 </div>
@@ -196,7 +194,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
                         <h2 class="footer-wid-title">Đăng ký nhận thư</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <p>Đăng ký để nhận thông báo khi có sản phẩm mới, bạn sẽ không bỏ lỡ những sản phẩm mới nhất từ chúng tôi.</p>
                         <div class="newsletter-form">
                             <form action="#">
                                 <input type="email" placeholder="Nhập email của bạn...">

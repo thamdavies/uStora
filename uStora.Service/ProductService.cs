@@ -4,6 +4,7 @@ using uStora.Model.Models;
 using System.Collections.Generic;
 using uStora.Common;
 using System.Linq;
+using System;
 
 namespace uStora.Service
 {
@@ -20,6 +21,8 @@ namespace uStora.Service
         IEnumerable<Product> GetLastest(int top);
 
         IEnumerable<Product> GetTopSales(int top);
+
+        IEnumerable<Product> GetTopView(int top);
 
         IEnumerable<Product> GetAll(string keyword);
 
@@ -256,6 +259,11 @@ namespace uStora.Service
         public Tag GetTag(string tagId)
         {
             return _tagRepository.GetSingleByCondition(x => x.ID == tagId);
+        }
+
+        public IEnumerable<Product> GetTopView(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.ViewCount).Take(top);
         }
     }
 }
