@@ -200,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\BrandController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
@@ -243,6 +245,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\brands\brand.module.js" />
+    <Content Include="app\components\brands\brandAddController.js" />
+    <Content Include="app\components\brands\brandAddView.html" />
+    <Content Include="app\components\brands\brandEditController.js" />
+    <Content Include="app\components\brands\brandEditView.html" />
+    <Content Include="app\components\brands\brandListController.js" />
+    <Content Include="app\components\brands\brandListView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />

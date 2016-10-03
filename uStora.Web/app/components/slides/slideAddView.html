@@ -26,7 +26,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề</label>
 
                     <div class="col-sm-10">
-                        <textarea class="form-control" required ckeditor="ckeditorOptions" name="name" ng-model="slide.Name" placeholder="">Tiêu đề</textarea>
+                        <textarea class="form-control" required ckeditor="ckeditorOptions" maxlength="256" name="name" ng-model="slide.Name" placeholder="">Tiêu đề</textarea>
                         <span ng-show="frmAddSlide.name.$invalid" class="invalid">Phải nhập tiêu đề</span>
                         <span ng-show="frmAddSlide.name.$error.maxlength" class="invalid">Chỉ nhập tối đa 256 ký tự.</span>
                     </div>
@@ -78,7 +78,7 @@
                             <label>
                                 <input type="checkbox" name="status" required ng-model="slide.Status" ng-checked="slide.Status" />Kích hoạt
                             </label>
-                            <span ng-show="frmAddSlide.Status.$invalid" class="invalid">Phải chọn trạng thái</span>
+                            <span ng-show="frmAddSlide.status.$invalid" class="invalid">Phải chọn trạng thái</span>
                         </div>
                     </div>
                 </div>

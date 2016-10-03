@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
@@ -10,7 +9,7 @@ namespace uStora.Service
     {
         Slide Add(Slide slide);
 
-        void Update(Slide id);
+        void Update(Slide slide);
 
         Slide Delete(int id);
 
@@ -48,7 +47,6 @@ namespace uStora.Service
             if (!string.IsNullOrEmpty(keyword))
             {
                 return _slideRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.Content.Contains(keyword));
-
             }
             else
             {

@@ -20,6 +20,8 @@ namespace uStora.Web.Mappings
             Mapper.CreateMap<ProductTag, ProductTagViewModel>();
             //slide
             Mapper.CreateMap<Slide, SlideViewModel>();
+            //brand
+            Mapper.CreateMap<Brand, BrandViewModel>();
             //contactdetail
             Mapper.CreateMap<ContactDetail, ContactDetailViewModel>();
             //feedback

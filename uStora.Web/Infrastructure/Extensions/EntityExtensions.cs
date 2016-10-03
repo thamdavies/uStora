@@ -120,6 +120,27 @@ namespace uStora.Web.Infrastructure.Extensions
             slide.Status = slideViewModel.Status;
         }
 
+        public static void UpdateBrand(this Brand brand, BrandViewModel brandViewModel)
+        {
+            brand.ID = brandViewModel.ID;
+            brand.Name = brandViewModel.Name;
+
+            brand.Description = brandViewModel.Description;
+            brand.Image = brandViewModel.Image;
+            brand.Alias = brandViewModel.Alias;
+            brand.Country = brandViewModel.Country;
+            brand.Website = brandViewModel.Website;
+            brand.HotFlag = brandViewModel.HotFlag;
+
+            brand.CreatedDate = brandViewModel.CreatedDate;
+            brand.CreatedBy = brandViewModel.CreatedBy;
+            brand.UpdatedDate = brandViewModel.UpdatedDate;
+            brand.UpdatedBy = brandViewModel.UpdatedBy;
+            brand.MetaDescription = brandViewModel.MetaDescription;
+            brand.MetaKeyword = brandViewModel.MetaKeyword;
+            brand.Status = brandViewModel.Status;
+        }
+
         public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackViewModel)
         {
             feedback.ID = feedbackViewModel.ID;

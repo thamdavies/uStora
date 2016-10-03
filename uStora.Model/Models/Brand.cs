@@ -26,6 +26,9 @@ namespace uStora.Model.Models
         [MaxLength(750)]
         public string Description { get; set; }
 
+        [MaxLength(256)]
+        public string Image { get; set; }
+
         [MaxLength(300)]
         [Column(TypeName = "varchar")]
         public string Website { get; set; }

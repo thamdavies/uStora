@@ -4,6 +4,7 @@
         ['uStora.products',
          'uStora.product_categories',
          'uStora.slides',
+         'uStora.brands',
          'uStora.common'])
         .config(config)
         .config(configAuthentication);
