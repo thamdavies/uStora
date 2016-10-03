@@ -12,17 +12,19 @@ namespace uStora.Web.Controllers
     {
         IProductCategoryService _productCategoryService;
         IProductService _productService;
+        IBrandService _brandService;
         ICommonService _commonService;
 
         public HomeController(IProductCategoryService productCategoryService,
-            ICommonService commonService, IProductService productService)
+            ICommonService commonService, IProductService productService,
+            IBrandService brandService)
         {
             this._productCategoryService = productCategoryService;
             this._productService = productService;
             this._commonService = commonService;
+            this._brandService = brandService;
         }
-
-        [OutputCache(Duration = 3600, Location = System.Web.UI.OutputCacheLocation.Server)]
+        
         public ActionResult Index()
         {
             var listSlide = _commonService.GetSlides();
@@ -32,7 +34,9 @@ namespace uStora.Web.Controllers
             var listProducts = _productService.GetLastest(_productService.GetAll().Count());
             var topSaleProducts = _productService.GetTopSales(3);
             var topViews = _productService.GetTopView(3);
+            var brands = _brandService.GetActivedBrand("");
 
+            var brandVm = Mapper.Map<IEnumerable<Brand>, IEnumerable<BrandViewModel>>(brands);
             var listProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProducts);
             var lastestProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProducts);
             var topSaleProductsVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProducts);
@@ -40,6 +44,7 @@ namespace uStora.Web.Controllers
 
             var homeVm = new HomeViewModel();
             homeVm.Slides = slideVm;
+            homeVm.Brands = brandVm;
             homeVm.Products = listProductsVm;
             homeVm.TopViews = topViewsVm;
             homeVm.LatestProducts = lastestProductsVm;
@@ -50,6 +55,7 @@ namespace uStora.Web.Controllers
 
 
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Header()
         {
             return PartialView();

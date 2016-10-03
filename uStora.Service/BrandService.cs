@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
@@ -18,6 +19,8 @@ namespace uStora.Service
         Brand GetByID(int id);
 
         IEnumerable<Brand> GetAll(string keyword);
+
+        IEnumerable<Brand> GetActivedBrand(string keyword);
     }
 
     public class BrandService : IBrandService
@@ -42,11 +45,23 @@ namespace uStora.Service
             return _brandRepository.Delete(id);
         }
 
+        public IEnumerable<Brand> GetActivedBrand(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                return _brandRepository.GetMulti(x =>x.Status && x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            }
+            else
+            {
+                return _brandRepository.GetMulti(x => x.Status);
+            }
+        }
+
         public IEnumerable<Brand> GetAll(string keyword)
         {
             if(!string.IsNullOrEmpty(keyword))
             {
-                return _brandRepository.GetMulti(x => x.Status && x.Name.Contains(keyword) || x.Description.Contains(keyword));
+                return _brandRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
             }
             else
             {

@@ -26,7 +26,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên nhãn hiệu</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" required ckeditor="ckeditorOptions" maxlength="150" name="name" ng-model="brand.Name" placeholder=""/>
+                        <input type="text" class="form-control" required  maxlength="150" name="name" ng-model="brand.Name" placeholder="tên nhãn hiệu"/>
                         <span ng-show="frmUpdateBrand.name.$invalid" class="invalid">Phải nhập tên nhãn hiệu</span>
                         <span ng-show="frmUpdateBrand.name.$error.maxlength" class="invalid">Chỉ nhập tối đa 150 ký tự.</span>
                     </div>
@@ -79,13 +79,13 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="status" required ng-model="brand.Status" ng-checked="brand.Status" />Kích hoạt
+                                <input type="checkbox" name="status" ng-model="brand.Status" ng-checked="brand.Status" />Kích hoạt
                             </label>
                             <span ng-show="frmUpdateBrand.status.$invalid" class="invalid">Phải chọn trạng thái</span>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="hotFlag" required ng-model="brand.HotFlag" ng-checked="brand.HotFlag" />Hot
+                                <input type="checkbox" name="hotFlag" ng-model="brand.HotFlag" ng-checked="brand.HotFlag" />Hot
                             </label>
                             <span ng-show="frmUpdateBrand.hotFlag.$invalid" class="invalid">Phải chọn trạng thái</span>
                         </div>

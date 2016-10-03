@@ -117,14 +117,11 @@
                 <div class="col-md-12">
                     <div class="brand-wrapper">
                         <div class="brand-list">
-                            <img src="/Assets/Client/img/brand1.png" alt="">
-                            <img src="/Assets/Client/img/brand2.png" alt="">
-                            <img src="/Assets/Client/img/brand3.png" alt="">
-                            <img src="/Assets/Client/img/brand4.png" alt="">
-                            <img src="/Assets/Client/img/brand5.png" alt="">
-                            <img src="/Assets/Client/img/brand6.png" alt="">
-                            <img src="/Assets/Client/img/brand1.png" alt="">
-                            <img src="/Assets/Client/img/brand2.png" alt="">
+                            @foreach (var brand in Model.Brands)
+                            {
+                                <img src="@brand.Image" alt="">
+                            }
+                            
                         </div>
                     </div>
                 </div>

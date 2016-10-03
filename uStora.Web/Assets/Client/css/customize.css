@@ -20,6 +20,9 @@
     overflow: hidden;
 }
 
+.product-f-image img{
+   height: 260px;
+}
 .cart-mobile {
     position: fixed;
     top: 0px;
