@@ -8,6 +8,8 @@ namespace uStora.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            // BotDetect requests must not be routed
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
 
             routes.MapRoute(
                 name: "Product category",
@@ -20,6 +22,13 @@ namespace uStora.Web
                name: "Shop",
                url: "shop.htm",
                defaults: new { controller = "Product", action = "Shop", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
+            //contact
+            routes.MapRoute(
+               name: "Contact",
+               url: "contact.htm",
+               defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
 

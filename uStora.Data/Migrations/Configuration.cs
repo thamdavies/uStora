@@ -18,6 +18,7 @@
         {
             CreateUser(context);
             BrandDefault(context);
+            CreateContactDetail(context);
         }
 
         private void CreateUser(uStoraDbContext context)
@@ -66,6 +67,34 @@
                 };
                 context.Brands.Add(brand);
                 context.SaveChanges();
+            }
+        }
+
+        private void CreateContactDetail(uStoraDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                try
+                {
+                    var contactDetail = new ContactDetail()
+                    {
+                        Name = "Shop online - uStora",
+                        Address = "472 Núi Thành",
+                        Phone = "016 5213 0546",
+                        Email = "dvbtham@gmail.com",
+                        Lat = 16.034562,
+                        Lng = 108.222603,
+                        Website = "http://ustora.com.vn",
+                        Description = "",
+                        Status = true
+                    };
+                    context.ContactDetails.Add(contactDetail);
+                    context.SaveChanges();
+                }
+                catch
+                {
+
+                }
             }
         }
     }

@@ -19,6 +19,17 @@ namespace uStora.Model.Models
         [Column(TypeName = "varchar")]
         public string Email { get; set; }
 
+        [Column(TypeName ="varchar")]
+        [MaxLength(100)]
+        public string Website { get; set; }
+
+        [MaxLength(20)]
+        [Column(TypeName = "varchar")]
+        public string Phone { get; set; }
+
+        [MaxLength(150)]
+        public string Address { get; set; }
+
         [Required]
         public string Message { get; set; }
 

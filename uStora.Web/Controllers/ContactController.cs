@@ -26,37 +26,36 @@ namespace uStora.Web.Controllers
             viewModel.ContactDetail = GetContactDetail();
             return View(viewModel);
         }
+        public ActionResult Feedback()
+        {
+            FeedbackViewModel viewModel = new FeedbackViewModel();
+            viewModel.ContactDetail = GetContactDetail();
+            return View(viewModel);
+        }
 
         [HttpPost]
         [CaptchaValidation("CaptchaCode", "contactCaptcha", "Mã xác nhận không hợp lệ!")]
-        public ActionResult SendFeedback(FeedbackViewModel feedbackViewModel)
+        public JsonResult SendFeedback(FeedbackViewModel feedbackViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                Feedback feedback = new Feedback();
-                feedback.UpdateFeedback(feedbackViewModel);
-                _feedbackService.Create(feedback);
-                _feedbackService.SaveChanges();
+            Feedback feedback = new Feedback();
+            feedback.UpdateFeedback(feedbackViewModel);
+            _feedbackService.Create(feedback);
+            _feedbackService.SaveChanges();
 
-                ViewData["isSuccess"] = "Phản hồi của bạn được gửi thành công";
+            var feedBackModel = feedback;
 
-                string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/templates/contactTemplate.html"));
-                content = content.Replace("{{Name}}", feedbackViewModel.Name);
-                content = content.Replace("{{Email}}", feedbackViewModel.Email);
-                content = content.Replace("{{Message}}", feedbackViewModel.Message);
-                var adminEmail = ConfigHelper.GetByKey("AdminEmail");
-                MailHelper.SendMail(adminEmail, "Thông tin liên hệ từ Website.", content);
-
-                feedbackViewModel.Name = "";
-                feedbackViewModel.Email = "";
-                feedbackViewModel.Message = "";
-            }
-            else
-            {
-                ModelState.AddModelError("", "Thông tin phản hồi chưa hợp lệ");
-            }
+            string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/Client/templates/contactTemplate.html"));
+            content = content.Replace("{{Name}}", feedbackViewModel.Name);
+            content = content.Replace("{{Email}}", feedbackViewModel.Email);
+            content = content.Replace("{{Message}}", feedbackViewModel.Message);
+            content = content.Replace("{{Address}}", feedbackViewModel.Address);
+            content = content.Replace("{{Phone}}", feedbackViewModel.Phone);
+            content = content.Replace("{{Website}}", feedbackViewModel.Website);
+            var adminEmail = ConfigHelper.GetByKey("AdminEmail");
+            MailHelper.SendMail(adminEmail, "Thông tin liên hệ từ Website.", content);
+           
             feedbackViewModel.ContactDetail = GetContactDetail();
-            return View("Index", feedbackViewModel);
+            return Json(new { data = feedBackModel, JsonRequestBehavior.AllowGet });
         }
 
         private ContactDetailViewModel GetContactDetail()

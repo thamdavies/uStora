@@ -13,6 +13,15 @@ namespace uStora.Web.Models
 
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Email chưa ký tự không hợp lệ")]
         public string Email { get; set; }
+        
+        [MaxLength(100, ErrorMessage ="Chỉ nhập 100 ký tự")]
+        public string Website { get; set; }
+
+        [MaxLength(20, ErrorMessage = "Chỉ nhập 20 ký tự")]
+        public string Phone { get; set; }
+
+        [MaxLength(150, ErrorMessage = "Chỉ nhập 150 ký tự")]
+        public string Address { get; set; }
 
         [Required(ErrorMessage = "Yêu cầu nhập nội dung tin nhắn")]
         public string Message { get; set; }

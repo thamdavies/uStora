@@ -355,12 +355,14 @@
     <Content Include="Assets\Client\css\bootstrap.min.css" />
     <Content Include="Assets\Client\css\customize.css" />
     <Content Include="Assets\Client\css\font-awesome.min.css" />
+    <Content Include="Assets\Client\css\overlay.css" />
     <Content Include="Assets\Client\css\owl.carousel.css" />
     <Content Include="Assets\Client\css\responsive.css" />
     <Content Include="Assets\Client\css\search-box.css" />
     <Content Include="Assets\Client\css\style.css" />
     <Content Include="Assets\Client\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Client\img\box.gif" />
     <Content Include="Assets\Client\img\brand1.png" />
     <Content Include="Assets\Client\img\brand2.png" />
     <Content Include="Assets\Client\img\brand3.png" />
@@ -384,8 +386,10 @@
     <Content Include="Assets\Client\img\product-thumb-2.jpg" />
     <Content Include="Assets\Client\img\product-thumb-3.jpg" />
     <Content Include="Assets\Client\img\product-thumb-4.jpg" />
+    <Content Include="Assets\Client\js\app.js" />
     <Content Include="Assets\Client\js\bxslider.min.js" />
     <Content Include="Assets\Client\js\cart.js" />
+    <Content Include="Assets\Client\js\controllers\contact.js" />
     <Content Include="Assets\Client\js\jquery.easing.1.3.min.js" />
     <Content Include="Assets\Client\js\jquery.sticky.js" />
     <Content Include="Assets\Client\js\main.js" />
@@ -394,6 +398,7 @@
     <Content Include="Assets\Client\js\scroll-startstop.events.jquery.js" />
     <Content Include="Assets\Client\js\scroll.js" />
     <Content Include="Assets\Client\js\search-box.js" />
+    <Content Include="Assets\Client\templates\contactTemplate.html" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.css" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.js" />
     <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.min.css" />
@@ -5137,6 +5142,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Product\Shop.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contact\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contact\Feedback.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -23,6 +23,4 @@ $(function () {
         event.preventDefault();
         return false;
     });
-
-     $("body").tooltip({ selector: '[data-toggle=tooltip]' });
 });

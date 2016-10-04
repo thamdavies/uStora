@@ -147,6 +147,9 @@ namespace uStora.Web.Infrastructure.Extensions
             feedback.Name = feedbackViewModel.Name;
             feedback.Email = feedbackViewModel.Email;
             feedback.Message = feedbackViewModel.Message;
+            feedback.Address = feedbackViewModel.Address;
+            feedback.Phone = feedbackViewModel.Phone;
+            feedback.Website = feedbackViewModel.Website;
             feedback.CreatedDate = DateTime.Now;
             feedback.Status = feedbackViewModel.Status;
         }

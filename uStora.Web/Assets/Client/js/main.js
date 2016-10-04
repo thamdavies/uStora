@@ -1,6 +1,8 @@
 jQuery(document).ready(function($){
     
     // jQuery sticky Menu
+
+    $("[data-toggle=tooltip]").tooltip();
     
 	$(".mainmenu-area").sticky({topSpacing:0});
        
