@@ -17,6 +17,13 @@ namespace uStora.Web
                 defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
                 namespaces: new string[] { "uStora.Web.Controllers" }
             );
+            //search
+            routes.MapRoute(
+               name: "Search",
+               url: "search.htm",
+               defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
             //shop
             routes.MapRoute(
                name: "Shop",

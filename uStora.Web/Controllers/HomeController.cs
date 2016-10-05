@@ -24,7 +24,7 @@ namespace uStora.Web.Controllers
             this._commonService = commonService;
             this._brandService = brandService;
         }
-        
+
         public ActionResult Index()
         {
             var listSlide = _commonService.GetSlides();

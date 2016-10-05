@@ -118,15 +118,16 @@
                 </div>
                 <div id="search">
                     <button type="button" class="close">×</button>
-                    <div class="form-group dropdown-area">
-                        <select class="form-control" id="searchSelect">
-                            <option value="">Tất cả</option>
-                            <option value="">Danh mục</option>
-                            <option value="">Nhãn hiệu</option>
-                        </select>
-                    </div>
-                    <form>
-                        <input type="search" placeholder="nhập từ khóa ở đây" />
+                    
+                    <form method="get" action="/search.htm">
+                        <div class="form-group dropdown-area">
+                            <select class="form-control" id="searchSelect">
+                                <option value="">Tất cả</option>
+                                <option value="">Danh mục</option>
+                                <option value="">Nhãn hiệu</option>
+                            </select>
+                        </div>
+                        <input type="search" name="keyword" placeholder="nhập từ khóa ở đây" />
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                 </div>
@@ -225,10 +226,6 @@
 
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
-
-
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- jQuery sticky menu -->
     <script src="/Assets/Client/js/owl.carousel.min.js"></script>

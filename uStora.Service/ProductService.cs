@@ -36,7 +36,7 @@ namespace uStora.Service
 
         IEnumerable<Product> GetByCategoryIDPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
-        IEnumerable<Product> GetByCategoryIDPaging(string keyword, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Product> GetByKeywordPaging(string keyword, int page, int pageSize, string sort, out int totalRow);
 
         IEnumerable<Product> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
         IEnumerable<Tag> GetTagsByProduct(long id);
@@ -220,7 +220,7 @@ namespace uStora.Service
         }
 
 
-        public IEnumerable<Product> GetByCategoryIDPaging(string keyword, int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<Product> GetByKeywordPaging(string keyword, int page, int pageSize, string sort, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
             switch (sort)

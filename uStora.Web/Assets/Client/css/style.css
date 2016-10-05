@@ -693,7 +693,15 @@ width: 10px;
   font-size: 50px;
   font-weight: 200;
   margin: 0;
-  padding: 50px 0;color: #fff;
+  padding: 20px 0;color: #fff;
+}
+.product-bit-title p{
+  font-family: arial;
+  font-size: 20px;
+  font-weight: 200;
+  margin: 0;
+  padding-bottom: 20px;
+  color: #fff;
 }
 
 .single-product-area .zigzag-bottom {background-color: #f4f4f4}

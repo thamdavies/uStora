@@ -112,7 +112,7 @@ namespace uStora.Web.Controllers
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));
             int totalRow = 0;
-            var product = _productService.GetByCategoryIDPaging(keyword, page, pageSize, sort, out totalRow);
+            var product = _productService.GetByKeywordPaging(keyword, page, pageSize, sort, out totalRow);
             var productVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(product);
             int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
             ViewBag.Keyword = keyword;
