@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BotDetect.Web.Mvc;
 using System.Web.Mvc;
 using uStora.Common;
 using uStora.Model.Models;
@@ -20,13 +19,8 @@ namespace uStora.Web.Controllers
             this._feedbackService = feedbackService;
         }
 
+        [OutputCache(Duration = 60)]
         public ActionResult Index()
-        {
-            FeedbackViewModel viewModel = new FeedbackViewModel();
-            viewModel.ContactDetail = GetContactDetail();
-            return View(viewModel);
-        }
-        public ActionResult Feedback()
         {
             FeedbackViewModel viewModel = new FeedbackViewModel();
             viewModel.ContactDetail = GetContactDetail();
@@ -34,7 +28,6 @@ namespace uStora.Web.Controllers
         }
 
         [HttpPost]
-        [CaptchaValidation("CaptchaCode", "contactCaptcha", "Mã xác nhận không hợp lệ!")]
         public JsonResult SendFeedback(FeedbackViewModel feedbackViewModel)
         {
             Feedback feedback = new Feedback();
@@ -53,7 +46,7 @@ namespace uStora.Web.Controllers
             content = content.Replace("{{Website}}", feedbackViewModel.Website);
             var adminEmail = ConfigHelper.GetByKey("AdminEmail");
             MailHelper.SendMail(adminEmail, "Thông tin liên hệ từ Website.", content);
-           
+
             feedbackViewModel.ContactDetail = GetContactDetail();
             return Json(new { data = feedBackModel, JsonRequestBehavior.AllowGet });
         }
