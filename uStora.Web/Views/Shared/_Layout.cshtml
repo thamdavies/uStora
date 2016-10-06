@@ -96,8 +96,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Trang chủ</a></li>
-                        <li><a href="/shop.htm">Cửa hàng</a></li>
+                        @using uStora.Common
+                        <li class="@Html.IsSelected("Home","Index")"><a href="/">Trang chủ</a></li>
+                        <li class="@Html.IsSelected("Product","Shop")"><a href="/shop.htm">Cửa hàng</a></li>
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 Danh mục sản phẩm<b class="caret"></b>
@@ -106,8 +107,8 @@
                                 @{Html.RenderAction("Category", "Home");}
                             </ul>
                         </li>
-                        <li><a href="/about.htm">Giới thiệu</a></li>
-                        <li><a href="/contact.htm">Liên hệ</a></li>
+                        <li class="@Html.IsSelected("Home","About")"><a href="/about.htm">Giới thiệu</a></li>
+                        <li class="@Html.IsSelected("Home", "Contact")"><a href="/contact.htm">Liên hệ</a></li>
                     </ul>
                     <!-- Login - Signup -->
                     <ul class="nav navbar-nav navbar-right">

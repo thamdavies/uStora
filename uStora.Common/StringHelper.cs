@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace uStora.Common
 {
-    public class StringHelper
+    public static class StringHelper
     {
         public static string pageActive = "";
         public static string ToUnsignString(string input)
