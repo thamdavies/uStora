@@ -79,6 +79,7 @@ namespace uStora.Web.Infrastructure.Extensions
 
             product.Description = productViewModel.Description;
             product.CategoryID = productViewModel.CategoryID;
+            product.BrandID = productViewModel.BrandID;
             product.Image = productViewModel.Image;
             product.MoreImages = productViewModel.MoreImages;
             product.HomeFlag = productViewModel.HomeFlag;

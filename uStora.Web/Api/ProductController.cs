@@ -21,11 +21,14 @@ namespace uStora.Web.API
         #region Initialize
 
         private IProductService _productService;
+        private IBrandService _brandService;
 
-        public ProductController(IErrorService errorService, IProductService productService)
+        public ProductController(IErrorService errorService,
+            IProductService productService, IBrandService brandService)
             : base(errorService)
         {
             this._productService = productService;
+            this._brandService = brandService;
         }
 
         #endregion Initialize
@@ -39,6 +42,22 @@ namespace uStora.Web.API
                 var model = _productService.GetAll();
 
                 var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            };
+            return CreateHttpResponse(request, func);
+        }
+
+        [Route("listbrands")]
+        [HttpGet]
+        public HttpResponseMessage ListBrands(HttpRequestMessage request)
+        {
+            Func<HttpResponseMessage> func = () =>
+            {
+                var model = _brandService.GetAll("");
+
+                var responseData = Mapper.Map<IEnumerable<Brand>, IEnumerable<BrandViewModel>>(model);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;

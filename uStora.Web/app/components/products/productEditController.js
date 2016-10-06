@@ -6,7 +6,8 @@
             UpdatedDate: new Date()
         }
         $scope.productCategories = [];
-
+        $scope.brands = [];
+        $scope.loadBrands = loadBrands;
         $scope.loadProductCategories = loadProductCategories;
         $scope.loadProductDetail = loadProductDetail;
         $scope.UpdateProduct = UpdateProduct;
@@ -17,6 +18,15 @@
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px'
+        }
+
+        function loadBrands() {
+            apiService.get('/api/product/listbrands', null,
+               function (result) {
+                   $scope.brands = result.data;
+               }, function () {
+                   notificationService.displayError("Không có nhãn hiệu nào được tìm thấy.");
+               })
         }
 
         function thisClose(img) {
@@ -94,5 +104,6 @@
 
         loadProductCategories();
         loadProductDetail();
+        loadBrands();
     }
 })(angular.module('uStora.products'));

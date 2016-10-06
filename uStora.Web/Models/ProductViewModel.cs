@@ -12,6 +12,8 @@ namespace uStora.Web.Models
 
         public int CategoryID { get; set; }
 
+        public int BrandID { get; set; }
+
         public string Image { get; set; }
 
         public string MoreImages { get; set; }
@@ -35,5 +37,6 @@ namespace uStora.Web.Models
         public string Tags { get; set; }
 
         public virtual ProductCategoryViewModel ProductCategory { get; set; }
+        public virtual BrandViewModel Brand { get; set; }
     }
 }

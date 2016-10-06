@@ -60,6 +60,16 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Nhãn hiệu</label>
+
+                    <div class="col-sm-10">
+                        <select name="brandID" class="form-control" ng-model="product.BrandID" ng-options="option.ID as option.Name for option in brands">
+                            <option value="">--- Chọn nhãn hiệu ---</option>
+                        </select>
+                        <input type="hidden" name="brandID" ng-model="product.BrandID" />
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Số lượng</label>
 
                     <div class="col-sm-10">
