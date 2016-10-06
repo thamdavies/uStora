@@ -212,6 +212,12 @@ namespace uStora.Service
                 case "price":
                     query = query.OrderBy(x => x.Price);
                     break;
+                case "price_asc":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case "price_des":
+                    query = query.OrderByDescending(x => x.Price);
+                    break;
                 default:
                     query = query.OrderByDescending(x => x.CreatedDate);
                     break;
@@ -244,6 +250,12 @@ namespace uStora.Service
                     break;
                 case "price":
                     query = query.OrderBy(x => x.Price);
+                    break;
+                case "price_asc":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case "price_des":
+                    query = query.OrderByDescending(x => x.Price);
                     break;
                 default:
                     query = query.OrderByDescending(x => x.CreatedDate);
