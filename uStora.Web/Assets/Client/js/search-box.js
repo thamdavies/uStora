@@ -5,8 +5,8 @@ $(function () {
         $('#search > form > input[type="text"]').focus();
     });
     
-    $('#search, #search button.close').on('click keyup', function(event) {
-        if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+    $('#search, #search button.close, #btnSearch').on('click keyup', function (event) {
+        if (event.target == this || event.target.className == 'close' || event.keyCode == 27 || event.keyCode == 13) {
             $(this).removeClass('open');
         }
     });

@@ -64,6 +64,7 @@ namespace uStora.Web.Controllers
             var product = _productService.GetAllPaging(page, sort, pageSize, out totalRow);
             var productVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(product);
             int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
+            ViewBag.SortKey = sort;
 
             var paginationSet = new PaginationSet<ProductViewModel>()
             {

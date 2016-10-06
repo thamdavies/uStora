@@ -123,3 +123,36 @@
 #map {
     height: 700px;
 }
+
+.breadcrumb-area {
+    background: #FBFBFB;
+    width:100%;
+    height:60px;
+}
+
+    .breadcrumb-area .breadcrumb {
+        background: none;
+        line-height:40px;
+        display:block;
+        margin-left: 113px;
+        float:left;
+    }
+
+        .breadcrumb-area .breadcrumb li a {
+            color: #5A88CA;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+ul.sortby-area {
+    width:100%;
+    background: #FBFBFB;
+    list-style:none;
+    float:left;
+    line-height:56px;
+}
+.sub-menu{
+    line-height:5px;
+}
+ul.sortby-area  li{
+    display:inline;
+    padding-right: 10px;
+}

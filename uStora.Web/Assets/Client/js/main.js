@@ -4,9 +4,8 @@ jQuery(document).ready(function($){
 
     $("[data-toggle=tooltip]").tooltip();
     
-	$(".mainmenu-area").sticky({topSpacing:0});
-       
-    
+    $(".mainmenu-area").sticky({ topSpacing: 0 });
+   
     $('.product-carousel').owlCarousel({
         loop:true,
         nav:true,

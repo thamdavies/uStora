@@ -153,8 +153,11 @@ namespace uStora.Service
                 case "discount":
                     query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
                     break;
-                case "price":
+                case "price_asc":
                     query = query.OrderBy(x => x.Price);
+                    break;
+                case "price_des":
+                    query = query.OrderByDescending(x => x.Price);
                     break;
                 default:
                     query = query.OrderByDescending(x => x.CreatedDate);
