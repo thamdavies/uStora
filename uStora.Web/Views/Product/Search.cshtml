@@ -48,10 +48,7 @@
                         Nhãn hiệu<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu sub-menu">
-                        <li><a href="#">LG</a></li>
-                        <li><a href="#">Samsung</a></li>
-                        <li><a href="#">Nokia</a></li>
-                        <li><a href="#">Dell</a></li>
+                        @{Html.RenderAction("BrandsList", "Product"); }
                     </ul>
                 </li>
             </ul>

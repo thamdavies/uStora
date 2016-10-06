@@ -14,11 +14,15 @@ namespace uStora.Web.Controllers
     public class ProductController : Controller
     {
         private IProductService _productService;
+        private IBrandService _brandService;
         private IProductCategoryService _productCategoryService;
 
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService)
+        public ProductController(IProductService productService,
+            IProductCategoryService productCategoryService,
+            IBrandService brandService)
         {
             this._productService = productService;
+            this._brandService = brandService;
             this._productCategoryService = productCategoryService;
         }
 
@@ -35,11 +39,14 @@ namespace uStora.Web.Controllers
             return View(productVm);
         }
 
-        public ActionResult Category(int id, int page = 1, string sort = "")
+        public ActionResult Category(int id,int brandid = 0, int page = 1, string sort = "")
         {
+            TempData["categoryID"] = id;
+            TempData["categoryAlias"] = _productCategoryService.GetByID(id).Alias;
+            StringHelper.pageActive = "category";
             int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));
             int totalRow = 0;
-            var product = _productService.GetByCategoryIDPaging(id, page, pageSize, sort, out totalRow);
+            var product = _productService.GetByCategoryIDPaging(id, brandid, page, pageSize, sort, out totalRow);
             var productVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(product);
             int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
             var category = _productCategoryService.GetByID(id);
@@ -57,11 +64,12 @@ namespace uStora.Web.Controllers
             return View(paginationSet);
         }
 
-        public ActionResult Shop(int page = 1, string sort = "")
+        public ActionResult Shop(int page = 1, int brandid = 0, string sort = "")
         {
+            StringHelper.pageActive = "shop";
             int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));
             int totalRow = 0;
-            var product = _productService.GetAllPaging(page, sort, pageSize, out totalRow);
+            var product = _productService.GetAllPaging(page, brandid, sort, pageSize, out totalRow);
             var productVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(product);
             int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
             ViewBag.SortKey = sort;
@@ -76,6 +84,14 @@ namespace uStora.Web.Controllers
             };
 
             return View(paginationSet);
+        }
+
+        [ChildActionOnly]
+        public ActionResult BrandsList()
+        {
+            var model = _brandService.GetAll("");
+            var brandVm = Mapper.Map<IEnumerable<Brand>, IEnumerable<BrandViewModel>>(model);
+            return PartialView(brandVm);
         }
 
         public JsonResult GetProductsByName(string keyword)
@@ -109,11 +125,12 @@ namespace uStora.Web.Controllers
             return View(paginationSet);
         }
 
-        public ActionResult Search(string keyword, int page = 1, string sort = "")
+        public ActionResult Search(string keyword,int brandid = 0, int page = 1, string sort = "")
         {
+            StringHelper.pageActive = "search";
             int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));
             int totalRow = 0;
-            var product = _productService.GetByKeywordPaging(keyword, page, pageSize, sort, out totalRow);
+            var product = _productService.GetByKeywordPaging(keyword, brandid, page, pageSize, sort, out totalRow);
             var productVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(product);
             int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
             ViewBag.Keyword = keyword;

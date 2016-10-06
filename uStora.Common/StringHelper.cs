@@ -5,6 +5,7 @@ namespace uStora.Common
 {
     public class StringHelper
     {
+        public static string pageActive = "";
         public static string ToUnsignString(string input)
         {
             input = input.Trim();
