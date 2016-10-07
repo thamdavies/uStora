@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using uStora.Common;
 using System.Linq;
 using System;
+using MvcPaging;
 
 namespace uStora.Service
 {
@@ -34,6 +35,8 @@ namespace uStora.Service
 
         Product GetByID(long id);
 
+        List<Product> GetAllPagingAjax(string keyword);
+
         IEnumerable<Product> GetByCategoryIDPaging(int categoryId, int brandid, int page, int pageSize, string sort, out int totalRow);
 
         IEnumerable<Product> GetByKeywordPaging(string keyword,int brandid, int page, int pageSize, string sort, out int totalRow);
@@ -45,6 +48,8 @@ namespace uStora.Service
 
         Tag GetTag(string tagId);
 
+        IEnumerable<Product> GetHot(int top);
+        
         void SaveChanges();
     }
 
@@ -131,6 +136,14 @@ namespace uStora.Service
         public IEnumerable<Product> GetAll()
         {
             return _productRepository.GetAll(new string[] { "ProductCategory" });
+        }
+
+        public List<Product> GetAllPagingAjax(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword))
+                return _productRepository.GetAll().ToList();
+            else
+                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Content.Contains(keyword)).ToList();
         }
 
 
@@ -308,6 +321,11 @@ namespace uStora.Service
         public IEnumerable<Product> GetTopView(int top)
         {
             return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.ViewCount).Take(top);
+        }
+
+        public IEnumerable<Product> GetHot(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x=>x.CreatedDate).Take(top);
         }
     }
 }

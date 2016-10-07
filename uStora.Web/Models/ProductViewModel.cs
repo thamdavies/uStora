@@ -1,4 +1,6 @@
-﻿using uStora.Model.Abstracts;
+﻿using System.Collections.Generic;
+using uStora.Model.Abstracts;
+using MvcPaging;
 
 namespace uStora.Web.Models
 {
@@ -37,6 +39,7 @@ namespace uStora.Web.Models
         public string Tags { get; set; }
 
         public virtual ProductCategoryViewModel ProductCategory { get; set; }
+        public IPagedList<ProductViewModel> ListProducts { get; set; }
         public virtual BrandViewModel Brand { get; set; }
     }
 }

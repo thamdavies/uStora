@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using MvcPaging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using uStora.Common;
@@ -26,20 +28,34 @@ namespace uStora.Web.Controllers
             this._productCategoryService = productCategoryService;
         }
 
-        public ActionResult Detail(long id)
+
+
+        public ActionResult Detail(long id, string searchString, int? page)
         {
+            int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
             var product = _productService.GetByID(id);
             var productVm = Mapper.Map<Product, ProductViewModel>(product);
             var relatedProducts = _productService.GetRelatedProducts(id, 5);
+            var hotProducts = _productService.GetRelatedProducts(id, 5);
 
             List<string> listImages = new JavaScriptSerializer().Deserialize<List<string>>(productVm.MoreImages);
+            var categoryVm = Mapper.Map<ProductCategory, ProductCategoryViewModel>(_productCategoryService.GetByID(productVm.CategoryID));
+            ViewBag.Category = categoryVm;
             ViewBag.MoreImages = listImages;
             ViewBag.RelatedProducts = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProducts);
             ViewBag.Tags = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(_productService.GetTagsByProduct(id));
-            return View(productVm);
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            IList<Product> listProducts = _productService.GetAllPagingAjax(searchString);
+
+            var listProductsVm = Mapper.Map<IList<Product>, IList<ProductViewModel>>(listProducts);
+            productVm.ListProducts = listProductsVm.ToPagedList(currentPageIndex, defaultPageSize);
+            if (Request.IsAjaxRequest())
+                return PartialView("_AjaxProductList", productVm.ListProducts);
+            else
+                return View(productVm);
         }
 
-        public ActionResult Category(int id,int brandid = 0, int page = 1, string sort = "")
+        public ActionResult Category(int id, int brandid = 0, int page = 1, string sort = "")
         {
             TempData["categoryID"] = id;
             TempData["categoryAlias"] = _productCategoryService.GetByID(id).Alias;
@@ -125,7 +141,7 @@ namespace uStora.Web.Controllers
             return View(paginationSet);
         }
 
-        public ActionResult Search(string keyword,int brandid = 0, int page = 1, string sort = "")
+        public ActionResult Search(string keyword, int brandid = 0, int page = 1, string sort = "")
         {
             StringHelper.pageActive = "search";
             int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));

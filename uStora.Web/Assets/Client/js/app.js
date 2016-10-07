@@ -1,5 +1,6 @@
 ﻿$(function () {
     $(document).ready(function () {
+       
         var $loading = $('#overlay');
         $(document)
           .ajaxStart(function () {

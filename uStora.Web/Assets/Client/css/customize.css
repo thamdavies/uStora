@@ -165,3 +165,9 @@ ul.sortby-area li {
     display: inline;
     padding-right: 10px;
 }
+a.isActive{
+    text-decoration:none;
+    color:midnightblue;
+}
+
+
