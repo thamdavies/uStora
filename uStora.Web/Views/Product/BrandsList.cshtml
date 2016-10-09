@@ -16,7 +16,7 @@ if (uStora.Common.StringHelper.pageActive == "category")
 
     foreach (var item in Model)
     {
-        <li><a href="/category/@categoryAlias/@(categoryID).htm?&brandid=@item.ID">@item.Name</a></li>
+        <li><a href="/category/@categoryAlias-@(categoryID).htm?&brandid=@item.ID">@item.Name</a></li>
     }
 }
 else

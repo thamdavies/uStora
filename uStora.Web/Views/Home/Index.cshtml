@@ -20,7 +20,7 @@
 
                             </h2>
                             <h4 class="caption subtitle">@Html.Raw(slide.Description)</h4>
-                            <a class="caption button-radius" href="/shop-page.htm"><span class="icon"></span>Shop now</a>
+                            <a class="caption button-radius" href="#"><span class="icon"></span>Vào mua ngay</a>
                         </div>
                     </li>
                 }
@@ -81,11 +81,11 @@
                                             <i class="fa fa-heart" data-toggle="tooltip" title="Yêu thích"></i>
                                         </a>
                                          
-                                        <a href="/product/@(product.Alias)/@(product.ID).htm" data-toggle="tooltip" data-html="true" title="@product.Description" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                        <a href="/product/@(product.Alias)-@(product.ID).htm" data-toggle="tooltip" data-html="true" title="@product.Description" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                     </div>
                                 </div>
 
-                                <h2><a href="/product/@(product.Alias)/@(product.ID).htm">@product.Name</a></h2>
+                                <h2><a href="/product/@(product.Alias)-@(product.ID).htm">@product.Name</a></h2>
 
                                 <div class="product-carousel-price">
                                     @if (product.PromotionPrice.HasValue)
@@ -141,8 +141,8 @@
                         @foreach (var product in Model.TopSaleProducts)
                         {
                             <div class="single-wid-product">
-                                <a href="/product/@(product.Alias)/@(product.ID).htm"><img src="@product.Image" alt="" class="product-thumb"></a>
-                                <h2><a href="/product/@(product.Alias)/@(product.ID).htm">@product.Name</a></h2>
+                                <a href="/product/@(product.Alias)-@(product.ID).htm"><img src="@product.Image" alt="" class="product-thumb"></a>
+                                <h2><a href="/product/@(product.Alias)-@(product.ID).htm">@product.Name</a></h2>
                                 <div class="product-wid-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -172,8 +172,8 @@
                         @foreach (var product in Model.TopViews)
                         {
                             <div class="single-wid-product">
-                                <a href="/product/@(product.Alias)/@(product.ID).htm"><img src="@product.Image" alt="" class="product-thumb"></a>
-                                <h2><a href="/product/@(product.Alias)/@(product.ID).htm">@product.Name</a></h2>
+                                <a href="/product/@(product.Alias)-@(product.ID).htm"><img src="@product.Image" alt="" class="product-thumb"></a>
+                                <h2><a href="/product/@(product.Alias)-@(product.ID).htm">@product.Name</a></h2>
                                 <div class="product-wid-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -203,8 +203,8 @@
                         @foreach (var product in Model.LatestProducts)
                         {
                             <div class="single-wid-product">
-                                <a href="/product/@(product.Alias)/@(product.ID).htm"><img src="@product.Image" alt="" class="product-thumb"></a>
-                                <h2><a href="/product/@(product.Alias)/@(product.ID).htm">@product.Name</a></h2>
+                                <a href="/product/@(product.Alias)-@(product.ID).htm"><img src="@product.Image" alt="" class="product-thumb"></a>
+                                <h2><a href="/product/@(product.Alias)-@(product.ID).htm">@product.Name</a></h2>
                                 <div class="product-wid-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>

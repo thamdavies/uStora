@@ -1,11 +1,9 @@
-﻿using uStora.Data.Infrastructure;
+﻿using System.Collections.Generic;
+using System.Linq;
+using uStora.Common;
+using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
-using System.Collections.Generic;
-using uStora.Common;
-using System.Linq;
-using System;
-using MvcPaging;
 
 namespace uStora.Service
 {
@@ -31,7 +29,7 @@ namespace uStora.Service
 
         IEnumerable<Product> GetRelatedProducts(long id, int top);
 
-        IEnumerable<Product> GetAllPaging(int page,int brandid, string sort, int pageSize, out int totalRow);
+        IEnumerable<Product> GetAllPaging(int page, int brandid, string sort, int pageSize, out int totalRow);
 
         Product GetByID(long id);
 
@@ -39,17 +37,20 @@ namespace uStora.Service
 
         IEnumerable<Product> GetByCategoryIDPaging(int categoryId, int brandid, int page, int pageSize, string sort, out int totalRow);
 
-        IEnumerable<Product> GetByKeywordPaging(string keyword,int brandid, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Product> GetByKeywordPaging(string keyword, int brandid, int page, int pageSize, string sort, out int totalRow);
 
         IEnumerable<Product> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
+
         IEnumerable<Tag> GetTagsByProduct(long id);
+
         IEnumerable<Product> ProductsByTag(string tagId, int page, int pageSize, out int totalRow);
+
         void IncreaseView(long id);
 
         Tag GetTag(string tagId);
 
         IEnumerable<Product> GetHot(int top);
-        
+
         void SaveChanges();
     }
 
@@ -117,7 +118,6 @@ namespace uStora.Service
                         tag.Name = tags[i];
                         tag.Type = CommonConstants.ProductTag;
                         _tagRepository.Add(tag);
-
                     }
                     _productTagRepository.DeleteMulti(x => x.ProductID == product.ID);
                     ProductTag productTag = new ProductTag();
@@ -146,7 +146,6 @@ namespace uStora.Service
                 return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Content.Contains(keyword)).ToList();
         }
 
-
         public IEnumerable<Product> GetAll(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
@@ -155,7 +154,7 @@ namespace uStora.Service
                 return _productRepository.GetAll();
         }
 
-        public IEnumerable<Product> GetAllPaging(int page,int brandid, string sort, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetAllPaging(int page, int brandid, string sort, int pageSize, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status);
             switch (sort)
@@ -163,15 +162,19 @@ namespace uStora.Service
                 case "popular":
                     query = query.OrderByDescending(x => x.ViewCount);
                     break;
+
                 case "discount":
                     query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
                     break;
+
                 case "price_asc":
                     query = query.OrderBy(x => x.Price);
                     break;
+
                 case "price_des":
                     query = query.OrderByDescending(x => x.Price);
                     break;
+
                 default:
                     query = query.OrderByDescending(x => x.CreatedDate);
                     break;
@@ -199,7 +202,6 @@ namespace uStora.Service
             _unitOfWork.Commit();
         }
 
-
         public IEnumerable<Product> GetLastest(int top)
         {
             return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
@@ -210,8 +212,7 @@ namespace uStora.Service
             return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
-
-        public IEnumerable<Product> GetByCategoryIDPaging(int categoryId,int brandid, int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<Product> GetByCategoryIDPaging(int categoryId, int brandid, int page, int pageSize, string sort, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status && x.CategoryID == categoryId);
             switch (sort)
@@ -219,18 +220,23 @@ namespace uStora.Service
                 case "popular":
                     query = query.OrderByDescending(x => x.ViewCount);
                     break;
+
                 case "discount":
                     query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
                     break;
+
                 case "price":
                     query = query.OrderBy(x => x.Price);
                     break;
+
                 case "price_asc":
                     query = query.OrderBy(x => x.Price);
                     break;
+
                 case "price_des":
                     query = query.OrderByDescending(x => x.Price);
                     break;
+
                 default:
                     query = query.OrderByDescending(x => x.CreatedDate);
                     break;
@@ -241,7 +247,6 @@ namespace uStora.Service
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
-
         }
 
         public IEnumerable<string> GetProductsByName(string name)
@@ -249,8 +254,7 @@ namespace uStora.Service
             return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(n => n.Name);
         }
 
-
-        public IEnumerable<Product> GetByKeywordPaging(string keyword,int brandid, int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<Product> GetByKeywordPaging(string keyword, int brandid, int page, int pageSize, string sort, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
             switch (sort)
@@ -258,18 +262,23 @@ namespace uStora.Service
                 case "popular":
                     query = query.OrderByDescending(x => x.ViewCount);
                     break;
+
                 case "discount":
                     query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
                     break;
+
                 case "price":
                     query = query.OrderBy(x => x.Price);
                     break;
+
                 case "price_asc":
                     query = query.OrderBy(x => x.Price);
                     break;
+
                 case "price_des":
                     query = query.OrderByDescending(x => x.Price);
                     break;
+
                 default:
                     query = query.OrderByDescending(x => x.CreatedDate);
                     break;
@@ -282,13 +291,11 @@ namespace uStora.Service
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
-
         public IEnumerable<Product> GetRelatedProducts(long id, int top)
         {
             var product = _productRepository.GetSingleById(id);
             return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreatedDate).Take(top);
         }
-
 
         public IEnumerable<Tag> GetTagsByProduct(long id)
         {
@@ -311,8 +318,6 @@ namespace uStora.Service
                 product.ViewCount = 1;
         }
 
-
-
         public Tag GetTag(string tagId)
         {
             return _tagRepository.GetSingleByCondition(x => x.ID == tagId);
@@ -325,7 +330,7 @@ namespace uStora.Service
 
         public IEnumerable<Product> GetHot(int top)
         {
-            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x=>x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
     }
 }

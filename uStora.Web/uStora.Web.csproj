@@ -388,6 +388,7 @@
     <Content Include="Assets\Client\img\h4-slide3.png" />
     <Content Include="Assets\Client\img\h4-slide4.png" />
     <Content Include="Assets\Client\img\h4-slide7.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Assets\Client\img\logo.png" />
     <Content Include="Assets\Client\img\product-1.jpg" />
     <Content Include="Assets\Client\img\product-2.jpg" />
@@ -4837,7 +4838,6 @@
     <Content Include="Assets\libs\toastr\toastr.min.css" />
     <Content Include="Assets\libs\toastr\toastr.min.js" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

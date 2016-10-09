@@ -13,14 +13,14 @@ namespace uStora.Web
 
             routes.MapRoute(
                 name: "Product category",
-                url: "category/{alias}/{id}.htm",
+                url: "category/{alias}-{id}.htm",
                 defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
                 namespaces: new string[] { "uStora.Web.Controllers" }
             );
             //Detail
             routes.MapRoute(
                 name: "Product Detail",
-                url: "product/{alias}/{id}.htm",
+                url: "product/{alias}-{id}.htm",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
                 namespaces: new string[] { "uStora.Web.Controllers" }
             );

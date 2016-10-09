@@ -69,7 +69,7 @@
                             <div class="product-upper">
                                 <img src="@product.Image"  data-html="true" data-toggle="tooltip" title="@product.Description" alt="@product.Name">
                             </div>
-                            <h2><a href="/product/@(product.Alias)/@(product.ID).htm">@product.Name</a></h2>
+                            <h2><a href="/product/@(product.Alias)-@(product.ID).htm">@product.Name</a></h2>
                             <div class="product-carousel-price">
                                 @if (product.PromotionPrice.HasValue)
                                 {

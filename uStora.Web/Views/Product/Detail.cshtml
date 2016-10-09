@@ -55,7 +55,7 @@
                         <li><a href="/">Trang chủ</a></li>
                         @{
                             var category = (uStora.Web.Models.ProductCategoryViewModel)ViewBag.Category;
-                            <li><a href="/category/@(category.Alias)/@(category.ID).htm">@category.Name</a></li>
+                            <li><a href="/category/@(category.Alias)-@(category.ID).htm">@category.Name</a></li>
                         }
                         <li class="active">@Model.Name</li>
                     </ol>
@@ -111,7 +111,7 @@
                                 </form>
 
                                 <div class="product-inner-category">
-                                    <p>Danh mục: <a href="/category/@(category.Alias)/@(category.ID).htm">@category.Name</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
+                                    <p>Danh mục: <a href="/category/@(category.Alias)-@(category.ID).htm">@category.Name</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
                                 </div>
 
                                 <div role="tabpanel">
@@ -167,11 +167,11 @@
                                                 <i class="fa fa-heart" data-toggle="tooltip" title="Yêu thích"></i>
                                             </a>
 
-                                            <a href="/product/@(rl_product.Alias)/@(rl_product.ID).htm" data-toggle="tooltip" data-html="true" title="@rl_product.Description" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                            <a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm" data-toggle="tooltip" data-html="true" title="@rl_product.Description" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                         </div>
                                     </div>
 
-                                    <h2><a href="/product/@(rl_product.Alias)/@(rl_product.ID).htm">@rl_product.Name</a></h2>
+                                    <h2><a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm">@rl_product.Name</a></h2>
 
                                     <div class="product-carousel-price">
                                         @if (rl_product.PromotionPrice.HasValue)
