@@ -1,13 +1,14 @@
 ﻿using BotDetect.Web.Mvc;
-using uStora.Common;
-using uStora.Model.Models;
-using uStora.Web.App_Start;
-using uStora.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using uStora.Common;
+using uStora.Model.Models;
+using uStora.Service;
+using uStora.Web.App_Start;
+using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
 {
@@ -15,11 +16,13 @@ namespace uStora.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IProductService _productService;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IProductService productService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _productService = productService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -75,6 +78,7 @@ namespace uStora.Web.Controllers
                     UserName = registerVm.Username,
                     Email = registerVm.Email,
                     EmailConfirmed = true,
+                    Gender = registerVm.Gender,
                     BirthDay = DateTime.Now,
                     FullName = registerVm.Fullname,
                     PhoneNumber = registerVm.PhoneNumber,
@@ -89,7 +93,7 @@ namespace uStora.Web.Controllers
 
                 string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/templates/newuser.html"));
                 content = content.Replace("{{Username}}", adminUser.FullName);
-                content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "dang-nhap.html");
+                content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "login.htm");
 
                 MailHelper.SendMail(adminUser.Email, "Đăng ký thành công", content);
 

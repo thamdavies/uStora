@@ -45,6 +45,13 @@ namespace uStora.Web
                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            //register member
+            routes.MapRoute(
+               name: "Register",
+               url: "register.htm",
+               defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
 
             routes.MapRoute(
                 name: "Default",

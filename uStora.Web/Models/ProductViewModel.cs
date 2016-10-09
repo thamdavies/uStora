@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MvcPaging;
 using uStora.Model.Abstracts;
-using MvcPaging;
 
 namespace uStora.Web.Models
 {

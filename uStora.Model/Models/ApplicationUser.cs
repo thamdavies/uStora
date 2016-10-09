@@ -10,12 +10,16 @@ namespace uStora.Model.Models
     public class ApplicationUser : IdentityUser
     {
         [MaxLength(256)]
+        [Required]
         public string FullName { set; get; }
 
         [MaxLength(256)]
         public string Address { set; get; }
 
         public DateTime? BirthDay { set; get; }
+
+        [MaxLength(20)]
+        public string Gender { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

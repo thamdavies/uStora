@@ -35,6 +35,7 @@
                     Email = "dvbtham@gmail.com",
                     EmailConfirmed = true,
                     BirthDay = DateTime.Now,
+                    Gender = "Nam",
                     FullName = "Thâm David",
                     Address = "Gia Lai",
                     PhoneNumber = "01652130546"
