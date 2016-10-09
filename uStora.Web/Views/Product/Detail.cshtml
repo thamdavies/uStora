@@ -109,9 +109,36 @@
                                     </div>
                                     <button class="add_to_cart_button" type="submit">Thêm vào giỏ</button>
                                 </form>
-
+                                @{
+                                    var tags = (IEnumerable<uStora.Web.Models.TagViewModel>)ViewBag.Tags;
+                                    int i = 1;
+                                }
                                 <div class="product-inner-category">
-                                    <p>Danh mục: <a href="/category/@(category.Alias)-@(category.ID).htm">@category.Name</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
+                                    <p>Danh mục: 
+                                    <a href="/category/@(category.Alias)-@(category.ID).htm">@category.Name</a>.
+
+                                    @if (tags.Count() > 0)
+                                    {
+                                        <span>Tags:</span>
+                                        foreach (var tag in tags)
+                                        {
+                                            if (i == tags.Count())
+                                            {
+                                                <a href="">@tag.Name.ToLower().</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="">@tag.Name.ToLower(),</a>
+                                            }
+                                            i++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span>Tags:</span>
+                                        <a href="javascripts:void();" class="text-center text-danger no-underline">Không có thẻ gán cho sản phẩm này.</a>
+                                    }
+                                    </p>
                                 </div>
 
                                 <div role="tabpanel">
@@ -153,41 +180,44 @@
                     @{
                         var relatedProducts = (IEnumerable<uStora.Web.Models.ProductViewModel>)ViewBag.RelatedProducts;
                     }
-                    <div class="related-products-wrapper">
-                        <h2 class="related-products-title">Sản phẩm liên quan</h2>
-                        <div class="related-products-carousel">
-                            @foreach (var rl_product in relatedProducts)
-                            {
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="@rl_product.Image" alt="@rl_product.Name">
-                                        <div class="product-hover">
-                                            <a href="#" class="action-box">
-                                                <i class="fa fa-shopping-cart add-to-cart" data-toggle="tooltip" title="Thêm vào giỏ"></i>
-                                                <i class="fa fa-heart" data-toggle="tooltip" title="Yêu thích"></i>
-                                            </a>
+                    @if (relatedProducts.Count() > 0)
+                    {
+                        <div class="related-products-wrapper">
+                            <h2 class="related-products-title">Sản phẩm liên quan</h2>
+                            <div class="related-products-carousel">
+                                @foreach (var rl_product in relatedProducts)
+                                {
+                                    <div class="single-product">
+                                        <div class="product-f-image">
+                                            <img src="@rl_product.Image" alt="@rl_product.Name">
+                                            <div class="product-hover">
+                                                <a href="#" class="action-box">
+                                                    <i class="fa fa-shopping-cart add-to-cart" data-toggle="tooltip" title="Thêm vào giỏ"></i>
+                                                    <i class="fa fa-heart" data-toggle="tooltip" title="Yêu thích"></i>
+                                                </a>
 
-                                            <a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm" data-toggle="tooltip" data-html="true" title="@rl_product.Description" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                                <a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm" data-toggle="tooltip" data-html="true" title="@rl_product.Description" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                            </div>
+                                        </div>
+
+                                        <h2><a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm">@rl_product.Name</a></h2>
+
+                                        <div class="product-carousel-price">
+                                            @if (rl_product.PromotionPrice.HasValue)
+                                            {
+                                                <ins>@rl_product.PromotionPrice.Value.ToString("N0")</ins>
+                                                <del>@rl_product.Price.Value.ToString("N0")</del>
+                                            }
+                                            else
+                                            {
+                                                <ins>@rl_product.Price.Value.ToString("N0")</ins>
+                                            }
                                         </div>
                                     </div>
-
-                                    <h2><a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm">@rl_product.Name</a></h2>
-
-                                    <div class="product-carousel-price">
-                                        @if (rl_product.PromotionPrice.HasValue)
-                                        {
-                                            <ins>@rl_product.PromotionPrice.Value.ToString("N0")</ins>
-                                            <del>@rl_product.Price.Value.ToString("N0")</del>
-                                        }
-                                        else
-                                        {
-                                            <ins>@rl_product.Price.Value.ToString("N0")</ins>
-                                        }
-                                    </div>
-                                </div>
-                            }
+                                }
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

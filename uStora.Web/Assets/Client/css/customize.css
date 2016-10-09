@@ -19,6 +19,11 @@
     border: none;
 }
 
+.no-underline {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .icon-center {
     margin-left: 0px;
 }
@@ -165,9 +170,8 @@ ul.sortby-area li {
     display: inline;
     padding-right: 10px;
 }
-a.isActive{
-    text-decoration:none;
-    color:midnightblue;
+
+a.isActive {
+    text-decoration: none;
+    color: midnightblue;
 }
-
-
