@@ -43,7 +43,7 @@ namespace uStora.Service
 
         IEnumerable<Tag> GetTagsByProduct(long id);
 
-        IEnumerable<Product> ProductsByTag(string tagId, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> ProductsByTag(string tagId, string sort, int brandid, int page, int pageSize, out int totalRow);
 
         void IncreaseView(long id);
 
@@ -302,9 +302,36 @@ namespace uStora.Service
             return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
         }
 
-        public IEnumerable<Product> ProductsByTag(string tagId, int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> ProductsByTag(string tagId, string sort, int brandid, int page, int pageSize, out int totalRow)
         {
-            var model = _productRepository.GetProductsByTag(tagId, page, pageSize, out totalRow);
+            var model = _productRepository.GetProductsByTag(tagId, brandid, page, pageSize, out totalRow);
+            switch (sort)
+            {
+                case "popular":
+                    model = model.OrderByDescending(x => x.ViewCount);
+                    break;
+
+                case "discount":
+                    model = model.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+
+                case "price":
+                    model = model.OrderBy(x => x.Price);
+                    break;
+
+                case "price_asc":
+                    model = model.OrderBy(x => x.Price);
+                    break;
+
+                case "price_des":
+                    model = model.OrderByDescending(x => x.Price);
+                    break;
+
+                default:
+                    model = model.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
             totalRow = model.Count();
             return model;
         }

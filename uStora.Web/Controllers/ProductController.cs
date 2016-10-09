@@ -119,11 +119,13 @@ namespace uStora.Web.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ProductsByTag(string tagId, int page = 1)
+        public ActionResult ProductsByTag(string tagId, int page = 1, int brandID = 0, string sort = "")
         {
+            TempData["tagId"] = tagId;
+            StringHelper.pageActive = "productbytag";
             int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));
             int totalRow = 0;
-            var product = _productService.ProductsByTag(tagId, page, pageSize, out totalRow);
+            var product = _productService.ProductsByTag(tagId, sort, brandID, page, pageSize, out totalRow);
             var productVm = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(product);
             int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
 

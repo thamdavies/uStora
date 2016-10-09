@@ -5231,6 +5231,9 @@
     <Content Include="Assets\libs\font-awesome\scss\_stacked.scss" />
     <Content Include="Assets\libs\font-awesome\scss\_variables.scss" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\ProductsByTag.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

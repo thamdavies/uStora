@@ -11,6 +11,14 @@ namespace uStora.Web
             // BotDetect requests must not be routed
             routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
 
+            //products by tag
+            routes.MapRoute(
+               name: "Products by tag",
+               url: "products/tags-{tagId}.htm",
+               defaults: new { controller = "Product", action = "ProductsByTag", tagId = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
+
             routes.MapRoute(
                 name: "Product category",
                 url: "category/{alias}-{id}.htm",

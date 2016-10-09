@@ -124,11 +124,11 @@
                                         {
                                             if (i == tags.Count())
                                             {
-                                                <a href="">@tag.Name.ToLower().</a>
+                                                <a href="/products/tags-@(tag.ID).htm">@tag.Name.ToLower().</a>
                                             }
                                             else
                                             {
-                                                <a href="">@tag.Name.ToLower(),</a>
+                                                <a href="/products/tags-@(tag.ID).htm">@tag.Name.ToLower(),</a>
                                             }
                                             i++;
                                         }

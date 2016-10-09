@@ -4,7 +4,7 @@
 {
     foreach (var item in Model)
     {
-        <li><a href="/shop.htm?&brandid=@item.ID">@item.Name</a></li>
+        <li><a href="/shop.htm?brandid=@item.ID">@item.Name</a></li>
     }
 }
 else
@@ -25,7 +25,17 @@ if (uStora.Common.StringHelper.pageActive == "search")
 {
     foreach (var item in Model)
     {
-        <li><a href="/search.htm?&brandid=@item.ID">@item.Name</a></li>
+        <li><a href="/search.htm?brandid=@item.ID">@item.Name</a></li>
     }
 }
+else
+if (uStora.Common.StringHelper.pageActive == "productbytag")
+{
+    var tagId = TempData["tagId"];
+    foreach (var item in Model)
+    {
+        <li><a href="/products/tags-@(tagId).htm?brandid=@item.ID">@item.Name</a></li>
+    }
+}
+
 
