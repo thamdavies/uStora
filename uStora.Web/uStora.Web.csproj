@@ -388,6 +388,7 @@
     <Content Include="Assets\Client\img\h4-slide3.png" />
     <Content Include="Assets\Client\img\h4-slide4.png" />
     <Content Include="Assets\Client\img\h4-slide7.png" />
+    <Content Include="Assets\Client\js\common.js" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\Client\img\logo.png" />
     <Content Include="Assets\Client\img\product-1.jpg" />
