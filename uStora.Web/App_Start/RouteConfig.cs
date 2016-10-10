@@ -60,6 +60,20 @@ namespace uStora.Web
                defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            //login
+            routes.MapRoute(
+               name: "Login client",
+               url: "login.htm",
+               defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
+            //logout
+            routes.MapRoute(
+               name: "Logout client",
+               url: "logout.htm",
+               defaults: new { controller = "Account", action = "LogOut", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
 
             routes.MapRoute(
                 name: "Default",

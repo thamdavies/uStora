@@ -1,0 +1,91 @@
+﻿@model uStora.Web.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Đăng nhập hệ thống";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Đăng nhập hệ thống</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="breadcrumb-area">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 custom-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="/">Trang chủ</a></li>
+                <li class="active">Đăng nhập</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Login", "Account", new { returnUrl = @ViewBag.ReturnUrl }, FormMethod.Post,
+            new { @class = "well form-horizontal contact-form" }))
+            {
+                <fieldset>
+                    <legend>Thông tin tài khoản</legend>
+                    <h5 class="text-danger"><span>*</span> là bắt buộc</h5>
+                    @Html.AntiForgeryToken();
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "tên đăng nhập" })
+                                <span class="input-group-addon">*</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "nhập lại mật khẩu" })
+                                <span class="input-group-addon">*</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <span class="button-checkbox">
+                                <button type="button" class="btn" data-color="info">Ghi nhớ</button>
+                                @Html.CheckBoxFor(model => model.RememberMe, new { @class = "hidden" })
+                                <a href="" class="btn btn-link pull-right">Quên mật khẩu?</a>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-12 control-label"></label>
+                        <div class="col-md-12 inputGroupContainer">
+                            <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập </button>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/Assets/Client/js/checkbox.js"></script>
+}
+

@@ -32,7 +32,10 @@
           .append("<div>" + item.label + "</div>")
           .appendTo(ul);
     };
-
+        $('#btnLogOut').off('click').on('click', function (e) {
+            e.preventDefault();
+            $('#frmLogOut').submit();
+        });
     }
 }
 common.init();
