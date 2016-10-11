@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcPaging;
+using System;
 
 namespace uStora.Web.Models
 {
@@ -8,5 +9,7 @@ namespace uStora.Web.Models
         public long ProductId { get; set; }
         public ProductViewModel Product { get; set; }
         public int Quantity { get; set; }
+
+        public IPagedList<ProductViewModel> ListProducts { get; set; }
     }
 }

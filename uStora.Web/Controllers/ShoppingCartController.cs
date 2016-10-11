@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
+using MvcPaging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -28,13 +29,22 @@ namespace uStora.Web.Controllers
         }
 
         // GET: ShoppingCart
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int? page)
         {
             if (Session[CommonConstants.ShoppingCartSession] == null)
             {
                 Session[CommonConstants.ShoppingCartSession] = new List<ShoppingCartViewModel>();
             }
-            return View();
+            var cart = new ShoppingCartViewModel();
+            int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            IList<Product> listProducts = _productService.GetAllPagingAjax(searchString);
+            var listProductsVm = Mapper.Map<IList<Product>, IList<ProductViewModel>>(listProducts);
+            cart.ListProducts = listProductsVm.ToPagedList(currentPageIndex, defaultPageSize);
+            if (Request.IsAjaxRequest())
+                return PartialView("_AjaxProductList", cart.ListProducts);
+            else
+                return View(cart);
         }
         public JsonResult GetUserInfo()
         {

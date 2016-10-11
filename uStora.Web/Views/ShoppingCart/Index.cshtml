@@ -1,4 +1,4 @@
-﻿
+﻿@model uStora.Web.Models.ShoppingCartViewModel
 @{
     ViewBag.Title = "Quản lý giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,45 +22,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Search Products</h2>
-                    <form action="#">
-                        <input type="text" placeholder="Search products...">
-                        <input type="submit" value="Search">
-                    </form>
-                </div>
-
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Products</h2>
-                    <div class="thubmnail-recent">
-                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$800.00</del>
-                        </div>
+                @using (Ajax.BeginForm("Detail", "Product",
+            new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
+            new { id = "frm-search" }))
+                {
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Tìm nhanh</h2>
+                        <input type="text" name="searchString" id="txtKeyword" placeholder="tìm kiếm sản phẩm...">
+                        <input type="submit" value="GO">
                     </div>
-                    <div class="thubmnail-recent">
-                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$800.00</del>
-                        </div>
+                    <div id="grid-list">
+                        @{ Html.RenderPartial("_AjaxProductList", Model.ListProducts); }
                     </div>
-                    <div class="thubmnail-recent">
-                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$800.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$800.00</del>
-                        </div>
-                    </div>
-                </div>
+                            }
 
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Recent Posts</h2>
@@ -261,5 +235,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
     <script src="~/Assets/libs/mustache/mustache.min.js"></script>
     <script src="~/Assets/Client/js/controllers/shoppingCart.js"></script>
+
+    <script>
+        function beginPaging(args) {
+            // Animate
+            $('#grid-list').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#grid-list').fadeIn('normal');
+            $('a').tooltip();
+        }
+
+        function failurePaging() {
+            alert("Danh sách không có dữ liệu.");
+        }
+    </script>
+
 }
 
