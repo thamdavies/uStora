@@ -12,7 +12,8 @@
     -ms-transition: all 0.5s;
     transition: all 0.5s;
 }
-.add-to-cart-success{
+
+.add-to-cart-success {
     position: fixed;
     top: 50%;
     z-index: 999;
@@ -23,6 +24,7 @@
     -ms-transition: all 0.5s;
     transition: all 0.5s;
 }
+
 .contact-form {
     background: none;
     border-radius: 0px;
@@ -185,10 +187,25 @@ a.isActive {
     text-decoration: none;
     color: midnightblue;
 }
-.cart_totals h3{
+
+.chitietthanhtoan h3 {
     background-color: #5a88ca;
-    color:white;
-    height:50px;
-    line-height:50px;
+    color: white;
+    height: 50px;
+    line-height: 50px;
     padding-left: 10px;
+    margin-bottom: 0px;
+}
+
+#ckecout-legend {
+    background-color: #5a88ca;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+#LoadUserInfo label{
+    cursor: pointer;
 }

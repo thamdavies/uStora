@@ -82,18 +82,6 @@
                         <h1><a href="/"><img src="/Assets/Client/img/logo.png"></a></h1>
                     </div>
                 </div>
-                @{ 
-                    var cart = (List<uStora.Web.Models.ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
-                    var amount = 0;
-                    if(cart != null)
-                    {
-                        foreach (var item in cart)
-                        {
-                            amount += item.Quantity;
-                        }
-                    }
-
-                }
                 <div class="col-sm-6 shopping-cart">
                     <div class="shopping-item">
                         <a href="/gio-hang.htm"><span class="cart-title">Giỏ hàng - </span> <i class="fa fa-shopping-cart"></i> <span class="product-count">0</span></a>

@@ -11,6 +11,7 @@ namespace uStora.Web.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Display(Name ="Ghi nhớ")]
         public bool RememberMe { get; set; }
     }
 }

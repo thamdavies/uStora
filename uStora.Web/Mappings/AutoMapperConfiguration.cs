@@ -24,6 +24,10 @@ namespace uStora.Web.Mappings
             Mapper.CreateMap<Brand, BrandViewModel>();
             //contactdetail
             Mapper.CreateMap<ContactDetail, ContactDetailViewModel>();
+            //order
+            Mapper.CreateMap<Order, OrderViewModel>();
+            //order detail
+            Mapper.CreateMap<OrderDetail, OrderDetailViewModel>();
             //feedback
             Mapper.CreateMap<Feedback, FeedbackViewModel>();
             //footer

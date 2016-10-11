@@ -1,6 +1,7 @@
 ﻿using uStora.Model.Models;
 using uStora.Web.Models;
 using System;
+using System.Collections.Generic;
 
 namespace uStora.Web.Infrastructure.Extensions
 {
@@ -153,6 +154,21 @@ namespace uStora.Web.Infrastructure.Extensions
             feedback.Website = feedbackViewModel.Website;
             feedback.CreatedDate = DateTime.Now;
             feedback.Status = feedbackViewModel.Status;
+        }
+        public static void UpdateOrder(this Order order, OrderViewModel orderViewModel)
+        {
+            order.ID = orderViewModel.ID;
+            order.CustomerName = orderViewModel.CustomerName;
+            order.CustomerEmail = orderViewModel.CustomerEmail;
+            order.CustomerAddress = orderViewModel.CustomerAddress;
+            order.CustomerMobile = orderViewModel.CustomerMobile;
+            order.PaymentMethod = orderViewModel.PaymentMethod;
+            order.PaymentStatus = orderViewModel.PaymentStatus;
+            order.CustomerMessage = orderViewModel.CustomerMessage;
+            order.CustomerId = orderViewModel.CustomerId;
+            order.CreatedDate = DateTime.Now;
+            order.CreatedBy = orderViewModel.CreatedBy;
+            order.Status = orderViewModel.Status;
         }
     }
 }

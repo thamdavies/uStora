@@ -63,12 +63,5 @@ jQuery(document).ready(function($){
         }
     });    
     
-    
-    
-    // Bootstrap ScrollPSY
-    $('body').scrollspy({ 
-        target: '.navbar-collapse',
-        offset: 95
-    })      
 });
 

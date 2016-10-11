@@ -9,7 +9,7 @@
           .ajaxStop(function () {
               $loading.removeClass('open');
           });
-        $('.contact-form').bootstrapValidator({
+        $('#contact-form').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -54,7 +54,7 @@
             }
         }).on('success.form.bv', function (e) {
             AddFeedback();
-            $('.contact-form').data('bootstrapValidator').resetForm();
+            $('#contact-form').data('bootstrapValidator').resetForm();
         });
     });
     function ResetValue() {

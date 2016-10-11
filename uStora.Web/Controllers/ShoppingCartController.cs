@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -6,6 +7,8 @@ using System.Web.Script.Serialization;
 using uStora.Common;
 using uStora.Model.Models;
 using uStora.Service;
+using uStora.Web.App_Start;
+using uStora.Web.Infrastructure.Extensions;
 using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
@@ -13,10 +16,15 @@ namespace uStora.Web.Controllers
     public class ShoppingCartController : Controller
     {
         private IProductService _productService;
+        private IOrderService _orderService;
+        private ApplicationUserManager _userManager;
 
-        public ShoppingCartController(IProductService productService)
+        public ShoppingCartController(IProductService productService,
+            ApplicationUserManager userManager, IOrderService orderService)
         {
             _productService = productService;
+            _userManager = userManager;
+            _orderService = orderService;
         }
 
         // GET: ShoppingCart
@@ -27,6 +35,23 @@ namespace uStora.Web.Controllers
                 Session[CommonConstants.ShoppingCartSession] = new List<ShoppingCartViewModel>();
             }
             return View();
+        }
+        public JsonResult GetUserInfo()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = _userManager.FindById(userId);
+                return Json(new
+                {
+                    data = user,
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
         }
 
         public JsonResult GetAll()
@@ -124,6 +149,35 @@ namespace uStora.Web.Controllers
         {
             Session[CommonConstants.ShoppingCartSession] = new List<ShoppingCartViewModel>();
 
+            return Json(new
+            {
+                status = true
+            });
+        }
+
+        [HttpPost]
+        public JsonResult CreateOrder(string orderViewModel)
+        {
+            var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+            var orderNew = new Order();
+            orderNew.UpdateOrder(order);
+            if (Request.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                orderNew.CustomerId = userId;
+                orderNew.CreatedBy = User.Identity.GetUserName();
+            }
+            var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
+            List<OrderDetail> ordersDetail = new List<OrderDetail>();
+            foreach (var item in cart)
+            {
+                var detail = new OrderDetail();
+                detail.ProductID = item.ProductId;
+                detail.Quantity = item.Quantity;
+                ordersDetail.Add(detail);
+            }
+        
+            _orderService.Add(orderNew, ordersDetail);
             return Json(new
             {
                 status = true

@@ -52,6 +52,12 @@ namespace uStora.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
         public async Task<ActionResult> Register(RegisterViewModel registerVm)
@@ -67,7 +73,7 @@ namespace uStora.Web.Controllers
                 var userByUserName = await _userManager.FindByNameAsync(registerVm.Username);
                 if (userByUserName != null)
                 {
-                    ModelState.AddModelError("email", "Tài khoản đã tồn tại");
+                    ModelState.AddModelError("username", "Tài khoản đã tồn tại");
                     return View(registerVm);
                 }
                 var user = new ApplicationUser()

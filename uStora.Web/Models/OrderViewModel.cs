@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace uStora.Model.Models
+namespace uStora.Web.Models
 {
-    [Table("Orders")]
-    public class Order
+    public class OrderViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
@@ -23,7 +19,8 @@ namespace uStora.Model.Models
         [Required]
         [MaxLength(100)]
         public string CustomerEmail { get; set; }
-        
+
+        [Required]
         [MaxLength(50)]
         public string CustomerMobile { get; set; }
 
@@ -32,7 +29,6 @@ namespace uStora.Model.Models
 
         public DateTime? CreatedDate { get; set; }
 
-        [Column(TypeName ="varchar")]
         [MaxLength(128)]
         public string CreatedBy { get; set; }
 
@@ -49,9 +45,6 @@ namespace uStora.Model.Models
         [MaxLength(128)]
         public string CustomerId { get; set; }
 
-        [ForeignKey("CustomerId")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
-
-        public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
+        public virtual IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
     }
 }

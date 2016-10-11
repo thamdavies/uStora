@@ -733,6 +733,13 @@ input[type="submit"], button[type=submit] {
     padding: 11px 20px;
     text-transform: uppercase;
 }
+input[type="button"]{
+    background: none repeat scroll 0 0 #5a88ca;
+    border: medium none;
+    color: #fff;
+    padding: 11px 20px;
+    text-transform: uppercase;
+}
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .single-sidebar input[type="text"] {
     margin-bottom: 10px;
@@ -955,17 +962,7 @@ td.actions div.coupon {
     margin-right: 3%;
     width: 57%;
 }
-.cart_totals {
-    float: right;
-    margin-bottom: 50px;
-    width: 40%;
-}
-.cart-collaterals h2 {
-    color: #5a88ca;
-    font-size: 25px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-}
+
 div.cart-collaterals ul.products {
     list-style: outside none none;
     margin: 0 0 0 -30px;
@@ -977,17 +974,17 @@ div.cart-collaterals ul.products li.product {
     position: relative;
     width: 198px;
 }
-.cart_totals table {
+.chitietthanhtoan table {
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     width: 100%;
 }
-.cart_totals table th, .cart_totals table td {
+.chitietthanhtoan table th, .chitietthanhtoan table td {
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
     padding: 10px;
 }
-.cart_totals table th {
+.chitietthanhtoan table th {
     background: none repeat scroll 0 0 #f4f4f4;
 }
 .onsale {
