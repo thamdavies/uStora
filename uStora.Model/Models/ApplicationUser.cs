@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -20,6 +21,21 @@ namespace uStora.Model.Models
 
         [MaxLength(20)]
         public string Gender { get; set; }
+
+        [Column(TypeName = "varchar")]
+        [MaxLength(256)]
+        public string Image { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+
+        [Column(TypeName ="varchar")]
+        [MaxLength(128)]
+        public string UpdatedBy { get; set; }
+
+        [Column(TypeName = "varchar")]
+        [MaxLength(128)]
+        public string CreatedBy { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -104,6 +104,14 @@
     <Compile Include="Migrations\201610111341093_updateOrderTable.Designer.cs">
       <DependentUpon>201610111341093_updateOrderTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610111537167_addImageUser.cs" />
+    <Compile Include="Migrations\201610111537167_addImageUser.Designer.cs">
+      <DependentUpon>201610111537167_addImageUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111614086_addUserinfo.cs" />
+    <Compile Include="Migrations\201610111614086_addUserinfo.Designer.cs">
+      <DependentUpon>201610111614086_addUserinfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
@@ -173,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610111341093_updateOrderTable.resx">
       <DependentUpon>201610111341093_updateOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111537167_addImageUser.resx">
+      <DependentUpon>201610111537167_addImageUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111614086_addUserinfo.resx">
+      <DependentUpon>201610111614086_addUserinfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

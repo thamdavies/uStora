@@ -5,7 +5,9 @@
 
         var authentication = {
             IsAuthenticated: false,
-            userName: ""
+            userName: "",
+            image: "/UploadedFiles/images/user-images/default-avatar.jpg",
+            createdDate: "12/2/2016"
         };
         authDataFactory.authenticationData = authentication;
 
