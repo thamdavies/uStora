@@ -45,6 +45,12 @@ namespace uStora.Model.Models
         [Required]
         public bool Status { get; set; }
 
+        [MaxLength(128)]
+        public string CustomerId { get; set; }
+
+        [ForeignKey("CustomerId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

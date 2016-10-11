@@ -96,6 +96,10 @@
     <Compile Include="Migrations\201610091151138_UpdateUser.Designer.cs">
       <DependentUpon>201610091151138_UpdateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610110640385_AddCustomerId.cs" />
+    <Compile Include="Migrations\201610110640385_AddCustomerId.Designer.cs">
+      <DependentUpon>201610110640385_AddCustomerId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
@@ -159,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610091151138_UpdateUser.resx">
       <DependentUpon>201610091151138_UpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610110640385_AddCustomerId.resx">
+      <DependentUpon>201610110640385_AddCustomerId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
