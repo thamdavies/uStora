@@ -236,6 +236,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -256,6 +257,7 @@
     <Compile Include="Models\ProductTagViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -394,12 +396,110 @@
     <Content Include="Assets\Client\img\h4-slide7.png" />
     <Content Include="Assets\Client\js\checkbox.js" />
     <Content Include="Assets\Client\js\common.js" />
+    <Content Include="Assets\Client\js\controllers\addToCart.js" />
+    <Content Include="Assets\Client\js\controllers\shoppingCart.js" />
     <Content Include="Assets\Client\templates\newUser.html" />
     <Content Include="Assets\libs\font-awesome\.gitignore" />
     <Content Include="Assets\libs\font-awesome\css\font-awesome.css" />
     <Content Include="Assets\libs\font-awesome\css\font-awesome.min.css" />
     <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\libs\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Assets\libs\mustache\mustache.js" />
+    <Content Include="Assets\libs\mustache\mustache.min.js" />
+    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.js" />
+    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.txt" />
+    <Content Include="Assets\libs\numeral\.gitignore" />
+    <Content Include="Assets\libs\numeral\Gruntfile.js" />
+    <Content Include="Assets\libs\numeral\languages.js" />
+    <Content Include="Assets\libs\numeral\languages\be-nl.js" />
+    <Content Include="Assets\libs\numeral\languages\chs.js" />
+    <Content Include="Assets\libs\numeral\languages\cs.js" />
+    <Content Include="Assets\libs\numeral\languages\da-dk.js" />
+    <Content Include="Assets\libs\numeral\languages\de-ch.js" />
+    <Content Include="Assets\libs\numeral\languages\de.js" />
+    <Content Include="Assets\libs\numeral\languages\en-gb.js" />
+    <Content Include="Assets\libs\numeral\languages\es-ES.js" />
+    <Content Include="Assets\libs\numeral\languages\es.js" />
+    <Content Include="Assets\libs\numeral\languages\et.js" />
+    <Content Include="Assets\libs\numeral\languages\fi.js" />
+    <Content Include="Assets\libs\numeral\languages\fr-CA.js" />
+    <Content Include="Assets\libs\numeral\languages\fr-ch.js" />
+    <Content Include="Assets\libs\numeral\languages\fr.js" />
+    <Content Include="Assets\libs\numeral\languages\hu.js" />
+    <Content Include="Assets\libs\numeral\languages\it.js" />
+    <Content Include="Assets\libs\numeral\languages\ja.js" />
+    <Content Include="Assets\libs\numeral\languages\nl-nl.js" />
+    <Content Include="Assets\libs\numeral\languages\pl.js" />
+    <Content Include="Assets\libs\numeral\languages\pt-br.js" />
+    <Content Include="Assets\libs\numeral\languages\pt-pt.js" />
+    <Content Include="Assets\libs\numeral\languages\ru-UA.js" />
+    <Content Include="Assets\libs\numeral\languages\ru.js" />
+    <Content Include="Assets\libs\numeral\languages\sk.js" />
+    <Content Include="Assets\libs\numeral\languages\th.js" />
+    <Content Include="Assets\libs\numeral\languages\tr.js" />
+    <Content Include="Assets\libs\numeral\languages\uk-UA.js" />
+    <Content Include="Assets\libs\numeral\min\languages.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\be-nl.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\chs.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\cs.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\da-dk.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\de-ch.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\de.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\en-gb.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\es-ES.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\es.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\et.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fi.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fr-CA.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fr-ch.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fr.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\hu.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\it.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\ja.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\nl-nl.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\pl.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\pt-br.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\pt-pt.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\ru-UA.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\ru.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\sk.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\th.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\tr.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\uk-UA.min.js" />
+    <Content Include="Assets\libs\numeral\min\numeral.min.js" />
+    <Content Include="Assets\libs\numeral\numeral.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\be-nl.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\chs.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\cs.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\da-dk.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\de-ch.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\de.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\en-gb.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\en.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\es-ES.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\es.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\et.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fi.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fr-CA.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fr-ch.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fr.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\hu.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\it.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\ja.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\nl-nl.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\pl.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\pt-br.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\pt-pt.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\ru-UA.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\ru.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\sk.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\th.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\tr.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\uk-UA.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\format.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\manipulate.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\misc.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\unformat.js" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\Client\img\logo.png" />
     <Content Include="Assets\Client\img\product-1.jpg" />
@@ -5242,6 +5342,43 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\libs\mustache\.bower.json" />
+    <Content Include="Assets\libs\mustache\bin\mustache" />
+    <Content Include="Assets\libs\mustache\bower.json" />
+    <Content Include="Assets\libs\mustache\CHANGELOG.md" />
+    <Content Include="Assets\libs\mustache\hooks\install-hooks.sh" />
+    <Content Include="Assets\libs\mustache\hooks\pre-commit" />
+    <Content Include="Assets\libs\mustache\LICENSE" />
+    <Content Include="Assets\libs\mustache\MIGRATING.md" />
+    <Content Include="Assets\libs\mustache\mustache.js.nuspec" />
+    <Content Include="Assets\libs\mustache\package.json" />
+    <Content Include="Assets\libs\mustache\Rakefile" />
+    <Content Include="Assets\libs\mustache\README.md" />
+    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.mustache" />
+    <Content Include="Assets\libs\mustache\wrappers\dojo\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\dojo\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\jquery\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\jquery\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\mootools\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\mootools\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\qooxdoo\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\qooxdoo\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\yui3\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\yui3\mustache.js.pre" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\libs\numeral\.bower.json" />
+    <Content Include="Assets\libs\numeral\.travis.yml" />
+    <Content Include="Assets\libs\numeral\bower.json" />
+    <Content Include="Assets\libs\numeral\component.json" />
+    <Content Include="Assets\libs\numeral\LICENSE" />
+    <Content Include="Assets\libs\numeral\package.json" />
+    <Content Include="Assets\libs\numeral\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

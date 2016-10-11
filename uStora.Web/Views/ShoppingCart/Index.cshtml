@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "Quản lý giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Giỏ hàng của bạn</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Search Products</h2>
+                    <form action="#">
+                        <input type="text" placeholder="Search products...">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Products</h2>
+                    <div class="thubmnail-recent">
+                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                        <div class="product-sidebar-price">
+                            <ins>$700.00</ins> <del>$800.00</del>
+                        </div>
+                    </div>
+                    <div class="thubmnail-recent">
+                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                        <div class="product-sidebar-price">
+                            <ins>$700.00</ins> <del>$800.00</del>
+                        </div>
+                    </div>
+                    <div class="thubmnail-recent">
+                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                        <div class="product-sidebar-price">
+                            <ins>$700.00</ins> <del>$800.00</del>
+                        </div>
+                    </div>
+                    <div class="thubmnail-recent">
+                        <img src="~/Assets/Client/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                        <div class="product-sidebar-price">
+                            <ins>$700.00</ins> <del>$800.00</del>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Recent Posts</h2>
+                    <ul>
+                        <li><a href="#">Sony Smart TV - 2015</a></li>
+                        <li><a href="#">Sony Smart TV - 2015</a></li>
+                        <li><a href="#">Sony Smart TV - 2015</a></li>
+                        <li><a href="#">Sony Smart TV - 2015</a></li>
+                        <li><a href="#">Sony Smart TV - 2015</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="woocommerce">
+                        <form method="post" action="#">
+                            <div class="table-responsive">
+                                <table cellspacing="0" class="shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove">&nbsp;</th>
+                                            <th class="product-thumbnail">&nbsp;</th>
+                                            <th class="product-name">Sản phẩm</th>
+                                            <th class="product-price">Giá</th>
+                                            <th class="product-quantity">Số lượng</th>
+                                            <th class="product-subtotal">Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cartBody"></tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td class="actions" colspan="6">
+                                                <div class="coupon">
+                                                    <label for="coupon_code">Mã giảm giá:</label>
+                                                    <input type="text" placeholder="nhập mã code" value="" id="coupon_code" class="input-text" name="coupon_code">
+                                                    <input type="submit" value="Áp dụng" name="apply_coupon" class="button">
+                                                </div>
+                                                <input type="submit" value="Cập nhật giỏ hàng" name="update_cart" class="button">
+                                                <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+
+                        <div class="cart-collaterals">
+                            <div class="cart_totals">
+                                <h3>Chi tiết thanh toán</h3>
+
+                                <table cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Tổng tiền ban đầu</th>
+                                            <td><span class="amount" id="amount"></span></td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Hình thức chuyển hàng</th>
+                                            <td>Vận chuyển miễn phí</td>
+                                        </tr>
+
+                                        <tr class="order-total">
+                                            <th>Tổng tiền</th>
+                                            <td><strong><span class="amount" id="ltlTotalOrder"></span></strong> </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="templateCart" type="x-tmpl-mustache">
+    <tr class="cart_item">
+        <td class="product-remove">
+            <a title="Xóa sản phẩm này" data-id="{{ProductId}}" id="btnRemoveItem" class="remove" href="#">×</a>
+        </td>
+
+        <td class="product-thumbnail">
+            <a href="/product/{{Alias}}-{{ProductId}}.htm"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{Image}}"></a>
+        </td>
+
+        <td class="product-name">
+            <a href="/product/{{Alias}}-{{ProductId}}.htm">{{ProductName}}</a>
+        </td>
+
+        <td class="product-price">
+            <span class="amount">{{FPrice}}</span>
+        </td>
+
+        <td class="product-quantity">
+            <div class="quantity buttons_added">
+                <input type="number" data-price="{{Price}}" data-id="{{ProductId}}" class="input-text qty text txtQuantity" title="Số lượng" value="{{Quantity}}" min="0" step="1">
+            </div>
+        </td>
+
+        <td class="product-subtotal" id="amount_{{ProductId}}">
+            <span class="amount">{{Amount}}</span>
+        </td>
+    </tr>
+    
+</script>
+@section scripts{
+    <script src="~/Assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Assets/libs/mustache/mustache.min.js"></script>
+    <script src="~/Assets/Client/js/controllers/shoppingCart.js"></script>
+}
+
