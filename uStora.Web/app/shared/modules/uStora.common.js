@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('uStora.common', ['ui.router', 'ngBootbox', 'ngCkeditor'])
+    angular.module('uStora.common', ['ui.router', 'ngBootbox', 'ngCkeditor','checklist-model'])
 })();

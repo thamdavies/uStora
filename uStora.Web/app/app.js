@@ -5,6 +5,9 @@
          'uStora.product_categories',
          'uStora.slides',
          'uStora.brands',
+         'uStora.application_groups',
+         'uStora.application_roles',
+         'uStora.application_users',
          'uStora.common'])
         .config(config)
         .config(configAuthentication);
