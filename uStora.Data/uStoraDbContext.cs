@@ -11,7 +11,10 @@ namespace uStora.Data
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
-
+        public DbSet<ApplicationGroup> ApplicationUsers { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { get; set; }
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { get; set; }
         public DbSet<Error> Errors { get; set; }
         public DbSet<Footer> Footers { get; set; }
         public DbSet<Menu> Menus { get; set; }
@@ -42,8 +45,17 @@ namespace uStora.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
-            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+            modelBuilder.Entity<IdentityUserRole>()
+                .HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
+
+            modelBuilder.Entity<IdentityUserLogin>()
+                .HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+
+            modelBuilder.Entity<IdentityRole>().ToTable("ApplicationRoles");
+
+            modelBuilder.Entity<IdentityUserClaim>()
+                .HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
+
         }
     }
 }

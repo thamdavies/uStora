@@ -112,6 +112,14 @@
     <Compile Include="Migrations\201610111614086_addUserinfo.Designer.cs">
       <DependentUpon>201610111614086_addUserinfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610120306593_RenamedTableIdentity.cs" />
+    <Compile Include="Migrations\201610120306593_RenamedTableIdentity.Designer.cs">
+      <DependentUpon>201610120306593_RenamedTableIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610120345004_addTableForIdentityUser.cs" />
+    <Compile Include="Migrations\201610120345004_addTableForIdentityUser.Designer.cs">
+      <DependentUpon>201610120345004_addTableForIdentityUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
@@ -187,6 +195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610111614086_addUserinfo.resx">
       <DependentUpon>201610111614086_addUserinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610120306593_RenamedTableIdentity.resx">
+      <DependentUpon>201610120306593_RenamedTableIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610120345004_addTableForIdentityUser.resx">
+      <DependentUpon>201610120345004_addTableForIdentityUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
