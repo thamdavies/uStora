@@ -11,7 +11,7 @@ namespace uStora.Data
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
-        public DbSet<ApplicationGroup> ApplicationUsers { get; set; }
+        public DbSet<ApplicationGroup> ApplicationGroups { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { get; set; }
         public DbSet<ApplicationUserGroup> ApplicationUserGroups { get; set; }
