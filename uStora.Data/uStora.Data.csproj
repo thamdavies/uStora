@@ -125,6 +125,7 @@
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
     <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />

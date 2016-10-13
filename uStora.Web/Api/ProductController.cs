@@ -83,17 +83,17 @@ namespace uStora.Web.API
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 20, string filter = null)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _productService.GetAll(keyword);
+                var model = _productService.GetAll(filter);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
-                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query.AsEnumerable());
+                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query);
 
                 var paginationSet = new PaginationSet<ProductViewModel>()
                 {

@@ -1,4 +1,4 @@
-﻿/// <reference path="E:\ILearning\LTPM\ASP.NET MVC\Git\OnlineShop.Web\Assets/admin/libs/angular/angular.js" />
+﻿
 (function () {
     angular.module('uStora.products', ['uStora.common']).config(config);
 

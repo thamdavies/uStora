@@ -5,3 +5,12 @@
 .invalid{
     color:red;
 }
+.loading-lable{
+    margin-top: 23px;
+    margin-left: 7px;
+    position: absolute;
+}
+.loading-area{
+    position: relative;
+    z-index:999;
+}

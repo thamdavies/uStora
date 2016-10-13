@@ -82,6 +82,7 @@ namespace uStora.Web.Controllers
                     Email = registerVm.Email,
                     EmailConfirmed = true,
                     Gender = registerVm.Gender,
+                    Image = "/UploadedFiles/images/user-images/default-avatar.jpg",
                     BirthDay = DateTime.Now,
                     FullName = registerVm.Fullname,
                     PhoneNumber = registerVm.PhoneNumber,

@@ -38,7 +38,7 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize: 10,
+                    pageSize: 2,
                     filter: $scope.filterExpression
                 }
             }
@@ -53,9 +53,6 @@
             $scope.totalCount = result.data.TotalCount;
             $scope.loading = false;
 
-            if ($scope.filterExpression && $scope.filterExpression.length) {
-                notificationService.displayInfo(result.data.Items.length + ' items found');
-            }
         }
         function dataLoadFailed(response) {
             notificationService.displayError(response.data);

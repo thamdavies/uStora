@@ -7,7 +7,7 @@
 
         $scope.page = 0;
         $scope.pagesCount = 0;
-
+        $scope.loading = true;
         $scope.keyword = '';
 
         $scope.search = search;
@@ -66,8 +66,6 @@
             }
         }, true);
 
-
-
         function deleteProductCategory(id) {
             $ngBootbox.confirm('Bạn chắc chắn muốn xóa bản ghi này?').then(function () {
                 var config = {
@@ -91,12 +89,13 @@
         $scope.getProductCategories = getProductCategories;
 
         function getProductCategories(page) {
+            $scope.loading = true;
             page = page || 0;
             var config = {
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 20
+                    pageSize: 5
                 }
             }
             apiService.get('/api/productcategory/getall', config, function (result) {
@@ -107,6 +106,7 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
+                $scope.loading = false;
             }, function () {
                 console.log('Không có danh mục sản phẩm nào!!!');
             });

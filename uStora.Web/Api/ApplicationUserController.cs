@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace uStora.Web.Api
     [RoutePrefix("api/applicationUser")]
     public class ApplicationUserController : ApiControllerBase
     {
+        private ICommonService _commonService;
         private ApplicationUserManager _userManager;
         private IApplicationGroupService _appGroupService;
         private IApplicationRoleService _appRoleService;
@@ -27,12 +29,14 @@ namespace uStora.Web.Api
             IApplicationGroupService appGroupService,
             IApplicationRoleService appRoleService,
             ApplicationUserManager userManager,
-            IErrorService errorService)
+            IErrorService errorService,
+            ICommonService commonService)
             : base(errorService)
         {
             _appRoleService = appRoleService;
             _appGroupService = appGroupService;
             _userManager = userManager;
+            _commonService = commonService;
         }
 
         [Route("getlistpaging")]
@@ -44,8 +48,12 @@ namespace uStora.Web.Api
             {
                 HttpResponseMessage response = null;
                 int totalRow = 0;
-                var model = _userManager.Users;
-                IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(model);
+
+                var model = _commonService.GetUsers(filter);
+
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(query);
 
                 PaginationSet<ApplicationUserViewModel> pagedSet = new PaginationSet<ApplicationUserViewModel>()
                 {

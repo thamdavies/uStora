@@ -1,23 +1,16 @@
-﻿/// <reference path="../../../Assets/admin/libs/angular/angular.js" />
-
-(function (app) {
+﻿(function (app) {
     app.controller('productListController', productListController);
 
     productListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
     function productListController($scope, apiService, notificationService, $ngBootbox, $filter) {
+        $scope.p_loading = true;
         $scope.products = [];
-
         $scope.page = 0;
         $scope.pagesCount = 0;
-
         $scope.keyword = '';
-
         $scope.search = search;
-
         $scope.deleteProduct = deleteProduct;
-
         $scope.selectAll = selectAll;
-
         $scope.deleteProductMulti = deleteProductMulti;
 
         function deleteProductMulti() {
@@ -93,12 +86,13 @@
         $scope.getProducts = getProducts;
 
         function getProducts(page) {
+            $scope.p_loading = true;
             page = page || 0;
             var config = {
                 params: {
-                    keyword: $scope.keyword,
+                    filter: $scope.keyword,
                     page: page,
-                    pageSize: 20
+                    pageSize: 5
                 }
             }
             apiService.get('/api/product/getall', config, function (result) {
@@ -109,6 +103,7 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
+                $scope.p_loading = false;
             }, function () {
                 console.log('Không có sản phẩm nào!!!');
             });

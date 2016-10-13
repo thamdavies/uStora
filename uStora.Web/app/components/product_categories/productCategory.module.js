@@ -1,5 +1,4 @@
-﻿/// <reference path="E:\ILearning\LTPM\ASP.NET MVC\Git\OnlineShop.Web\Assets/admin/libs/angular/angular.js" />
-(function () {
+﻿(function () {
     angular.module('uStora.product_categories', ['uStora.common']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
