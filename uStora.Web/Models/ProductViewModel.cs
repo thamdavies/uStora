@@ -1,8 +1,10 @@
 ﻿using MvcPaging;
+using System;
 using uStora.Model.Abstracts;
 
 namespace uStora.Web.Models
 {
+    [Serializable]
     public class ProductViewModel : Auditable
     {
         public long ID { get; set; }
@@ -19,7 +21,9 @@ namespace uStora.Web.Models
 
         public string MoreImages { get; set; }
 
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
+
+        public decimal OriginalPrice { get; set; }
 
         public decimal? PromotionPrice { get; set; }
 

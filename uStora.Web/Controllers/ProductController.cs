@@ -23,17 +23,43 @@ namespace uStora.Web.Controllers
             IProductCategoryService productCategoryService,
             IBrandService brandService)
         {
-            this._productService = productService;
-            this._brandService = brandService;
-            this._productCategoryService = productCategoryService;
+            _productService = productService;
+            _brandService = brandService;
+            _productCategoryService = productCategoryService;
         }
-
-
-
+        public void IncreaseView(List<ViewCounterViewModel> viewCounterViewModel, long productId)
+        {
+            if (viewCounterViewModel != null)
+            {
+                if (!viewCounterViewModel.Any(x => x.ProductId == productId))
+                {
+                    _productService.IncreaseView(productId);
+                    AddViewCounter(productId);
+                }
+            }
+            else
+            {
+                viewCounterViewModel = new List<ViewCounterViewModel>();
+                _productService.IncreaseView(productId);
+                AddViewCounter(productId);
+            }
+        }
+        public void AddViewCounter(long productId)
+        {
+            var viewCounterViewModel = (List<ViewCounterViewModel>)Session[CommonConstants.ViewCounterSession];
+            if(viewCounterViewModel == null)
+                viewCounterViewModel = new List<ViewCounterViewModel>();
+            ViewCounterViewModel viewCounterVm = new ViewCounterViewModel();
+            viewCounterVm.ProductId = productId;
+            viewCounterViewModel.Add(viewCounterVm);
+            Session[CommonConstants.ViewCounterSession] = viewCounterViewModel;
+        }
         public ActionResult Detail(long id, string searchString, int? page)
         {
+            var viewCounter = (List<ViewCounterViewModel>)Session[CommonConstants.ViewCounterSession];
             int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
             var product = _productService.GetByID(id);
+            IncreaseView(viewCounter,id);
             var productVm = Mapper.Map<Product, ProductViewModel>(product);
             var relatedProducts = _productService.GetRelatedProducts(id, 5);
             var hotProducts = _productService.GetRelatedProducts(id, 5);

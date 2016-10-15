@@ -14,6 +14,8 @@ namespace uStora.Model.Models
         [Column(Order = 2)]
         public long ProductID { get; set; }
 
+        public decimal Price { get; set; }
+
         [Required]
         public int Quantity { get; set; }
 

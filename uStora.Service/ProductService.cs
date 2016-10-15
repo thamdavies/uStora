@@ -343,6 +343,7 @@ namespace uStora.Service
                 product.ViewCount += 1;
             else
                 product.ViewCount = 1;
+            _unitOfWork.Commit();
         }
 
         public Tag GetTag(string tagId)

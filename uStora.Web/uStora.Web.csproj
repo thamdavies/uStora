@@ -268,6 +268,7 @@
     <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
+    <Compile Include="Models\ViewCounterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -326,7 +327,6 @@
     <Content Include="app\components\slides\slideEditView.html" />
     <Content Include="app\components\slides\slideListController.js" />
     <Content Include="app\components\slides\slideListView.html" />
-    <Content Include="app\shared\directives\asDateDirective.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\status.filter.js" />
@@ -424,6 +424,7 @@
     <Content Include="Assets\Client\img\h4-slide3.png" />
     <Content Include="Assets\Client\img\h4-slide4.png" />
     <Content Include="Assets\Client\img\h4-slide7.png" />
+    <Content Include="Assets\Client\js\ajaxPaging.js" />
     <Content Include="Assets\Client\js\checkbox.js" />
     <Content Include="Assets\Client\js\common.js" />
     <Content Include="Assets\Client\js\controllers\addToCart.js" />

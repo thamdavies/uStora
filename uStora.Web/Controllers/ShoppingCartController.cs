@@ -184,6 +184,7 @@ namespace uStora.Web.Controllers
                 var detail = new OrderDetail();
                 detail.ProductID = item.ProductId;
                 detail.Quantity = item.Quantity;
+                detail.Price = item.Product.Price;
                 ordersDetail.Add(detail);
             }
         

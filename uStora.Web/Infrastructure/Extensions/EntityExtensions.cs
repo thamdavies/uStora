@@ -86,6 +86,7 @@ namespace uStora.Web.Infrastructure.Extensions
             product.HomeFlag = productViewModel.HomeFlag;
             product.HotFlag = productViewModel.HotFlag;
             product.Price = productViewModel.Price;
+            product.OriginalPrice = productViewModel.OriginalPrice;
             product.PromotionPrice = productViewModel.PromotionPrice;
             product.Warranty = productViewModel.Warranty;
             product.Content = productViewModel.Content;

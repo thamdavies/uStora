@@ -120,6 +120,10 @@
     <Compile Include="Migrations\201610120345004_addTableForIdentityUser.Designer.cs">
       <DependentUpon>201610120345004_addTableForIdentityUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610140427563_EditOrderDetailAndProduct.cs" />
+    <Compile Include="Migrations\201610140427563_EditOrderDetailAndProduct.Designer.cs">
+      <DependentUpon>201610140427563_EditOrderDetailAndProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610120345004_addTableForIdentityUser.resx">
       <DependentUpon>201610120345004_addTableForIdentityUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610140427563_EditOrderDetailAndProduct.resx">
+      <DependentUpon>201610140427563_EditOrderDetailAndProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

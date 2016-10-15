@@ -4,7 +4,6 @@
     productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
     function productCategoryListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.productCategories = [];
-
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.loading = true;

@@ -3,10 +3,10 @@
 
     productListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
     function productListController($scope, apiService, notificationService, $ngBootbox, $filter) {
-        $scope.p_loading = true;
         $scope.products = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
+        $scope.loading = true;
         $scope.keyword = '';
         $scope.search = search;
         $scope.deleteProduct = deleteProduct;
@@ -61,8 +61,6 @@
             }
         }, true);
 
-
-
         function deleteProduct(id) {
             $ngBootbox.confirm('Bạn chắc chắn muốn xóa bản ghi này?').then(function () {
                 var config = {
@@ -86,8 +84,8 @@
         $scope.getProducts = getProducts;
 
         function getProducts(page) {
-            $scope.p_loading = true;
             page = page || 0;
+            $scope.loading = true;
             var config = {
                 params: {
                     filter: $scope.keyword,
@@ -103,7 +101,7 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
-                $scope.p_loading = false;
+                $scope.loading = false;
             }, function () {
                 console.log('Không có sản phẩm nào!!!');
             });

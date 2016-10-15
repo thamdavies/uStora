@@ -13,11 +13,11 @@
                     @if (item.PromotionPrice.HasValue)
                     {
                         <ins>@item.PromotionPrice.Value.ToString("N0")</ins>
-                        <del>@item.Price.Value.ToString("N0")</del>
+                        <del>@item.Price.ToString("N0")</del>
                     }
                     else
                     {
-                        <ins>@item.Price.Value.ToString("N0")</ins>
+                        <ins>@item.Price.ToString("N0")</ins>
                     }
                 </div>
             </div>

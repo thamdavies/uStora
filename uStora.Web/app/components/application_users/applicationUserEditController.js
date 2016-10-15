@@ -7,7 +7,7 @@
 
     function applicationUserEditController($scope, apiService, notificationService, $location, $stateParams) {
         $scope.account = {}
-
+        $scope.BirthDay = "";
 
         $scope.updateAccount = updateAccount;
 
@@ -18,6 +18,7 @@
             apiService.get('/api/applicationUser/detail/' + $stateParams.id, null,
             function (result) {
                 $scope.account = result.data;
+                $scope.account.BirthDay = new Date($scope.account.BirthDay);
             },
             function (result) {
                 notificationService.displayError(result.data);

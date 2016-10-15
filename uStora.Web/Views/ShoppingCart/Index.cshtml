@@ -23,8 +23,8 @@
         <div class="row">
             <div class="col-md-4">
                 @using (Ajax.BeginForm("Detail", "Product",
-            new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
-            new { id = "frm-search" }))
+        new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
+        new { id = "frm-search" }))
                 {
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Tìm nhanh</h2>
@@ -114,7 +114,7 @@
                                 </table>
                             </div>
                             <div class="col-md-6 bangthanhtoan hide" id="bangthanhtoan">
-                                <form class="form-horizontal contact-form" id="frmCheckout" role="form">
+                                <form class="form-horizontal contact-form" id="frmCheckout" method="post" role="form">
                                     <h4 id="ckecout-legend">Thông tin cá nhân</h4>
                                     @if (Request.IsAuthenticated)
                                     {
@@ -186,7 +186,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12 control-label"></label>
                                         <div class="col-md-12 inputGroupContainer">
-                                            <button type="submit" id="btnThanhToan" class="btn btn-warning">Thanh toán <span class="glyphicon glyphicon-ok-circle"></span></button>
+                                            <button type="button" id="btnThanhToan" class="btn btn-warning">Thanh toán <span class="glyphicon glyphicon-ok-circle"></span></button>
                                         </div>
                                     </div>
                                 </form>
@@ -232,26 +232,9 @@
 </script>
 @section scripts{
     <script src="~/Assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
     <script src="~/Assets/libs/mustache/mustache.min.js"></script>
     <script src="~/Assets/Client/js/controllers/shoppingCart.js"></script>
-
-    <script>
-        function beginPaging(args) {
-            // Animate
-            $('#grid-list').fadeOut('normal');
-        }
-
-        function successPaging() {
-            // Animate
-            $('#grid-list').fadeIn('normal');
-            $('a').tooltip();
-        }
-
-        function failurePaging() {
-            alert("Danh sách không có dữ liệu.");
-        }
-    </script>
-
+    <script src="~/Assets/Client/js/ajaxPaging.js"></script>
 }
 

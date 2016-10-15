@@ -55,11 +55,13 @@
             }
             else {
                 cart.resetValue();
-                //window.location.reload();
-                //$("html, body").animate({ scrollTop: 0 }, 500);
             }
 
         });
+        $('#btnThanhToan').off('click').on('click', function () {
+            cart.createOrder();
+            alert('ok');
+        })
         $('#frmCheckout').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
             feedbackIcons: {
@@ -142,6 +144,7 @@
                 }
             }
         }).on('success.form.bv', function (e) {
+            e.preventDefault();
             cart.createOrder();
         });
     },
@@ -204,11 +207,7 @@
                     cart.deleteAll("");
                     setTimeout(function () {
                         $('#tblCartTable').html('<h4 class="text-center text-success">Chúc mừng!!! Bạn đã đặt hàng thành công. Bạn hãy để ý điện thoại của bạn... chúng tôi sẽ gọi lại cho bạn sớm nhất có thể.</h4>');
-                        $('html, body').animate({
-                            scrollTop: $("#product-big-title-area").offset().top
-                        }, 1000);
                     }, 2000);
-
                 }
             }
         })
