@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                @using (Ajax.BeginForm("Detail", "Product",
+                @using (Ajax.BeginForm("Index", "ShoppingCart",
         new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
         new { id = "frm-search" }))
                 {
@@ -114,81 +114,83 @@
                                 </table>
                             </div>
                             <div class="col-md-6 bangthanhtoan hide" id="bangthanhtoan">
-                                <form class="form-horizontal contact-form" id="frmCheckout" method="post" role="form">
-                                    <h4 id="ckecout-legend">Thông tin cá nhân</h4>
-                                    @if (Request.IsAuthenticated)
-                                    {
-                                        <div class="form-group" id="LoadUserInfo">
-                                            <div class="col-md-12">
-                                                <label>
-                                                    <input type="checkbox" id="btnLoadUserInfo" />
-                                                    Lấy thông tin của tôi
-                                                </label>
+                                <form class="form-horizontal contact-form" id="frmCheckout" method="post" role="form" novalidate>
+                                    <fieldset>
+                                        <h4 id="ckecout-legend">Thông tin cá nhân</h4>
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <div class="form-group" id="LoadUserInfo">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        <input type="checkbox" id="btnLoadUserInfo" />
+                                                        Lấy thông tin của tôi
+                                                    </label>
 
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="form-group">
+                                            <div class="col-md-12 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                    <input name="fullname" id="fullname" placeholder="Họ và tên" class="form-control" type="text">
+                                                </div>
                                             </div>
                                         </div>
-                                    }
-                                    <div class="form-group">
-                                        <div class="col-md-12 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input name="fullname" id="fullname" placeholder="Họ và tên" class="form-control" type="text">
+
+                                        <!-- Text input-->
+                                        <div class="form-group">
+                                            <div class="col-md-12 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                                    <input type="text" class="form-control" id="email" placeholder="Địa chỉ Email" name="email" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <div class="col-md-12 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                                <input type="text" class="form-control" id="email" placeholder="Địa chỉ Email" name="email" />
+                                        <!-- Text input-->
+
+                                        <div class="form-group">
+                                            <div class="col-md-12 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                                    <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Text input-->
+                                        <!-- Text input-->
 
-                                    <div class="form-group">
-                                        <div class="col-md-12 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                                <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone" />
+                                        <div class="form-group">
+                                            <div class="col-md-12 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                    <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Text input-->
 
-                                    <div class="form-group">
-                                        <div class="col-md-12 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address" />
+                                        <!-- Text area -->
+
+                                        <div class="form-group">
+                                            <div class="col-md-12 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                                    <textarea type="text" class="form-control" id="message" placeholder="Nội dung tin nhắn..." name="comment"></textarea>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-
-                                    <!-- Text area -->
-
-                                    <div class="form-group">
-                                        <div class="col-md-12 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                                <textarea type="text" class="form-control" id="message" placeholder="Nội dung tin nhắn..." name="comment"></textarea>
+                                        <br />
+                                        <!-- Button -->
+                                        <div class="form-group">
+                                            <label class="col-md-12 control-label"></label>
+                                            <div class="col-md-12 inputGroupContainer">
+                                                <button type="submit" id="btnThanhToan" class="btn btn-warning">Thanh toán <span class="glyphicon glyphicon-ok-circle"></span></button>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <br />
-                                    <!-- Button -->
-                                    <div class="form-group">
-                                        <label class="col-md-12 control-label"></label>
-                                        <div class="col-md-12 inputGroupContainer">
-                                            <button type="button" id="btnThanhToan" class="btn btn-warning">Thanh toán <span class="glyphicon glyphicon-ok-circle"></span></button>
-                                        </div>
-                                    </div>
+                                    </fieldset>
                                 </form>
 
                             </div>
@@ -228,7 +230,6 @@
             <span class="amount">{{Amount}}</span>
         </td>
     </tr>
-
 </script>
 @section scripts{
     <script src="~/Assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>

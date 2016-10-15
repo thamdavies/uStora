@@ -53,6 +53,13 @@ namespace uStora.Web
                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            //checkout completed 
+            routes.MapRoute(
+               name: "Checkout completed",
+               url: "thanh-toan/thanh-cong.htm",
+               defaults: new { controller = "ShoppingCart", action = "CheckOutSuccess", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
             //contact
             routes.MapRoute(
                name: "Contact",

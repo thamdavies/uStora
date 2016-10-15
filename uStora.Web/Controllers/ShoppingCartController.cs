@@ -83,9 +83,19 @@ namespace uStora.Web.Controllers
         public JsonResult Add(long productId)
         {
             var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
+            var product = _productService.GetByID(productId);
             if (cart == null)
             {
                 cart = new List<ShoppingCartViewModel>();
+            }
+            
+            if(product.Quantity == 0)
+            {
+                return Json(new
+                {
+                    status = false,
+                    message = "Sản phẩm này hiện tại đang hết hàng."
+                });
             }
             if (cart.Any(x => x.ProductId == productId))
             {
@@ -99,13 +109,12 @@ namespace uStora.Web.Controllers
             {
                 ShoppingCartViewModel newItem = new ShoppingCartViewModel();
                 newItem.ProductId = productId;
-                var product = _productService.GetByID(productId);
                 newItem.Product = Mapper.Map<Product, ProductViewModel>(product);
                 newItem.Quantity = 1;
                 cart.Add(newItem);
             }
             Session[CommonConstants.ShoppingCartSession] = cart;
-
+            Session[CommonConstants.SelledProducts] = cart;
             return Json(new
             {
                 status = true
@@ -170,6 +179,7 @@ namespace uStora.Web.Controllers
         {
             var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
             var orderNew = new Order();
+            bool isEnough = true;
             orderNew.UpdateOrder(order);
             if (Request.IsAuthenticated)
             {
@@ -186,13 +196,47 @@ namespace uStora.Web.Controllers
                 detail.Quantity = item.Quantity;
                 detail.Price = item.Product.Price;
                 ordersDetail.Add(detail);
+                isEnough = _productService.SellingProduct(item.ProductId, item.Quantity);
+                break;
             }
-        
-            _orderService.Add(orderNew, ordersDetail);
-            return Json(new
+            if (isEnough)
             {
-                status = true
-            });
+                _orderService.Add(orderNew, ordersDetail);
+                _productService.SaveChanges();
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    status = false,
+                    message = "Sản phẩm này hiện tại đang hết hàng."
+                });
+            }
+            
+        }
+
+        public ActionResult CheckOutSuccess(int? page, string searchString)
+        {
+            if (Session[CommonConstants.SelledProducts] == null)
+            {
+                Session[CommonConstants.SelledProducts] = new List<ShoppingCartViewModel>();
+            }
+            var selledProducts = (List<ShoppingCartViewModel>)Session[CommonConstants.SelledProducts];
+            var cart = new ShoppingCartViewModel();
+            ViewBag.SelledProducts = selledProducts;
+            int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            IList<Product> listProducts = _productService.GetAllPagingAjax(searchString);
+            var listProductsVm = Mapper.Map<IList<Product>, IList<ProductViewModel>>(listProducts);
+            cart.ListProducts = listProductsVm.ToPagedList(currentPageIndex, defaultPageSize);
+            if (Request.IsAjaxRequest())
+                return PartialView("_AjaxProductList", cart.ListProducts);
+            else
+                return View(cart);
         }
     }
 }

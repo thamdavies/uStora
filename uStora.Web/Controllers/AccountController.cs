@@ -106,8 +106,6 @@ namespace uStora.Web.Controllers
 
             return View();
         }
-
-
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;

@@ -24,6 +24,9 @@
                     $('.add-to-cart-success').delay(1000).fadeIn('slow').removeClass('hide');
                     $('.add-to-cart-success').delay(3000).fadeOut('slow');
                 }
+                else {
+                    alert(res.message);
+                }
             }
         });
     },

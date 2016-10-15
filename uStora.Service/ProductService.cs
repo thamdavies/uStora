@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using uStora.Common;
 using uStora.Data.Infrastructure;
@@ -46,6 +47,8 @@ namespace uStora.Service
         IEnumerable<Product> ProductsByTag(string tagId, string sort, int brandid, int page, int pageSize, out int totalRow);
 
         void IncreaseView(long id);
+
+        bool SellingProduct(long productId, int quantity);
 
         Tag GetTag(string tagId);
 
@@ -359,6 +362,15 @@ namespace uStora.Service
         public IEnumerable<Product> GetHot(int top)
         {
             return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public bool SellingProduct(long productId, int quantity)
+        {
+            var product = _productRepository.GetSingleById(productId);
+            if (product.Quantity < quantity)
+                return false;
+            product.Quantity -= quantity;
+            return true;
         }
     }
 }

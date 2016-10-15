@@ -4,7 +4,6 @@
         cart.registerEvents();
     },
     registerEvents: function () {
-
         $('#btnRemoveItem').off('click').on('click', function (e) {
             e.preventDefault();
             var productId = parseInt($(this).data('id'));
@@ -58,10 +57,7 @@
             }
 
         });
-        $('#btnThanhToan').off('click').on('click', function () {
-            cart.createOrder();
-            alert('ok');
-        })
+
         $('#frmCheckout').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
             feedbackIcons: {
@@ -143,8 +139,7 @@
                     }
                 }
             }
-        }).on('success.form.bv', function (e) {
-            e.preventDefault();
+        }).off('success.form.bv').on('success.form.bv', function (e) {
             cart.createOrder();
         });
     },
@@ -205,14 +200,12 @@
                 if (res.status) {
                     $('.bangthanhtoan').addClass('hide');
                     cart.deleteAll("");
-                    setTimeout(function () {
-                        $('#tblCartTable').html('<h4 class="text-center text-success">Chúc mừng!!! Bạn đã đặt hàng thành công. Bạn hãy để ý điện thoại của bạn... chúng tôi sẽ gọi lại cho bạn sớm nhất có thể.</h4>');
-                    }, 2000);
+                    window.location.href = "/thanh-toan/thanh-cong.htm";
                 }
             }
         })
     },
-    loadData: function () {
+    loadData: function (isOrder) {
         $.ajax({
             url: '/ShoppingCart/GetAll',
             type: 'GET',
@@ -235,9 +228,9 @@
                         });
                     });
                     $('#cartBody').html(html);
-                    if (html == '') {
+                    if (html == '')
                         $('#tblCartTable').html('<h4 class="text-center text-danger">Không có sản phẩm nào trong giỏ hàng.</h4>');
-                    }
+
                     $('#ltlTotalOrder').text(numeral(cart.getTotalOrder().amount).format('0,0'));
                     $('#amount').text(numeral(cart.getTotalOrder().amount).format('0,0'));
                     $('span.product-count').text(cart.getTotalOrder().quantity);
@@ -264,7 +257,7 @@
             },
             success: function (res) {
                 if (res.status) {
-                    cart.loadData();
+                    cart.loadData("");
                     alert('Cập nhật thành công');
                 }
             }
@@ -281,7 +274,7 @@
             success: function (res) {
                 if (res.status) {
                     alert("Sản phẩm được xóa khỏi giỏ hàng.");
-                    cart.loadData();
+                    cart.loadData("");
                 }
             }
         })
