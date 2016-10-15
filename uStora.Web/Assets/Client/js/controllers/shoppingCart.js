@@ -258,7 +258,7 @@
             success: function (res) {
                 if (res.status) {
                     cart.loadData("");
-                    alert('Cập nhật thành công');
+                    toastr.success('Cập nhật thành công');
                 }
             }
         });
@@ -273,7 +273,7 @@
             },
             success: function (res) {
                 if (res.status) {
-                    alert("Sản phẩm được xóa khỏi giỏ hàng.");
+                    toastr.success('Sản phẩm được xóa khỏi giỏ hàng.');
                     cart.loadData("");
                 }
             }
@@ -287,7 +287,7 @@
             success: function (res) {
                 if (res.status) {
                     if (load == "load") {
-                        alert("Giỏ hàng đã được làm mới.");
+                        toastr.success('Giỏ hàng đã được làm mới.');
                     }
                     cart.loadData();
                 }

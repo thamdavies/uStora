@@ -1,6 +1,6 @@
 ﻿$(function () {
     $(document).ready(function () {
-       
+
         var $loading = $('#overlay');
         $(document)
           .ajaxStart(function () {
@@ -58,12 +58,12 @@
         });
     });
     function ResetValue() {
-         $('#fullname').val(""),
-         $('#phone').val(""),
-         $('#address').val(""),
-         $('#email').val(""),
-         $('#website').val(""),
-         $('#comment').val("")
+        $('#fullname').val(""),
+        $('#phone').val(""),
+        $('#address').val(""),
+        $('#email').val(""),
+        $('#website').val(""),
+        $('#comment').val("")
     }
     function AddFeedback() {
         var obj = {

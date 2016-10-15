@@ -21,11 +21,12 @@
             success: function (res) {
                 if (res.status) {
                     cart.getProductCount();
-                    $('.add-to-cart-success').delay(1000).fadeIn('slow').removeClass('hide');
-                    $('.add-to-cart-success').delay(3000).fadeOut('slow');
+                    toastr.success('Thêm vào giỏ thành công.');
                 }
                 else {
-                    alert(res.message);
+                    setTimeout(function () {
+                        toastr.error(res.message);
+                    }, 1800);
                 }
             }
         });
