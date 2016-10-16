@@ -5310,9 +5310,6 @@
     <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Product\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Product\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>

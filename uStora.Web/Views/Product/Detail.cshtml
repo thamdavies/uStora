@@ -226,8 +226,8 @@
 </div>
 
 @section scripts{
-   <script src="~/Assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/Assets/Client/js/jquery.etalage.min.js"></script>
+   @Scripts.Render("~/js/bootstrap")
+   @Scripts.Render("~/js/etalage")
     <script src="~/Assets/Client/js/ajaxPaging.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
