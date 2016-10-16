@@ -197,7 +197,6 @@ namespace uStora.Web.Controllers
                 detail.Price = item.Product.Price;
                 ordersDetail.Add(detail);
                 isEnough = _productService.SellingProduct(item.ProductId, item.Quantity);
-                break;
             }
             if (isEnough)
             {

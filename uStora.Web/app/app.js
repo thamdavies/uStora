@@ -8,6 +8,7 @@
          'uStora.application_groups',
          'uStora.application_roles',
          'uStora.application_users',
+         'uStora.statistics',
          'uStora.common'])
         .config(config)
         .config(configAuthentication);

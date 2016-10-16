@@ -225,6 +225,7 @@
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
     <Compile Include="Api\SlideController.cs" />
+    <Compile Include="Api\StatisticController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -327,6 +328,9 @@
     <Content Include="app\components\slides\slideEditView.html" />
     <Content Include="app\components\slides\slideListController.js" />
     <Content Include="app\components\slides\slideListView.html" />
+    <Content Include="app\components\statistics\revenueStatistic.module.js" />
+    <Content Include="app\components\statistics\revenueStatisticController.js" />
+    <Content Include="app\components\statistics\revenueStatisticView.html" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\status.filter.js" />
@@ -430,6 +434,13 @@
     <Content Include="Assets\Client\js\controllers\addToCart.js" />
     <Content Include="Assets\Client\js\controllers\shoppingCart.js" />
     <Content Include="Assets\Client\templates\newUser.html" />
+    <Content Include="Assets\libs\angular-chart.js\angular-chart.js" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.css" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.js" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.css" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.js" />
+    <Content Include="Assets\libs\angular-chart.js\gulpfile.js" />
+    <Content Include="Assets\libs\Chart.js\Chart.js" />
     <Content Include="Assets\libs\checklist-model\checklist-model.js" />
     <Content Include="Assets\libs\checklist-model\LICENSE.txt" />
     <Content Include="Assets\libs\font-awesome\.gitignore" />
@@ -5424,6 +5435,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\libs\angular-chart.js\.bower.json" />
+    <Content Include="Assets\libs\angular-chart.js\angular-chart.less" />
+    <Content Include="Assets\libs\angular-chart.js\bower.json" />
+    <Content Include="Assets\libs\angular-chart.js\CONTRIBUTING.md" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.js.tar.gz" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.css.map" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.js.map" />
+    <Content Include="Assets\libs\angular-chart.js\Dockerfile" />
+    <Content Include="Assets\libs\angular-chart.js\ISSUE_TEMPLATE.md" />
+    <Content Include="Assets\libs\angular-chart.js\LICENSE" />
+    <Content Include="Assets\libs\angular-chart.js\package.json" />
+    <Content Include="Assets\libs\angular-chart.js\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Assets\libs\angular-chart.js\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\libs\Chart.js\.bower.json" />
+    <Content Include="Assets\libs\Chart.js\bower.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
