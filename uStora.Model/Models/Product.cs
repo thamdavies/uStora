@@ -60,8 +60,6 @@ namespace uStora.Model.Models
 
         public virtual IEnumerable<ProductTag> ProductTags { get; set; }
 
-        public virtual IEnumerable<WishList> WishLists { get; set; }
-
         public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

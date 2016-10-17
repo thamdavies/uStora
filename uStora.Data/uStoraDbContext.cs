@@ -34,7 +34,6 @@ namespace uStora.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<ContactDetail> ContactDetails { get; set; }
-        public DbSet<WishList> WishLists { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
 
