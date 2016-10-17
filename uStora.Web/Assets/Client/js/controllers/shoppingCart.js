@@ -33,7 +33,9 @@
         });
         $('#btnUpdate').off('click').on('click', function (e) {
             e.preventDefault();
-            cart.updateCart();
+            var result = confirm("Bạn muốn cập nhật giỏ hàng?");
+            if (result)
+                cart.updateCart();
         });
         $('#btnCheckout').off('click').on('click', function (e) {
             e.preventDefault();
@@ -44,7 +46,9 @@
         });
         $('#btnDeleteAll').off('click').on('click', function (e) {
             e.preventDefault();
-            cart.deleteAll("load");
+            var result = confirm("Tất cả sản phẩm trong giỏ hàng sẽ được xóa?");
+            if (result)
+                cart.deleteAll("load");
         });
         $('#btnLoadUserInfo').off('click').on('click', function () {
             if ($(this).prop('checked')) {
