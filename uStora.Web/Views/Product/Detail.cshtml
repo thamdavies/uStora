@@ -1,6 +1,8 @@
 ﻿@model uStora.Web.Models.ProductViewModel
 @{
     ViewBag.Title = "Xem sản phẩm " + Model.Name;
+    ViewBag.MetaKeyword = Model.MetaKeyword;
+    ViewBag.MetaDescription = Model.MetaDescription;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="product-big-title-area">
@@ -94,18 +96,25 @@
                                 <div class="product-inner-price">
                                     @if (Model.PromotionPrice.HasValue)
                                     {
-                                        <ins>@Model.PromotionPrice.Value.ToString("N0")</ins>
-                                        <del>@Model.Price.ToString("N0")</del>
+                                        <ins>@Model.PromotionPrice.Value.ToString("N0") đ</ins>
+                                        <del>@Model.Price.ToString("N0") đ</del>
                                     }
                                     else
                                     {
-                                        <ins>@Model.Price.ToString("N0")</ins>
+                                        <ins>@Model.Price.ToString("N0") đ</ins>
                                     }
                                 </div>
 
                                 <form action="" method="post" class="cart">
                                     <div class="input-group">
-                                        <p>Số lượng trong kho: @Model.Quantity</p>
+                                       @if (Model.Quantity > 0)
+                                       {
+                                        <p>Số lượng trong kho: <span class="badge">@Model.Quantity</span></p>
+                                       }
+                                       else
+                                       {
+                                           <p class="text-danger">Hết hàng.</p>
+                                       }
 
                                         <button id="btnAddToCart" data-id="@Model.ID" type="submit">Thêm vào giỏ</button>
                                     </div>
@@ -206,12 +215,12 @@
                                         <div class="product-carousel-price">
                                             @if (rl_product.PromotionPrice.HasValue)
                                             {
-                                                <ins>@rl_product.PromotionPrice.Value.ToString("N0")</ins>
-                                                <del>@rl_product.Price.ToString("N0")</del>
+                                                <ins>@rl_product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                                <del>@rl_product.Price.ToString("N0") đ</del>
                                             }
                                             else
                                             {
-                                                <ins>@rl_product.Price.ToString("N0")</ins>
+                                                <ins>@rl_product.Price.ToString("N0") đ</ins>
                                             }
                                         </div>
                                     </div>

@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlideService.cs" />
     <Compile Include="StatisticService.cs" />
+    <Compile Include="SystemConfigService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

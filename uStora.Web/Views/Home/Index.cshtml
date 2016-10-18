@@ -1,6 +1,8 @@
 ﻿@model uStora.Web.Models.HomeViewModel
 @{
-    ViewBag.Title = "Trang chủ - Ustora shop uy tín và chất lượng.";
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaKeyword = Model.MetaKeyword;
+    ViewBag.MetaDescription = Model.MetaDescription;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -90,12 +92,12 @@
                                 <div class="product-carousel-price">
                                     @if (product.PromotionPrice.HasValue)
                                     {
-                                        <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                                        <del>@product.Price.ToString("N0")</del>
+                                        <ins>@product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                        <del>@product.Price.ToString("N0") đ</del>
                                     }
                                     else
                                     {
-                                        <ins>@product.Price.ToString("N0")</ins>
+                                        <ins>@product.Price.ToString("N0") đ</ins>
                                     }
                                 </div>
                             </div>
@@ -137,7 +139,7 @@
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Bán chạy</h2>
-                        <a href="" class="wid-view-more">Xem tất cả</a>
+                        <a href="/shop.htm" class="wid-view-more">Xem tất cả</a>
                         @foreach (var product in Model.TopSaleProducts)
                         {
                             <div class="single-wid-product">
@@ -153,12 +155,12 @@
                                 <div class="product-wid-price">
                                     @if (product.PromotionPrice.HasValue)
                                     {
-                                        <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                                        <del>@product.Price.ToString("N0")</del>
+                                        <ins>@product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                        <del>@product.Price.ToString("N0") đ</del>
                                     }
                                     else
                                     {
-                                        <ins>@product.Price.ToString("N0")</ins>
+                                        <ins>@product.Price.ToString("N0") đ</ins>
                                     }
                                 </div>
                             </div>
@@ -168,7 +170,7 @@
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Xem nhiều</h2>
-                        <a href="#" class="wid-view-more">Xem tất cả</a>
+                        <a href="/shop.htm" class="wid-view-more">Xem tất cả</a>
                         @foreach (var product in Model.TopViews)
                         {
                             <div class="single-wid-product">
@@ -184,12 +186,12 @@
                                 <div class="product-wid-price">
                                     @if (product.PromotionPrice.HasValue)
                                     {
-                                        <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                                        <del>@product.Price.ToString("N0")</del>
+                                        <ins>@product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                        <del>@product.Price.ToString("N0") đ</del>
                                     }
                                     else
                                     {
-                                        <ins>@product.Price.ToString("N0")</ins>
+                                        <ins>@product.Price.ToString("N0") đ</ins>
                                     }
                                 </div>
                             </div>
@@ -199,7 +201,7 @@
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Mới</h2>
-                        <a href="#" class="wid-view-more">Xem tất cả</a>
+                        <a href="/shop.htm" class="wid-view-more">Xem tất cả</a>
                         @foreach (var product in Model.LatestProducts)
                         {
                             <div class="single-wid-product">
@@ -215,12 +217,12 @@
                                 <div class="product-wid-price">
                                     @if (product.PromotionPrice.HasValue)
                                     {
-                                        <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                                        <del>@product.Price.ToString("N0")</del>
+                                        <ins>@product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                        <del>@product.Price.ToString("N0") đ</del>
                                     }
                                     else
                                     {
-                                        <ins>@product.Price.ToString("N0")</ins>
+                                        <ins>@product.Price.ToString("N0") đ</ins>
                                     }
                                 </div>
                             </div>

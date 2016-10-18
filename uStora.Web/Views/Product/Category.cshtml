@@ -3,6 +3,10 @@
 @{
     var category = (uStora.Web.Models.ProductCategoryViewModel)ViewBag.Category;
     ViewBag.Title = "Danh mục " + category.Name;
+    var pageIndex = Model.Page;
+    ViewBag.Title = pageIndex == 1 ? category.Name : category.Name + " - Trang " + pageIndex;
+    ViewBag.MetaKeyword = pageIndex == 1 ? category.MetaKeyword : category.MetaKeyword + " - Trang " + pageIndex;
+    ViewBag.MetaDescription = pageIndex == 1 ? category.MetaDescription : category.MetaDescription + " - Trang " + pageIndex;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -69,12 +73,12 @@
                             <div class="product-carousel-price">
                                 @if (product.PromotionPrice.HasValue)
                                 {
-                                    <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                                    <del>@product.Price.ToString("N0")</del>
+                                    <ins>@product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                    <del>@product.Price.ToString("N0") đ</del>
                                 }
                                 else
                                 {
-                                    <ins>@product.Price.ToString("N0")</ins>
+                                    <ins>@product.Price.ToString("N0") đ</ins>
                                 }
                             </div>
 

@@ -7,13 +7,13 @@ namespace uStora.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RemoveWishListTbl : IMigrationMetadata
+    public sealed partial class AddWishListTbl : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveWishListTbl));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddWishListTbl));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610170911171_RemoveWishListTbl"; }
+            get { return "201610170952073_AddWishListTbl"; }
         }
         
         string IMigrationMetadata.Source

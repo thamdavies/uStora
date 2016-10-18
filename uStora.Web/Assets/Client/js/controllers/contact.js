@@ -6,10 +6,10 @@
         contact.initMap();
     },
     initMap: function () {
-        var uluru = { lat: parseFloat($('#hidLat').val()), lng: parseFloat($('#hidLng').val()) };
+        var myLocation = { lat: parseFloat($('#hidLat').val()), lng: parseFloat($('#hidLng').val()) };
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 17,
-            center: uluru
+            zoom: 19,
+            center: myLocation
         });
 
         var contentString = $('#hidAddress').val();
@@ -19,7 +19,7 @@
         });
 
         var marker = new google.maps.Marker({
-            position: uluru,
+            position: myLocation,
             map: map,
             title: $('#hidName').val()
         });

@@ -19,6 +19,7 @@
             CreateUser(context);
             BrandDefault(context);
             CreateContactDetail(context);
+            CreateSystemConfig(context);
         }
 
         private void CreateUser(uStoraDbContext context)
@@ -96,6 +97,34 @@
                 {
 
                 }
+            }
+        }
+
+        private void CreateSystemConfig(uStoraDbContext context)
+        {
+            if(!context.SystemConfigs.Any(x=>x.Code == "Hometitle"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeTitle",
+                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng."
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaKeyword"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaKeyword",
+                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng."
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaDescription"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaDescription",
+                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng."
+                });
             }
         }
     }

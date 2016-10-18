@@ -14,7 +14,7 @@ namespace uStora.Model.Models
         [Column(TypeName = "varchar")]
         public string Code { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(256)]
         public string ValueString { get; set; }
 
         public int? ValueInt { get; set; }

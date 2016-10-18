@@ -198,5 +198,6 @@ namespace uStora.Web.Infrastructure.Extensions
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
             appUser.Gender = appUserViewModel.Gender;
         }
+        
     }
 }

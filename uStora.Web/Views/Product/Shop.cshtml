@@ -1,7 +1,8 @@
 ﻿@model uStora.Web.Infrastructure.Core.PaginationSet<uStora.Web.Models.ProductViewModel>
 
 @{
-    ViewBag.Title = "Cửa hàng";
+    var pageIndex = Model.Page;
+    ViewBag.Title = pageIndex == 1 ? "Cửa hàng" : "Cửa hàng - Trang " + pageIndex;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -54,7 +55,7 @@
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
-       
+
         <div class="row">
             @if (Model.Count > 0)
             {
@@ -69,12 +70,12 @@
                             <div class="product-carousel-price">
                                 @if (product.PromotionPrice.HasValue)
                                 {
-                                    <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                                    <del>@product.Price.ToString("N0")</del>
+                                    <ins>@product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                    <del>@product.Price.ToString("N0") đ</del>
                                 }
                                 else
                                 {
-                                    <ins>@product.Price.ToString("N0")</ins>
+                                    <ins>@product.Price.ToString("N0") đ</ins>
                                 }
                             </div>
 

@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
-
+    <meta name="keywords" content="@ViewBag.MetaKeyword">
+    <meta name="description" content="@ViewBag.MetaDescription">
+    
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
@@ -172,17 +174,20 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Hoạt động của bạn </h2>
-                        <ul>
-                            <li><a href="#">Tài khoản của tôi</a></li>
-                            <li><a href="#">Lịch sử mua hàng</a></li>
-                            <li><a href="#">Yêu thích</a></li>
-                            <li><a href="#">Thanh toán</a></li>
-                        </ul>
-                    </div>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <div class="footer-menu">
+                            <h2 class="footer-wid-title">Hoạt động của bạn </h2>
+                            <ul>
+                                <li><a href="#">Tài khoản của tôi</a></li>
+                                <li><a href="#">Lịch sử mua hàng</a></li>
+                                <li><a href="#">Yêu thích</a></li>
+                                <li><a href="#">Thanh toán</a></li>
+                            </ul>
+                        </div>
+                    }
                 </div>
-
+                
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Danh mục</h2>

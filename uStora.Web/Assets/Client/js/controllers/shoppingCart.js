@@ -6,8 +6,13 @@
     registerEvents: function () {
         $('#btnRemoveItem').off('click').on('click', function (e) {
             e.preventDefault();
-            var productId = parseInt($(this).data('id'));
-            cart.deleteItem(productId);
+            var result = confirm("Bạn muốn xóa sản phẩm này?");
+            if (result)
+            {
+                var productId = parseInt($(this).data('id'));
+                cart.deleteItem(productId);
+            }
+          
         });
         $('.txtQuantity').off('keyup').on('keyup', function (e) {
             var quantity = parseInt($(this).val());

@@ -10,5 +10,10 @@ namespace uStora.Web.Models
         public IEnumerable<ProductViewModel> TopViews { get; set; }
         public IEnumerable<ProductViewModel> LatestProducts { get; set; }
         public IEnumerable<ProductViewModel> TopSaleProducts { get; set; }
+
+        public string Title { set; get; }
+        public string MetaKeyword { set; get; }
+        public string MetaDescription { set; get; }
+
     }
 }

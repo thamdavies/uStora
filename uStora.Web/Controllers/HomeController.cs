@@ -14,16 +14,18 @@ namespace uStora.Web.Controllers
         IProductCategoryService _productCategoryService;
         IProductService _productService;
         IBrandService _brandService;
+        ISystemConfigService _systemConfigService;
         ICommonService _commonService;
 
         public HomeController(IProductCategoryService productCategoryService,
             ICommonService commonService, IProductService productService,
-            IBrandService brandService)
+            IBrandService brandService, ISystemConfigService systemConfigService)
         {
-            this._productCategoryService = productCategoryService;
-            this._productService = productService;
-            this._commonService = commonService;
-            this._brandService = brandService;
+            _productCategoryService = productCategoryService;
+            _productService = productService;
+            _commonService = commonService;
+            _brandService = brandService;
+            _systemConfigService = systemConfigService;
         }
 
         public ActionResult Index()
@@ -50,6 +52,16 @@ namespace uStora.Web.Controllers
             homeVm.TopViews = topViewsVm;
             homeVm.LatestProducts = lastestProductsVm;
             homeVm.TopSaleProducts = topSaleProductsVm;
+            try
+            {
+                homeVm.Title = _systemConfigService.GetSystemConfig(CommonConstants.HomeTitle).ValueString;
+                homeVm.MetaDescription = _systemConfigService.GetSystemConfig(CommonConstants.HomeMetaDescription).ValueString;
+                homeVm.MetaKeyword = _systemConfigService.GetSystemConfig(CommonConstants.HomeMetaKeyword).ValueString;
+            }
+            catch
+            {
+
+            }
 
             return View(homeVm);
         }

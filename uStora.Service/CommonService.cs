@@ -1,41 +1,44 @@
-﻿using uStora.Common;
+﻿using System.Collections.Generic;
+using uStora.Common;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
-using System.Collections.Generic;
-using System;
 
 namespace uStora.Service
 {
     public interface ICommonService
     {
         Footer GetFooter();
+
         IEnumerable<Slide> GetSlides();
+
         IEnumerable<ApplicationUser> GetUsers(string filter);
     }
 
     public class CommonService : ICommonService
     {
         private IFooterRespository _footerRespository;
+        private ISystemConfigRepository _systemConfigRepository;
         private IUnitOfWork _unitOfWork;
         private ISlideRepository _slideRepository;
-        IApplicationUserRepository _applicationUserRepository;
+        private IApplicationUserRepository _applicationUserRepository;
 
         public CommonService(IFooterRespository footerRespository,
             IUnitOfWork unitOfWork, ISlideRepository slideRepository,
-            IApplicationUserRepository applicationUserRepository)
+            IApplicationUserRepository applicationUserRepository,
+            ISystemConfigRepository systemConfigRepository)
         {
-            this._footerRespository = footerRespository;
-            this._unitOfWork = unitOfWork;
-            this._slideRepository = slideRepository;
-            this._applicationUserRepository = applicationUserRepository;
+            _footerRespository = footerRespository;
+            _unitOfWork = unitOfWork;
+            _slideRepository = slideRepository;
+            _applicationUserRepository = applicationUserRepository;
+            _systemConfigRepository = systemConfigRepository;
         }
 
         public Footer GetFooter()
         {
             return _footerRespository.GetSingleByCondition(x => x.ID == CommonConstants.DefaultFooter);
         }
-
 
         public IEnumerable<Slide> GetSlides()
         {

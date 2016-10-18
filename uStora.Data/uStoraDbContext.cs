@@ -36,6 +36,7 @@ namespace uStora.Data
         public DbSet<ContactDetail> ContactDetails { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
 
         public static uStoraDbContext Create()
         {

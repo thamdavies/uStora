@@ -68,10 +68,6 @@
     <Compile Include="Migrations\201609301507562_InitialDb.Designer.cs">
       <DependentUpon>201609301507562_InitialDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610011531311_AddedWishListTbl.cs" />
-    <Compile Include="Migrations\201610011531311_AddedWishListTbl.Designer.cs">
-      <DependentUpon>201610011531311_AddedWishListTbl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201610011652436_AddedBrandTbl.cs" />
     <Compile Include="Migrations\201610011652436_AddedBrandTbl.Designer.cs">
       <DependentUpon>201610011652436_AddedBrandTbl.cs</DependentUpon>
@@ -128,9 +124,13 @@
     <Compile Include="Migrations\201610160730375_AddRevenuesStatisticSP.Designer.cs">
       <DependentUpon>201610160730375_AddRevenuesStatisticSP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610170911171_RemoveWishListTbl.cs" />
-    <Compile Include="Migrations\201610170911171_RemoveWishListTbl.Designer.cs">
-      <DependentUpon>201610170911171_RemoveWishListTbl.cs</DependentUpon>
+    <Compile Include="Migrations\201610170952073_AddWishListTbl.cs" />
+    <Compile Include="Migrations\201610170952073_AddWishListTbl.Designer.cs">
+      <DependentUpon>201610170952073_AddWishListTbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610181524006_addSystemConfig.cs" />
+    <Compile Include="Migrations\201610181524006_addSystemConfig.Designer.cs">
+      <DependentUpon>201610181524006_addSystemConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -180,9 +180,6 @@
     <EmbeddedResource Include="Migrations\201609301507562_InitialDb.resx">
       <DependentUpon>201609301507562_InitialDb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610011531311_AddedWishListTbl.resx">
-      <DependentUpon>201610011531311_AddedWishListTbl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610011652436_AddedBrandTbl.resx">
       <DependentUpon>201610011652436_AddedBrandTbl.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,8 +222,11 @@
     <EmbeddedResource Include="Migrations\201610160730375_AddRevenuesStatisticSP.resx">
       <DependentUpon>201610160730375_AddRevenuesStatisticSP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610170911171_RemoveWishListTbl.resx">
-      <DependentUpon>201610170911171_RemoveWishListTbl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610170952073_AddWishListTbl.resx">
+      <DependentUpon>201610170952073_AddWishListTbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610181524006_addSystemConfig.resx">
+      <DependentUpon>201610181524006_addSystemConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

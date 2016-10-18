@@ -2,7 +2,8 @@
 
 @{
     var keyword = (string)ViewBag.Keyword;
-    ViewBag.Title = "Tìm kiếm cho " + keyword;
+    var pageIndex = Model.Page;
+    ViewBag.Title = pageIndex == 1 ? "Kết quả tìm kiếm cho " + keyword : "Kết quả tìm kiếm cho " + keyword + " - Trang " + pageIndex;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -73,12 +74,12 @@
                             <div class="product-carousel-price">
                                 @if (product.PromotionPrice.HasValue)
                                 {
-                                    <ins>@product.PromotionPrice.Value.ToString("N0")</ins>
-                                    <del>@product.Price.ToString("N0")</del>
+                                    <ins>@product.PromotionPrice.Value.ToString("N0") đ</ins>
+                                    <del>@product.Price.ToString("N0") đ</del>
                                 }
                                 else
                                 {
-                                    <ins>@product.Price.ToString("N0")</ins>
+                                    <ins>@product.Price.ToString("N0") đ</ins>
                                 }
                             </div>
 
