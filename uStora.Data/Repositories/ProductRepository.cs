@@ -7,7 +7,7 @@ namespace uStora.Data.Repositories
 {
     public interface IProductRepository : IRepository<Product>
     {
-        IEnumerable<Product> GetProductsByTag(string tagId, int brandId, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetProductsByTag(string tagId, int brandId);
     }
 
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
@@ -17,7 +17,7 @@ namespace uStora.Data.Repositories
         {
         }
 
-        public IEnumerable<Product> GetProductsByTag(string tagId, int brandId, int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetProductsByTag(string tagId, int brandId)
         {
             var query = from p in DbContext.Products
                         join pt in DbContext.ProductTags
@@ -35,8 +35,7 @@ namespace uStora.Data.Repositories
                         select p;
             }
 
-            totalRow = query.Count();
-            return query.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
+            return query;
         }
     }
 }

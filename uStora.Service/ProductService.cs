@@ -307,7 +307,7 @@ namespace uStora.Service
 
         public IEnumerable<Product> ProductsByTag(string tagId, string sort, int brandid, int page, int pageSize, out int totalRow)
         {
-            var model = _productRepository.GetProductsByTag(tagId, brandid, page, pageSize, out totalRow);
+            var model = _productRepository.GetProductsByTag(tagId, brandid);
             switch (sort)
             {
                 case "popular":
@@ -336,7 +336,7 @@ namespace uStora.Service
             }
 
             totalRow = model.Count();
-            return model;
+            return model.Skip((page - 1) * pageSize).Take(pageSize); 
         }
 
         public void IncreaseView(long id)
