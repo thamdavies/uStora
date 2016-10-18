@@ -9,8 +9,10 @@ namespace uStora.Web.Models
         public string UserId { get; set; }
 
         public long ProductId { get; set; }
-
-        public List<Product> Products { get; set; }
+        
+        public virtual ApplicationUserViewModel ApplicationUser { get; set; }
+        
+        public virtual ProductViewModel Product { get; set; }
 
         public IPagedList<ProductViewModel> ListProducts { get; set; }
     }
