@@ -434,6 +434,7 @@
     <Content Include="Assets\Client\js\checkbox.js" />
     <Content Include="Assets\Client\js\common.js" />
     <Content Include="Assets\Client\js\controllers\addToCart.js" />
+    <Content Include="Assets\Client\js\controllers\addToWishlist.js" />
     <Content Include="Assets\Client\js\controllers\shoppingCart.js" />
     <Content Include="Assets\Client\templates\newUser.html" />
     <Content Include="Assets\libs\angular-chart.js\angular-chart.js" />
@@ -450,6 +451,8 @@
     <Content Include="Assets\libs\font-awesome\css\font-awesome.min.css" />
     <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\libs\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Assets\libs\icheck-bootstrap\icheck-bootstrap.css" />
+    <Content Include="Assets\libs\icheck-bootstrap\icheck-bootstrap.min.css" />
     <Content Include="Assets\libs\mustache\mustache.js" />
     <Content Include="Assets\libs\mustache\mustache.min.js" />
     <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.js" />
@@ -5459,6 +5462,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Wishlist\_AjaxProductList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\libs\icheck-bootstrap\.bower.json" />
+    <Content Include="Assets\libs\icheck-bootstrap\LICENSE" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

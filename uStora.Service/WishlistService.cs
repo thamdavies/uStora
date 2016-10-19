@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
@@ -14,6 +15,8 @@ namespace uStora.Service
         Wishlist Delete(int id);
 
         IEnumerable<Wishlist> GetWishlistByUserId(string userId);
+
+        bool CheckContains(long productId);
 
         void SaveChanges();
     }
@@ -32,6 +35,7 @@ namespace uStora.Service
 
         public Wishlist Add(Wishlist wishlist)
         {
+            wishlist.Status = true;
             return _wishlistRepository.Add(wishlist);
         }
 
@@ -53,6 +57,15 @@ namespace uStora.Service
         public void SaveChanges()
         {
             _unitOfWork.Commit();
+        }
+
+        public bool CheckContains(long productId)
+        {
+            var res = _wishlistRepository.CheckContains(x => x.ProductId == productId);
+            if (res)
+                return true;
+            else
+                return false;
         }
     }
 }

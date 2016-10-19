@@ -12,19 +12,13 @@
     -ms-transition: all 0.5s;
     transition: all 0.5s;
 }
-
-.add-to-cart-success {
-    position: fixed;
-    top: 50%;
-    z-index: 999;
-    right: 0px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    transition: all 0.5s;
+.add_to_wishlist_button {
+    background: none repeat scroll 0 0 #5a88ca;
+    border: medium none;
+    color: #fff;
+    padding: 6px 25px;display: inline-block
 }
-
+.add_to_wishlist_button:hover {background-color: #222;color: #fff;text-decoration: none}
 .contact-form {
     background: none;
     border-radius: 0px;

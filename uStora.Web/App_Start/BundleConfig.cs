@@ -33,6 +33,7 @@ namespace uStora.Web
                 "~/Assets/Client/js/scroll.js",
                 "~/Assets/Client/js/common.js",
                 "~/Assets/Client/js/controllers/addToCart.js",
+                "~/Assets/Client/js/controllers/addToWishlist.js",
                 "~/Assets/Client/js/bxslider.min.js",
                 "~/Assets/Client/js/script.slider.js"));
 
@@ -42,6 +43,7 @@ namespace uStora.Web
                 .Include("~/Assets/libs/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/libs/toastr/toastr.min.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/Client/css/owl.carousel.css", new CssRewriteUrlTransform())
+                .Include("~/Assets/libs/icheck-bootstrap/icheck-bootstrap.min.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/Client/css/style.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/Client/css/etalage.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/Client/css/search-box.css", new CssRewriteUrlTransform())

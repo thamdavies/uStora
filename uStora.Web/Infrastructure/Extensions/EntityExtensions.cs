@@ -198,6 +198,10 @@ namespace uStora.Web.Infrastructure.Extensions
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
             appUser.Gender = appUserViewModel.Gender;
         }
-        
+        public static void UpdateWishlist(this Wishlist wishlist, WishlistViewModel wishlistViewModel)
+        {
+            wishlist.UserId = wishlistViewModel.UserId;
+            wishlist.ProductId = wishlistViewModel.ProductId;
+        }
     }
 }

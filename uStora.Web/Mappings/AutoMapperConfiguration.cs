@@ -33,6 +33,9 @@ namespace uStora.Web.Mappings
             //footer
             Mapper.CreateMap<Footer, FooterViewModel>();
 
+            //wishlist
+            Mapper.CreateMap<Wishlist, WishlistViewModel>();
+
             Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
             Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
             Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();

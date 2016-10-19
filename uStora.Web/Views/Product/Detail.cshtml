@@ -109,13 +109,13 @@
                                     <div class="input-group">
                                        @if (Model.Quantity > 0)
                                        {
-                                        <p>Số lượng trong kho: <span class="badge">@Model.Quantity</span></p>
+                                        <p>Số lượng trong kho: <span class="badge text-success">@Model.Quantity</span></p>
                                        }
                                        else
                                        {
                                            <p class="text-danger">Hết hàng.</p>
                                        }
-
+                                        <p>Lượt xem: <span class="badge text-primary">@Model.ViewCount</span></p>
                                         <button id="btnAddToCart" data-id="@Model.ID" type="submit">Thêm vào giỏ</button>
                                     </div>
                                 </form>

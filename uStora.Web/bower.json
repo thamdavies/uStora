@@ -13,6 +13,7 @@
     "checklist-model": "~0.9.0",
     "fastclick": "~1.0.6",
     "font-awesome": "~4.6.3",
+    "icheck-bootstrap": "*",
     "jquery": "~2.2.3",
     "jquery-ajax-unobtrusive": "~3.2.3",
     "jquery-ui": "~1.11.4",

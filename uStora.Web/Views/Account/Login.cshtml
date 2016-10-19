@@ -59,14 +59,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <span class="button-checkbox">
-                                @Html.LabelFor(model => model.RememberMe)
-                                @Html.CheckBoxFor(model => model.RememberMe, new { @class = "btn" })
-                                <a href="" class="btn btn-link pull-right">Quên mật khẩu?</a>
-                            </span>
-                        </div>
+                    <div class="checkbox icheck-primary">
+                        @*<input type="checkbox" id="RememberMe" />
+                        <label for="@Model.RememberMe">Ghi nhớ</label>*@
+                        @Html.CheckBoxFor(model => model.RememberMe, new { @class = "btn" })
+                        @Html.LabelFor(model => model.RememberMe)
+                        <a href="/reset-mat-khau.htm" class="btn btn-link pull-right">Quên mật khẩu?</a>
                     </div>
 
                     <!-- Button -->
