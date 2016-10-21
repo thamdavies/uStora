@@ -23,8 +23,8 @@ namespace uStora.Data.Repositories
         {
             var parameters = new SqlParameter[]
             {
-                new SqlParameter("@fromDate",fromDate),
-                new SqlParameter("@toDate",toDate)
+                new SqlParameter("@fromDate", fromDate),
+                new SqlParameter("@toDate", toDate)
             };
             return DbContext.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenuesStatistic  @fromDate,@toDate", parameters);
         }

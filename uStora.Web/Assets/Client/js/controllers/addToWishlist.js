@@ -5,8 +5,12 @@
     registerEvents: function () {
         $('i#btnAddWishlist').off('click').on('click', function (e) {
             e.preventDefault();
-            var productId = parseInt($(this).data('id'));
-            wishlist.addWishlist(productId);
+            var res = confirm("Bạn muốn thêm sản phẩm này vào danh mục yêu thích?");
+            if (res)
+            {
+                var productId = parseInt($(this).data('id'));
+                wishlist.addWishlist(productId);
+            }
         });
     },
     addWishlist: function (productId) {

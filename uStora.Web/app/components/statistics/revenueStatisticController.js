@@ -35,7 +35,7 @@
                     $scope.labels = labels;
                     $scope.chartData = chartData;
                 }, function (response) {
-                    notificationService.warningError('Không có dữ liệu...');
+                    notificationService.displayWarning('Không có dữ liệu...');
                 });
         }
         getStatistic();
