@@ -202,10 +202,9 @@
                                             <img src="@rl_product.Image" alt="@rl_product.Name">
                                             <div class="product-hover">
                                                 <a href="#" class="action-box">
-                                                    <i class="fa fa-shopping-cart add-to-cart" id="btnAddToCart" data-id="@Model.ID" data-toggle="tooltip" title="Thêm vào giỏ"></i>
-                                                    <i class="fa fa-heart" data-toggle="tooltip" title="Yêu thích"></i>
+                                                    <i class="fa fa-shopping-cart add-to-cart" id="btnAddToCart" data-id="@rl_product.ID" data-toggle="tooltip" title="Thêm vào giỏ"></i>
+                                                    <i class="fa fa-heart" id="btnAddWishlist" data-id="@rl_product.ID" data-toggle="tooltip" title="Yêu thích"></i>
                                                 </a>
-
                                                 <a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm" data-toggle="tooltip" data-html="true" title="@rl_product.Description" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                             </div>
                                         </div>

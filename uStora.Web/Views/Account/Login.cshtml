@@ -2,8 +2,8 @@
 
 @{
     ViewBag.Title = "Đăng nhập hệ thống";
-    ViewBag.MetaKeyword = "Đăng nhập hệ thống khoản uStora";
-    ViewBag.MetaDescription = "Đăng nhập hệ thống khoản uStora";
+    ViewBag.MetaKeyword = "Đăng nhập hệ thống uStora";
+    ViewBag.MetaDescription = "Đăng nhập hệ thống uStora";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -39,7 +39,7 @@
                 <fieldset>
                     <legend>Thông tin tài khoản</legend>
                     <h5 class="text-danger"><span>*</span> là bắt buộc</h5>
-                    @Html.AntiForgeryToken();
+                    @Html.AntiForgeryToken()
                     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                     <div class="form-group">
                         <div class="col-md-12 inputGroupContainer">
@@ -78,9 +78,7 @@
                     </div>
                 </fieldset>
             }
-        </div>
-        <div class="col-md-6">
-
+            @Html.Partial("_ExternalLoginsListPartial", new uStora.Web.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl }) 
         </div>
     </div>
 </div>

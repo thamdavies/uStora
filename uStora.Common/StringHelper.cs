@@ -32,5 +32,17 @@ namespace uStora.Common
             }
             return str2;
         }
+        public static string GetNameByEmail(string input)
+        {
+            try
+            {
+                int endIndex = input.IndexOf('@');
+                return input.Substring(0, endIndex);
+            }
+            catch
+            {
+                return input;
+            }
+        }
     }
 }

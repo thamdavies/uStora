@@ -167,7 +167,7 @@ namespace uStora.Service
                     break;
 
                 case "discount":
-                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    query = query.Where(x => x.PromotionPrice.HasValue).OrderByDescending(y => y.PromotionPrice);
                     break;
 
                 case "price_asc":
@@ -225,7 +225,7 @@ namespace uStora.Service
                     break;
 
                 case "discount":
-                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    query = query.Where(x => x.PromotionPrice.HasValue).OrderByDescending(y => y.PromotionPrice);
                     break;
 
                 case "price":
@@ -267,7 +267,7 @@ namespace uStora.Service
                     break;
 
                 case "discount":
-                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    query = query.Where(x => x.PromotionPrice.HasValue).OrderByDescending(y => y.PromotionPrice);
                     break;
 
                 case "price":
@@ -315,9 +315,8 @@ namespace uStora.Service
                     break;
 
                 case "discount":
-                    model = model.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    model = model.Where(x => x.PromotionPrice.HasValue).OrderByDescending(y => y.PromotionPrice);
                     break;
-
                 case "price":
                     model = model.OrderBy(x => x.Price);
                     break;
@@ -336,7 +335,7 @@ namespace uStora.Service
             }
 
             totalRow = model.Count();
-            return model.Skip((page - 1) * pageSize).Take(pageSize); 
+            return model.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public void IncreaseView(long id)

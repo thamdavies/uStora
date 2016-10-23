@@ -7,12 +7,11 @@
         $('#btnRemoveItem').off('click').on('click', function (e) {
             e.preventDefault();
             var result = confirm("Bạn muốn xóa sản phẩm này?");
-            if (result)
-            {
+            if (result) {
                 var productId = parseInt($(this).data('id'));
                 cart.deleteItem(productId);
             }
-          
+
         });
         $('.txtQuantity').off('keyup').on('keyup', function (e) {
             var quantity = parseInt($(this).val());
@@ -20,15 +19,15 @@
             var price = parseFloat($(this).data('price'));
             if (!isNaN(quantity)) {
                 var amount = quantity * price;
-                $('#amount_' + productId).text(numeral(amount).format('0,0'));
+                $('#amount_' + productId).text(numeral(amount).format('0,0') + ' đ');
                 $('span.product-count').text(cart.getTotalOrder().quantity);
-                $('#ltlTotalOrder').text(numeral(cart.getTotalOrder().amount).format('0,0'));
-                $('#amount').text(numeral(cart.getTotalOrder().amount).format('0,0'));
+                $('#lblTotalOrder').text(numeral(cart.getTotalOrder().amount).format('0,0'));
+                $('#amount').text(numeral(cart.getTotalOrder().amount).format('0,0') );
             }
             else {
                 $('#amount_' + productId).text(0);
                 $('span.product-count').text(0);
-                $('#ltlTotalOrder').text(0);
+                $('#lblTotalOrder').text(0);
                 $('#amount').text(0);
             }
         });
@@ -229,18 +228,18 @@
                             ProductId: item.ProductId,
                             ProductName: item.Product.Name,
                             Image: item.Product.Image,
-                            Price: item.Product.Price,
-                            FPrice: numeral(item.Product.Price).format('0,0'),
+                            Price: (item.Product.PromotionPrice != undefined ? item.Product.PromotionPrice : item.Product.Price),
+                            FPrice: numeral((item.Product.PromotionPrice != undefined ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
                             Quantity: item.Quantity,
                             Alias: item.Product.Alias,
-                            Amount: numeral(item.Quantity * item.Product.Price).format('0,0'),
+                            Amount: numeral(item.Quantity * (item.Product.PromotionPrice != undefined ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
                         });
                     });
                     $('#cartBody').html(html);
                     if (html == '')
                         $('#tblCartTable').html('<h4 class="text-center text-danger">Không có sản phẩm nào trong giỏ hàng.</h4>');
 
-                    $('#ltlTotalOrder').text(numeral(cart.getTotalOrder().amount).format('0,0'));
+                    $('#lblTotalOrder').text(numeral(cart.getTotalOrder().amount).format('0,0'));
                     $('#amount').text(numeral(cart.getTotalOrder().amount).format('0,0'));
                     $('span.product-count').text(cart.getTotalOrder().quantity);
                     cart.registerEvents();

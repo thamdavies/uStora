@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.Google;
 
 [assembly: OwinStartup(typeof(uStora.Web.App_Start.Startup))]
 
@@ -47,7 +48,7 @@ namespace uStora.Web.App_Start
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager,DefaultAuthenticationTypes.ApplicationCookie))
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
@@ -60,15 +61,15 @@ namespace uStora.Web.App_Start
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1809421965964024",
+               appSecret: "94ae2e92221fe84d81541e1c496cf950");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1038526644204-qo8p1muc872d18vvmtkvlm7gkhhor7n5.apps.googleusercontent.com",
+                ClientSecret = "Mrls7jPRbSksd2pydYRCnzyB"
+            });
         }
         public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
         {

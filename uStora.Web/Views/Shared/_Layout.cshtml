@@ -125,7 +125,7 @@
                             @Html.AntiForgeryToken()
                             <!-- Login - Signup -->
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/tai-khoan-cua-toi.htm">Xin chào: @User.Identity.Name</a></li>
+                                <li><a href="/tai-khoan-cua-toi.htm">Xin chào: @StringHelper.GetNameByEmail(User.Identity.Name)</a></li>
 
                                 <li><a href="#" id="btnLogOut">Thoát</a></li>
                                 <li><a href="#search"> Tìm kiếm</a></li>
