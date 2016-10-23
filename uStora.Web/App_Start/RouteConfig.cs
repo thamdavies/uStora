@@ -46,6 +46,13 @@ namespace uStora.Web
                defaults: new { controller = "Product", action = "Shop", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            //page
+            routes.MapRoute(
+               name: "Page",
+               url: "{alias}.htm",
+               defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
             //shopping cart 
             routes.MapRoute(
                name: "Shopping cart",

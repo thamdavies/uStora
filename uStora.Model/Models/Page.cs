@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using uStora.Model.Abstracts;
 
 namespace uStora.Model.Models
 {
     [Table("Pages")]
-    public class Page
+    public class Page : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,8 +22,5 @@ namespace uStora.Model.Models
 
         [Required]
         public string Content { get; set; }
-
-        [Required]
-        public bool Status { get; set; }
     }
 }

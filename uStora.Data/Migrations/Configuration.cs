@@ -5,6 +5,8 @@
     using Model.Models;
     using System;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
+    using System.Diagnostics;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<uStoraDbContext>
@@ -20,6 +22,7 @@
             BrandDefault(context);
             CreateContactDetail(context);
             CreateSystemConfig(context);
+            CreatePage(context);
         }
 
         private void CreateUser(uStoraDbContext context)
@@ -107,7 +110,7 @@
                 context.SystemConfigs.Add(new SystemConfig()
                 {
                     Code = "HomeTitle",
-                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng."
+                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng - uStora.com"
                 });
             }
             if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaKeyword"))
@@ -115,7 +118,7 @@
                 context.SystemConfigs.Add(new SystemConfig()
                 {
                     Code = "HomeMetaKeyword",
-                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng."
+                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng - uStora.com"
                 });
             }
             if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaDescription"))
@@ -123,8 +126,43 @@
                 context.SystemConfigs.Add(new SystemConfig()
                 {
                     Code = "HomeMetaDescription",
-                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng."
+                    ValueString = "Trang chủ uStora shop - nơi mua bán uy tín và chất lượng - uStora.com"
                 });
+            }
+        }
+
+        private void CreatePage(uStoraDbContext context)
+        {
+            if (context.Pages.Count() == 0)
+            {
+                try
+                {
+                    var page = new Page()
+                    {
+                        Name = "Giới thiệu",
+                        Alias = "gioi-thieu",
+                        CreatedDate = DateTime.Now,
+                        MetaDescription = "Trang giới thiệu của uStora",
+                        MetaKeyword = "Trang giới thiệu của uStora",
+                        Content = @"Là trang web bán hàng online, chuyên cung cấp món hàng trong lĩnh vực thiết bị số: Điện thoại, máy tính cá nhân, máy ảnh,... và một số dịch vụ kèm theo khi mua hàng."
+                        Status = true
+
+                    };
+                    context.Pages.Add(page);
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
+                        }
+                    }
+                }
+
             }
         }
     }

@@ -32,7 +32,8 @@ namespace uStora.Web.Mappings
             Mapper.CreateMap<Feedback, FeedbackViewModel>();
             //footer
             Mapper.CreateMap<Footer, FooterViewModel>();
-
+            //page
+            Mapper.CreateMap<Page, PageViewModel>();
             //wishlist
             Mapper.CreateMap<Wishlist, WishlistViewModel>();
 
