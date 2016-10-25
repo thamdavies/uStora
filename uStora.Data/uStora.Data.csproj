@@ -136,6 +136,10 @@
     <Compile Include="Migrations\201610231620563_addPageDetail.Designer.cs">
       <DependentUpon>201610231620563_addPageDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610250539128_AddTrackTbl.cs" />
+    <Compile Include="Migrations\201610250539128_AddTrackTbl.Designer.cs">
+      <DependentUpon>201610250539128_AddTrackTbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -235,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610231620563_addPageDetail.resx">
       <DependentUpon>201610231620563_addPageDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610250539128_AddTrackTbl.resx">
+      <DependentUpon>201610250539128_AddTrackTbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

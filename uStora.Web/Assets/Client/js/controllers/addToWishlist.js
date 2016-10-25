@@ -3,6 +3,10 @@
         wishlist.registerEvents();
     },
     registerEvents: function () {
+        $('i#btnAddWishlistDisable').off('click').on('click', function (e) {
+            e.preventDefault();
+            toastr.warning('Vui lòng đăng nhập để sử dụng tính năng này.');
+        });
         $('i#btnAddWishlist').off('click').on('click', function (e) {
             e.preventDefault();
             var res = confirm("Bạn muốn thêm sản phẩm này vào danh mục yêu thích?");
@@ -12,6 +16,7 @@
                 wishlist.addWishlist(productId);
             }
         });
+        
     },
     addWishlist: function (productId) {
         $.ajax({

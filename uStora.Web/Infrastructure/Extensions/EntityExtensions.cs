@@ -1,7 +1,6 @@
-﻿using uStora.Model.Models;
+﻿using System;
+using uStora.Model.Models;
 using uStora.Web.Models;
-using System;
-using System.Collections.Generic;
 
 namespace uStora.Web.Infrastructure.Extensions
 {
@@ -156,6 +155,7 @@ namespace uStora.Web.Infrastructure.Extensions
             feedback.CreatedDate = DateTime.Now;
             feedback.Status = feedbackViewModel.Status;
         }
+
         public static void UpdateOrder(this Order order, OrderViewModel orderViewModel)
         {
             order.ID = orderViewModel.ID;
@@ -171,6 +171,7 @@ namespace uStora.Web.Infrastructure.Extensions
             order.CreatedBy = orderViewModel.CreatedBy;
             order.Status = orderViewModel.Status;
         }
+
         public static void UpdateApplicationGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupViewModel)
         {
             appGroup.ID = appGroupViewModel.ID;
@@ -187,6 +188,7 @@ namespace uStora.Web.Infrastructure.Extensions
             appRole.Name = appRoleViewModel.Name;
             appRole.Description = appRoleViewModel.Description;
         }
+
         public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
         {
             appUser.Id = appUserViewModel.Id;
@@ -198,10 +200,40 @@ namespace uStora.Web.Infrastructure.Extensions
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
             appUser.Gender = appUserViewModel.Gender;
         }
+
         public static void UpdateWishlist(this Wishlist wishlist, WishlistViewModel wishlistViewModel)
         {
             wishlist.UserId = wishlistViewModel.UserId;
             wishlist.ProductId = wishlistViewModel.ProductId;
+        }
+
+        public static void UpdateVehicle(this Vehicle vehicle, VehicleViewModel vehicleViewModel)
+        {
+            vehicle.ID = vehicleViewModel.ID;
+            vehicle.Model = vehicleViewModel.Model;
+            vehicle.VehicleNumber = vehicleViewModel.VehicleNumber;
+            vehicle.DriverName = vehicleViewModel.DriverName;
+            vehicle.ModelID = vehicleViewModel.ModelID;
+            vehicle.Description = vehicleViewModel.Description;
+
+            vehicle.MetaDescription = vehicleViewModel.MetaDescription;
+            vehicle.MetaKeyword = vehicleViewModel.MetaKeyword;
+            vehicle.Status = vehicleViewModel.Status;
+            vehicle.CreatedBy = vehicleViewModel.CreatedBy;
+            vehicle.CreatedDate = vehicleViewModel.CreatedDate;
+            vehicle.UpdatedBy = vehicleViewModel.UpdatedBy;
+            vehicle.UpdatedDate = vehicleViewModel.UpdatedDate;
+        }
+
+        public static void UpdateTrackOrder(this TrackOrder trackOrder, TrackOrderViewModel trackOrderViewModel)
+        {
+            trackOrder.ID = trackOrderViewModel.ID;
+            trackOrder.OrderId = trackOrderViewModel.OrderId;
+            trackOrder.VehicleId = trackOrderViewModel.VehicleId;
+            trackOrder.Longitude = trackOrderViewModel.Longitude;
+            trackOrder.Latitude = trackOrderViewModel.Latitude;
+            trackOrder.Status = trackOrderViewModel.Status;
+            trackOrder.UserId = trackOrderViewModel.UserId;
         }
     }
 }

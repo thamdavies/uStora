@@ -49,7 +49,7 @@ namespace uStora.Web
             //page
             routes.MapRoute(
                name: "Page",
-               url: "{alias}.htm",
+               url: "trang-{alias}.htm",
                defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );

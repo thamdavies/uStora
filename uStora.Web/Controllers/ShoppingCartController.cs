@@ -37,10 +37,9 @@ namespace uStora.Web.Controllers
             }
             var cart = new ShoppingCartViewModel();
             int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
+            CommonController common = new CommonController(_productService);
             int currentPageIndex = page.HasValue ? page.Value : 1;
-            IList<Product> listProducts = _productService.GetAllPagingAjax(searchString);
-            var listProductsVm = Mapper.Map<IList<Product>, IList<ProductViewModel>>(listProducts);
-            cart.ListProducts = listProductsVm.ToPagedList(currentPageIndex, defaultPageSize);
+            cart.ListProducts = common.ProductListAjax(page, searchString).ToPagedList(currentPageIndex, defaultPageSize);
             if (Request.IsAjaxRequest())
                 return PartialView("_AjaxProductList", cart.ListProducts);
             else
@@ -228,10 +227,9 @@ namespace uStora.Web.Controllers
             var cart = new ShoppingCartViewModel();
             ViewBag.SelledProducts = selledProducts;
             int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
+            CommonController common = new CommonController(_productService);
             int currentPageIndex = page.HasValue ? page.Value : 1;
-            IList<Product> listProducts = _productService.GetAllPagingAjax(searchString);
-            var listProductsVm = Mapper.Map<IList<Product>, IList<ProductViewModel>>(listProducts);
-            cart.ListProducts = listProductsVm.ToPagedList(currentPageIndex, defaultPageSize);
+            cart.ListProducts = common.ProductListAjax(page, searchString).ToPagedList(currentPageIndex, defaultPageSize);
             if (Request.IsAjaxRequest())
                 return PartialView("_AjaxProductList", cart.ListProducts);
             else

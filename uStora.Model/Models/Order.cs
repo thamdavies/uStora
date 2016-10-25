@@ -53,5 +53,7 @@ namespace uStora.Model.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
+
+        public virtual IEnumerable<TrackOrder> TrackOrders { get; set; }
     }
 }

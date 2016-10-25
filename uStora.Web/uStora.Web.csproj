@@ -244,12 +244,14 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\TrackOrderController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -281,6 +283,8 @@
     <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
+    <Compile Include="Models\TrackOrderViewModel.cs" />
+    <Compile Include="Models\VehicleViewModel.cs" />
     <Compile Include="Models\ViewCounterViewModel.cs" />
     <Compile Include="Models\WishlistViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -5032,6 +5036,8 @@
     <Folder Include="Assets\libs\checklist-model\test\" />
     <Folder Include="Libs\" />
     <Folder Include="Views\Brand\" />
+    <Folder Include="Views\Common\" />
+    <Folder Include="Views\TrackOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

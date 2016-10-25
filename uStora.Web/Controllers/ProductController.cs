@@ -54,6 +54,7 @@ namespace uStora.Web.Controllers
             viewCounterViewModel.Add(viewCounterVm);
             Session[CommonConstants.ViewCounterSession] = viewCounterViewModel;
         }
+
         public ActionResult Detail(long id, string searchString, int? page)
         {
             var viewCounter = (List<ViewCounterViewModel>)Session[CommonConstants.ViewCounterSession];
@@ -70,11 +71,10 @@ namespace uStora.Web.Controllers
             ViewBag.MoreImages = listImages;
             ViewBag.RelatedProducts = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProducts);
             ViewBag.Tags = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(_productService.GetTagsByProduct(id));
-            int currentPageIndex = page.HasValue ? page.Value : 1;
-            IList<Product> listProducts = _productService.GetAllPagingAjax(searchString);
 
-            var listProductsVm = Mapper.Map<IList<Product>, IList<ProductViewModel>>(listProducts);
-            productVm.ListProducts = listProductsVm.ToPagedList(currentPageIndex, defaultPageSize);
+            CommonController common = new CommonController(_productService);
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            productVm.ListProducts = common.ProductListAjax(page, searchString).ToPagedList(currentPageIndex, defaultPageSize);
             if (Request.IsAjaxRequest())
                 return PartialView("_AjaxProductList", productVm.ListProducts);
             else

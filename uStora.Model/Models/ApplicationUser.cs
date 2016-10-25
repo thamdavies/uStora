@@ -47,6 +47,7 @@ namespace uStora.Model.Models
         }
 
         public virtual IEnumerable<Order> Orders { get; set; }
+        public virtual IEnumerable<TrackOrder> TrackOrders { get; set; }
         public virtual IEnumerable<Wishlist> Wishlists { get; set; }
     }
 }

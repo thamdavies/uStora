@@ -144,7 +144,7 @@
                         CreatedDate = DateTime.Now,
                         MetaDescription = "Trang giới thiệu của uStora",
                         MetaKeyword = "Trang giới thiệu của uStora",
-                        Content = @"Là trang web bán hàng online, chuyên cung cấp món hàng trong lĩnh vực thiết bị số: Điện thoại, máy tính cá nhân, máy ảnh,... và một số dịch vụ kèm theo khi mua hàng."
+                        Content = @"Là trang web bán hàng online, chuyên cung cấp món hàng trong lĩnh vực thiết bị số: Điện thoại, máy tính cá nhân, máy ảnh,... và một số dịch vụ kèm theo khi mua hàng.",
                         Status = true
 
                     };

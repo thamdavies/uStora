@@ -36,6 +36,10 @@ namespace uStora.Web.Mappings
             Mapper.CreateMap<Page, PageViewModel>();
             //wishlist
             Mapper.CreateMap<Wishlist, WishlistViewModel>();
+            //vehicle
+            Mapper.CreateMap<Vehicle, VehicleViewModel>();
+            //trackorder
+            Mapper.CreateMap<TrackOrder, TrackOrderViewModel>();
 
             Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
             Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
