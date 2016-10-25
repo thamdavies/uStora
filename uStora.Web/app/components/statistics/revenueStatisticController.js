@@ -7,10 +7,12 @@
         $scope.labels = [];
         $scope.series = ['Doanh số', 'Lợi nhuận'];
         $scope.chartData = [];
+        $scope.loading = true;
 
         $scope.fromDate = '01/01/2015';
         $scope.toDate = '01/01/2017';
         function getStatistic() {
+            $scope.loading = true;
             var config = {
                 params: {
                     fromDate: $scope.fromDate,
@@ -34,6 +36,7 @@
                     chartData.push(benefit);
                     $scope.labels = labels;
                     $scope.chartData = chartData;
+                    $scope.loading = false;
                 }, function (response) {
                     notificationService.displayWarning('Không có dữ liệu...');
                 });

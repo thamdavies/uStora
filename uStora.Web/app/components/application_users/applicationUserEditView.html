@@ -3,9 +3,9 @@
         Cập nhất người dùng
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
         <li><a ui-sref="accounts">Danh mục người dùng</a></li>
-        <li class="active"><a href="#">Cập nhật</a></li>
+        <li class="active">Cập nhật</li>
     </ol>
 </section>
 <section class="content">
@@ -70,6 +70,13 @@
                         </div>
                     </div><!-- /.box-body -->
                 </form>
+                <div ng-if="loading">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4 loading-area">
+                        <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary loading-lable">Đang tải...</label>
+                    </div>
+                    <div class="col-xs-4"></div>
+                </div>
             </div><!-- /.box -->
         </div>
     </div>

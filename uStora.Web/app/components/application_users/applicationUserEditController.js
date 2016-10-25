@@ -8,17 +8,19 @@
     function applicationUserEditController($scope, apiService, notificationService, $location, $stateParams) {
         $scope.account = {}
         $scope.BirthDay = "";
-
+        $scope.loading = true;
         $scope.updateAccount = updateAccount;
 
         function updateAccount() {
             apiService.put('/api/applicationUser/update', $scope.account, addSuccessed, addFailed);
         }
         function loadDetail() {
+            $scope.loading = true;
             apiService.get('/api/applicationUser/detail/' + $stateParams.id, null,
             function (result) {
                 $scope.account = result.data;
                 $scope.account.BirthDay = new Date($scope.account.BirthDay);
+                $scope.loading = false;
             },
             function (result) {
                 notificationService.displayError(result.data);

@@ -1,0 +1,37 @@
+﻿(function (app) {
+    app.controller('vehicleEditController', vehicleEditController);
+    vehicleEditController.$inject = ['apiService', '$scope', 'notificationService', '$state', '$stateParams', 'commonService'];
+    function vehicleEditController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
+        $scope.vehicle = {
+            UpdatedDate: new Date()
+        }
+        $scope.loadVehicleDetail = loadVehicleDetail;
+        $scope.UpdateVehicle = UpdateVehicle;
+        $scope.loading = true;
+        $scope.ckeditorOptions = {
+            languague: 'vi',
+            height: '200px'
+        }
+        function loadVehicleDetail() {
+            $scope.loading = true;
+            apiService.get('/api/vehicle/getbyid/' + $stateParams.id, null, function (result) {
+                $scope.vehicle = result.data;
+                $scope.loading = false;
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
+        }
+
+        function UpdateVehicle() {
+            apiService.put('/api/vehicle/update', $scope.vehicle,
+                function (result) {
+                    notificationService.displaySuccess('Đã cập nhật ' + result.data.Name + ' thành công');
+                    $state.go('vehicles');
+                }, function (error) {
+                    console.log(error);
+                    notificationService.displayError('Cập nhật không thành công');
+                });
+        }
+        loadVehicleDetail();
+    }
+})(angular.module('uStora.vehicles'));

@@ -211,6 +211,7 @@ namespace uStora.Web.Infrastructure.Extensions
         {
             vehicle.ID = vehicleViewModel.ID;
             vehicle.Model = vehicleViewModel.Model;
+            vehicle.Name = vehicleViewModel.Name;
             vehicle.VehicleNumber = vehicleViewModel.VehicleNumber;
             vehicle.DriverName = vehicleViewModel.DriverName;
             vehicle.ModelID = vehicleViewModel.ModelID;

@@ -6,7 +6,7 @@
     slideListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
     function slideListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.slides = [];
-
+        $scope.loading = true;
         $scope.page = 0;
         $scope.pagesCount = 0;
 
@@ -93,6 +93,7 @@
         $scope.getSlides = getSlides;
 
         function getSlides(page) {
+            $scope.loading = true;
             page = page || 0;
             var config = {
                 params: {
@@ -109,6 +110,7 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
+                $scope.loading = false;
             }, function () {
                 console.log('Không có slide nào!!!');
             });

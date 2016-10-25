@@ -1,26 +1,26 @@
 ﻿/// <reference path="../../../Assets/admin/libs/angular/angular.js" />
 
 (function (app) {
-    app.controller('brandListController', brandListController);
+    app.controller('vehicleListController', vehicleListController);
 
-    brandListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
-    function brandListController($scope, apiService, notificationService, $ngBootbox, $filter) {
-        $scope.brands = [];
-        $scope.loading = true;
+    vehicleListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
+    function vehicleListController($scope, apiService, notificationService, $ngBootbox, $filter) {
+        $scope.vehicles = [];
+
         $scope.page = 0;
         $scope.pagesCount = 0;
-
+        $scope.loading = true;
         $scope.keyword = '';
 
         $scope.search = search;
 
-        $scope.deleteBrand = deleteBrand;
+        $scope.deleteVehicle = deleteVehicle;
 
         $scope.selectAll = selectAll;
 
-        $scope.deleteBrandMulti = deleteBrandMulti;
+        $scope.deleteVehicleMulti = deleteVehicleMulti;
 
-        function deleteBrandMulti() {
+        function deleteVehicleMulti() {
             $ngBootbox.confirm('Tất cả dữ liệu đã chọn sẽ bị xóa. Bạn muốn tiếp tục?').then(function () {
 
                 var listId = [];
@@ -29,10 +29,10 @@
                 });
                 var config = {
                     params: {
-                        selectedbrands: JSON.stringify(listId)
+                        selectedVehicles: JSON.stringify(listId)
                     }
                 }
-                apiService.del('/api/brand/deletemulti', config, function (result) {
+                apiService.del('/api/vehicle/deletemulti', config, function (result) {
                     notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
                     search();
                 }, function (error) {
@@ -44,19 +44,19 @@
         $scope.isAll = false;
         function selectAll() {
             if ($scope.isAll === false) {
-                angular.forEach($scope.brands, function (item) {
+                angular.forEach($scope.vehicles, function (item) {
                     item.checked = true;
                 });
                 $scope.isAll = true;
             } else {
-                angular.forEach($scope.brands, function (item) {
+                angular.forEach($scope.vehicles, function (item) {
                     item.checked = false;
                 });
                 $scope.isAll = false;
             }
         }
 
-        $scope.$watch('brands', function (n, o) {
+        $scope.$watch('vehicles', function (n, o) {
             var checked = $filter('filter')(n, { checked: true });
 
             if (checked.length) {
@@ -70,14 +70,14 @@
 
 
 
-        function deleteBrand(id) {
+        function deleteVehicle(id) {
             $ngBootbox.confirm('Bạn chắc chắn muốn xóa bản ghi này?').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
-                apiService.del('/api/brand/delete', config, function () {
+                apiService.del('/api/vehicle/delete', config, function () {
                     notificationService.displaySuccess('Đã xóa thành công.');
                     search();
                 }, function () {
@@ -87,12 +87,12 @@
         }
 
         function search() {
-            getBrands();
+            getVehicles();
         }
 
-        $scope.getBrands = getBrands;
+        $scope.getVehicles = getVehicles;
 
-        function getBrands(page) {
+        function getVehicles(page) {
             $scope.loading = true;
             page = page || 0;
             var config = {
@@ -102,19 +102,19 @@
                     pageSize: 20
                 }
             }
-            apiService.get('/api/brand/getall', config, function (result) {
+            apiService.get('/api/vehicle/getall', config, function (result) {
                 if (result.data.Count == 0) {
                     notificationService.displayWarning('Không có bản ghi nào!!!');
                 }
-                $scope.brands = result.data.Items;
+                $scope.vehicles = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
                 $scope.loading = false;
             }, function () {
-                console.log('Không có nhãn hiệu nào!!!');
+                console.log('Không có slide nào!!!');
             });
         }
-        $scope.getBrands();
+        $scope.getVehicles();
     }
-})(angular.module('uStora.brands'));
+})(angular.module('uStora.vehicles'));

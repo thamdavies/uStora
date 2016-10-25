@@ -5,12 +5,13 @@
 
     function config($stateProvider, $urlRouterProvider) {
 
-        $stateProvider.state('application_users', {
+        $stateProvider
+            .state('application_users', {
             url: "/application_users",
             templateUrl: "/app/components/application_users/applicationUserListView.html",
             parent: 'base',
             controller: "applicationUserListController"
-        })
+            })
             .state('add_application_user', {
                 url: "/add_application_user",
                 parent: 'base',

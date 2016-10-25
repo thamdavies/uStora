@@ -13,7 +13,9 @@ namespace uStora.Web.Models
         public string VehicleNumber { get; set; }
         
         public string DriverName { get; set; }
-        
+
+        public string Name { get; set; }
+
         public string ModelID { get; set; }
         
         public string Model { get; set; }

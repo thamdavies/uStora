@@ -7,7 +7,7 @@
 
     function applicationRoleEditController($scope, apiService, notificationService, $location, $stateParams) {
         $scope.role = {}
-
+        $scope.loading = true;
 
         $scope.updateApplicationRole = updateApplicationRole;
 
@@ -15,9 +15,11 @@
             apiService.put('/api/applicationRole/update', $scope.role, addSuccessed, addFailed);
         }
         function loadDetail() {
+            $scope.loading = true;
             apiService.get('/api/applicationRole/detail/' + $stateParams.id, null,
             function (result) {
                 $scope.role = result.data;
+                $scope.loading = false;
             },
             function (result) {
                 notificationService.displayError(result.data);

@@ -140,6 +140,10 @@
     <Compile Include="Migrations\201610250539128_AddTrackTbl.Designer.cs">
       <DependentUpon>201610250539128_AddTrackTbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610250815131_UpdateVehicleName.cs" />
+    <Compile Include="Migrations\201610250815131_UpdateVehicleName.Designer.cs">
+      <DependentUpon>201610250815131_UpdateVehicleName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -166,6 +170,8 @@
     <Compile Include="Repositories\SupportOnlineRepository.cs" />
     <Compile Include="Repositories\SystemConfigRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\TrackOrderRepository.cs" />
+    <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\VisitorStatisticRepository.cs" />
     <Compile Include="Repositories\WishlistRepository.cs" />
     <Compile Include="uStoraDbContext.cs" />
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610250539128_AddTrackTbl.resx">
       <DependentUpon>201610250539128_AddTrackTbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610250815131_UpdateVehicleName.resx">
+      <DependentUpon>201610250815131_UpdateVehicleName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

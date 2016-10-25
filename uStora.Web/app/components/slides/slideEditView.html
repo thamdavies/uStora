@@ -4,9 +4,8 @@
         Thêm mới slide
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-        <li><a href="#">Slide</a></li>
-        <li><a ui-sref="slides">Danh sách slide</a></li>
+        <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="slides">Slide</a></li>
         <li class="active">Cập nhật</li>
     </ol>
 </section>
@@ -90,6 +89,13 @@
             </div>
             <!-- /.box-footer -->
         </form>
+        <div ng-if="loading">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4 loading-area">
+                <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary loading-lable">Đang tải...</label>
+            </div>
+            <div class="col-xs-4"></div>
+        </div>
     </div>
     <!-- /.box -->
 </section><!-- /.content -->

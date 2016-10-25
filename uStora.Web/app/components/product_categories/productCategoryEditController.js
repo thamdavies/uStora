@@ -5,6 +5,7 @@
         $scope.productCategory = {
             UpdatedDate: new Date()
         }
+        $scope.loading = true;
         $scope.parentCategories = [];
         $scope.loadParentCategories = loadParentCategories;
         $scope.loadProductCategoryDetail = loadProductCategoryDetail;
@@ -32,8 +33,10 @@
         }
 
         function loadProductCategoryDetail() {
+            $scope.loading = true;
             apiService.get('/api/productcategory/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.productCategory = result.data;
+                $scope.loading = false;
             }, function (error) {
                 notificationService.displayError(error.data);
             });

@@ -10,7 +10,7 @@ namespace uStora.Service
     {
         Brand Add(Brand brand);
 
-        void Update(Brand id);
+        void Update(Brand brand);
 
         Brand Delete(int id);
 

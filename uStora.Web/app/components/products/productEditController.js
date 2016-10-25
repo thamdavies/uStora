@@ -5,6 +5,7 @@
         $scope.product = {
             UpdatedDate: new Date()
         }
+        $scope.loading = true;
         $scope.productCategories = [];
         $scope.brands = [];
         $scope.loadBrands = loadBrands;
@@ -21,9 +22,11 @@
         }
 
         function loadBrands() {
+            $scope.loading = true;
             apiService.get('/api/product/listbrands', null,
                function (result) {
                    $scope.brands = result.data;
+                   $scope.loading = false;
                }, function () {
                    notificationService.displayError("Không có nhãn hiệu nào được tìm thấy.");
                })
