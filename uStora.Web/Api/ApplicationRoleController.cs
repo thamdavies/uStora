@@ -54,6 +54,7 @@ namespace uStora.Web.Api
 
         [Route("getlistall")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -70,7 +71,7 @@ namespace uStora.Web.Api
 
         [Route("detail/{id}")]
         [HttpGet]
-        [Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "UpdateUser")]
         public HttpResponseMessage Details(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))

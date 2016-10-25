@@ -34,6 +34,7 @@ namespace uStora.Web.API
 
         [Route("getall")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
@@ -66,6 +67,7 @@ namespace uStora.Web.API
 
         [Route("getallparents")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -86,6 +88,7 @@ namespace uStora.Web.API
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
+        [Authorize(Roles = "UpdateUser")]
         public HttpResponseMessage GetByID(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -107,6 +110,7 @@ namespace uStora.Web.API
         [Route("create")]
         [AllowAnonymous]
         [HttpPost]
+        [Authorize(Roles = "AddUser")]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -142,6 +146,7 @@ namespace uStora.Web.API
         [Route("update")]
         [AllowAnonymous]
         [HttpPut]
+        [Authorize(Roles = "AddUser")]
         public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -177,6 +182,7 @@ namespace uStora.Web.API
         [Route("delete")]
         [AllowAnonymous]
         [HttpDelete]
+        [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -208,6 +214,7 @@ namespace uStora.Web.API
         [Route("deletemulti")]
         [AllowAnonymous]
         [HttpDelete]
+        [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string selectedProductCategories)
         {
             return CreateHttpResponse(request, () =>

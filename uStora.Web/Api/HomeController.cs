@@ -16,12 +16,5 @@ namespace uStora.Web.API
             this._errorService = errorService;
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("TestMethod")]
-        public string TestMethod()
-        {
-            return "Chào mừng bạn đến với uStoraShop";
-        }
     }
 }

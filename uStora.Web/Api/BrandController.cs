@@ -26,6 +26,7 @@ namespace uStora.Web.Api
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
+        [Authorize(Roles = "UpdateUser")]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -42,6 +43,7 @@ namespace uStora.Web.Api
 
         [Route("getall")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
@@ -69,6 +71,7 @@ namespace uStora.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
+        [Authorize(Roles = "AddUser")]
         public HttpResponseMessage Create(HttpRequestMessage request, BrandViewModel brandVm)
         {
             return CreateHttpResponse(request, () =>
@@ -98,6 +101,7 @@ namespace uStora.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
+        [Authorize(Roles = "UpdateUser")]
         public HttpResponseMessage Update(HttpRequestMessage request, BrandViewModel brandVm)
         {
             return CreateHttpResponse(request, () =>
@@ -128,6 +132,7 @@ namespace uStora.Web.Api
         [Route("delete")]
         [HttpDelete]
         [AllowAnonymous]
+        [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -153,6 +158,7 @@ namespace uStora.Web.Api
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
+        [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string selectedBrands)
         {
             return CreateHttpResponse(request, () =>

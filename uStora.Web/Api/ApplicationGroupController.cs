@@ -18,6 +18,7 @@ using uStora.Web.Models;
 namespace uStora.Web.Api
 {
     [RoutePrefix("api/applicationGroup")]
+    [Authorize]
     public class ApplicationGroupController : ApiControllerBase
     {
         private IApplicationGroupService _appGroupService;
@@ -61,6 +62,7 @@ namespace uStora.Web.Api
         }
         [Route("getlistall")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -76,7 +78,7 @@ namespace uStora.Web.Api
         }
         [Route("detail/{id:int}")]
         [HttpGet]
-        [Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "UpdateUser")]
         public HttpResponseMessage Details(HttpRequestMessage request, int id)
         {
             if (id == 0)

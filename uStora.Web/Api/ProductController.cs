@@ -35,6 +35,7 @@ namespace uStora.Web.API
 
         [Route("getallparents")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             Func<HttpResponseMessage> func = () =>
@@ -51,6 +52,7 @@ namespace uStora.Web.API
 
         [Route("listbrands")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage ListBrands(HttpRequestMessage request)
         {
             Func<HttpResponseMessage> func = () =>
@@ -67,6 +69,7 @@ namespace uStora.Web.API
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
+        [Authorize(Roles = "UpdateUser")]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -83,6 +86,7 @@ namespace uStora.Web.API
 
         [Route("getall")]
         [HttpGet]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 20, string filter = null)
         {
             return CreateHttpResponse(request, () =>
@@ -110,6 +114,7 @@ namespace uStora.Web.API
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
+        [Authorize(Roles = "AddUser")]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductViewModel productCategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -140,6 +145,7 @@ namespace uStora.Web.API
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
+        [Authorize(Roles = "UpdateUser")]
         public HttpResponseMessage Update(HttpRequestMessage request, ProductViewModel productVm)
         {
             return CreateHttpResponse(request, () =>
@@ -170,6 +176,7 @@ namespace uStora.Web.API
         [Route("delete")]
         [HttpDelete]
         [AllowAnonymous]
+        [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -194,6 +201,7 @@ namespace uStora.Web.API
 
         [Route("deletemulti")]
         [HttpDelete]
+        [Authorize(Roles = "DeleteUser")]
         [AllowAnonymous]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string selectedProducts)
         {
