@@ -78,6 +78,7 @@
     <Compile Include="MenuHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="ViewModels\OrderClientViewModel.cs" />
     <Compile Include="ViewModels\RevenueStatisticViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

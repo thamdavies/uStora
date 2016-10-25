@@ -23,8 +23,8 @@
         <div class="row">
             <div class="col-md-4">
                 @using (Ajax.BeginForm("Index", "ShoppingCart",
-        new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
-        new { id = "frm-search" }))
+    new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
+    new { id = "frm-search" }))
                 {
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Tìm nhanh</h2>
@@ -102,7 +102,12 @@
 
                                         <tr class="shipping">
                                             <th>Hình thức thanh toán</th>
-                                            <td>Thanh toán tiền mặt</td>
+                                            <td>
+                                                <select class="form-control" id="paymentMethod">
+                                                    <option value="Tiền mặt">Tiền mặt</option>
+                                                    <option value="Chuyển khoản">Chuyển khoản</option>
+                                                </select>
+                                            </td>
                                         </tr>
 
                                         <tr class="order-total">
@@ -232,7 +237,7 @@
     </tr>
 </script>
 @section scripts{
-   @Scripts.Render("~/js/bootstrap")
+    @Scripts.Render("~/js/bootstrap")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
     <script src="~/Assets/libs/mustache/mustache.min.js"></script>
     <script src="~/Assets/Client/js/controllers/shoppingCart.js"></script>

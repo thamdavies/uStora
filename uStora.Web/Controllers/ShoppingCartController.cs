@@ -87,8 +87,8 @@ namespace uStora.Web.Controllers
             {
                 cart = new List<ShoppingCartViewModel>();
             }
-            
-            if(product.Quantity == 0)
+
+            if (product.Quantity == 0)
             {
                 return Json(new
                 {
@@ -214,26 +214,22 @@ namespace uStora.Web.Controllers
                     message = "Sản phẩm này hiện tại đang hết hàng."
                 });
             }
-            
+
+        }
+        
+        public ActionResult CheckOutSuccess()
+        {
+            return View();
         }
 
-        public ActionResult CheckOutSuccess(int? page, string searchString)
+        public JsonResult GetListOrder()
         {
-            if (Session[CommonConstants.SelledProducts] == null)
+            var orders = _orderService.GetListOrders(User.Identity.GetUserId());
+            return Json(new
             {
-                Session[CommonConstants.SelledProducts] = new List<ShoppingCartViewModel>();
-            }
-            var selledProducts = (List<ShoppingCartViewModel>)Session[CommonConstants.SelledProducts];
-            var cart = new ShoppingCartViewModel();
-            ViewBag.SelledProducts = selledProducts;
-            int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
-            CommonController common = new CommonController(_productService);
-            int currentPageIndex = page.HasValue ? page.Value : 1;
-            cart.ListProducts = common.ProductListAjax(page, searchString).ToPagedList(currentPageIndex, defaultPageSize);
-            if (Request.IsAjaxRequest())
-                return PartialView("_AjaxProductList", cart.ListProducts);
-            else
-                return View(cart);
+                data = orders,
+                status = true
+            },JsonRequestBehavior.AllowGet);
         }
     }
 }

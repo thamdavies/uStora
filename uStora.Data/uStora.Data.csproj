@@ -144,6 +144,14 @@
     <Compile Include="Migrations\201610250815131_UpdateVehicleName.Designer.cs">
       <DependentUpon>201610250815131_UpdateVehicleName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610251313264_ChangePaymentStatus.cs" />
+    <Compile Include="Migrations\201610251313264_ChangePaymentStatus.Designer.cs">
+      <DependentUpon>201610251313264_ChangePaymentStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610251600155_AddListShoppingCartSP.cs" />
+    <Compile Include="Migrations\201610251600155_AddListShoppingCartSP.Designer.cs">
+      <DependentUpon>201610251600155_AddListShoppingCartSP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -251,6 +259,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610250815131_UpdateVehicleName.resx">
       <DependentUpon>201610250815131_UpdateVehicleName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251313264_ChangePaymentStatus.resx">
+      <DependentUpon>201610251313264_ChangePaymentStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251600155_AddListShoppingCartSP.resx">
+      <DependentUpon>201610251600155_AddListShoppingCartSP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

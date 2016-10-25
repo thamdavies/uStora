@@ -1,8 +1,6 @@
-﻿@model uStora.Web.Models.ShoppingCartViewModel
-@{
+﻿@{
     ViewBag.Title = "Thanh toán thành công.";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var selledProducts = (List<uStora.Web.Models.ShoppingCartViewModel>)ViewBag.SelledProducts;
 }
 
 <div class="product-big-title-area" id="product-big-title-area">
@@ -20,75 +18,23 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                @using (Ajax.BeginForm("Index", "ShoppingCart",
-new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
-new { id = "frm-search" }))
-                {
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Tìm nhanh</h2>
-                        <input type="text" name="searchString" id="txtKeyword" placeholder="tìm kiếm sản phẩm...">
-                        <input type="submit" value="GO">
-                    </div>
-                    <div id="grid-list">
-                        @{ Html.RenderPartial("_AjaxProductList", Model.ListProducts); }
-                    </div>
-                            }
-
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Recent Posts</h2>
-                    <ul>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="product-content-right" id="tblCartTable">
                     <div class="woocommerce">
-                        <h3 class="text-center text-success">Bạn đã mua hàng thành công.</h3>
-                        @if (selledProducts.Count() > 0)
-                        {
-                            <table cellspacing="0" class="shop_table cart">
-                                <thead>
-                                    <tr>
-                                        <th class="product-thumbnail">&nbsp;</th>
-                                        <th class="product-name">Sản phẩm</th>
-                                        <th class="product-price">Giá</th>
-                                        <th class="product-quantity">Số lượng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in selledProducts)
-                                    {
-                                        <tr class="cart_item">
+                        <h3 class="text-center text-success">Đơn thanh toán được gửi thành công.</h3>
 
-                                            <td class="product-thumbnail">
-                                                <a href="/product/@(item.Product.Alias)-@(item.Product.ID).htm"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="@item.Product.Image"></a>
-                                            </td>
-
-                                            <td class="product-name">
-                                                <a href="/product/@(item.Product.Alias)-@(item.Product.ID).htm">@item.Product.Name</a>
-                                            </td>
-
-                                            <td class="product-price">
-                                                <span class="amount">@item.Product.Price.ToString("N0")</span>
-                                            </td>
-
-                                            <td>
-                                                <label>@item.Quantity</label>
-                                            </td>
-                                        </tr>
-
-                                    }
-                                </tbody>
-
-                            </table>
-                        }
+                        <table cellspacing="0" class="shop_table cart">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">&nbsp;</th>
+                                    <th class="product-name">Sản phẩm</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">Số lượng</th>
+                                    <th class="product-price">Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listCartBody"></tbody>
+                        </table>
                     </div>
 
                 </div>
@@ -96,9 +42,35 @@ new { id = "frm-search" }))
         </div>
     </div>
 </div>
+
+<script id="templateListCart" type="x-tmpl-mustache">
+    <tr class="cart_item">
+
+        <td class="product-thumbnail">
+            <a href="/product/{{Alias}}-{{ProductId}}.htm"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{Image}}"></a>
+        </td>
+
+        <td class="product-name">
+            <a href="/product/{{Alias}}-{{ProductId}}.htm">{{ProductName}}</a>
+        </td>
+
+        <td class="product-price">
+            <span class="amount">{{FPrice}} đ</span>
+        </td>
+
+        <td>
+            <label>{{Quantity}}</label>
+        </td>
+
+        <td>
+            <label class="text-danger">{{PaymentStatus}}</label>
+        </td>
+    </tr>
+</script>
 @section scripts{
     @Scripts.Render("~/js/bootstrap")
-    <script src="~/Assets/Client/js/ajaxPaging.js"></script>
+    <script src="~/Assets/libs/mustache/mustache.min.js"></script>
+    <script src="~/Assets/Client/js/controllers/listOrderClient.js"></script>
 }
 
 

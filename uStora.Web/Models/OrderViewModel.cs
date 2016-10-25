@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcPaging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -36,15 +37,17 @@ namespace uStora.Web.Models
         public string PaymentMethod { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string PaymentStatus { get; set; }
+        //0 đang chờ duyệt
+        //1 đang chuyển
+        //2 thành công
+        public int PaymentStatus { get; set; }
 
         [Required]
         public bool Status { get; set; }
 
         [MaxLength(128)]
         public string CustomerId { get; set; }
-
+        
         public virtual IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Linq;
+using uStora.Common.ViewModels;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
@@ -10,6 +12,7 @@ namespace uStora.Service
     public interface IOrderService
     {
         bool Add(Order order, List<OrderDetail> orderDetails);
+        IEnumerable<OrderClientViewModel> GetListOrders(string userId);
     }
 
     public class OrderService : IOrderService
@@ -53,6 +56,11 @@ namespace uStora.Service
                 }
                 throw;
             }
+        }
+
+        IEnumerable<OrderClientViewModel> IOrderService.GetListOrders(string userId)
+        {
+            return _orderRepository.GetListOrder(userId);
         }
     }
 }

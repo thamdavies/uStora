@@ -40,8 +40,7 @@ namespace uStora.Model.Models
         public string PaymentMethod { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string PaymentStatus { get; set; }
+        public int PaymentStatus { get; set; }
 
         [Required]
         public bool Status { get; set; }

@@ -458,6 +458,7 @@
     <Content Include="Assets\Client\js\common.js" />
     <Content Include="Assets\Client\js\controllers\addToCart.js" />
     <Content Include="Assets\Client\js\controllers\addToWishlist.js" />
+    <Content Include="Assets\Client\js\controllers\listOrderClient.js" />
     <Content Include="Assets\Client\js\controllers\shoppingCart.js" />
     <Content Include="Assets\Client\templates\newUser.html" />
     <Content Include="Assets\libs\angular-chart.js\angular-chart.js" />

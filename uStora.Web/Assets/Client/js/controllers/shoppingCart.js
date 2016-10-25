@@ -33,7 +33,7 @@
         });
         $('#btnContinute').off('click').on('click', function (e) {
             e.preventDefault();
-            window.location.href = "/";
+            window.location.href = "/shop.htm";
         });
         $('#btnUpdate').off('click').on('click', function (e) {
             e.preventDefault();
@@ -192,9 +192,9 @@
             CustomerEmail: $('#email').val(),
             CustomerAddress: $('#address').val(),
             CustomerMobile: $('#phone').val(),
-            PaymentMethod: "Thanh toán tiền mặt",
+            PaymentMethod: $('#paymentMethod').val(),
             CustomerMessage: $('#message').val(),
-            PaymentStatus: false,
+            PaymentStatus: 0,
             Status: true
         }
         $.ajax({
