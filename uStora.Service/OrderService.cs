@@ -64,7 +64,7 @@ namespace uStora.Service
 
         IEnumerable<OrderClientViewModel> IOrderService.GetListOrders(string userId)
         {
-            return _orderRepository.GetListOrder(userId);
+            return _orderRepository.GetListOrder(userId).OrderBy(x => x.PaymentStatus);
         }
 
         public Order GetOrderById(int id)

@@ -208,7 +208,7 @@
                 if (res.status) {
                     $('.bangthanhtoan').addClass('hide');
                     cart.deleteAll("");
-                    window.location.href = "/thanh-toan/thanh-cong.htm";
+                    window.location.href = "/xem-trang-thai-mat-hang.htm";
                 }
             }
         })

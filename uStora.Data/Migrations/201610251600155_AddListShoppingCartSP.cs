@@ -17,7 +17,7 @@ namespace uStora.Data.Migrations
                    inner join Products p on p.ID = odt.ProductID
                    inner join Orders od on od.ID = odt.OrderID
                    inner join ApplicationUsers u on u.Id = od.CustomerId
-                   where od.PaymentStatus = 0 or od.PaymentStatus = 1
+                   where (od.PaymentStatus = 0 or od.PaymentStatus = 1)
                    and od.CustomerId = @UserId");
         }
 

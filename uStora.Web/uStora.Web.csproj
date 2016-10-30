@@ -469,6 +469,7 @@
     <Content Include="Assets\Client\js\controllers\addToCart.js" />
     <Content Include="Assets\Client\js\controllers\addToWishlist.js" />
     <Content Include="Assets\Client\js\controllers\listOrderClient.js" />
+    <Content Include="Assets\Client\js\controllers\liveLocation.js" />
     <Content Include="Assets\Client\js\controllers\shoppingCart.js" />
     <Content Include="Assets\Client\templates\newUser.html" />
     <Content Include="Assets\libs\angular-chart.js\angular-chart.js" />
@@ -5054,7 +5055,6 @@
     <Folder Include="Libs\" />
     <Folder Include="Views\Brand\" />
     <Folder Include="Views\Common\" />
-    <Folder Include="Views\Live\" />
     <Folder Include="Views\TrackOrder\" />
   </ItemGroup>
   <ItemGroup>
@@ -5510,6 +5510,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Page\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Live\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -33,7 +33,7 @@
                         $loading.removeClass('open');
                         $('#listCartBody').html(html);
                     }, 500);
-                    
+
                     cart.registerEvents();
                 }
             }

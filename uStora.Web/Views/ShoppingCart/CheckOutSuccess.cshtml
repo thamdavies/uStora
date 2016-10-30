@@ -23,6 +23,7 @@
         </div>
     </div>
 </div> <!-- End Page title area -->
+
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -108,15 +109,16 @@
             }
         }
 
-        function getAddressFromLatLang(lat,lng){
+        function getAddressFromLatLang(lat, lng) {
             var geocoder = new google.maps.Geocoder();
             var latLng = new google.maps.LatLng(lat, lng);
-            geocoder.geocode( { 'latLng': latLng}, function(results, status) {
+            geocoder.geocode({ 'latLng': latLng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
                         console.log(results[0].formatted_address);
                     }
-                }else{
+                }
+                else {
                     alert("Geocode was not successful for the following reason: " + status);
                 }
             });

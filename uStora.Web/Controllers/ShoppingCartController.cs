@@ -225,6 +225,7 @@ namespace uStora.Web.Controllers
 
         public JsonResult GetListOrder()
         {
+            var userId = User.Identity.GetUserId();
             var orders = _orderService.GetListOrders(User.Identity.GetUserId());
             return Json(new
             {

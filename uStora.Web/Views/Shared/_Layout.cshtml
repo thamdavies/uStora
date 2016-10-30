@@ -36,9 +36,10 @@
                                 <li><a href="/san-pham-yeu-thich.htm" class="btnAddWishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
                                 <li><a href="/gio-hang.htm"><i class="fa fa-cart"></i> Giỏ hàng</a></li>
                                 <li><a href="/gio-hang.htm"><i class="fa fa-user"></i> Thanh toán</a></li>
+                                <li><a href="/xem-trang-thai-mat-hang.htm"><i class="fa fa-history"></i> Lịch sử mua hàng</a></li>
                                 @if (this.User.IsInRole("LiveLocation"))
                                 {
-                                    <li><a href="/vi-tri-truc-tuyen.htm" class="btnLive"><i class="fa fa-map-signs"></i> Live</a></li>
+                                    <li><a href="/vi-tri-truc-tuyen.htm" class="btnLive text-blue"><i class="fa fa-map-signs"></i> Live</a></li>
                                 }
                             </ul>
                         </div>
@@ -183,10 +184,10 @@
                         <div class="footer-menu">
                             <h2 class="footer-wid-title">Hoạt động của bạn </h2>
                             <ul>
-                                <li><a href="#">Tài khoản của tôi</a></li>
-                                <li><a href="#">Lịch sử mua hàng</a></li>
-                                <li><a href="#">Yêu thích</a></li>
-                                <li><a href="#">Thanh toán</a></li>
+                                <li><a href="/tai-khoan-cua-toi.htm">Tài khoản của tôi</a></li>
+                                <li><a href="/xem-trang-thai-mat-hang.htm">Lịch sử mua hàng</a></li>
+                                <li><a href="/san-pham-yeu-thich.htm">Yêu thích</a></li>
+                                <li><a href="/gio-hang.htm">Thanh toán</a></li>
                             </ul>
                         </div>
                     }

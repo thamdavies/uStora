@@ -63,7 +63,7 @@ namespace uStora.Web
             //checkout completed 
             routes.MapRoute(
                name: "Checkout completed",
-               url: "thanh-toan/thanh-cong.htm",
+               url: "xem-trang-thai-mat-hang.htm",
                defaults: new { controller = "ShoppingCart", action = "CheckOutSuccess", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );

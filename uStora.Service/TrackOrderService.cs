@@ -19,6 +19,8 @@ namespace uStora.Service
 
         IEnumerable<TrackOrder> GetAll();
 
+        IEnumerable<TrackOrder> GetByUserId(string userId);
+
         TrackOrder Delete(int id);
 
         TrackOrder GetById(int id);
@@ -75,6 +77,11 @@ namespace uStora.Service
             return _trackOrderRepository.GetSingleById(id);
         }
 
+        public IEnumerable<TrackOrder> GetByUserId(string userId)
+        {
+            return _trackOrderRepository.GetMulti(x => x.UserId == userId && x.Status == true);
+        }
+
         public void SaveChanges()
         {
             _unitOfWork.Commit();
@@ -84,5 +91,6 @@ namespace uStora.Service
         {
             _trackOrderRepository.Update(trackOrder);
         }
+        
     }
 }
