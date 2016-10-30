@@ -27,6 +27,8 @@ namespace uStora.Data.Infrastructure
 
         T GetSingleById(long id);
 
+        T GetSingleById(string id);
+
         T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
 
         IEnumerable<T> GetAll(string[] includes = null);

@@ -13,6 +13,10 @@ namespace uStora.Service
     {
         bool Add(Order order, List<OrderDetail> orderDetails);
         IEnumerable<OrderClientViewModel> GetListOrders(string userId);
+        Order GetOrderById(int id);
+        IEnumerable<Order> GetAll(string keyword);
+        void Update(Order order);
+        IEnumerable<Order> GetUnCompletedOrder();
     }
 
     public class OrderService : IOrderService
@@ -61,6 +65,29 @@ namespace uStora.Service
         IEnumerable<OrderClientViewModel> IOrderService.GetListOrders(string userId)
         {
             return _orderRepository.GetListOrder(userId);
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return _orderRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<Order> GetAll(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword))
+                return _orderRepository.GetAll();
+            else
+                return _orderRepository.GetMulti(x => x.CustomerName.Contains(keyword));
+        }
+
+        public IEnumerable<Order> GetUnCompletedOrder()
+        {
+            return _orderRepository.GetMulti(x => x.PaymentStatus != 2);
+        }
+
+        public void Update(Order order)
+        {
+            _orderRepository.Update(order);
         }
     }
 }

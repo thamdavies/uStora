@@ -15,7 +15,13 @@ namespace uStora.Service
 
         void Update(TrackOrder trackOrder);
 
+        IEnumerable<TrackOrder> GetAll(string keyword);
+
+        IEnumerable<TrackOrder> GetAll();
+
         TrackOrder Delete(int id);
+
+        TrackOrder GetById(int id);
 
         void SaveChanges();
     }
@@ -38,6 +44,35 @@ namespace uStora.Service
         public TrackOrder Delete(int id)
         {
             return _trackOrderRepository.Delete(id);
+        }
+
+        public IEnumerable<TrackOrder> GetAll()
+        {
+            return _trackOrderRepository.GetAll(new string[] { "Order", "ApplicationUser", "Vehicle" });
+        }
+
+        public IEnumerable<TrackOrder> GetAll(string keyword)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    return _trackOrderRepository.GetAll(new string[] { "Order", "ApplicationUser", "Vehicle" }).OrderByDescending(x=>x.Status);
+                }
+                else
+                    return _trackOrderRepository.GetMulti(x => x.Order.CustomerName.Contains(keyword)
+                    || x.Vehicle.DriverName.Contains(keyword) || x.Order.CreatedDate.ToString().Contains(keyword),
+                    new string[] { "Order", "ApplicationUser", "Vehicle" }).OrderByDescending(x => x.Status);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public TrackOrder GetById(int id)
+        {
+            return _trackOrderRepository.GetSingleById(id);
         }
 
         public void SaveChanges()

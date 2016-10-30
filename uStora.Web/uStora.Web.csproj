@@ -234,6 +234,7 @@
     <Compile Include="Api\ProductController.cs" />
     <Compile Include="Api\SlideController.cs" />
     <Compile Include="Api\StatisticController.cs" />
+    <Compile Include="Api\TrackOrderController.cs" />
     <Compile Include="Api\VehicleController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -349,6 +351,14 @@
     <Content Include="app\components\statistics\revenueStatistic.module.js" />
     <Content Include="app\components\statistics\revenueStatisticController.js" />
     <Content Include="app\components\statistics\revenueStatisticView.html" />
+    <Content Include="app\components\trackorders\trackorder.module.js" />
+    <Content Include="app\components\trackorders\trackorderAddController.js" />
+    <Content Include="app\components\trackorders\trackorderAddView.html" />
+    <Content Include="app\components\trackorders\trackorderEditController.js" />
+    <Content Include="app\components\trackorders\trackorderEditView.html" />
+    <Content Include="app\components\trackorders\trackorderEView.html" />
+    <Content Include="app\components\trackorders\trackorderListController.js" />
+    <Content Include="app\components\trackorders\trackorderListView.html" />
     <Content Include="app\components\vehicles\vehicle.module.js" />
     <Content Include="app\components\vehicles\vehicleAddController.js" />
     <Content Include="app\components\vehicles\vehicleAddView.html" />
@@ -5037,8 +5047,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\orders\" />
-    <Folder Include="app\components\roles\" />
-    <Folder Include="app\components\users\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
@@ -5046,6 +5054,7 @@
     <Folder Include="Libs\" />
     <Folder Include="Views\Brand\" />
     <Folder Include="Views\Common\" />
+    <Folder Include="Views\Live\" />
     <Folder Include="Views\TrackOrder\" />
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@ using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private IProductService _productService;

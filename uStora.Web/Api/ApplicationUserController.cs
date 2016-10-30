@@ -16,17 +16,19 @@ using uStora.Web.Models;
 
 namespace uStora.Web.Api
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/applicationUser")]
     public class ApplicationUserController : ApiControllerBase
     {
         private ICommonService _commonService;
+        private IApplicationUserService _appUser;
         private ApplicationUserManager _userManager;
         private IApplicationGroupService _appGroupService;
         private IApplicationRoleService _appRoleService;
 
         public ApplicationUserController(
             IApplicationGroupService appGroupService,
+            IApplicationUserService appUser,
             IApplicationRoleService appRoleService,
             ApplicationUserManager userManager,
             IErrorService errorService,
@@ -34,6 +36,7 @@ namespace uStora.Web.Api
             : base(errorService)
         {
             _appRoleService = appRoleService;
+            _appUser = appUser;
             _appGroupService = appGroupService;
             _userManager = userManager;
             _commonService = commonService;
@@ -192,6 +195,24 @@ namespace uStora.Web.Api
             {
                 return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
+        }
+
+        [HttpGet]
+        [Route("listdriver")]
+        public HttpResponseMessage GetUsersByGroupId(HttpRequestMessage request, int groupId)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                List<ApplicationUserViewModel> listUsers = new List<ApplicationUserViewModel>(); ;
+                var listUserId = _appUser.GetUserIdByGroupId(groupId);
+                foreach (var userId in listUserId)
+                {
+                    listUsers.Add(Mapper.Map<ApplicationUser, ApplicationUserViewModel>(_appUser.GetUserById(userId)));
+                }
+                response = request.CreateResponse(HttpStatusCode.OK, listUsers);
+                return response;
+            });
         }
 
         [HttpDelete]

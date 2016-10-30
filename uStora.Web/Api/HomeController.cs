@@ -13,8 +13,14 @@ namespace uStora.Web.API
         public HomeController(IErrorService errorService)
             : base(errorService)
         {
-            this._errorService = errorService;
+            _errorService = errorService;
         }
-
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("TestMethod")]
+        public string TestMethod()
+        {
+            return "Xin chào thành viên uStora";
+        }
     }
 }

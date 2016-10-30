@@ -36,6 +36,10 @@
                                 <li><a href="/san-pham-yeu-thich.htm" class="btnAddWishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
                                 <li><a href="/gio-hang.htm"><i class="fa fa-cart"></i> Giỏ hàng</a></li>
                                 <li><a href="/gio-hang.htm"><i class="fa fa-user"></i> Thanh toán</a></li>
+                                @if (this.User.IsInRole("LiveLocation"))
+                                {
+                                    <li><a href="/vi-tri-truc-tuyen.htm" class="btnLive"><i class="fa fa-map-signs"></i> Live</a></li>
+                                }
                             </ul>
                         </div>
                     </div>

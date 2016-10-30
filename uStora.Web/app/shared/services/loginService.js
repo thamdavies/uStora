@@ -2,7 +2,7 @@
 (function (app) {
     'use strict';
     app.service('loginService', ['$http', '$q', 'authenticationService', 'authData',
-    function ($http, $q, authenticationService, authData) {
+    function ($http, $q,  authenticationService, authData) {
         var userInfo;
         var deferred;
 
@@ -17,9 +17,10 @@
                     accessToken: response.access_token,
                     userName: userName
                 };
+                authenticationService.setHeader();
                 authenticationService.setTokenInfo(userInfo);
                 authData.authenticationData.IsAuthenticated = true;
-                authData.authenticationData.userName = userName;
+                authData.authenticationData.userName = userInfo.userName;
                 deferred.resolve(null);
             })
             .error(function (err, status) {
@@ -34,6 +35,7 @@
             authenticationService.removeToken();
             authData.authenticationData.IsAuthenticated = false;
             authData.authenticationData.userName = "";
+            window.location.reload();
         }
     }]);
 })(angular.module('uStora.common'));

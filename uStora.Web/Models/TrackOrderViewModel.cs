@@ -22,6 +22,8 @@ namespace uStora.Web.Models
 
         public bool Status { get; set; }
 
+        public bool isDone { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
         
         public virtual OrderViewModel Order { get; set; }

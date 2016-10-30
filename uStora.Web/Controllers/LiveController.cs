@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace uStora.Web.Controllers
 {
-    [Authorize]
-    public class TrackOrderController : Controller
+    public class LiveController : Controller
     {
+        // GET: Live
         public ActionResult Index()
         {
             return View();

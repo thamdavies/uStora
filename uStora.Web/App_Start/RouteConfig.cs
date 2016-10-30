@@ -81,6 +81,13 @@ namespace uStora.Web
                defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            //live
+            routes.MapRoute(
+               name: "Live",
+               url: "vi-tri-truc-tuyen.htm",
+               defaults: new { controller = "Live", action = "Index", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
             //login
             routes.MapRoute(
                name: "Login client",

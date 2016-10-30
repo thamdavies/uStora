@@ -19,6 +19,7 @@ namespace uStora.Service
         Vehicle Delete(int id);
 
         void SaveChanges();
+
     }
 
     public class VehicleService : IVehicleService
@@ -63,9 +64,9 @@ namespace uStora.Service
         public IEnumerable<Vehicle> GetAll(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
-                return _vehicleRepository.GetMulti(x => x.ModelID.Contains(keyword) || x.Model.Contains(keyword) || x.DriverName.Contains(keyword)||x.Name.Contains(keyword));
+                return _vehicleRepository.GetMulti(x => x.ModelID.Contains(keyword) || x.Model.Contains(keyword) || x.DriverName.Contains(keyword) || x.Name.Contains(keyword));
             else
-                return _vehicleRepository.GetAll();
+                return _vehicleRepository.GetMulti(x => x.Status);
         }
     }
 }

@@ -1,14 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Thanh toán thành công.";
+    ViewBag.Title = "Kiểm tra vận chuyển hàng.";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Assets/Client/css/overlay.css" rel="stylesheet" />
+<style>
+    #gmap {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+<div id="overlay">
+    <img class="onLoad-image" src="~/Assets/Client/img/box.gif" />
+</div>
 <div class="product-big-title-area" id="product-big-title-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Thanh toán thành công</h2>
+                    <h2>Đơn thanh toán</h2>
                 </div>
             </div>
         </div>
@@ -22,7 +31,6 @@
                 <div class="product-content-right" id="tblCartTable">
                     <div class="woocommerce">
                         <h3 class="text-center text-success">Đơn thanh toán được gửi thành công.</h3>
-
                         <table cellspacing="0" class="shop_table cart">
                             <thead>
                                 <tr>
@@ -35,8 +43,9 @@
                             </thead>
                             <tbody id="listCartBody"></tbody>
                         </table>
+                        <a href="#gmap" class="text-center" data-toggle="collapse">Xem trên bản đồ.</a>
+                        <div id="gmap"></div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -71,6 +80,58 @@
     @Scripts.Render("~/js/bootstrap")
     <script src="~/Assets/libs/mustache/mustache.min.js"></script>
     <script src="~/Assets/Client/js/controllers/listOrderClient.js"></script>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('gmap'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 15
+            });
+            var infoWindow = new google.maps.InfoWindow({ map: map });
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    getAddressFromLatLang(pos.lat, pos.lng)
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Bạn đang ở đây.');
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function getAddressFromLatLang(lat,lng){
+            var geocoder = new google.maps.Geocoder();
+            var latLng = new google.maps.LatLng(lat, lng);
+            geocoder.geocode( { 'latLng': latLng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        console.log(results[0].formatted_address);
+                    }
+                }else{
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                                  'Lỗi: The Geolocation service failed.' :
+                                  'Lỗi: Trình duyệt của bạn không hỗ trợ Geolocation');
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoQXEpc3J26EnYucyoyNFQsUDYL4Rpls&callback=initMap">
+    </script>
 }
 
 
