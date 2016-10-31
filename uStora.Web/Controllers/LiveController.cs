@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using uStora.Model.Models;
 using uStora.Service;
@@ -15,10 +12,12 @@ namespace uStora.Web.Controllers
     public class LiveController : Controller
     {
         private ITrackOrderService _trackOrderService;
+
         public LiveController(ITrackOrderService trackOrderService)
         {
             _trackOrderService = trackOrderService;
         }
+
         public ActionResult Index()
         {
             var trackOrders = Mapper.Map<IEnumerable<TrackOrder>, IEnumerable<TrackOrderViewModel>>(_trackOrderService.GetByUserId(User.Identity.GetUserId()));

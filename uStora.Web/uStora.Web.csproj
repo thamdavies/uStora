@@ -471,6 +471,7 @@
     <Content Include="Assets\Client\js\controllers\listOrderClient.js" />
     <Content Include="Assets\Client\js\controllers\liveLocation.js" />
     <Content Include="Assets\Client\js\controllers\shoppingCart.js" />
+    <Content Include="Assets\Client\js\myLocation.js" />
     <Content Include="Assets\Client\templates\newUser.html" />
     <Content Include="Assets\libs\angular-chart.js\angular-chart.js" />
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.css" />

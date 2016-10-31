@@ -23,6 +23,8 @@ namespace uStora.Service
 
         TrackOrder Delete(int id);
 
+        IEnumerable<TrackOrder> GetLocation(string cusId);
+
         TrackOrder GetById(int id);
 
         void SaveChanges();
@@ -80,6 +82,11 @@ namespace uStora.Service
         public IEnumerable<TrackOrder> GetByUserId(string userId)
         {
             return _trackOrderRepository.GetMulti(x => x.UserId == userId && x.Status == true);
+        }
+
+        public IEnumerable<TrackOrder> GetLocation(string cusId)
+        {
+            return _trackOrderRepository.GetLocation(cusId);
         }
 
         public void SaveChanges()
