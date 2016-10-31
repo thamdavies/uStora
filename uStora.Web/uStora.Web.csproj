@@ -355,7 +355,6 @@
     <Content Include="app\components\trackorders\trackorderAddController.js" />
     <Content Include="app\components\trackorders\trackorderAddView.html" />
     <Content Include="app\components\trackorders\trackorderEditController.js" />
-    <Content Include="app\components\trackorders\trackorderEditView.html" />
     <Content Include="app\components\trackorders\trackorderEView.html" />
     <Content Include="app\components\trackorders\trackorderListController.js" />
     <Content Include="app\components\trackorders\trackorderListView.html" />
@@ -369,6 +368,7 @@
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\status.filter.js" />
+    <Content Include="app\shared\filters\statusTrackOrderFilter.js" />
     <Content Include="app\shared\modules\uStora.common.js" />
     <Content Include="app\shared\services\apiService.js" />
     <Content Include="app\shared\services\authData.js" />
@@ -5514,6 +5514,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Live\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Live\NoOrder.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

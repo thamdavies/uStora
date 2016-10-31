@@ -15,6 +15,8 @@
                 if (res.status) {
                     console.log(res.data);
                 }
+                else
+                    window.location.href = "/no-order.htm";
             }
         })
     },

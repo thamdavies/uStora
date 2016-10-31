@@ -21,8 +21,8 @@ namespace uStora.Data.Migrations
                     on o.ID = od.OrderID
                     inner join Products p
                     on od.ProductID = p.ID
-                    where o.CreatedDate >= CONVERT(varchar(10),@fromDate,103)
-                    and   o.CreatedDate <= CONVERT(varchar(10),@toDate,103) 
+                    where CONVERT(varchar(10),o.CreatedDate,103) >= CONVERT(varchar(10),@fromDate,103)
+                    and   CONVERT(varchar(10),o.CreatedDate,103) <= CONVERT(varchar(10),@toDate,103) 
                     group by o.CreatedDate"
                 );
         }

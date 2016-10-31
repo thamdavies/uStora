@@ -60,6 +60,13 @@ namespace uStora.Web
                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            //No order cart 
+            routes.MapRoute(
+               name: "No order",
+               url: "no-order.htm",
+               defaults: new { controller = "Live", action = "NoOrder", id = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
             //checkout completed 
             routes.MapRoute(
                name: "Checkout completed",
