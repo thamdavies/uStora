@@ -220,6 +220,10 @@ namespace uStora.Web.Controllers
         
         public ActionResult CheckOutSuccess()
         {
+            var userId = User.Identity.GetUserId();
+            var orders = _orderService.GetListOrders(User.Identity.GetUserId());
+            if (orders.Count() == 0)
+                ViewBag.isNull = true;
             return View();
         }
 
@@ -227,6 +231,7 @@ namespace uStora.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var orders = _orderService.GetListOrders(User.Identity.GetUserId());
+           
             return Json(new
             {
                 data = orders,

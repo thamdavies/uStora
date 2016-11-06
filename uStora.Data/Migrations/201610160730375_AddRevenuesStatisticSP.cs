@@ -11,8 +11,7 @@ namespace uStora.Data.Migrations
                 {
                     fromDate = p.String(),
                     toDate = p.String()
-                }
-                ,
+                },
                 @"select o.CreatedDate as Date,
                     SUM(od.Price* od.Quantity) as Revenues,
                     SUM((od.Price* od.Quantity)-(p.OriginalPrice*od.Quantity)) as Benefit

@@ -17,7 +17,6 @@
     </div>
 </div>
 
-
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -36,7 +35,7 @@
                     <div id="grid-list">
                         @{ Html.RenderPartial("_AjaxProductList", Model.ListProducts); }
                     </div>
-                            }
+                }
 
 
                 <div class="single-sidebar">
@@ -235,11 +234,11 @@
 
 @section scripts{
    @Scripts.Render("~/js/bootstrap")
-   @Scripts.Render("~/js/etalage")
+ @Scripts.Render("~/js/etalage")
     <script src="~/Assets/Client/js/ajaxPaging.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
+           
             $('#etalage').etalage({
                 thumb_image_width: 300,
                 thumb_image_height: 300,

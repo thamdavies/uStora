@@ -482,6 +482,26 @@
     <Content Include="Assets\libs\Chart.js\Chart.js" />
     <Content Include="Assets\libs\checklist-model\checklist-model.js" />
     <Content Include="Assets\libs\checklist-model\LICENSE.txt" />
+    <Content Include="Assets\libs\datetimepicker\.gitignore" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.full.js" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.full.min.js" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.min.css" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.min.js" />
+    <Content Include="Assets\libs\datetimepicker\index.html" />
+    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.css" />
+    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.js" />
+    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.min.js" />
+    <Content Include="Assets\libs\datetimepicker\jquery.js" />
+    <Content Include="Assets\libs\datetimepicker\MIT-LICENSE.txt" />
+    <Content Include="Assets\libs\datetimepicker\screen\1.png" />
+    <Content Include="Assets\libs\datetimepicker\screen\2.png" />
+    <Content Include="Assets\libs\datetimepicker\screen\3.1.png" />
+    <Content Include="Assets\libs\datetimepicker\screen\3.png" />
+    <Content Include="Assets\libs\datetimepicker\screen\4.png" />
+    <Content Include="Assets\libs\datetimepicker\screen\5.png" />
+    <Content Include="Assets\libs\datetimepicker\screen\6.png" />
+    <Content Include="Assets\libs\datetimepicker\tests\input_in_container_fixed_to_bottom_of_viewport.html" />
+    <Content Include="Assets\libs\datetimepicker\tests\input_in_container_fixed_to_top_of_viewport.html" />
     <Content Include="Assets\libs\font-awesome\.gitignore" />
     <Content Include="Assets\libs\font-awesome\css\font-awesome.css" />
     <Content Include="Assets\libs\font-awesome\css\font-awesome.min.css" />
@@ -5517,6 +5537,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Live\NoOrder.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\libs\datetimepicker\bower.json" />
+    <Content Include="Assets\libs\datetimepicker\datetimepicker.jquery.json" />
+    <Content Include="Assets\libs\datetimepicker\doc.tpl" />
+    <Content Include="Assets\libs\datetimepicker\package.json" />
+    <Content Include="Assets\libs\datetimepicker\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

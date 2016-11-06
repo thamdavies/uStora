@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Kiểm tra vận chuyển hàng.";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isNull = (bool)ViewBag.isNull;
 }
 <link href="~/Assets/Client/css/overlay.css" rel="stylesheet" />
 <style>
@@ -24,35 +25,56 @@
     </div>
 </div> <!-- End Page title area -->
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-content-right" id="tblCartTable">
-                    <div class="woocommerce">
-                        <h3 class="text-center text-success">Đơn thanh toán được gửi thành công.</h3>
-                        <table cellspacing="0" class="shop_table cart">
-                            <thead>
-                                <tr>
-                                    <th class="product-thumbnail">&nbsp;</th>
-                                    <th class="product-name">Sản phẩm</th>
-                                    <th class="product-price">Giá</th>
-                                    <th class="product-quantity">Số lượng</th>
-                                    <th class="product-price">Trạng thái</th>
-                                </tr>
-                            </thead>
-                            <tbody id="listCartBody"></tbody>
-                        </table>
-                        <a href="#gmap" class="text-center" data-toggle="collapse">Xem trên bản đồ.</a>
-                        <button class="btn btn-default" id="btnLoadMap">Load</button>
-                        <div id="gmap"></div>
+@if (!isNull)
+{
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-content-right" id="tblCartTable">
+                        <div class="woocommerce">
+                            <h3 class="text-center text-success">Đơn thanh toán được gửi thành công.</h3>
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">Sản phẩm</th>
+                                        <th class="product-price">Giá</th>
+                                        <th class="product-quantity">Số lượng</th>
+                                        <th class="product-price">Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listCartBody"></tbody>
+                            </table>
+                            <a href="#gmap" class="text-center" data-toggle="collapse">Xem trên bản đồ.</a>
+                            <button class="btn btn-default" id="btnLoadMap">Load</button>
+                            <div id="gmap"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-content-right" id="tblCartTable">
+                        <div class="woocommerce">
+                            <h4 class="text-danger text-center"> Đơn hàng của bạn rỗng...</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 <script id="templateListCart" type="x-tmpl-mustache">
     <tr class="cart_item">
@@ -83,8 +105,7 @@
     <script src="~/Assets/libs/mustache/mustache.min.js"></script>
     <script src="~/Assets/Client/js/controllers/listOrderClient.js"></script>
     @*google api*@
-    <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoQXEpc3J26EnYucyoyNFQsUDYL4Rpls">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoQXEpc3J26EnYucyoyNFQsUDYL4Rpls">
     </script>
     <script src="~/Assets/Client/js/myLocation.js"></script>
 }
