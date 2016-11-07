@@ -14,7 +14,7 @@ using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
 {
-    [Authorize]
+   
     public class ShoppingCartController : Controller
     {
         private IProductService _productService;
@@ -29,6 +29,7 @@ namespace uStora.Web.Controllers
             _orderService = orderService;
         }
 
+        [Authorize]
         // GET: ShoppingCart
         public ActionResult Index(string searchString, int? page)
         {
@@ -46,6 +47,7 @@ namespace uStora.Web.Controllers
             else
                 return View(cart);
         }
+        [Authorize]
         public JsonResult GetUserInfo()
         {
             if (Request.IsAuthenticated)
@@ -63,7 +65,7 @@ namespace uStora.Web.Controllers
                 status = false
             });
         }
-
+        
         public JsonResult GetAll()
         {
             if (Session[CommonConstants.ShoppingCartSession] == null)
@@ -121,6 +123,7 @@ namespace uStora.Web.Controllers
             });
         }
 
+        [Authorize]
         [HttpPost]
         public JsonResult Update(string cartData)
         {
@@ -145,6 +148,7 @@ namespace uStora.Web.Controllers
             });
         }
 
+        [Authorize]
         [HttpPost]
         public JsonResult DeleteItem(int productId)
         {
@@ -163,6 +167,7 @@ namespace uStora.Web.Controllers
             });
         }
 
+        [Authorize]
         [HttpPost]
         public JsonResult DeleteAll()
         {
@@ -174,6 +179,7 @@ namespace uStora.Web.Controllers
             });
         }
 
+        [Authorize]
         [HttpPost]
         public JsonResult CreateOrder(string orderViewModel)
         {
@@ -217,7 +223,8 @@ namespace uStora.Web.Controllers
             }
 
         }
-        
+
+        [Authorize]
         public ActionResult CheckOutSuccess()
         {
             var userId = User.Identity.GetUserId();
@@ -227,6 +234,7 @@ namespace uStora.Web.Controllers
             return View();
         }
 
+        [Authorize]
         public JsonResult GetListOrder()
         {
             var userId = User.Identity.GetUserId();

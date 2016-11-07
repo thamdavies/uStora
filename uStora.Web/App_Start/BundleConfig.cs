@@ -8,6 +8,7 @@ namespace uStora.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.UseCdn = true;
             bundles.Add(new ScriptBundle("~/js/jquery")
                 .Include("~/Assets/libs/jquery/dist/jquery.min.js"));
 
@@ -16,7 +17,23 @@ namespace uStora.Web
 
             bundles.Add(new ScriptBundle("~/js/etalage")
               .Include("~/Assets/Client/js/jquery.etalage.min.js"));
+            #region~/bundles/googleapis
+            var cdnPath = "~/https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoQXEpc3J26EnYucyoyNFQsUDYL4Rpls";
+            bundles.Add(new ScriptBundle("~/bundles/googleapis",
+                "https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoQXEpc3J26EnYucyoyNFQsUDYL4Rpls")
+                .Include(cdnPath));
+            #endregion
+            #region~/bundles/bsvalidator
+            bundles.Add(new ScriptBundle("~/bundles/bsvalidator")
+                .Include("~/Assets/libs/bootstrapValidator/dist/js/bootstrapValidator.min.js"));
+            #endregion
 
+            #region~/bundles/mustache
+            bundles.Add(new ScriptBundle("~/bundles/mustache")
+                .Include("~/Assets/libs/mustache/mustache.min.js"));
+            #endregion
+
+            #region~/js/core
             bundles.Add(new ScriptBundle("~/js/core").Include(
                 "~/Assets/libs/jquery-ui/jquery-ui.min.js",
                 "~/Assets/libs/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js",
@@ -36,7 +53,8 @@ namespace uStora.Web
                 "~/Assets/Client/js/controllers/addToWishlist.js",
                 "~/Assets/Client/js/bxslider.min.js",
                 "~/Assets/Client/js/script.slider.js"));
-
+            #endregion
+            #region~/css/core
             bundles.Add(new StyleBundle("~/css/core")
                 .Include("~/Assets/libs/bootstrap/dist/css/bootstrap.min.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/libs/jquery-ui/themes/smoothness/jquery-ui.min.css", new CssRewriteUrlTransform())
@@ -50,7 +68,7 @@ namespace uStora.Web
                 .Include("~/Assets/Client/css/customize.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/Client/css/responsive.css", new CssRewriteUrlTransform()));
 
-
+            #endregion
             BundleTable.EnableOptimizations = true;
         }
     }

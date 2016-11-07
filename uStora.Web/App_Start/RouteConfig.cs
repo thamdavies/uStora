@@ -81,13 +81,19 @@ namespace uStora.Web
                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
-            //register member
+            //ExternalLoginCallback
             routes.MapRoute(
-               name: "Register",
-               url: "register.htm",
-               defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+               name: "ExternalLoginCallback",
+               url: "xac-thuc-tai-khoan.htm",
+               defaults: new { controller = "Account", action = "ExternalLoginCallback", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            routes.MapRoute(
+              name: "Register",
+              url: "register.htm",
+              defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+              namespaces: new string[] { "uStora.Web.Controllers" }
+          );
             //live
             routes.MapRoute(
                name: "Live",

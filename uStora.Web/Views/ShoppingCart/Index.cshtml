@@ -238,8 +238,8 @@
 </script>
 @section scripts{
     @Scripts.Render("~/js/bootstrap")
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
-    <script src="~/Assets/libs/mustache/mustache.min.js"></script>
+    @Scripts.Render("~/bundles/bsvalidator")
+    @Scripts.Render("~/bundles/mustache")
     <script src="~/Assets/Client/js/controllers/shoppingCart.js"></script>
     <script src="~/Assets/Client/js/ajaxPaging.js"></script>
 }
