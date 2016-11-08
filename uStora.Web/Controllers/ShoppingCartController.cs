@@ -229,9 +229,10 @@ namespace uStora.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var orders = _orderService.GetListOrders(User.Identity.GetUserId());
+            ViewBag.isNull = false;
             if (orders.Count() == 0)
                 ViewBag.isNull = true;
-            return View();
+            return View(orders);
         }
 
         [Authorize]

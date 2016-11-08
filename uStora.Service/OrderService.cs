@@ -82,7 +82,7 @@ namespace uStora.Service
 
         public IEnumerable<Order> GetUnCompletedOrder()
         {
-            return _orderRepository.GetMulti(x => x.PaymentStatus != 2);
+            return _orderRepository.GetMulti(x => x.PaymentStatus == 0);
         }
 
         public void Update(Order order)
