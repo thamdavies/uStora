@@ -18,6 +18,8 @@ namespace uStora.Service
 
         bool CheckContains(long productId);
 
+        IEnumerable<Wishlist> GetAll(string input);
+
         void SaveChanges();
     }
 
@@ -66,6 +68,14 @@ namespace uStora.Service
                 return true;
             else
                 return false;
+        }
+
+        public IEnumerable<Wishlist> GetAll(string input)
+        {
+            if (!string.IsNullOrEmpty(input))
+                return _wishlistRepository.GetMulti(x => x.Product.Name.Contains(input), new string[] { "Product" });
+            else
+                return _wishlistRepository.GetAll(new string[] { "Product" });
         }
     }
 }

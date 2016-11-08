@@ -5200,6 +5200,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\libs\checklist-model\test\" />
     <Folder Include="Libs\" />
+    <Folder Include="Views\AjaxProduct\" />
     <Folder Include="Views\Brand\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\TrackOrder\" />

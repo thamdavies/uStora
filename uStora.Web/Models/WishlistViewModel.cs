@@ -1,10 +1,11 @@
 ﻿using MvcPaging;
 using System;
+using uStora.Model.Abstracts;
 
 namespace uStora.Web.Models
 {
     [Serializable]
-    public class WishlistViewModel
+    public class WishlistViewModel: Auditable
     {
         public string UserId { get; set; }
 

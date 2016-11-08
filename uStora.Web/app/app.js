@@ -1,5 +1,4 @@
-﻿/// <reference path="E:\ILearning\LTPM\ASP.NET MVC\Git\OnlineShop.Web\Assets/admin/libs/angular/angular.js" />
-(function () {
+﻿(function () {
     angular.module('uStora',
         ['uStora.products',
          'uStora.product_categories',
@@ -30,7 +29,7 @@
                 controller: "loginController"
             })
             .state('home', {
-                url: "/admin",
+                url: "/ustora_admin",
                 parent: 'base',
                 templateUrl: "/app/components/home/homeView.html",
                 controller: "homeController"

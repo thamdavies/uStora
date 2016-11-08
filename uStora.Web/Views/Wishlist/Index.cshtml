@@ -1,100 +1,50 @@
-﻿@model uStora.Web.Models.WishlistViewModel
+﻿@model IEnumerable<uStora.Web.Models.WishlistViewModel>
 
 @{
-    ViewBag.Title = "Sản phẩm yêu thích của tôi.";
+    ViewBag.Title = "Danh sách các sản phẩm đã mượn";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="product-big-title-area" id="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Sản phẩm yêu thích</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> <!-- End Page title area -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                @using (Ajax.BeginForm("Index", "Wishlist",
-new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
-new { id = "frm-search" }))
-                {
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Tìm nhanh</h2>
-                        <input type="text" name="searchString" id="txtKeyword" placeholder="tìm kiếm sản phẩm...">
-                        <input type="submit" value="GO">
-                    </div>
-                    <div id="grid-list">
-                        @{ Html.RenderPartial("_AjaxProductList", Model.ListProducts); }
-                    </div>
-                            }
-
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Recent Posts</h2>
-                    <ul>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-8">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="product-content-right" id="tblCartTable">
                     <div class="woocommerce">
-                        @if (Model.Count() > 0)
-                        {
+                        <div class="table-responsive">
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">&nbsp;</th>
-                                        <th class="product-name">Sản phẩm</th>
-                                        <th class="product-price">Giá</th>
-                                        <th class="product-quantity">Số lượng</th>
+                                        <th>
+                                            Tên sản phẩm
+                                        </th>
+                                        <th>
+                                            Ngày thêm
+                                        </th>
+                                        <th>Mua nhanh</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in selledProducts)
+                                    @foreach (var item in Model)
                                     {
-                                        <tr class="cart_item">
-
-                                            <td class="product-thumbnail">
-                                                <a href="/product/@(item.Product.Alias)-@(item.Product.ID).htm"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="@item.Product.Image"></a>
-                                            </td>
-
-                                            <td class="product-name">
-                                                <a href="/product/@(item.Product.Alias)-@(item.Product.ID).htm">@item.Product.Name</a>
-                                            </td>
-
-                                            <td class="product-price">
-                                                <span class="amount">@item.Product.Price.ToString("N0")</span>
-                                            </td>
-
+                                        <tr>
                                             <td>
-                                                <label>@item.Quantity</label>
+                                                <a href="/product/@item.Product.Alias-@(item.ProductId).htm">@item.Product.Name</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                                            </td>
+                                            <td>
+                                                <a href="/product/@item.Product.Alias-@(item.ProductId).htm"><i class="fa fa-shopping-cart add-to-cart" id="btnAddToCart" data-id="@item.ProductId" data-toggle="tooltip" title="Thêm vào giỏ"></i></a>
                                             </td>
                                         </tr>
-
                                     }
                                 </tbody>
-
                             </table>
-                        }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@section scripts{
-    @Scripts.Render("~/js/bootstrap")
-    <script src="~/Assets/Client/js/ajaxPaging.js"></script>
-}

@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using uStora.Model.Models;
 using uStora.Service;
+using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
 {
+    [Authorize]
     public class WishlistController : Controller
     {
         private IWishlistService _wishlistService;
@@ -14,10 +18,11 @@ namespace uStora.Web.Controllers
         {
             _wishlistService = wishlistService;
         }
-
+        
         public ActionResult Index(int? page, string searchString)
         {
-            return View();
+            var wishlists = Mapper.Map<IEnumerable<Wishlist>, IEnumerable<WishlistViewModel>>(_wishlistService.GetAll(searchString));
+            return View(wishlists);
         }
 
         [HttpPost]

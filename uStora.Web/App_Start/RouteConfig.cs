@@ -53,6 +53,13 @@ namespace uStora.Web
                defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            //wishlist
+            routes.MapRoute(
+               name: "wishlist",
+               url: "san-pham-yeu-thich.htm",
+               defaults: new { controller = "Wishlist", action = "Index", alias = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
             //shopping cart 
             routes.MapRoute(
                name: "Shopping cart",

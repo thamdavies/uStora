@@ -8,42 +8,30 @@ namespace uStora.Web.Mappings
     {
         public static void Configure()
         {
-            //Post
-            Mapper.CreateMap<Post, PostViewModel>();
-            Mapper.CreateMap<PostCategory, PostCategoryViewModel>();
-            Mapper.CreateMap<PostTag, PostTagViewModel>();
-            //tag
-            Mapper.CreateMap<Tag, TagViewModel>();
-            //Product
-            Mapper.CreateMap<ProductCategory, ProductCategoryViewModel>();
-            Mapper.CreateMap<Product, ProductViewModel>();
-            Mapper.CreateMap<ProductTag, ProductTagViewModel>();
-            //slide
-            Mapper.CreateMap<Slide, SlideViewModel>();
-            //brand
-            Mapper.CreateMap<Brand, BrandViewModel>();
-            //contactdetail
-            Mapper.CreateMap<ContactDetail, ContactDetailViewModel>();
-            //order
-            Mapper.CreateMap<Order, OrderViewModel>();
-            //order detail
-            Mapper.CreateMap<OrderDetail, OrderDetailViewModel>();
-            //feedback
-            Mapper.CreateMap<Feedback, FeedbackViewModel>();
-            //footer
-            Mapper.CreateMap<Footer, FooterViewModel>();
-            //page
-            Mapper.CreateMap<Page, PageViewModel>();
-            //wishlist
-            Mapper.CreateMap<Wishlist, WishlistViewModel>();
-            //vehicle
-            Mapper.CreateMap<Vehicle, VehicleViewModel>();
-            //trackorder
-            Mapper.CreateMap<TrackOrder, TrackOrderViewModel>();
-
-            Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
-            Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
-            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            Mapper.Initialize(x =>
+            {
+                x.CreateMap<Post, PostViewModel>();
+                x.CreateMap<ProductCategory, ProductCategoryViewModel>();
+                x.CreateMap<PostCategory, PostCategoryViewModel>();
+                x.CreateMap<PostTag, PostTagViewModel>();
+                x.CreateMap<Tag, TagViewModel>();
+                x.CreateMap<Product, ProductViewModel>();
+                x.CreateMap<ProductTag, ProductTagViewModel>();
+                x.CreateMap<Brand, BrandViewModel>();
+                x.CreateMap<ContactDetail, ContactDetailViewModel>();
+                x.CreateMap<Slide, SlideViewModel>();
+                x.CreateMap<Order, OrderViewModel>();
+                x.CreateMap<OrderDetail, OrderDetailViewModel>();
+                x.CreateMap<Feedback, FeedbackViewModel>();
+                x.CreateMap<Footer, FooterViewModel>();
+                x.CreateMap<Page, PageViewModel>();
+                x.CreateMap<Wishlist, WishlistViewModel>();
+                x.CreateMap<Vehicle, VehicleViewModel>();
+                x.CreateMap<TrackOrder, TrackOrderViewModel>();
+                x.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+                x.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
+                x.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            });
         }
     }
 }
