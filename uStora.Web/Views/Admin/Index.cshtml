@@ -18,6 +18,7 @@
     <link href="/Assets/libs/angular-loading-bar/build/loading-bar.min.css" rel="stylesheet" />
     <link href="~/Assets/libs/datetimepicker/build/jquery.datetimepicker.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/Assets/admin/css/AdminLTE.min.css">
+
     <link href="/Assets/admin/css/customized.css" rel="stylesheet" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
@@ -30,20 +31,27 @@
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini" ng-app="uStora" ng-controller="rootController">
-    
+
     <div ui-view></div>
 
     <!-- jQuery -->
     <script src="~/Assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- SignalR -->
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="~/Assets/Admin/js/notifications/feedbackNotification.js"></script>
     <!-- Bootstrap -->
     <script src="/Assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- SlimScroll -->
+    <!-- mustache-->
+    @Scripts.Render("~/bundles/mustache")
     <script src="/Assets/libs/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="~/Assets/libs/fastclick/lib/fastclick.js"></script>
     <script src="~/Assets/libs/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/Assets/admin/js/app.js"></script>
+    <script src="~/Assets/Admin/js/demo.js"></script>
     <script src="/Assets/admin/js/customizeApp.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!--<script src="../../dist/js/demo.js"></script>-->

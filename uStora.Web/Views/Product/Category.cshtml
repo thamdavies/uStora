@@ -85,6 +85,14 @@
 
                             <div class="product-option-shop">
                                 <a href="#" id="btnAddToCart" data-id="@product.ID" class="add_to_cart_button">Thêm vào giỏ</a>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a href="javascript:void()" id="add_to_wishlist_button" class="add_to_wishlist_button" data-toggle="tooltip" title="Yêu thích"><i class="fa fa-heart" data-id="@product.ID" id="btnAddWishlist"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="javascript:void()" id="add_to_wishlist_button" class="add_to_wishlist_button" data-toggle="tooltip" title="Yêu thích"><i class="fa fa-heart" data-id="@product.ID" id="btnAddWishlistDisable"></i></a>
+                                }
                             </div>
                         </div>
                     </div>

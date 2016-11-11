@@ -4,7 +4,7 @@
         <!-- Logo -->
         <a ui-sref="login" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>u</b>Stora</span>
+            <span class="logo-mini"><b>u</b>Sto</span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>u</b>Stora</span>
         </a>
@@ -51,23 +51,21 @@
                     </li>
                     <!-- Notifications: style can be found in dropdown.less -->
                     <li class="dropdown notifications-menu">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">10</span>
+                        <a href="javascript:void(0)" class="dropdown-toggle" id="noti-menu" data-toggle="dropdown">
+                            <i class="fa fa-bell-o notifications-menu"></i>
+                            <span class="label label-warning noti-count">&nbsp;</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
-                            <li>
+                            <li class="header noti-status">&nbsp;</li>
+                            <li id="content-box">
                                 <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                        </a>
+                                <ul class="menu" id="noti-content">
+                                    <li class="count-item">
+                                       
                                     </li>
                                 </ul>
                             </li>
-                            <li class="footer"><a href="#">View all</a></li>
+                            <li class="footer" id="all-notification"><a id="view-all" href="#">Xem tất cả</a></li>
                         </ul>
                     </li>
                     <!-- Tasks: style can be found in dropdown.less -->
@@ -431,3 +429,8 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+<script id="templateNotificationFeedbacks" type="x-tmpl-mustache">
+   
+</script>
+<script src="../../../Assets/Admin/js/notifications/feedbackNotification.js"></script>

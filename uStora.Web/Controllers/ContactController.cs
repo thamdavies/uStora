@@ -15,8 +15,8 @@ namespace uStora.Web.Controllers
 
         public ContactController(IContactDetailService contactDetailService, IFeedbackService feedbackService)
         {
-            this._contactDetailService = contactDetailService;
-            this._feedbackService = feedbackService;
+            _contactDetailService = contactDetailService;
+            _feedbackService = feedbackService;
         }
 
         [OutputCache(Duration = 60)]
