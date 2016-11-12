@@ -236,6 +236,7 @@
     <Compile Include="Api\ApplicationRoleController.cs" />
     <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\BrandController.cs" />
+    <Compile Include="Api\FeedbackController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
@@ -332,6 +333,11 @@
     <Content Include="app\components\brands\brandEditView.html" />
     <Content Include="app\components\brands\brandListController.js" />
     <Content Include="app\components\brands\brandListView.html" />
+    <Content Include="app\components\feedbacks\feedback.module.js" />
+    <Content Include="app\components\feedbacks\feedbackDetailController.js" />
+    <Content Include="app\components\feedbacks\feedbackDetailView.html" />
+    <Content Include="app\components\feedbacks\feedbackListController.js" />
+    <Content Include="app\components\feedbacks\feedbackListView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />
@@ -490,6 +496,36 @@
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.css" />
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.js" />
     <Content Include="Assets\libs\angular-chart.js\gulpfile.js" />
+    <Content Include="Assets\libs\angular-timeago\.gitattributes" />
+    <Content Include="Assets\libs\angular-timeago\.gitignore" />
+    <Content Include="Assets\libs\angular-timeago\dist\angular-timeago-core.js" />
+    <Content Include="Assets\libs\angular-timeago\dist\angular-timeago-core.min.js" />
+    <Content Include="Assets\libs\angular-timeago\dist\angular-timeago.js" />
+    <Content Include="Assets\libs\angular-timeago\dist\angular-timeago.min.js" />
+    <Content Include="Assets\libs\angular-timeago\Gruntfile.js" />
+    <Content Include="Assets\libs\angular-timeago\karma-unit.conf.js" />
+    <Content Include="Assets\libs\angular-timeago\protractor-e2e.conf.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-ca_ES.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-de_DE.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-en_US.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-es_ES.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-es_LA.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-fr_FR.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-he_IL.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-hu_HU.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-it_IT.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-nl_NL.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-pl_PL.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-pt_BR.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-sv_SE.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-zh_CN.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-zh_TW.js" />
+    <Content Include="Assets\libs\angular-timeago\src\module.js" />
+    <Content Include="Assets\libs\angular-timeago\src\now-time.factory.js" />
+    <Content Include="Assets\libs\angular-timeago\src\time-ago-settings.constant.js" />
+    <Content Include="Assets\libs\angular-timeago\src\time-ago.directive.js" />
+    <Content Include="Assets\libs\angular-timeago\src\time-ago.factory.js" />
+    <Content Include="Assets\libs\angular-timeago\src\time-ago.filter.js" />
     <Content Include="Assets\libs\bootstrapValidator\.gitignore" />
     <Content Include="Assets\libs\bootstrapValidator\dist\css\bootstrapValidator.css" />
     <Content Include="Assets\libs\bootstrapValidator\dist\css\bootstrapValidator.min.css" />
@@ -5688,6 +5724,17 @@
   <ItemGroup>
     <Content Include="Assets\libs\bootstrapValidator\.bower.json" />
     <Content Include="Assets\libs\bootstrapValidator\bower.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\libs\angular-timeago\.bower.json" />
+    <Content Include="Assets\libs\angular-timeago\.editorconfig" />
+    <Content Include="Assets\libs\angular-timeago\.gittrack" />
+    <Content Include="Assets\libs\angular-timeago\.jsbeautifyrc" />
+    <Content Include="Assets\libs\angular-timeago\.jshintrc" />
+    <Content Include="Assets\libs\angular-timeago\bower.json" />
+    <Content Include="Assets\libs\angular-timeago\LICENSE" />
+    <Content Include="Assets\libs\angular-timeago\package.json" />
+    <Content Include="Assets\libs\angular-timeago\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

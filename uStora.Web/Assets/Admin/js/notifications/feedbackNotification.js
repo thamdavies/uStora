@@ -23,13 +23,13 @@
                     $('span.noti-count').html(response.length);
                     $.each(response, function (index, value) {
                         $('li.noti-status').html('Bạn có ' + response.length + ' thông báo.');
-                        var html = "<li class='count-item'><a href='#'>" +
+                        var html = "<li class='count-item'><a href='/admin#/detail/" + value.ID + "'>" +
                             "<i class='fa fa-users text-aqua'></i>" +
                             " Phản hồi từ " + value.Name + " .</a> </li>";
                         $('#noti-content').append($(html));
                     });
                 }
-               
+
             },
             error: function (error) {
                 console.log(error);

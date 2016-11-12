@@ -1,11 +1,10 @@
-﻿/// <reference path="../../../Assets/admin/libs/angular/angular.js" />
-
+﻿
 (function (app) {
-    app.controller('brandListController', brandListController);
+    app.controller('feedbackListController', feedbackListController);
 
-    brandListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
-    function brandListController($scope, apiService, notificationService, $ngBootbox, $filter) {
-        $scope.brands = [];
+    feedbackListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
+    function feedbackListController($scope, apiService, notificationService, $ngBootbox, $filter) {
+        $scope.feedbacks = [];
         $scope.loading = true;
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -14,13 +13,13 @@
 
         $scope.search = search;
 
-        $scope.deleteBrand = deleteBrand;
+        $scope.deleteFeedback = deleteFeedback;
 
         $scope.selectAll = selectAll;
 
-        $scope.deleteBrandMulti = deleteBrandMulti;
+        $scope.deleteFeedbackMulti = deleteFeedbackMulti;
 
-        function deleteBrandMulti() {
+        function deleteFeedbackMulti() {
             $ngBootbox.confirm('Tất cả dữ liệu đã chọn sẽ bị xóa. Bạn muốn tiếp tục?').then(function () {
 
                 var listId = [];
@@ -29,10 +28,10 @@
                 });
                 var config = {
                     params: {
-                        selectedbrands: JSON.stringify(listId)
+                        selectedFeedbacks: JSON.stringify(listId)
                     }
                 }
-                apiService.del('/api/brand/deletemulti', config, function (result) {
+                apiService.del('/api/feedback/deletemulti', config, function (result) {
                     notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
                     search();
                 }, function (error) {
@@ -44,19 +43,19 @@
         $scope.isAll = false;
         function selectAll() {
             if ($scope.isAll === false) {
-                angular.forEach($scope.brands, function (item) {
+                angular.forEach($scope.feedbacks, function (item) {
                     item.checked = true;
                 });
                 $scope.isAll = true;
             } else {
-                angular.forEach($scope.brands, function (item) {
+                angular.forEach($scope.feedbacks, function (item) {
                     item.checked = false;
                 });
                 $scope.isAll = false;
             }
         }
 
-        $scope.$watch('brands', function (n, o) {
+        $scope.$watch('feedbacks', function (n, o) {
             var checked = $filter('filter')(n, { checked: true });
 
             if (checked.length) {
@@ -70,14 +69,14 @@
 
 
 
-        function deleteBrand(id) {
+        function deleteFeedback(id) {
             $ngBootbox.confirm('Bạn chắc chắn muốn xóa bản ghi này?').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
-                apiService.del('/api/brand/delete', config, function () {
+                apiService.del('/api/feedback/delete', config, function () {
                     notificationService.displaySuccess('Đã xóa thành công.');
                     search();
                 }, function () {
@@ -87,31 +86,32 @@
         }
 
         function search() {
-            getBrands();
+            getFeedbacks();
         }
 
-        $scope.getBrands = getBrands;
+        $scope.getFeedbacks = getFeedbacks;
 
-        function getBrands(page) {
+        function getFeedbacks(page) {
             $scope.loading = true;
             page = page || 0;
             var config = {
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 20
+                    pageSize: 5
                 }
             }
-            apiService.get('/api/brand/getall', config, function (result) {
-                $scope.brands = result.data.Items;
+            apiService.get('/api/feedback/list', config, function (result) {
+                
+                $scope.feedbacks = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
                 $scope.loading = false;
             }, function () {
-                console.log('Không có nhãn hiệu nào!!!');
+                console.log('Không có dữ liệu!!!');
             });
         }
-        $scope.getBrands();
+        $scope.getFeedbacks();
     }
-})(angular.module('uStora.brands'));
+})(angular.module('uStora.feedbacks'));

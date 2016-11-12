@@ -98,9 +98,6 @@
                 }
             }
             apiService.get('/api/productcategory/getall', config, function (result) {
-                if (result.data.Count == 0) {
-                    notificationService.displayWarning('Không có bản ghi nào!!!');
-                }
                 $scope.productCategories = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;

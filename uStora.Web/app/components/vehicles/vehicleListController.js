@@ -103,9 +103,6 @@
                 }
             }
             apiService.get('/api/vehicle/getall', config, function (result) {
-                if (result.data.Count == 0) {
-                    notificationService.displayWarning('Không có bản ghi nào!!!');
-                }
                 $scope.vehicles = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
