@@ -38,7 +38,7 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize: 2,
+                    pageSize: 5,
                     filter: $scope.filterExpression
                 }
             }

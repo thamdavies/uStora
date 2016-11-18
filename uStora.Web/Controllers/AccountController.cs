@@ -110,7 +110,8 @@ namespace uStora.Web.Controllers
                     ModelState.AddModelError("email", "Email đã tồn tại");
                     return View(model);
                 }
-                var user = new ApplicationUser {
+                var user = new ApplicationUser
+                {
                     FullName = info.DefaultUserName,
                     UserName = model.Email,
                     Email = model.Email
@@ -160,12 +161,14 @@ namespace uStora.Web.Controllers
                 {
                     UserName = registerVm.Username,
                     Email = registerVm.Email,
+                    IsViewed = false,
                     EmailConfirmed = true,
                     Gender = registerVm.Gender,
                     Image = "/UploadedFiles/images/user-images/default-avatar.jpg",
-                    BirthDay = DateTime.Now,
+                    BirthDay = registerVm.Birthdate,
                     FullName = registerVm.Fullname,
                     PhoneNumber = registerVm.PhoneNumber,
+                    CreatedDate = DateTime.Now,
                     Address = registerVm.Address
                 };
 
@@ -173,7 +176,7 @@ namespace uStora.Web.Controllers
 
                 var adminUser = await _userManager.FindByEmailAsync(registerVm.Email);
                 if (adminUser != null)
-                    await _userManager.AddToRolesAsync(adminUser.Id, new string[] { "User" });
+                    await _userManager.AddToRolesAsync(adminUser.Id, new string[] { "ViewUser" });
 
                 string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/templates/newuser.html"));
                 content = content.Replace("{{Username}}", adminUser.FullName);

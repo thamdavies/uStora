@@ -16,8 +16,6 @@ namespace uStora.Web
         private string con = ConfigurationManager.ConnectionStrings["uStoraConnection"].ConnectionString;
         protected void Application_Start()
         {
-            //SqlConnection sqlCon = new SqlConnection(con);
-            //sqlCon.Open();
             SqlDependency.Start(con);
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -31,7 +29,8 @@ namespace uStora.Web
         {
             NotificationComponent notiComponent = new NotificationComponent();
             var currentTime = DateTime.Now;
-            HttpContext.Current.Session["LastUpdated"] = currentTime;
+            HttpContext.Current.Session["FeedbackTime"] = currentTime;
+            HttpContext.Current.Session["UserTime"] = currentTime;
             notiComponent.RegisterNotification(currentTime);
         }
         protected void Application_End()

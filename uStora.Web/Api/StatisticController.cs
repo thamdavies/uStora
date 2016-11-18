@@ -1,12 +1,15 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using uStora.Common.ViewModels;
 using uStora.Service;
 using uStora.Web.Infrastructure.Core;
 
 namespace uStora.Web.Api
 {
-    [Authorize]
+   // [Authorize]
     [RoutePrefix("api/statistic")]
     public class StatisticController : ApiControllerBase
     {
@@ -19,13 +22,22 @@ namespace uStora.Web.Api
         }
 
         [Route("getrevenue")]
-        [Authorize(Roles = "ViewUser")]
-        public HttpResponseMessage GetRevenue(HttpRequestMessage request, string fromDate, string toDate)
+        //[Authorize(Roles = "ViewUser")]
+        public HttpResponseMessage GetRevenue(HttpRequestMessage request, string fromDate, string toDate, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
                 var model = _statisticService.GetRevenueStatistic(fromDate, toDate);
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, model);
+                int totalRow = model.Count();
+                var revenueList = model.OrderByDescending(x => x.Date).Skip(page * pageSize).Take(pageSize);
+                var pagination = new PaginationSet<RevenueStatisticViewModel>()
+                {
+                    Items = revenueList,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, pagination);
                 return response;
             });
         }

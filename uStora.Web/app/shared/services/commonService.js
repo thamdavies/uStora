@@ -5,7 +5,8 @@
     function commonService() {
         return {
             getSeoTitle: getSeoTitle,
-            objectToString: objectToString
+            objectToString: objectToString,
+            strToDate: strToDate
         }
 
         function getSeoTitle(input) {
@@ -73,6 +74,12 @@
             }
 
             return string.join("")
+        }
+        function strToDate(input) {
+            var date = input.substr(0, 2);
+            var month = input.substr(3, 2);
+            var year = input.substr(6, 4);
+            return month + "/" + date + "/" + year;
         }
     }
 })(angular.module('uStora.common'));

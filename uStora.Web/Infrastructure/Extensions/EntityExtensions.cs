@@ -199,6 +199,9 @@ namespace uStora.Web.Infrastructure.Extensions
             appUser.UserName = appUserViewModel.UserName;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
             appUser.Gender = appUserViewModel.Gender;
+            appUser.CreatedDate = appUserViewModel.CreatedDate;
+            appUser.UpdatedDate = appUserViewModel.UpdatedDate;
+
         }
 
         public static void UpdateWishlist(this Wishlist wishlist, WishlistViewModel wishlistViewModel)

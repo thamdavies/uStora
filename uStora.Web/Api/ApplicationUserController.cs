@@ -16,7 +16,7 @@ using uStora.Web.Models;
 
 namespace uStora.Web.Api
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/applicationUser")]
     public class ApplicationUserController : ApiControllerBase
     {
@@ -82,6 +82,7 @@ namespace uStora.Web.Api
                 return request.CreateErrorResponse(HttpStatusCode.BadRequest, nameof(id) + " không có giá trị.");
             }
             var user = _userManager.FindByIdAsync(id);
+            _appUser.SetViewed(id);
             if (user == null)
             {
                 return request.CreateErrorResponse(HttpStatusCode.NoContent, "Không có dữ liệu");

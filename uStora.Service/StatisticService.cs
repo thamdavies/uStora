@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using uStora.Common.ViewModels;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
@@ -23,7 +24,7 @@ namespace uStora.Service
 
         public IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(string fromDate, string toDate)
         {
-            return _orderRepository.GetRevenueStatistic(fromDate, toDate);
+            return _orderRepository.GetRevenueStatistic(fromDate, toDate).ToList();
         }
     }
 }

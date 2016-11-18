@@ -52,7 +52,7 @@
                     }
                     <legend>Thông tin tài khoản</legend>
                     <h5 class="text-danger"><span>*</span> là bắt buộc</h5>
-                    @Html.AntiForgeryToken();
+                    @Html.AntiForgeryToken()
                     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                     <div class="form-group">
                         <div class="col-md-12 inputGroupContainer">

@@ -152,6 +152,10 @@
     <Compile Include="Migrations\201610251600155_AddListShoppingCartSP.Designer.cs">
       <DependentUpon>201610251600155_AddListShoppingCartSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611141652469_addIsViewedToAppUserTbl.cs" />
+    <Compile Include="Migrations\201611141652469_addIsViewedToAppUserTbl.Designer.cs">
+      <DependentUpon>201611141652469_addIsViewedToAppUserTbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610251600155_AddListShoppingCartSP.resx">
       <DependentUpon>201610251600155_AddListShoppingCartSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141652469_addIsViewedToAppUserTbl.resx">
+      <DependentUpon>201611141652469_addIsViewedToAppUserTbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

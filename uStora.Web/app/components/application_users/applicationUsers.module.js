@@ -7,10 +7,10 @@
 
         $stateProvider
             .state('application_users', {
-            url: "/application_users",
-            templateUrl: "/app/components/application_users/applicationUserListView.html",
-            parent: 'base',
-            controller: "applicationUserListController"
+                url: "/application_users",
+                templateUrl: "/app/components/application_users/applicationUserListView.html",
+                parent: 'base',
+                controller: "applicationUserListController"
             })
             .state('add_application_user', {
                 url: "/add_application_user",
@@ -22,6 +22,12 @@
                 url: "/edit_application_user/:id",
                 templateUrl: "/app/components/application_users/applicationUserEditView.html",
                 controller: "applicationUserEditController",
+                parent: 'base',
+            })
+            .state('user_detail', {
+                url: "/user_detail/:id",
+                templateUrl: "/app/components/application_users/applicationUserDetailView.html",
+                controller: "applicationUserDetailController",
                 parent: 'base',
             });
     }

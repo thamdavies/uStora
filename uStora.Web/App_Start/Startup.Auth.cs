@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using uStora.Data;
-using uStora.Model.Models;
+using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using Microsoft.Owin.Security.OAuth;
-using System.Threading.Tasks;
 using System.Security.Claims;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security.Google;
+using System.Threading.Tasks;
+using uStora.Data;
+using uStora.Model.Models;
 
 [assembly: OwinStartup(typeof(uStora.Web.App_Start.Startup))]
 
@@ -48,7 +48,7 @@ namespace uStora.Web.App_Start
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager,DefaultAuthenticationTypes.ApplicationCookie))
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie))
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
@@ -122,5 +122,5 @@ namespace uStora.Web.App_Start
             return owinManager;
         }
     }
-    
+
 }

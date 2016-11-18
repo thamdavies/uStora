@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace uStora.Web.Models
 {
@@ -29,10 +30,12 @@ namespace uStora.Web.Models
         public string Address { get; set; }
 
         [MaxLength(20, ErrorMessage = "Chỉ nhập 20 ký tự")]
-        [Required(ErrorMessage ="Bạn chưa chọn giới tính")]
+        [Required(ErrorMessage = "Bạn chưa chọn giới tính")]
         public string Gender { get; set; }
 
         [MaxLength(ErrorMessage = "Chỉ nhập 30 chữ số")]
         public string PhoneNumber { get; set; }
+
+        public DateTime? Birthdate { get; set; }
     }
 }
