@@ -7,6 +7,7 @@ namespace uStora.Web.Models
     [Serializable]
     public class WishlistViewModel: Auditable
     {
+        public int ID { get; set; }
         public string UserId { get; set; }
 
         public long ProductId { get; set; }

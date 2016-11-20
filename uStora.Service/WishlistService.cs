@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
@@ -15,6 +16,8 @@ namespace uStora.Service
         Wishlist Delete(int id);
 
         IEnumerable<Wishlist> GetWishlistByUserId(string userId);
+
+        IEnumerable<Wishlist> GetWishlistByUserIdPaging(string userId, string keyword, int page, int pageSize, out int totalRow);
 
         bool CheckContains(long productId);
 
@@ -76,6 +79,22 @@ namespace uStora.Service
                 return _wishlistRepository.GetMulti(x => x.Product.Name.Contains(input), new string[] { "Product" });
             else
                 return _wishlistRepository.GetAll(new string[] { "Product" });
+        }
+
+        public IEnumerable<Wishlist> GetWishlistByUserIdPaging(string userId, string keyword, int page, int pageSize, out int totalRow)
+        {
+            var query = _wishlistRepository.GetMulti(x => x.UserId == userId);
+            if (string.IsNullOrEmpty(keyword))
+            {
+                totalRow = query.Count();
+                return query.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
+            }
+            else
+            {
+                query = _wishlistRepository.GetMulti(x => x.Product.Name.Contains(keyword) || x.Product.Description.Contains(keyword), new string[] { "Product" });
+                totalRow = query.Count();
+                return query.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
+            }
         }
     }
 }

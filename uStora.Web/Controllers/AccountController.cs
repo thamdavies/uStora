@@ -140,6 +140,7 @@ namespace uStora.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
         public async Task<ActionResult> Register(RegisterViewModel registerVm)
         {
@@ -196,11 +197,12 @@ namespace uStora.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = _userManager.Find(model.Username, model.Password);
+                ApplicationUser user = await _userManager.FindAsync(model.Username, model.Password);
                 if (user != null)
                 {
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;

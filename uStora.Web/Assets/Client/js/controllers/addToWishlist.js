@@ -10,13 +10,12 @@
         $('i#btnAddWishlist').off('click').on('click', function (e) {
             e.preventDefault();
             var res = confirm("Bạn muốn thêm sản phẩm này vào danh mục yêu thích?");
-            if (res)
-            {
+            if (res) {
                 var productId = parseInt($(this).data('id'));
                 wishlist.addWishlist(productId);
             }
         });
-        
+
     },
     addWishlist: function (productId) {
         $.ajax({
@@ -37,5 +36,6 @@
             }
         });
     }
+
 }
 wishlist.init();

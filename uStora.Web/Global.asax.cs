@@ -16,6 +16,8 @@ namespace uStora.Web
         private string con = ConfigurationManager.ConnectionStrings["uStoraConnection"].ConnectionString;
         protected void Application_Start()
         {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
             SqlDependency.Start(con);
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

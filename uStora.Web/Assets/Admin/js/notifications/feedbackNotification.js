@@ -45,7 +45,7 @@
                             $('li.feedback-status').html('Bạn có ' + response.data.length + ' thông báo.');
                             var html = "<li class='count-item'  title='Thông báo mới.'><a href='/admin#/detail/" + value.ID + "'>" +
                                 "<i class='fa fa-feed text-aqua'></i>" +
-                                " Phản hồi từ " + value.Name + " .</a> </li>";
+                                " Phản hồi từ " + value.Name + " <i class='fa fa-eye-slash'></i></a> </li>";
                             $('#feedback-content').append(html);
                         }
                         else {

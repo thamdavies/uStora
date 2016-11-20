@@ -206,6 +206,8 @@ namespace uStora.Web.Infrastructure.Extensions
 
         public static void UpdateWishlist(this Wishlist wishlist, WishlistViewModel wishlistViewModel)
         {
+            wishlist.ID = wishlistViewModel.ID;
+            wishlist.UpdatedDate = wishlistViewModel.UpdatedDate;
             wishlist.UserId = wishlistViewModel.UserId;
             wishlist.ProductId = wishlistViewModel.ProductId;
         }
