@@ -165,7 +165,7 @@ namespace uStora.Web.Controllers
                     IsViewed = false,
                     EmailConfirmed = true,
                     Gender = registerVm.Gender,
-                    Image = "/UploadedFiles/images/user-images/default-avatar.jpg",
+                    Image = CommonConstants.DefaultAvatar,
                     BirthDay = registerVm.Birthdate,
                     FullName = registerVm.Fullname,
                     PhoneNumber = registerVm.PhoneNumber,
