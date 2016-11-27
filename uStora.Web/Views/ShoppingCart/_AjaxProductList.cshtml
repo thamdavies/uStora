@@ -12,12 +12,12 @@
                 <div class="product-sidebar-price">
                     @if (item.PromotionPrice.HasValue)
                     {
-                        <ins>@item.PromotionPrice.Value.ToString("N0") đ</ins>
-                        <del>@item.Price.ToString("N0") đ</del>
+                        <ins>@item.PromotionPrice.Value.ToString("c0")</ins>
+                        <del>@item.Price.ToString("c0")</del>
                     }
                     else
                     {
-                        <ins>@item.Price.ToString("N0") đ</ins>
+                        <ins>@item.Price.ToString("c0")</ins>
                     }
                 </div>
             </div>

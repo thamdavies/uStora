@@ -26,6 +26,9 @@
                                             Tên sản phẩm
                                         </th>
                                         <th>
+                                            Giá sản phẩm
+                                        </th>
+                                        <th>
                                             Ngày thêm
                                         </th>
                                         <th>Thao tác</th>
@@ -37,6 +40,9 @@
                                         <tr>
                                             <td>
                                                 <a href="/product/@item.Product.Alias-@(item.ProductId).htm">@item.Product.Name</a>
+                                            </td>
+                                            <td>
+                                                @item.Product.Price.ToString("c0")
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.CreatedDate)

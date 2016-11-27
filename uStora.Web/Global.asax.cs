@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Globalization;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -18,14 +20,23 @@ namespace uStora.Web
         {
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
-            SqlDependency.Start(con);
+            // Change current culture
+            CultureInfo culture;
+            if (Thread.CurrentThread.CurrentCulture.Name == "vi-VN")
+                culture = CultureInfo.CreateSpecificCulture("vi-VN");
+            else
+                culture = CultureInfo.CreateSpecificCulture("en-US");
+
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfiguration.Configure();
-            
+            SqlDependency.Start(con);
+
         }
         protected void Session_Start(object sender, EventArgs e)
         {

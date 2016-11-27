@@ -17,6 +17,10 @@ namespace uStora.Web
 
             bundles.Add(new ScriptBundle("~/js/etalage")
               .Include("~/Assets/Client/js/jquery.etalage.min.js"));
+
+            bundles.Add(new ScriptBundle("~/js/liveLocation")
+              .Include("~/Assets/Client/js/controllers/liveLocation.js"));
+
             #region~/bundles/googleapis
             var cdnPath = "~/https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoQXEpc3J26EnYucyoyNFQsUDYL4Rpls";
             bundles.Add(new ScriptBundle("~/bundles/googleapis",

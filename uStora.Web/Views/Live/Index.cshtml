@@ -37,7 +37,9 @@
 </div>
 @section scripts{
     @Scripts.Render("~/js/bootstrap")
-    <script src="~/Assets/Client/js/controllers/liveLocation.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    @Scripts.Render("~/js/liveLocation")
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoQXEpc3J26EnYucyoyNFQsUDYL4Rpls">
     </script>

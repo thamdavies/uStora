@@ -95,12 +95,12 @@
                                 <div class="product-inner-price">
                                     @if (Model.PromotionPrice.HasValue)
                                     {
-                                        <ins>@Model.PromotionPrice.Value.ToString("N0") đ</ins>
-                                        <del>@Model.Price.ToString("N0") đ</del>
+                                        <ins>@Model.PromotionPrice.Value.ToString("c0")</ins>
+                                        <del>@Model.Price.ToString("c0")</del>
                                     }
                                     else
                                     {
-                                        <ins>@Model.Price.ToString("N0") đ</ins>
+                                        <ins>@Model.Price.ToString("c0")</ins>
                                     }
                                 </div>
 
@@ -221,12 +221,12 @@
                                         <div class="product-carousel-price">
                                             @if (rl_product.PromotionPrice.HasValue)
                                             {
-                                                <ins>@rl_product.PromotionPrice.Value.ToString("N0") đ</ins>
-                                                <del>@rl_product.Price.ToString("N0") đ</del>
+                                                <ins>@rl_product.PromotionPrice.Value.ToString("c0")</ins>
+                                                <del>@rl_product.Price.ToString("c0")</del>
                                             }
                                             else
                                             {
-                                                <ins>@rl_product.Price.ToString("N0") đ</ins>
+                                                <ins>@rl_product.Price.ToString("c0")</ins>
                                             }
                                         </div>
                                     </div>

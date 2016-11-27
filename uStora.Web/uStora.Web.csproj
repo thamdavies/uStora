@@ -269,6 +269,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\FeedbackHub.cs" />
+    <Compile Include="Hubs\LiveLocationHub.cs" />
     <Compile Include="Hubs\UserHub.cs" />
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />

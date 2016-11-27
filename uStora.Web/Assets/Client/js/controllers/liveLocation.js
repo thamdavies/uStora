@@ -67,6 +67,12 @@
                               'Lỗi: Trình duyệt của bạn không hỗ trợ Geolocation');
     }
 }
-setInterval(function () {
+
+var liveLocationHub = $.connection.liveLocationHub;
+$.connection.hub.start().done(function () {
+    loc.init();
+});
+/*setInterval(function () {
     loc.init();
 }, 10000);
+*/
