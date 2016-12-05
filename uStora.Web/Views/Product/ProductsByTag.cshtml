@@ -75,7 +75,7 @@
                             </div>
                             <h2><a href="/product/@(product.Alias)-@(product.ID).htm">@product.Name</a></h2>
                             <div class="product-carousel-price">
-                                @if (product.PromotionPrice.HasValue)
+                                @if (product.PromotionPrice.HasValue && product.PromotionPrice.Value != 0)
                                 {
                                     <ins>@product.PromotionPrice.Value.ToString("c0")</ins>
                                     <del>@product.Price.ToString("c0")</del>

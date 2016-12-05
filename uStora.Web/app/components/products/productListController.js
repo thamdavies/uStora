@@ -12,6 +12,8 @@
         $scope.deleteProduct = deleteProduct;
         $scope.selectAll = selectAll;
         $scope.deleteProductMulti = deleteProductMulti;
+        $scope.exportProductToXsls = exportProductToXsls;
+        $scope.importProductToXsls = importProductToXsls;
 
         function deleteProductMulti() {
             $ngBootbox.confirm('Tất cả dữ liệu đã chọn sẽ bị xóa. Bạn muốn tiếp tục?').then(function () {
@@ -102,6 +104,54 @@
             }, function () {
                 console.log('Không có sản phẩm nào!!!');
             });
+        }
+
+        function exportProductToXsls() {
+            $scope.loading = true;
+            apiService.post('/api/product/exporttoexcel', null, function (result) {
+                notificationService.displaySuccess('Xuất file thành công');
+                $scope.loading = false;
+            }, function () {
+                notificationService.displayError('Xuất file thất bại');
+                $scope.loading = false;
+            });
+        }
+        function importProductToXsls() {
+            $scope.loading = true;
+
+            var data = new FormData();
+
+            var files = $("#importedProduct").get(0).files;
+
+
+            if (files.length > 0) {
+                data.append("importedProduct", files[0]);
+            }
+            else {
+                $scope.loading = false;
+                notificationService.displayInfo('Bạn chưa chọn file');
+                return false;
+            }
+                
+
+            $.ajax({
+                url: '/api/product/importtoexcel',
+                type: "POST",
+                processData: false,
+                data: data,
+                dataType: 'text',
+                contentType: false,
+                success: function (response) {
+                    notificationService.displaySuccess('Import file thành công');
+                    $("#btnClose").trigger('click');
+                },
+                error: function (er) {
+                    $("#btnClose").trigger('click');
+                    notificationService.displayError('Import file không thành công');
+                }
+            });
+            $scope.loading = false;
+
         }
         $scope.getProducts();
     }

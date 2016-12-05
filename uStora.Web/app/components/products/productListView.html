@@ -33,11 +33,44 @@
                 <div class="col-lg-6">
                     <button class="btn btn-primary" ui-sref="add_product">Thêm mới</button>
                     <button class="btn btn-danger" id="btnDelete" disabled ng-click="deleteProductMulti()">Xóa dòng đã chọn</button>
+                    <button class="btn btn-primary" ng-click="exportProductToXsls()">Export</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" type="button">Import</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <form action="/api/product/importtoexcel" method="post" enctype="multipart/form-data">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Import sản phẩm từ file Excel</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input class="form-control" type="file" id="importedProduct" name="importedProduct" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="btnAccept" ng-click="importProductToXsls()">Chấp nhận</button>
+                                        <!--<button type="submit" class="btn btn-primary">Chấp nhận</button>-->
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnClose">Đóng</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-12 table-responsive">
+                    <div ng-if="loading">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4 loading-area">
+                            <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary loading-lable">Đang tải...</label>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10%">
@@ -69,7 +102,7 @@
                             </td>
                             <td>
                                 <button class="btn btn-sm btn-primary cus-title" ui-sref="edit_product({id:item.ID})">
-                                    <i class=" fa fa-pencil" data-toggle="tooltip" title="Chỉnh sửa">
+                                    <i class="fa fa-pencil" data-toggle="tooltip" title="Chỉnh sửa">
                                     </i>
                                 </button>
                                 <button class="btn btn-sm btn-warning cus-title" ng-click="deleteProduct(item.ID)">
@@ -87,13 +120,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                    <div ng-if="loading">
-                        <div class="col-xs-4"></div>
-                        <div class="col-xs-4 loading-area">
-                            <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary loading-lable">Đang tải...</label>
-                        </div>
-                        <div class="col-xs-4"></div>
-                    </div>
+                   
                 </div>
             </div>
         </div><!-- /.box-body -->

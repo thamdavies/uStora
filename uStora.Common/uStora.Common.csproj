@@ -73,6 +73,8 @@
     <Compile Include="CommonConstants.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Exceptions\NameDuplicatedException.cs" />
+    <Compile Include="Exceptions\WorkSheetNotFoundException.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="FunctionsCommon\DistinctBy.cs" />
     <Compile Include="GetNameHelper.cs" />
     <Compile Include="MailHelper.cs" />

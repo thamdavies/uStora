@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using uStora.Common;
 using uStora.Model.Models;
 using uStora.Service;
+using uStora.Service.ExportImport;
 using uStora.Web.Infrastructure.Core;
 using uStora.Web.Models;
 
@@ -18,15 +19,21 @@ namespace uStora.Web.Controllers
         private IProductService _productService;
         private IBrandService _brandService;
         private IProductCategoryService _productCategoryService;
+        private IExportManagerService _exportManager;
+        private IImportManagerService _importManager;
 
         public ProductController(IProductService productService,
             IProductCategoryService productCategoryService,
-            IBrandService brandService)
+            IBrandService brandService, IExportManagerService exportManager,
+            IImportManagerService importManager)
         {
+            _importManager = importManager;
+            _exportManager = exportManager;
             _productService = productService;
             _brandService = brandService;
             _productCategoryService = productCategoryService;
         }
+
         public void IncreaseView(List<ViewCounterViewModel> viewCounterViewModel, long productId)
         {
             if (viewCounterViewModel != null)
@@ -44,10 +51,11 @@ namespace uStora.Web.Controllers
                 AddViewCounter(productId);
             }
         }
+
         public void AddViewCounter(long productId)
         {
             var viewCounterViewModel = (List<ViewCounterViewModel>)Session[CommonConstants.ViewCounterSession];
-            if(viewCounterViewModel == null)
+            if (viewCounterViewModel == null)
                 viewCounterViewModel = new List<ViewCounterViewModel>();
             ViewCounterViewModel viewCounterVm = new ViewCounterViewModel();
             viewCounterVm.ProductId = productId;
@@ -60,7 +68,7 @@ namespace uStora.Web.Controllers
             var viewCounter = (List<ViewCounterViewModel>)Session[CommonConstants.ViewCounterSession];
             int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
             var product = _productService.GetByID(id);
-            IncreaseView(viewCounter,id);
+            IncreaseView(viewCounter, id);
             var productVm = Mapper.Map<Product, ProductViewModel>(product);
             var relatedProducts = _productService.GetRelatedProducts(id, 5);
             var hotProducts = _productService.GetRelatedProducts(id, 5);
@@ -189,6 +197,44 @@ namespace uStora.Web.Controllers
             };
 
             return View(paginationSet);
+        }
+
+        [HttpPost]
+        public ActionResult ExportExcel()
+        {
+            try
+            {
+                var products = _productService.GetAll();
+                var bytes = _exportManager.ExportProductsToXlsx(products);
+
+                return File(bytes, CommonConstants.TextXlsx, "products.xlsx");
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Shop");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ImportFromXlsx()
+        {
+            try
+            {
+                var file = Request.Files["importexcelfile"];
+                if (file != null && file.ContentLength > 0)
+                {
+                    _importManager.ImportProductsFromXlsx(file.InputStream);
+                }
+                else
+                {
+                    return RedirectToAction("Shop");
+                }
+                return RedirectToAction("Shop");
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Shop");
+            }
         }
     }
 }

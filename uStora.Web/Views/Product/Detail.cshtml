@@ -16,7 +16,17 @@
         </div>
     </div>
 </div>
-
+@*@using (Html.BeginForm("ExportExcel", "Product", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-success">Export</button>
+}
+@using (Html.BeginForm("ImportFromXlsx", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-md-10">
+        <input type="file" id="importexcelfile" name="importexcelfile" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Import</button>
+}*@
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -93,7 +103,7 @@
                             <div class="product-inner">
                                 <h2 class="product-name">@Model.Name</h2>
                                 <div class="product-inner-price">
-                                    @if (Model.PromotionPrice.HasValue)
+                                    @if (Model.PromotionPrice.HasValue && Model.PromotionPrice.Value != 0)
                                     {
                                         <ins>@Model.PromotionPrice.Value.ToString("c0")</ins>
                                         <del>@Model.Price.ToString("c0")</del>
@@ -219,7 +229,7 @@
                                         <h2><a href="/product/@(rl_product.Alias)-@(rl_product.ID).htm">@rl_product.Name</a></h2>
 
                                         <div class="product-carousel-price">
-                                            @if (rl_product.PromotionPrice.HasValue)
+                                            @if (rl_product.PromotionPrice.HasValue && rl_product.PromotionPrice.Value != 0)
                                             {
                                                 <ins>@rl_product.PromotionPrice.Value.ToString("c0")</ins>
                                                 <del>@rl_product.Price.ToString("c0")</del>

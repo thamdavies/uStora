@@ -10,7 +10,7 @@
                 <img src="@item.Image" class="recent-thumb" alt="">
                 <h2><a href="/product/@(item.Alias)-@(item.ID).htm">@item.Name</a></h2>
                 <div class="product-sidebar-price">
-                    @if (item.PromotionPrice.HasValue)
+                    @if (item.PromotionPrice.HasValue && item.PromotionPrice.Value != 0)
                     {
                         <ins>@item.PromotionPrice.Value.ToString("c0")</ins>
                         <del>@item.Price.ToString("c0")</del>

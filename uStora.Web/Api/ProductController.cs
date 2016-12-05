@@ -1,37 +1,50 @@
 ﻿using AutoMapper;
-using uStora.Model.Models;
-using uStora.Service;
-using uStora.Web.Infrastructure.Core;
-using uStora.Web.Infrastructure.Extensions;
-using uStora.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using uStora.Model.Models;
+using uStora.Service;
+using uStora.Service.ExportImport;
+using uStora.Web.Infrastructure.Core;
+using uStora.Web.Infrastructure.Extensions;
+using uStora.Web.Models;
 
 namespace uStora.Web.API
 {
     [RoutePrefix("api/product")]
-    [Authorize]
+    //[Authorize]
     public class ProductController : ApiControllerBase
     {
         #region Initialize
 
         private IProductService _productService;
         private IBrandService _brandService;
+        private IExportManagerService _exportManager;
+        private IImportManagerService _importManager;
 
         public ProductController(IErrorService errorService,
-            IProductService productService, IBrandService brandService)
+            IProductService productService, IBrandService brandService,
+            IExportManagerService exportManager,
+            IImportManagerService importManager)
             : base(errorService)
         {
-            this._productService = productService;
-            this._brandService = brandService;
+            _productService = productService;
+            _brandService = brandService;
+            _exportManager = exportManager;
+            _importManager = importManager;
         }
 
         #endregion Initialize
+
+        #region Methods
 
         [Route("getallparents")]
         [HttpGet]
@@ -228,5 +241,68 @@ namespace uStora.Web.API
                 return response;
             });
         }
+
+        #endregion Methods
+
+        #region Export/Import
+        [Route("exporttoexcel")]
+        [HttpPost]
+        [Authorize(Roles = "AddUser")]
+        public HttpResponseMessage ExportProductsToXlsx(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                try
+                {
+                    string fileName = string.Concat("products.xlsx");
+                    string filePath = HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
+                    var listProduct = _productService.GetAll();
+                    _exportManager.ExportProductsToXlsxApi(listProduct, filePath);
+
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StreamContent(new FileStream(filePath, FileMode.Open));
+                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+                    response.Content.Headers.ContentDisposition.FileName = fileName;
+                    return response;
+                }
+                catch (Exception exc)
+                {
+                    response = request.CreateResponse(HttpStatusCode.InternalServerError, exc.Message);
+                    return response;
+                }
+            });
+        }
+
+        [Route("importtoexcel")]
+        [HttpPost]
+        public HttpResponseMessage ImportProductsToXlsx(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                try
+                {
+                    var file = HttpContext.Current.Request.Files["importedProduct"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        _importManager.ImportProductsFromXlsx(file.InputStream);
+                        response = request.CreateResponse(HttpStatusCode.OK);
+                        return response;
+                    }
+                    else
+                    {
+                        response = request.CreateResponse(HttpStatusCode.InternalServerError);
+                        return response;
+                    }
+                }
+                catch (Exception exc)
+                {
+                    response = request.CreateResponse(HttpStatusCode.InternalServerError, exc.Message);
+                    return response;
+                }
+            });
+        }
+        #endregion
     }
 }

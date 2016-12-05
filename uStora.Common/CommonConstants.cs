@@ -14,5 +14,7 @@
         public const string HomeTitle = "HomeTitle";
         public const string HomeMetaKeyword = "HomeMetaKeyword";
         public const string HomeMetaDescription = "HomeMetaDescription";
+
+        public const string TextXlsx = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     }
 }
