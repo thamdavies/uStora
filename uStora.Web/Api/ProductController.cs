@@ -141,7 +141,6 @@ namespace uStora.Web.API
                     newProduct.UpdateProduct(productCategoryVm);
                     newProduct.CreatedDate = DateTime.Now;
                     newProduct.CreatedBy = User.Identity.Name;
-                    newProduct.Quantity = 0;
                     _productService.Add(newProduct);
                     _productService.SaveChanges();
 

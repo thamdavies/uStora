@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using uStora.Common;
 using uStora.Data.Infrastructure;
@@ -68,14 +67,15 @@ namespace uStora.Service
             ITagRepository tagRepository, IUnitOfWork unitOfWork
             )
         {
-            this._productRepository = productRepository;
-            this._productTagRepository = productTagRepository;
-            this._tagRepository = tagRepository;
-            this._unitOfWork = unitOfWork;
+            _productRepository = productRepository;
+            _productTagRepository = productTagRepository;
+            _tagRepository = tagRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public Product Add(Product product)
         {
+            product.PromotionPrice = 0;
             var _product = _productRepository.Add(product);
             _unitOfWork.Commit();
             if (!string.IsNullOrEmpty(product.Tags))
@@ -317,6 +317,7 @@ namespace uStora.Service
                 case "discount":
                     model = model.Where(x => x.PromotionPrice.HasValue).OrderByDescending(y => y.PromotionPrice);
                     break;
+
                 case "price":
                     model = model.OrderBy(x => x.Price);
                     break;

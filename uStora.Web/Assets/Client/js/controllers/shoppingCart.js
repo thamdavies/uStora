@@ -228,11 +228,11 @@
                             ProductId: item.ProductId,
                             ProductName: item.Product.Name,
                             Image: item.Product.Image,
-                            Price: (item.Product.PromotionPrice != undefined ? item.Product.PromotionPrice : item.Product.Price),
-                            FPrice: numeral((item.Product.PromotionPrice != undefined ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
+                            Price: (item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price),
+                            FPrice: numeral(( item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
                             Quantity: item.Quantity,
                             Alias: item.Product.Alias,
-                            Amount: numeral(item.Quantity * (item.Product.PromotionPrice != undefined ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
+                            Amount: numeral(item.Quantity * ( item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
                         });
                     });
                     $('#cartBody').html(html);
