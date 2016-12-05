@@ -11,6 +11,7 @@
          'uStora.vehicles',
          'uStora.trackorders',
          'uStora.feedbacks',
+         'uStora.orders',
          'uStora.common'])
         .config(config)
         .config(configAuthentication);

@@ -100,10 +100,11 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
-                $scope.loading = false;
+               
             }, function () {
                 console.log('Không có sản phẩm nào!!!');
             });
+             $scope.loading = false;
         }
 
         function exportProductToXsls() {

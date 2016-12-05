@@ -1,7 +1,7 @@
 ﻿(function (app) {
 
     app.controller('revenueStatisticController', revenueStatisticController);
-    revenueStatisticController.$inject = ['apiService', '$scope', 'notificationService', '$filter','commonService'];
+    revenueStatisticController.$inject = ['apiService', '$scope', 'notificationService', '$filter', 'commonService'];
     function revenueStatisticController(apiService, $scope, notificationService, $filter, commonService) {
         $scope.tableData = [];
         $scope.getStatistic = getStatistic;
@@ -12,7 +12,7 @@
         $scope.chartData = [];
         $scope.loading = true;
         $scope.fromDate = '01/01/2015';
-        $scope.toDate = new Date().toLocaleDateString('vi');
+        $scope.toDate = '01/12/' + new Date().getFullYear();
 
         function getStatistic(page) {
             $scope.loading = true;

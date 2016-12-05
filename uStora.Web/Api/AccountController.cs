@@ -1,11 +1,10 @@
-﻿using uStora.Web.App_Start;
-using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity.Owin;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using uStora.Web.Infrastructure.Core;
+using uStora.Web.App_Start;
 
 namespace uStora.Web.API
 {

@@ -12,11 +12,14 @@ namespace uStora.Service
     public interface IOrderService
     {
         bool Add(Order order, List<OrderDetail> orderDetails);
+        Order Add(Order order);
         IEnumerable<OrderClientViewModel> GetListOrders(string userId);
         Order GetOrderById(int id);
         IEnumerable<Order> GetAll(string keyword);
         void Update(Order order);
         IEnumerable<Order> GetUnCompletedOrder();
+        Order Delete(int id);
+        void SaveChanges();
     }
 
     public class OrderService : IOrderService
@@ -88,6 +91,21 @@ namespace uStora.Service
         public void Update(Order order)
         {
             _orderRepository.Update(order);
+        }
+
+        public Order Add(Order order)
+        {
+            return _orderRepository.Add(order);
+        }
+
+        public void SaveChanges()
+        {
+            _unitOfWork.Commit();
+        }
+
+        public Order Delete(int id)
+        {
+            return _orderRepository.Delete(id);
         }
     }
 }

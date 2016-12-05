@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -20,7 +19,6 @@ using uStora.Web.Models;
 namespace uStora.Web.API
 {
     [RoutePrefix("api/product")]
-    //[Authorize]
     public class ProductController : ApiControllerBase
     {
         #region Initialize
@@ -245,6 +243,7 @@ namespace uStora.Web.API
         #endregion Methods
 
         #region Export/Import
+
         [Route("exporttoexcel")]
         [HttpPost]
         [Authorize(Roles = "AddUser")]
@@ -303,6 +302,7 @@ namespace uStora.Web.API
                 }
             });
         }
-        #endregion
+
+        #endregion Export/Import
     }
 }

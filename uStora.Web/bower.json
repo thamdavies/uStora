@@ -8,6 +8,7 @@
     "angular-local-storage": "~0.2.7",
     "angular-ui-router": "~0.2.18",
     "angular-timeago": "*",
+    "angular-sanitize": "*",
     "bootbox": "~4.4.0",
     "bootstrap": "~3.3.6",
     "bootstrapValidator": "*",

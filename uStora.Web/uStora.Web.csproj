@@ -238,6 +238,7 @@
     <Compile Include="Api\BrandController.cs" />
     <Compile Include="Api\FeedbackController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\OderController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
@@ -280,6 +281,7 @@
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
+    <Compile Include="Models\DashBoardViewModel.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
@@ -349,6 +351,13 @@
     <Content Include="app\components\login\loginView.html" />
     <Content Include="app\components\notifications\notification.module.js" />
     <Content Include="app\components\notifications\notificationListController.js" />
+    <Content Include="app\components\orders\order.module.js" />
+    <Content Include="app\components\orders\orderAddController.js" />
+    <Content Include="app\components\orders\orderAddView.html" />
+    <Content Include="app\components\orders\orderEditController.js" />
+    <Content Include="app\components\orders\orderEditView.html" />
+    <Content Include="app\components\orders\orderListController.js" />
+    <Content Include="app\components\orders\orderListView.html" />
     <Content Include="app\components\products\productAddController.js" />
     <Content Include="app\components\products\productAddView.html" />
     <Content Include="app\components\products\productEditController.js" />
@@ -390,6 +399,7 @@
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\status.filter.js" />
+    <Content Include="app\shared\filters\statusOrderFilter.js" />
     <Content Include="app\shared\filters\statusTrackOrderFilter.js" />
     <Content Include="app\shared\modules\uStora.common.js" />
     <Content Include="app\shared\services\apiService.js" />
@@ -503,6 +513,9 @@
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.css" />
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.js" />
     <Content Include="Assets\libs\angular-chart.js\gulpfile.js" />
+    <Content Include="Assets\libs\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Assets\libs\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Assets\libs\angular-sanitize\index.js" />
     <Content Include="Assets\libs\angular-timeago\.gitattributes" />
     <Content Include="Assets\libs\angular-timeago\.gitignore" />
     <Content Include="Assets\libs\angular-timeago\dist\angular-timeago-core.js" />
@@ -5242,6 +5255,12 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="Assets\libs\angular-sanitize\.bower.json" />
+    <Content Include="Assets\libs\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Assets\libs\angular-sanitize\bower.json" />
+    <Content Include="Assets\libs\angular-sanitize\LICENSE.md" />
+    <Content Include="Assets\libs\angular-sanitize\package.json" />
+    <Content Include="Assets\libs\angular-sanitize\README.md" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -5254,7 +5273,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\orders\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
