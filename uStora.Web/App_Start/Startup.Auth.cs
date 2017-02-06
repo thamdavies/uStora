@@ -76,6 +76,7 @@ namespace uStora.Web.App_Start
             public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
             {
                 context.Validated();
+                await Task.FromResult(0);
             }
             public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
             {
@@ -107,14 +108,12 @@ namespace uStora.Web.App_Start
                 }
                 else
                 {
-                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.'");
+                    context.SetError("invalid_grant", "Tên đăng nhập hoặc mật khẩu không đúng.'");
                     context.Rejected();
                 }
             }
         }
-
-
-
+       
         private static UserManager<ApplicationUser> CreateManager(IdentityFactoryOptions<UserManager<ApplicationUser>> options, IOwinContext context)
         {
             var userStore = new UserStore<ApplicationUser>(context.Get<uStoraDbContext>());

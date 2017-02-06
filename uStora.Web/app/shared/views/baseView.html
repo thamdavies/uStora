@@ -65,31 +65,13 @@
                                 <img src="{{authentication.image}}" class="img-circle" alt="ảnh đại diện"/>
                                 <p>
                                     {{authentication.userName}}
-                                    <small>{{authentication.createdDate}}</small>
+                                    <small>{{authentication.createdDate | date: 'dd/MM/yyyy'}}</small>
                                 </p>
-                            </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="javascript:void(0);" class="btn btn-default btn-flat">Profile</a>
-                                </div>
                                 <div class="pull-right">
-                                    <a href="javascript:void(0);" ng-click="logOut()" class="btn btn-default btn-flat">Đăng xuất</a>
+                                    <a href="#" ng-click="logOut()" class="btn btn-default btn-flat">Đăng xuất</a>
                                 </div>
                             </li>
                         </ul>
@@ -207,9 +189,9 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.6
+            <b>Phiên bản</b> thử nghiệm
         </div>
-        <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+        <strong>Copyright &copy; 2016-2017 <a href="http://ustora.com">uStora Shop</a>.</strong> All rights
         reserved.
     </footer>
     <!-- Control Sidebar -->

@@ -211,6 +211,7 @@ namespace uStora.Web.Controllers
             }
             catch (Exception exc)
             {
+                var err = exc.Message;
                 return RedirectToAction("Shop");
             }
         }
@@ -233,6 +234,7 @@ namespace uStora.Web.Controllers
             }
             catch (Exception exc)
             {
+                var err = exc.Message;
                 return RedirectToAction("Shop");
             }
         }

@@ -23,6 +23,9 @@
                     tokenInfo = JSON.parse(localStorageService.get("TokenInfo"));
                     authData.authenticationData.IsAuthenticated = true;
                     authData.authenticationData.userName = tokenInfo.userName;
+                    authData.authenticationData.image = tokenInfo.image;
+                    authData.authenticationData.createdDate = tokenInfo.createdDate;
+                    authData.authenticationData.accessToken = tokenInfo.accessToken;
                 }
             }
 

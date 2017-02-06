@@ -12,7 +12,8 @@
                     if (response != null && response.error != undefined) {
                         notificationService.displayError("Kiểm tra lại thông tin đăng nhập.");
                     }
-                    else {
+                    else
+                    {
                         var stateService = $injector.get('$state');
                         stateService.go('home');
                     }

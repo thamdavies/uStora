@@ -173,7 +173,7 @@ namespace uStora.Web.Controllers
                     Address = registerVm.Address
                 };
 
-                await _userManager.CreateAsync(user, registerVm.Password);
+                await UserManager.CreateAsync(user, registerVm.Password);
 
                 var adminUser = await _userManager.FindByEmailAsync(registerVm.Email);
                 if (adminUser != null)
