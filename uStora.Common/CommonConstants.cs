@@ -15,6 +15,9 @@
         public const string HomeMetaKeyword = "HomeMetaKeyword";
         public const string HomeMetaDescription = "HomeMetaDescription";
 
+
+        public const int DriverId = 4;
+
         public const string TextXlsx = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     }
 }

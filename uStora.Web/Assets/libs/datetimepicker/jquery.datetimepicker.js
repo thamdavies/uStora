@@ -523,12 +523,8 @@
 					"კვ", "ორშ", "სამშ", "ოთხ", "ხუთ", "პარ", "შაბ"
 				],
 				dayOfWeek: ["კვირა", "ორშაბათი", "სამშაბათი", "ოთხშაბათი", "ხუთშაბათი", "პარასკევი", "შაბათი"]
-			}
+			},
 		},
-
-		ownerDocument: document,
-		contentWindow: window,
-
 		value: '',
 		rtl: false,
 
@@ -634,14 +630,12 @@
 				days: locale.dayOfWeek,
 				daysShort: locale.dayOfWeekShort,
 				months: locale.months,
-				monthsShort: $.map(locale.months, function(n){ return n.substring(0, 3) })
+				monthsShort: $.map(locale.months, function(n){ return n.substring(0, 3) }),
 			};
 
-		if (typeof DateFormatter === 'function') {
-			dateHelper = new DateFormatter({
-				dateSettings: $.extend({}, dateFormatterOptionsDefault, opts)
-			});
-		}
+	 	dateHelper = new DateFormatter({
+			dateSettings: $.extend({}, dateFormatterOptionsDefault, opts)
+		});
 	};
 
 	// for locale settings
@@ -702,7 +696,7 @@
 	Date.prototype.countDaysInMonth = function () {
 		return new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate();
 	};
-	$.fn.xdsoftScroller = function (options, percent) {
+	$.fn.xdsoftScroller = function (percent) {
 		return this.each(function () {
 			var timeboxparent = $(this),
 				pointerEventToXY = function (e) {
@@ -766,15 +760,15 @@
 						h1 = scrollbar[0].offsetHeight;
 
 						if (event.type === 'mousedown' || event.type === 'touchstart') {
-							if (options.ownerDocument) {
-								$(options.ownerDocument.body).addClass('xdsoft_noselect');
+							if (document) {
+								$(document.body).addClass('xdsoft_noselect');
 							}
-							$([options.ownerDocument.body, options.contentWindow]).on('touchend mouseup.xdsoft_scroller', function arguments_callee() {
-								$([options.ownerDocument.body, options.contentWindow]).off('touchend mouseup.xdsoft_scroller', arguments_callee)
+							$([document.body, window]).on('touchend mouseup.xdsoft_scroller', function arguments_callee() {
+								$([document.body, window]).off('touchend mouseup.xdsoft_scroller', arguments_callee)
 									.off('mousemove.xdsoft_scroller', calcOffset)
 									.removeClass('xdsoft_noselect');
 							});
-							$(options.ownerDocument.body).on('mousemove.xdsoft_scroller', calcOffset);
+							$(document.body).on('mousemove.xdsoft_scroller', calcOffset);
 						} else {
 							touchStart = true;
 							event.stopPropagation();
@@ -910,7 +904,7 @@
 			var datetimepicker = $('<div class="xdsoft_datetimepicker xdsoft_noselect"></div>'),
 				xdsoft_copyright = $('<div class="xdsoft_copyright"><a target="_blank" href="http://xdsoft.net/jqplugins/datetimepicker/">xdsoft.net</a></div>'),
 				datepicker = $('<div class="xdsoft_datepicker active"></div>'),
-				month_picker = $('<div class="xdsoft_monthpicker"><button type="button" class="xdsoft_prev"></button><button type="button" class="xdsoft_today_button"></button>' +
+				mounth_picker = $('<div class="xdsoft_mounthpicker"><button type="button" class="xdsoft_prev"></button><button type="button" class="xdsoft_today_button"></button>' +
 					'<div class="xdsoft_label xdsoft_month"><span></span><i></i></div>' +
 					'<div class="xdsoft_label xdsoft_year"><span></span><i></i></div>' +
 					'<button type="button" class="xdsoft_next"></button></div>'),
@@ -950,14 +944,14 @@
 			datetimepicker.addClass('xdsoft_' + options.theme);
 			datetimepicker.addClass(options.className);
 
-			month_picker
+			mounth_picker
 				.find('.xdsoft_month span')
 					.after(monthselect);
-			month_picker
+			mounth_picker
 				.find('.xdsoft_year span')
 					.after(yearselect);
 
-			month_picker
+			mounth_picker
 				.find('.xdsoft_month,.xdsoft_year')
 					.on('touchstart mousedown.xdsoft', function (event) {
 					var select = $(this).find('.xdsoft_select').eq(0),
@@ -967,7 +961,7 @@
 						items,
 						i;
 
-					month_picker
+					mounth_picker
 						.find('.xdsoft_select')
 							.hide();
 					if (_xdsoft_datetime.currentTime) {
@@ -983,14 +977,14 @@
 						}
 					}
 
-					select.xdsoftScroller(options, top / (select.children()[0].offsetHeight - (select[0].clientHeight)));
+					select.xdsoftScroller(top / (select.children()[0].offsetHeight - (select[0].clientHeight)));
 					event.stopPropagation();
 					return false;
 				});
 
-			month_picker
+			mounth_picker
 				.find('.xdsoft_select')
-					.xdsoftScroller(options)
+					.xdsoftScroller()
 				.on('touchstart mousedown.xdsoft', function (event) {
 					event.stopPropagation();
 					event.preventDefault();
@@ -1152,7 +1146,7 @@
 				}
 
 				if (!options.timepickerScrollbar) {
-					timeboxparent.xdsoftScroller(options, 'hide');
+					timeboxparent.xdsoftScroller('hide');
 				}
 
 				if (options.minDate && /^[\+\-](.*)$/.test(options.minDate)) {
@@ -1165,15 +1159,15 @@
 
 				applyButton.toggle(options.showApplyButton);
 
-				month_picker
+				mounth_picker
 					.find('.xdsoft_today_button')
 						.css('visibility', !options.todayButton ? 'hidden' : 'visible');
 
-				month_picker
+				mounth_picker
 					.find('.' + options.prev)
 						.css('visibility', !options.prevButton ? 'hidden' : 'visible');
 
-				month_picker
+				mounth_picker
 					.find('.' + options.next)
 						.css('visibility', !options.nextButton ? 'hidden' : 'visible');
 
@@ -1229,10 +1223,10 @@
 
 			//scroll_element = timepicker.find('.xdsoft_time_box');
 			timeboxparent.append(timebox);
-			timeboxparent.xdsoftScroller(options);
+			timeboxparent.xdsoftScroller();
 
 			datetimepicker.on('afterOpen.xdsoft', function () {
-				timeboxparent.xdsoftScroller(options);
+				timeboxparent.xdsoftScroller();
 			});
 
 			datetimepicker
@@ -1245,7 +1239,7 @@
 			}
 
 			datepicker
-				.append(month_picker)
+				.append(mounth_picker)
 				.append(calendar)
 				.append(applyButton);
 
@@ -1447,7 +1441,7 @@
 				input.val(_xdsoft_datetime.str());
 				datetimepicker.trigger('close.xdsoft');
 			});
-			month_picker
+			mounth_picker
 				.find('.xdsoft_today_button')
 				.on('touchend mousedown.xdsoft', function () {
 					datetimepicker.data('changed', true);
@@ -1470,7 +1464,7 @@
 					input.trigger('change');
 					datetimepicker.trigger('close.xdsoft');
 				});
-			month_picker
+			mounth_picker
 				.find('.xdsoft_prev,.xdsoft_next')
 				.on('touchend mousedown.xdsoft', function () {
 					var $this = $(this),
@@ -1490,10 +1484,10 @@
 						}
 					}(500));
 
-					$([options.ownerDocument.body, options.contentWindow]).on('touchend mouseup.xdsoft', function arguments_callee2() {
+					$([document.body, window]).on('touchend mouseup.xdsoft', function arguments_callee2() {
 						clearTimeout(timer);
 						stop = true;
-						$([options.ownerDocument.body, options.contentWindow]).off('touchend mouseup.xdsoft', arguments_callee2);
+						$([document.body, window]).off('touchend mouseup.xdsoft', arguments_callee2);
 					});
 				});
 
@@ -1532,10 +1526,10 @@
 							timer = setTimeout(arguments_callee4, v || period);
 						}
 					}(500));
-					$([options.ownerDocument.body, options.contentWindow]).on('touchend mouseup.xdsoft', function arguments_callee5() {
+					$([document.body, window]).on('touchend mouseup.xdsoft', function arguments_callee5() {
 						clearTimeout(timer);
 						stop = true;
-						$([options.ownerDocument.body, options.contentWindow])
+						$([document.body, window])
 							.off('touchend mouseup.xdsoft', arguments_callee5);
 					});
 				});
@@ -1693,8 +1687,8 @@
 
 						calendar.html(table);
 
-						month_picker.find('.xdsoft_label span').eq(0).text(options.i18n[globalLocale].months[_xdsoft_datetime.currentTime.getMonth()]);
-						month_picker.find('.xdsoft_label span').eq(1).text(_xdsoft_datetime.currentTime.getFullYear());
+						mounth_picker.find('.xdsoft_label span').eq(0).text(options.i18n[globalLocale].months[_xdsoft_datetime.currentTime.getMonth()]);
+						mounth_picker.find('.xdsoft_label span').eq(1).text(_xdsoft_datetime.currentTime.getFullYear());
 
 						// generate timebox
 						time = '';
@@ -1980,11 +1974,11 @@
 				left = dateInputOffset.left;
 				position = "absolute";
 
-				windowWidth = $(options.contentWindow).width();
-				windowHeight = $(options.contentWindow).height();
-				windowScrollTop = $(options.contentWindow).scrollTop();
+				windowWidth = $(window).width();
+				windowHeight = $(window).height();
+				windowScrollTop = $(window).scrollTop();
 
-				if ((options.ownerDocument.documentElement.clientWidth - dateInputOffset.left) < datepicker.parent().outerWidth(true)) {
+				if ((document.documentElement.clientWidth - dateInputOffset.left) < datepicker.parent().outerWidth(true)) {
 					var diff = datepicker.parent().outerWidth(true) - dateInputElem.offsetWidth;
 					left = left - diff;
 				}
@@ -1995,13 +1989,13 @@
 
 				if (options.fixed) {
 					verticalPosition -= windowScrollTop;
-					left -= $(options.contentWindow).scrollLeft();
+					left -= $(window).scrollLeft();
 					position = "fixed";
 				} else {
 					dateInputHasFixedAncestor = false;
 
 					forEachAncestorOf(dateInputElem, function (ancestorNode) {
-						if (options.contentWindow.getComputedStyle(ancestorNode).getPropertyValue('position') === 'fixed') {
+						if (window.getComputedStyle(ancestorNode).getPropertyValue('position') === 'fixed') {
 							dateInputHasFixedAncestor = true;
 							return false;
 						}
@@ -2037,7 +2031,7 @@
 				forEachAncestorOf(datetimepickerElem, function (ancestorNode) {
 					var ancestorNodePosition;
 
-					ancestorNodePosition = options.contentWindow.getComputedStyle(ancestorNode).getPropertyValue('position');
+					ancestorNodePosition = window.getComputedStyle(ancestorNode).getPropertyValue('position');
 
 					if (ancestorNodePosition === 'relative' && windowWidth >= ancestorNode.offsetWidth) {
 						left = left - ((windowWidth - ancestorNode.offsetWidth) / 2);
@@ -2066,21 +2060,21 @@
 					if (onShow !== false) {
 						datetimepicker.show();
 						setPos();
-						$(options.contentWindow)
+						$(window)
 							.off('resize.xdsoft', setPos)
 							.on('resize.xdsoft', setPos);
 
 						if (options.closeOnWithoutClick) {
-							$([options.ownerDocument.body, options.contentWindow]).on('touchstart mousedown.xdsoft', function arguments_callee6() {
+							$([document.body, window]).on('touchstart mousedown.xdsoft', function arguments_callee6() {
 								datetimepicker.trigger('close.xdsoft');
-								$([options.ownerDocument.body, options.contentWindow]).off('touchstart mousedown.xdsoft', arguments_callee6);
+								$([document.body, window]).off('touchstart mousedown.xdsoft', arguments_callee6);
 							});
 						}
 					}
 				})
 				.on('close.xdsoft', function (event) {
 					var onClose = true;
-					month_picker
+					mounth_picker
 						.find('.xdsoft_month,.xdsoft_year')
 							.find('.xdsoft_select')
 								.hide();
@@ -2147,8 +2141,8 @@
 				},
 				getCaretPos = function (input) {
 					try {
-						if (options.ownerDocument.selection && options.ownerDocument.selection.createRange) {
-							var range = options.ownerDocument.selection.createRange();
+						if (document.selection && document.selection.createRange) {
+							var range = document.selection.createRange();
 							return range.getBookmark().charCodeAt(2) - 2;
 						}
 						if (input.setSelectionRange) {
@@ -2159,7 +2153,7 @@
 					}
 				},
 				setCaretPos = function (node, pos) {
-					node = (typeof node === "string" || node instanceof String) ? options.ownerDocument.getElementById(node) : node;
+					node = (typeof node === "string" || node instanceof String) ? document.getElementById(node) : node;
 					if (!node) {
 						return false;
 					}
@@ -2310,14 +2304,14 @@
 				input
 					.data('xdsoft_datetimepicker', null)
 					.off('.xdsoft');
-				$(options.contentWindow).off('resize.xdsoft');
-				$([options.contentWindow, options.ownerDocument.body]).off('mousedown.xdsoft touchstart');
+				$(window).off('resize.xdsoft');
+				$([window, document.body]).off('mousedown.xdsoft touchstart');
 				if (input.unmousewheel) {
 					input.unmousewheel();
 				}
 			}
 		};
-		$(options.ownerDocument)
+		$(document)
 			.off('keydown.xdsoftctrl keyup.xdsoftctrl')
 			.on('keydown.xdsoftctrl', function (e) {
 				if (e.keyCode === CTRLKEY) {

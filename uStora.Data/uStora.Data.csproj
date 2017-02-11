@@ -64,97 +64,17 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201609301507562_InitialDb.cs" />
-    <Compile Include="Migrations\201609301507562_InitialDb.Designer.cs">
-      <DependentUpon>201609301507562_InitialDb.cs</DependentUpon>
+    <Compile Include="Migrations\201702110542085_Intial.cs" />
+    <Compile Include="Migrations\201702110542085_Intial.Designer.cs">
+      <DependentUpon>201702110542085_Intial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610011652436_AddedBrandTbl.cs" />
-    <Compile Include="Migrations\201610011652436_AddedBrandTbl.Designer.cs">
-      <DependentUpon>201610011652436_AddedBrandTbl.cs</DependentUpon>
+    <Compile Include="Migrations\201702110549056_AddRevenueStatisticSP.cs" />
+    <Compile Include="Migrations\201702110549056_AddRevenueStatisticSP.Designer.cs">
+      <DependentUpon>201702110549056_AddRevenueStatisticSP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610020742051_UpdatedSlide.cs" />
-    <Compile Include="Migrations\201610020742051_UpdatedSlide.Designer.cs">
-      <DependentUpon>201610020742051_UpdatedSlide.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610020923513_UpdatedSlideTable.cs" />
-    <Compile Include="Migrations\201610020923513_UpdatedSlideTable.Designer.cs">
-      <DependentUpon>201610020923513_UpdatedSlideTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610030703539_AddedImageToBrandTbl.cs" />
-    <Compile Include="Migrations\201610030703539_AddedImageToBrandTbl.Designer.cs">
-      <DependentUpon>201610030703539_AddedImageToBrandTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610031450595_AddedFeedback.cs" />
-    <Compile Include="Migrations\201610031450595_AddedFeedback.Designer.cs">
-      <DependentUpon>201610031450595_AddedFeedback.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610091151138_UpdateUser.cs" />
-    <Compile Include="Migrations\201610091151138_UpdateUser.Designer.cs">
-      <DependentUpon>201610091151138_UpdateUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610110640385_AddCustomerId.cs" />
-    <Compile Include="Migrations\201610110640385_AddCustomerId.Designer.cs">
-      <DependentUpon>201610110640385_AddCustomerId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610111341093_updateOrderTable.cs" />
-    <Compile Include="Migrations\201610111341093_updateOrderTable.Designer.cs">
-      <DependentUpon>201610111341093_updateOrderTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610111537167_addImageUser.cs" />
-    <Compile Include="Migrations\201610111537167_addImageUser.Designer.cs">
-      <DependentUpon>201610111537167_addImageUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610111614086_addUserinfo.cs" />
-    <Compile Include="Migrations\201610111614086_addUserinfo.Designer.cs">
-      <DependentUpon>201610111614086_addUserinfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610120306593_RenamedTableIdentity.cs" />
-    <Compile Include="Migrations\201610120306593_RenamedTableIdentity.Designer.cs">
-      <DependentUpon>201610120306593_RenamedTableIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610120345004_addTableForIdentityUser.cs" />
-    <Compile Include="Migrations\201610120345004_addTableForIdentityUser.Designer.cs">
-      <DependentUpon>201610120345004_addTableForIdentityUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610140427563_EditOrderDetailAndProduct.cs" />
-    <Compile Include="Migrations\201610140427563_EditOrderDetailAndProduct.Designer.cs">
-      <DependentUpon>201610140427563_EditOrderDetailAndProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610160730375_AddRevenuesStatisticSP.cs" />
-    <Compile Include="Migrations\201610160730375_AddRevenuesStatisticSP.Designer.cs">
-      <DependentUpon>201610160730375_AddRevenuesStatisticSP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610170952073_AddWishListTbl.cs" />
-    <Compile Include="Migrations\201610170952073_AddWishListTbl.Designer.cs">
-      <DependentUpon>201610170952073_AddWishListTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610181524006_addSystemConfig.cs" />
-    <Compile Include="Migrations\201610181524006_addSystemConfig.Designer.cs">
-      <DependentUpon>201610181524006_addSystemConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610231620563_addPageDetail.cs" />
-    <Compile Include="Migrations\201610231620563_addPageDetail.Designer.cs">
-      <DependentUpon>201610231620563_addPageDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610250539128_AddTrackTbl.cs" />
-    <Compile Include="Migrations\201610250539128_AddTrackTbl.Designer.cs">
-      <DependentUpon>201610250539128_AddTrackTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610250815131_UpdateVehicleName.cs" />
-    <Compile Include="Migrations\201610250815131_UpdateVehicleName.Designer.cs">
-      <DependentUpon>201610250815131_UpdateVehicleName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610251313264_ChangePaymentStatus.cs" />
-    <Compile Include="Migrations\201610251313264_ChangePaymentStatus.Designer.cs">
-      <DependentUpon>201610251313264_ChangePaymentStatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610251600155_AddListShoppingCartSP.cs" />
-    <Compile Include="Migrations\201610251600155_AddListShoppingCartSP.Designer.cs">
-      <DependentUpon>201610251600155_AddListShoppingCartSP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611141652469_addIsViewedToAppUserTbl.cs" />
-    <Compile Include="Migrations\201611141652469_addIsViewedToAppUserTbl.Designer.cs">
-      <DependentUpon>201611141652469_addIsViewedToAppUserTbl.cs</DependentUpon>
+    <Compile Include="Migrations\201702110552373_AddListShoppingCartSP.cs" />
+    <Compile Include="Migrations\201702110552373_AddListShoppingCartSP.Designer.cs">
+      <DependentUpon>201702110552373_AddListShoppingCartSP.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -204,74 +124,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609301507562_InitialDb.resx">
-      <DependentUpon>201609301507562_InitialDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702110542085_Intial.resx">
+      <DependentUpon>201702110542085_Intial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610011652436_AddedBrandTbl.resx">
-      <DependentUpon>201610011652436_AddedBrandTbl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702110549056_AddRevenueStatisticSP.resx">
+      <DependentUpon>201702110549056_AddRevenueStatisticSP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610020742051_UpdatedSlide.resx">
-      <DependentUpon>201610020742051_UpdatedSlide.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610020923513_UpdatedSlideTable.resx">
-      <DependentUpon>201610020923513_UpdatedSlideTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610030703539_AddedImageToBrandTbl.resx">
-      <DependentUpon>201610030703539_AddedImageToBrandTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610031450595_AddedFeedback.resx">
-      <DependentUpon>201610031450595_AddedFeedback.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610091151138_UpdateUser.resx">
-      <DependentUpon>201610091151138_UpdateUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610110640385_AddCustomerId.resx">
-      <DependentUpon>201610110640385_AddCustomerId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610111341093_updateOrderTable.resx">
-      <DependentUpon>201610111341093_updateOrderTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610111537167_addImageUser.resx">
-      <DependentUpon>201610111537167_addImageUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610111614086_addUserinfo.resx">
-      <DependentUpon>201610111614086_addUserinfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610120306593_RenamedTableIdentity.resx">
-      <DependentUpon>201610120306593_RenamedTableIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610120345004_addTableForIdentityUser.resx">
-      <DependentUpon>201610120345004_addTableForIdentityUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610140427563_EditOrderDetailAndProduct.resx">
-      <DependentUpon>201610140427563_EditOrderDetailAndProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610160730375_AddRevenuesStatisticSP.resx">
-      <DependentUpon>201610160730375_AddRevenuesStatisticSP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610170952073_AddWishListTbl.resx">
-      <DependentUpon>201610170952073_AddWishListTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610181524006_addSystemConfig.resx">
-      <DependentUpon>201610181524006_addSystemConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610231620563_addPageDetail.resx">
-      <DependentUpon>201610231620563_addPageDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610250539128_AddTrackTbl.resx">
-      <DependentUpon>201610250539128_AddTrackTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610250815131_UpdateVehicleName.resx">
-      <DependentUpon>201610250815131_UpdateVehicleName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610251313264_ChangePaymentStatus.resx">
-      <DependentUpon>201610251313264_ChangePaymentStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610251600155_AddListShoppingCartSP.resx">
-      <DependentUpon>201610251600155_AddListShoppingCartSP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141652469_addIsViewedToAppUserTbl.resx">
-      <DependentUpon>201611141652469_addIsViewedToAppUserTbl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702110552373_AddListShoppingCartSP.resx">
+      <DependentUpon>201702110552373_AddListShoppingCartSP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

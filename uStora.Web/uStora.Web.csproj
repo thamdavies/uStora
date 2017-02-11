@@ -26,7 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,7 +71,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CKFinder">
-      <HintPath>Libs\CKFinder.dll</HintPath>
+      <HintPath>..\..\..\ASP.NET MVC\uStora\uStora\uStora.Web\Libs\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -513,6 +513,22 @@
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.css" />
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.js" />
     <Content Include="Assets\libs\angular-chart.js\gulpfile.js" />
+    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.css" />
+    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.js" />
+    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.min.css" />
+    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.min.js" />
+    <Content Include="Assets\libs\angular-loading-bar\Gruntfile.js" />
+    <Content Include="Assets\libs\angular-loading-bar\index.js" />
+    <Content Include="Assets\libs\angular-loading-bar\src\loading-bar.css" />
+    <Content Include="Assets\libs\angular-loading-bar\src\loading-bar.js" />
+    <Content Include="Assets\libs\angular-local-storage\.gitattributes" />
+    <Content Include="Assets\libs\angular-local-storage\.gitignore" />
+    <Content Include="Assets\libs\angular-local-storage\demo\demo-app.js" />
+    <Content Include="Assets\libs\angular-local-storage\demo\demo-style.css" />
+    <Content Include="Assets\libs\angular-local-storage\demo\demo.html" />
+    <Content Include="Assets\libs\angular-local-storage\dist\angular-local-storage.js" />
+    <Content Include="Assets\libs\angular-local-storage\dist\angular-local-storage.min.js" />
+    <Content Include="Assets\libs\angular-local-storage\index.js" />
     <Content Include="Assets\libs\angular-sanitize\angular-sanitize.js" />
     <Content Include="Assets\libs\angular-sanitize\angular-sanitize.min.js" />
     <Content Include="Assets\libs\angular-sanitize\index.js" />
@@ -526,6 +542,7 @@
     <Content Include="Assets\libs\angular-timeago\karma-unit.conf.js" />
     <Content Include="Assets\libs\angular-timeago\protractor-e2e.conf.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-ca_ES.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-da_DK.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-de_DE.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-en_US.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-es_ES.js" />
@@ -537,7 +554,9 @@
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-nl_NL.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-pl_PL.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-pt_BR.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-ru.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-sv_SE.js" />
+    <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-tr_TR.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-zh_CN.js" />
     <Content Include="Assets\libs\angular-timeago\src\languages\time-ago-language-zh_TW.js" />
     <Content Include="Assets\libs\angular-timeago\src\module.js" />
@@ -546,6 +565,25 @@
     <Content Include="Assets\libs\angular-timeago\src\time-ago.directive.js" />
     <Content Include="Assets\libs\angular-timeago\src\time-ago.factory.js" />
     <Content Include="Assets\libs\angular-timeago\src\time-ago.filter.js" />
+    <Content Include="Assets\libs\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="Assets\libs\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\common.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\resolve.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\state.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\stateFilters.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\templateFactory.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\urlRouter.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\view.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\viewDirective.js" />
+    <Content Include="Assets\libs\angular-ui-router\src\viewScroll.js" />
+    <Content Include="Assets\libs\angular\angular-csp.css" />
+    <Content Include="Assets\libs\angular\angular.js" />
+    <Content Include="Assets\libs\angular\angular.min.js" />
+    <Content Include="Assets\libs\angular\index.js" />
+    <Content Include="Assets\libs\bootbox\.gitignore" />
+    <Content Include="Assets\libs\bootbox\bootbox.js" />
     <Content Include="Assets\libs\bootstrapValidator\.gitignore" />
     <Content Include="Assets\libs\bootstrapValidator\dist\css\bootstrapValidator.css" />
     <Content Include="Assets\libs\bootstrapValidator\dist\css\bootstrapValidator.min.css" />
@@ -672,195 +710,6 @@
     <Content Include="Assets\libs\bootstrapValidator\src\js\validator\vat.js" />
     <Content Include="Assets\libs\bootstrapValidator\src\js\validator\vin.js" />
     <Content Include="Assets\libs\bootstrapValidator\src\js\validator\zipCode.js" />
-    <Content Include="Assets\libs\Chart.js\Chart.js" />
-    <Content Include="Assets\libs\checklist-model\checklist-model.js" />
-    <Content Include="Assets\libs\checklist-model\LICENSE.txt" />
-    <Content Include="Assets\libs\datetimepicker\.gitignore" />
-    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.full.js" />
-    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.full.min.js" />
-    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.min.css" />
-    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.min.js" />
-    <Content Include="Assets\libs\datetimepicker\index.html" />
-    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.css" />
-    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.js" />
-    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.min.js" />
-    <Content Include="Assets\libs\datetimepicker\jquery.js" />
-    <Content Include="Assets\libs\datetimepicker\MIT-LICENSE.txt" />
-    <Content Include="Assets\libs\datetimepicker\screen\1.png" />
-    <Content Include="Assets\libs\datetimepicker\screen\2.png" />
-    <Content Include="Assets\libs\datetimepicker\screen\3.1.png" />
-    <Content Include="Assets\libs\datetimepicker\screen\3.png" />
-    <Content Include="Assets\libs\datetimepicker\screen\4.png" />
-    <Content Include="Assets\libs\datetimepicker\screen\5.png" />
-    <Content Include="Assets\libs\datetimepicker\screen\6.png" />
-    <Content Include="Assets\libs\datetimepicker\tests\input_in_container_fixed_to_bottom_of_viewport.html" />
-    <Content Include="Assets\libs\datetimepicker\tests\input_in_container_fixed_to_top_of_viewport.html" />
-    <Content Include="Assets\libs\font-awesome\.gitignore" />
-    <Content Include="Assets\libs\font-awesome\css\font-awesome.css" />
-    <Content Include="Assets\libs\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Assets\libs\font-awesome\HELP-US-OUT.txt" />
-    <Content Include="Assets\libs\icheck-bootstrap\icheck-bootstrap.css" />
-    <Content Include="Assets\libs\icheck-bootstrap\icheck-bootstrap.min.css" />
-    <Content Include="Assets\libs\mustache\mustache.js" />
-    <Content Include="Assets\libs\mustache\mustache.min.js" />
-    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.js" />
-    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.txt" />
-    <Content Include="Assets\libs\numeral\.gitignore" />
-    <Content Include="Assets\libs\numeral\Gruntfile.js" />
-    <Content Include="Assets\libs\numeral\languages.js" />
-    <Content Include="Assets\libs\numeral\languages\be-nl.js" />
-    <Content Include="Assets\libs\numeral\languages\chs.js" />
-    <Content Include="Assets\libs\numeral\languages\cs.js" />
-    <Content Include="Assets\libs\numeral\languages\da-dk.js" />
-    <Content Include="Assets\libs\numeral\languages\de-ch.js" />
-    <Content Include="Assets\libs\numeral\languages\de.js" />
-    <Content Include="Assets\libs\numeral\languages\en-gb.js" />
-    <Content Include="Assets\libs\numeral\languages\es-ES.js" />
-    <Content Include="Assets\libs\numeral\languages\es.js" />
-    <Content Include="Assets\libs\numeral\languages\et.js" />
-    <Content Include="Assets\libs\numeral\languages\fi.js" />
-    <Content Include="Assets\libs\numeral\languages\fr-CA.js" />
-    <Content Include="Assets\libs\numeral\languages\fr-ch.js" />
-    <Content Include="Assets\libs\numeral\languages\fr.js" />
-    <Content Include="Assets\libs\numeral\languages\hu.js" />
-    <Content Include="Assets\libs\numeral\languages\it.js" />
-    <Content Include="Assets\libs\numeral\languages\ja.js" />
-    <Content Include="Assets\libs\numeral\languages\nl-nl.js" />
-    <Content Include="Assets\libs\numeral\languages\pl.js" />
-    <Content Include="Assets\libs\numeral\languages\pt-br.js" />
-    <Content Include="Assets\libs\numeral\languages\pt-pt.js" />
-    <Content Include="Assets\libs\numeral\languages\ru-UA.js" />
-    <Content Include="Assets\libs\numeral\languages\ru.js" />
-    <Content Include="Assets\libs\numeral\languages\sk.js" />
-    <Content Include="Assets\libs\numeral\languages\th.js" />
-    <Content Include="Assets\libs\numeral\languages\tr.js" />
-    <Content Include="Assets\libs\numeral\languages\uk-UA.js" />
-    <Content Include="Assets\libs\numeral\min\languages.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\be-nl.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\chs.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\cs.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\da-dk.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\de-ch.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\de.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\en-gb.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\es-ES.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\es.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\et.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\fi.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\fr-CA.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\fr-ch.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\fr.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\hu.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\it.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\ja.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\nl-nl.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\pl.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\pt-br.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\pt-pt.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\ru-UA.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\ru.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\sk.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\th.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\tr.min.js" />
-    <Content Include="Assets\libs\numeral\min\languages\uk-UA.min.js" />
-    <Content Include="Assets\libs\numeral\min\numeral.min.js" />
-    <Content Include="Assets\libs\numeral\numeral.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\be-nl.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\chs.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\cs.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\da-dk.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\de-ch.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\de.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\en-gb.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\en.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\es-ES.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\es.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\et.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\fi.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\fr-CA.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\fr-ch.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\fr.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\hu.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\it.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\ja.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\nl-nl.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\pl.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\pt-br.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\pt-pt.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\ru-UA.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\ru.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\sk.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\th.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\tr.js" />
-    <Content Include="Assets\libs\numeral\tests\languages\uk-UA.js" />
-    <Content Include="Assets\libs\numeral\tests\numeral\format.js" />
-    <Content Include="Assets\libs\numeral\tests\numeral\manipulate.js" />
-    <Content Include="Assets\libs\numeral\tests\numeral\misc.js" />
-    <Content Include="Assets\libs\numeral\tests\numeral\unformat.js" />
-    <Content Include="favicon.ico" />
-    <Content Include="Assets\Client\img\logo.png" />
-    <Content Include="Assets\Client\img\product-1.jpg" />
-    <Content Include="Assets\Client\img\product-2.jpg" />
-    <Content Include="Assets\Client\img\product-3.jpg" />
-    <Content Include="Assets\Client\img\product-4.jpg" />
-    <Content Include="Assets\Client\img\product-5.jpg" />
-    <Content Include="Assets\Client\img\product-6.jpg" />
-    <Content Include="Assets\Client\img\product-thumb-1.jpg" />
-    <Content Include="Assets\Client\img\product-thumb-2.jpg" />
-    <Content Include="Assets\Client\img\product-thumb-3.jpg" />
-    <Content Include="Assets\Client\img\product-thumb-4.jpg" />
-    <Content Include="Assets\Client\img\ring.gif" />
-    <Content Include="Assets\Client\img\zoom.png" />
-    <Content Include="Assets\Client\js\app.js" />
-    <Content Include="Assets\Client\js\bxslider.min.js" />
-    <Content Include="Assets\Client\js\cart.js" />
-    <Content Include="Assets\Client\js\controllers\contact.js" />
-    <Content Include="Assets\Client\js\jquery.easing.1.3.min.js" />
-    <Content Include="Assets\Client\js\jquery.etalage.min.js" />
-    <Content Include="Assets\Client\js\jquery.sticky.js" />
-    <Content Include="Assets\Client\js\main.js" />
-    <Content Include="Assets\Client\js\owl.carousel.min.js" />
-    <Content Include="Assets\Client\js\script.slider.js" />
-    <Content Include="Assets\Client\js\scroll-startstop.events.jquery.js" />
-    <Content Include="Assets\Client\js\scroll.js" />
-    <Content Include="Assets\Client\js\search-box.js" />
-    <Content Include="Assets\Client\templates\contactTemplate.html" />
-    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.css" />
-    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.js" />
-    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.min.css" />
-    <Content Include="Assets\libs\angular-loading-bar\build\loading-bar.min.js" />
-    <Content Include="Assets\libs\angular-loading-bar\Gruntfile.js" />
-    <Content Include="Assets\libs\angular-loading-bar\index.js" />
-    <Content Include="Assets\libs\angular-loading-bar\src\loading-bar.css" />
-    <Content Include="Assets\libs\angular-loading-bar\src\loading-bar.js" />
-    <Content Include="Assets\libs\angular-local-storage\.gitattributes" />
-    <Content Include="Assets\libs\angular-local-storage\.gitignore" />
-    <Content Include="Assets\libs\angular-local-storage\demo\demo-app.js" />
-    <Content Include="Assets\libs\angular-local-storage\demo\demo-style.css" />
-    <Content Include="Assets\libs\angular-local-storage\demo\demo.html" />
-    <Content Include="Assets\libs\angular-local-storage\dist\angular-local-storage.js" />
-    <Content Include="Assets\libs\angular-local-storage\dist\angular-local-storage.min.js" />
-    <Content Include="Assets\libs\angular-local-storage\index.js" />
-    <Content Include="Assets\libs\angular-ui-router\release\angular-ui-router.js" />
-    <Content Include="Assets\libs\angular-ui-router\release\angular-ui-router.min.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\common.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\resolve.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\state.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\stateDirectives.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\stateFilters.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\templateFactory.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\urlMatcherFactory.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\urlRouter.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\view.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\viewDirective.js" />
-    <Content Include="Assets\libs\angular-ui-router\src\viewScroll.js" />
-    <Content Include="Assets\libs\angular\angular-csp.css" />
-    <Content Include="Assets\libs\angular\angular.js" />
-    <Content Include="Assets\libs\angular\angular.min.js" />
-    <Content Include="Assets\libs\angular\index.js" />
-    <Content Include="Assets\libs\bootbox\.gitignore" />
-    <Content Include="Assets\libs\bootbox\bootbox.js" />
     <Content Include="Assets\libs\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="Assets\libs\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="Assets\libs\bootstrap\dist\css\bootstrap.css" />
@@ -875,7 +724,6 @@
     <Content Include="Assets\libs\bootstrap\grunt\bs-glyphicons-data-generator.js" />
     <Content Include="Assets\libs\bootstrap\grunt\bs-lessdoc-parser.js" />
     <Content Include="Assets\libs\bootstrap\grunt\bs-raw-files-generator.js" />
-    <Content Include="Assets\libs\bootstrap\grunt\change-version.js" />
     <Content Include="Assets\libs\bootstrap\js\affix.js" />
     <Content Include="Assets\libs\bootstrap\js\alert.js" />
     <Content Include="Assets\libs\bootstrap\js\button.js" />
@@ -889,6 +737,9 @@
     <Content Include="Assets\libs\bootstrap\js\tooltip.js" />
     <Content Include="Assets\libs\bootstrap\js\transition.js" />
     <Content Include="Assets\libs\bootstrap\package.js" />
+    <Content Include="Assets\libs\Chart.js\Chart.js" />
+    <Content Include="Assets\libs\checklist-model\checklist-model.js" />
+    <Content Include="Assets\libs\checklist-model\LICENSE.txt" />
     <Content Include="Assets\libs\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\libs\ckeditor\ckeditor.js" />
     <Content Include="Assets\libs\ckeditor\config.js" />
@@ -1033,18 +884,15 @@
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\de.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\en.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\eo.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\es.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\eu.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\fr.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\it.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\km.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\ko.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\ku.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\mk.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\nb.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\pl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\pt-br.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\pt.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\ru.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\tr.js" />
     <Content Include="Assets\libs\ckeditor\plugins\autoembed\lang\ug.js" />
@@ -1581,7 +1429,6 @@
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\de.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\en.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\eo.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\es.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\eu.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\fr.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\gl.js" />
@@ -1593,7 +1440,6 @@
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\nl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\pl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\pt-br.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\pt.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\ru.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\sv.js" />
     <Content Include="Assets\libs\ckeditor\plugins\embedbase\lang\tr.js" />
@@ -1614,20 +1460,17 @@
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\de.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\en.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\eo.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\es.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\eu.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\fr.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\gl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\id.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\it.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\km.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\ko.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\ku.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\nb.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\nl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\pl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\pt-br.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\pt.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\ru.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\sv.js" />
     <Content Include="Assets\libs\ckeditor\plugins\filetools\lang\tr.js" />
@@ -2436,20 +2279,17 @@
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\de.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\en.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\eo.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\notification\lang\es.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\eu.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\fr.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\gl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\id.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\it.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\notification\lang\km.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\ko.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\ku.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\nb.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\nl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\pl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\pt-br.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\notification\lang\pt.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\ru.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\sv.js" />
     <Content Include="Assets\libs\ckeditor\plugins\notification\lang\tr.js" />
@@ -3350,21 +3190,18 @@
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\el.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\en.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\eo.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\es.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\eu.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\fr.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\gl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\hu.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\id.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\it.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\km.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\ko.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\ku.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\nb.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\nl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\pl.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\pt-br.js" />
-    <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\pt.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\ru.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\sv.js" />
     <Content Include="Assets\libs\ckeditor\plugins\uploadwidget\lang\tr.js" />
@@ -3545,6 +3382,7 @@
     <Content Include="Assets\libs\ckeditor\skins\moono\images\lock.png" />
     <Content Include="Assets\libs\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="Assets\libs\ckeditor\skins\moono\images\spinner.gif" />
+    <Content Include="Assets\libs\ckeditor\styles.js" />
     <Content Include="Assets\libs\ckfinder\changelog.txt" />
     <Content Include="Assets\libs\ckfinder\ckfinder.html" />
     <Content Include="Assets\libs\ckfinder\ckfinder.js" />
@@ -4175,11 +4013,24 @@
     <Content Include="Assets\libs\ckfinder\skins\v1\skin.js" />
     <Content Include="Assets\libs\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Assets\libs\ckfinder\translations.txt" />
+    <Content Include="Assets\libs\datetimepicker\.gitignore" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.full.js" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.full.min.js" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.min.css" />
+    <Content Include="Assets\libs\datetimepicker\build\jquery.datetimepicker.min.js" />
+    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.css" />
+    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.js" />
+    <Content Include="Assets\libs\datetimepicker\jquery.datetimepicker.min.js" />
     <Content Include="Assets\libs\fastclick\lib\fastclick.js" />
-    <Content Include="Assets\libs\jquery-ajax-unobtrusive\gulpfile.js" />
+    <Content Include="Assets\libs\font-awesome\.gitignore" />
+    <Content Include="Assets\libs\font-awesome\css\font-awesome.css" />
+    <Content Include="Assets\libs\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\libs\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Assets\libs\icheck-bootstrap\icheck-bootstrap.css" />
+    <Content Include="Assets\libs\icheck-bootstrap\icheck-bootstrap.min.css" />
     <Content Include="Assets\libs\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.js" />
     <Content Include="Assets\libs\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Assets\libs\jquery-ajax-unobtrusive\LICENSE.txt" />
     <Content Include="Assets\libs\jquery-ui\.gitignore" />
     <Content Include="Assets\libs\jquery-ui\AUTHORS.txt" />
     <Content Include="Assets\libs\jquery-ui\jquery-ui.js" />
@@ -4888,10 +4739,12 @@
     <Content Include="Assets\libs\jquery\AUTHORS.txt" />
     <Content Include="Assets\libs\jquery\dist\jquery.js" />
     <Content Include="Assets\libs\jquery\dist\jquery.min.js" />
-    <Content Include="Assets\libs\jquery\external\sizzle\dist\sizzle.js" />
-    <Content Include="Assets\libs\jquery\external\sizzle\dist\sizzle.min.js" />
-    <Content Include="Assets\libs\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="Assets\libs\jquery\dist\jquery.slim.js" />
+    <Content Include="Assets\libs\jquery\dist\jquery.slim.min.js" />
     <Content Include="Assets\libs\jquery\LICENSE.txt" />
+    <Content Include="Assets\libs\jquery\sizzle\dist\sizzle.js" />
+    <Content Include="Assets\libs\jquery\sizzle\dist\sizzle.min.js" />
+    <Content Include="Assets\libs\jquery\sizzle\LICENSE.txt" />
     <Content Include="Assets\libs\jquery\src\ajax.js" />
     <Content Include="Assets\libs\jquery\src\ajax\jsonp.js" />
     <Content Include="Assets\libs\jquery\src\ajax\load.js" />
@@ -4911,9 +4764,11 @@
     <Content Include="Assets\libs\jquery\src\callbacks.js" />
     <Content Include="Assets\libs\jquery\src\core.js" />
     <Content Include="Assets\libs\jquery\src\core\access.js" />
+    <Content Include="Assets\libs\jquery\src\core\DOMEval.js" />
     <Content Include="Assets\libs\jquery\src\core\init.js" />
     <Content Include="Assets\libs\jquery\src\core\parseHTML.js" />
     <Content Include="Assets\libs\jquery\src\core\ready.js" />
+    <Content Include="Assets\libs\jquery\src\core\support.js" />
     <Content Include="Assets\libs\jquery\src\core\var\rsingleTag.js" />
     <Content Include="Assets\libs\jquery\src\css.js" />
     <Content Include="Assets\libs\jquery\src\css\addGetHookIf.js" />
@@ -4930,15 +4785,19 @@
     <Content Include="Assets\libs\jquery\src\css\var\rnumnonpx.js" />
     <Content Include="Assets\libs\jquery\src\css\var\swap.js" />
     <Content Include="Assets\libs\jquery\src\data.js" />
+    <Content Include="Assets\libs\jquery\src\data\accepts.js" />
     <Content Include="Assets\libs\jquery\src\data\Data.js" />
+    <Content Include="Assets\libs\jquery\src\data\support.js" />
     <Content Include="Assets\libs\jquery\src\data\var\acceptData.js" />
     <Content Include="Assets\libs\jquery\src\data\var\dataPriv.js" />
     <Content Include="Assets\libs\jquery\src\data\var\dataUser.js" />
     <Content Include="Assets\libs\jquery\src\deferred.js" />
+    <Content Include="Assets\libs\jquery\src\deferred\exceptionHook.js" />
     <Content Include="Assets\libs\jquery\src\deprecated.js" />
     <Content Include="Assets\libs\jquery\src\dimensions.js" />
     <Content Include="Assets\libs\jquery\src\effects.js" />
     <Content Include="Assets\libs\jquery\src\effects\animatedSelector.js" />
+    <Content Include="Assets\libs\jquery\src\effects\support.js" />
     <Content Include="Assets\libs\jquery\src\effects\Tween.js" />
     <Content Include="Assets\libs\jquery\src\event.js" />
     <Content Include="Assets\libs\jquery\src\event\ajax.js" />
@@ -4952,10 +4811,13 @@
     <Content Include="Assets\libs\jquery\src\jquery.js" />
     <Content Include="Assets\libs\jquery\src\manipulation.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\buildFragment.js" />
+    <Content Include="Assets\libs\jquery\src\manipulation\createSafeFragment.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\getAll.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\setGlobalEval.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\support.js" />
+    <Content Include="Assets\libs\jquery\src\manipulation\var\nodeNames.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="Assets\libs\jquery\src\manipulation\var\rleadingWhitespace.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\var\rscriptType.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\var\rtagName.js" />
     <Content Include="Assets\libs\jquery\src\manipulation\wrapMap.js" />
@@ -4968,6 +4830,7 @@
     <Content Include="Assets\libs\jquery\src\selector-sizzle.js" />
     <Content Include="Assets\libs\jquery\src\selector.js" />
     <Content Include="Assets\libs\jquery\src\serialize.js" />
+    <Content Include="Assets\libs\jquery\src\support.js" />
     <Content Include="Assets\libs\jquery\src\traversing.js" />
     <Content Include="Assets\libs\jquery\src\traversing\findFilter.js" />
     <Content Include="Assets\libs\jquery\src\traversing\var\dir.js" />
@@ -4976,6 +4839,7 @@
     <Content Include="Assets\libs\jquery\src\var\arr.js" />
     <Content Include="Assets\libs\jquery\src\var\class2type.js" />
     <Content Include="Assets\libs\jquery\src\var\concat.js" />
+    <Content Include="Assets\libs\jquery\src\var\deletedIds.js" />
     <Content Include="Assets\libs\jquery\src\var\document.js" />
     <Content Include="Assets\libs\jquery\src\var\documentElement.js" />
     <Content Include="Assets\libs\jquery\src\var\hasOwn.js" />
@@ -4988,6 +4852,10 @@
     <Content Include="Assets\libs\jquery\src\var\support.js" />
     <Content Include="Assets\libs\jquery\src\var\toString.js" />
     <Content Include="Assets\libs\jquery\src\wrap.js" />
+    <Content Include="Assets\libs\mustache\mustache.js" />
+    <Content Include="Assets\libs\mustache\mustache.min.js" />
+    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.js" />
+    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.txt" />
     <Content Include="Assets\libs\ng-ckeditor\.gitignore" />
     <Content Include="Assets\libs\ng-ckeditor\examples\1.html" />
     <Content Include="Assets\libs\ng-ckeditor\examples\css\bootstrap.css" />
@@ -5223,6 +5091,98 @@
     <Content Include="Assets\libs\ngBootbox\examples\index.html" />
     <Content Include="Assets\libs\ngBootbox\gulpfile.js" />
     <Content Include="Assets\libs\ngBootbox\ngBootbox.js" />
+    <Content Include="Assets\libs\numeral\.gitignore" />
+    <Content Include="Assets\libs\numeral\Gruntfile.js" />
+    <Content Include="Assets\libs\numeral\languages.js" />
+    <Content Include="Assets\libs\numeral\languages\be-nl.js" />
+    <Content Include="Assets\libs\numeral\languages\chs.js" />
+    <Content Include="Assets\libs\numeral\languages\cs.js" />
+    <Content Include="Assets\libs\numeral\languages\da-dk.js" />
+    <Content Include="Assets\libs\numeral\languages\de-ch.js" />
+    <Content Include="Assets\libs\numeral\languages\de.js" />
+    <Content Include="Assets\libs\numeral\languages\en-gb.js" />
+    <Content Include="Assets\libs\numeral\languages\es-ES.js" />
+    <Content Include="Assets\libs\numeral\languages\es.js" />
+    <Content Include="Assets\libs\numeral\languages\et.js" />
+    <Content Include="Assets\libs\numeral\languages\fi.js" />
+    <Content Include="Assets\libs\numeral\languages\fr-CA.js" />
+    <Content Include="Assets\libs\numeral\languages\fr-ch.js" />
+    <Content Include="Assets\libs\numeral\languages\fr.js" />
+    <Content Include="Assets\libs\numeral\languages\hu.js" />
+    <Content Include="Assets\libs\numeral\languages\it.js" />
+    <Content Include="Assets\libs\numeral\languages\ja.js" />
+    <Content Include="Assets\libs\numeral\languages\nl-nl.js" />
+    <Content Include="Assets\libs\numeral\languages\pl.js" />
+    <Content Include="Assets\libs\numeral\languages\pt-br.js" />
+    <Content Include="Assets\libs\numeral\languages\pt-pt.js" />
+    <Content Include="Assets\libs\numeral\languages\ru-UA.js" />
+    <Content Include="Assets\libs\numeral\languages\ru.js" />
+    <Content Include="Assets\libs\numeral\languages\sk.js" />
+    <Content Include="Assets\libs\numeral\languages\th.js" />
+    <Content Include="Assets\libs\numeral\languages\tr.js" />
+    <Content Include="Assets\libs\numeral\languages\uk-UA.js" />
+    <Content Include="Assets\libs\numeral\min\languages.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\be-nl.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\chs.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\cs.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\da-dk.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\de-ch.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\de.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\en-gb.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\es-ES.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\es.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\et.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fi.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fr-CA.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fr-ch.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\fr.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\hu.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\it.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\ja.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\nl-nl.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\pl.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\pt-br.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\pt-pt.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\ru-UA.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\ru.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\sk.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\th.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\tr.min.js" />
+    <Content Include="Assets\libs\numeral\min\languages\uk-UA.min.js" />
+    <Content Include="Assets\libs\numeral\min\numeral.min.js" />
+    <Content Include="Assets\libs\numeral\numeral.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\be-nl.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\chs.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\cs.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\da-dk.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\de-ch.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\de.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\en-gb.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\en.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\es-ES.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\es.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\et.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fi.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fr-CA.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fr-ch.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\fr.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\hu.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\it.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\ja.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\nl-nl.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\pl.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\pt-br.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\pt-pt.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\ru-UA.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\ru.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\sk.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\th.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\tr.js" />
+    <Content Include="Assets\libs\numeral\tests\languages\uk-UA.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\format.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\manipulate.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\misc.js" />
+    <Content Include="Assets\libs\numeral\tests\numeral\unformat.js" />
     <Content Include="Assets\libs\slimScroll\examples\allow-page-scroll.html" />
     <Content Include="Assets\libs\slimScroll\examples\chaining.html" />
     <Content Include="Assets\libs\slimScroll\examples\disable-fade-out.html" />
@@ -5247,6 +5207,34 @@
     <Content Include="Assets\libs\toastr\toastr.js" />
     <Content Include="Assets\libs\toastr\toastr.min.css" />
     <Content Include="Assets\libs\toastr\toastr.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Assets\Client\img\logo.png" />
+    <Content Include="Assets\Client\img\product-1.jpg" />
+    <Content Include="Assets\Client\img\product-2.jpg" />
+    <Content Include="Assets\Client\img\product-3.jpg" />
+    <Content Include="Assets\Client\img\product-4.jpg" />
+    <Content Include="Assets\Client\img\product-5.jpg" />
+    <Content Include="Assets\Client\img\product-6.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-1.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-2.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-3.jpg" />
+    <Content Include="Assets\Client\img\product-thumb-4.jpg" />
+    <Content Include="Assets\Client\img\ring.gif" />
+    <Content Include="Assets\Client\img\zoom.png" />
+    <Content Include="Assets\Client\js\app.js" />
+    <Content Include="Assets\Client\js\bxslider.min.js" />
+    <Content Include="Assets\Client\js\cart.js" />
+    <Content Include="Assets\Client\js\controllers\contact.js" />
+    <Content Include="Assets\Client\js\jquery.easing.1.3.min.js" />
+    <Content Include="Assets\Client\js\jquery.etalage.min.js" />
+    <Content Include="Assets\Client\js\jquery.sticky.js" />
+    <Content Include="Assets\Client\js\main.js" />
+    <Content Include="Assets\Client\js\owl.carousel.min.js" />
+    <Content Include="Assets\Client\js\script.slider.js" />
+    <Content Include="Assets\Client\js\scroll-startstop.events.jquery.js" />
+    <Content Include="Assets\Client\js\scroll.js" />
+    <Content Include="Assets\Client\js\search-box.js" />
+    <Content Include="Assets\Client\templates\contactTemplate.html" />
     <Content Include="Content\PagedList.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -5255,70 +5243,19 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
-    <Content Include="Assets\libs\angular-sanitize\.bower.json" />
-    <Content Include="Assets\libs\angular-sanitize\angular-sanitize.min.js.map" />
-    <Content Include="Assets\libs\angular-sanitize\bower.json" />
-    <Content Include="Assets\libs\angular-sanitize\LICENSE.md" />
-    <Content Include="Assets\libs\angular-sanitize\package.json" />
-    <Content Include="Assets\libs\angular-sanitize\README.md" />
-    <None Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="app\shared\footer\" />
-    <Folder Include="app\shared\navigation\" />
-    <Folder Include="App_Data\" />
-    <Folder Include="Assets\libs\checklist-model\test\" />
-    <Folder Include="Libs\" />
-    <Folder Include="Reports\" />
-    <Folder Include="Views\AjaxProduct\" />
-    <Folder Include="Views\Brand\" />
-    <Folder Include="Views\Common\" />
-    <Folder Include="Views\TrackOrder\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\uStora.Common\uStora.Common.csproj">
-      <Project>{0dfe4be0-ba36-44fa-862f-3498a973638b}</Project>
-      <Name>uStora.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\uStora.Data\uStora.Data.csproj">
-      <Project>{62e44a07-9b2d-4aff-aa4f-3734c33c08aa}</Project>
-      <Name>uStora.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\uStora.Model\uStora.Model.csproj">
-      <Project>{c6cc56e5-1d98-4f7c-9726-f4c4a1be901a}</Project>
-      <Name>uStora.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\uStora.Service\uStora.Service.csproj">
-      <Project>{29093b10-b51b-4482-8bf8-b5a6a9f65fff}</Project>
-      <Name>uStora.Service</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="AppSettings.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ConnectionString.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include=".bowerrc" />
-    <Content Include="bower.json" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Assets\libs\angular-chart.js\.bower.json" />
+    <Content Include="Assets\libs\angular-chart.js\angular-chart.less" />
+    <Content Include="Assets\libs\angular-chart.js\bower.json" />
+    <Content Include="Assets\libs\angular-chart.js\CONTRIBUTING.md" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.js.tar.gz" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.css.map" />
+    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.js.map" />
+    <Content Include="Assets\libs\angular-chart.js\Dockerfile" />
+    <Content Include="Assets\libs\angular-chart.js\ISSUE_TEMPLATE.md" />
+    <Content Include="Assets\libs\angular-chart.js\LICENSE" />
+    <Content Include="Assets\libs\angular-chart.js\package.json" />
+    <Content Include="Assets\libs\angular-chart.js\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Assets\libs\angular-chart.js\README.md" />
     <Content Include="Assets\libs\angular-loading-bar\.bower.json" />
     <Content Include="Assets\libs\angular-loading-bar\bower.json" />
     <Content Include="Assets\libs\angular-loading-bar\CHANGELOG.md" />
@@ -5338,6 +5275,22 @@
     <Content Include="Assets\libs\angular-local-storage\LICENSE" />
     <Content Include="Assets\libs\angular-local-storage\package.json" />
     <Content Include="Assets\libs\angular-local-storage\README.md" />
+    <Content Include="Assets\libs\angular-sanitize\.bower.json" />
+    <Content Include="Assets\libs\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Assets\libs\angular-sanitize\bower.json" />
+    <Content Include="Assets\libs\angular-sanitize\LICENSE.md" />
+    <Content Include="Assets\libs\angular-sanitize\package.json" />
+    <Content Include="Assets\libs\angular-sanitize\README.md" />
+    <Content Include="Assets\libs\angular-timeago\.bower.json" />
+    <Content Include="Assets\libs\angular-timeago\.editorconfig" />
+    <Content Include="Assets\libs\angular-timeago\.gittrack" />
+    <Content Include="Assets\libs\angular-timeago\.jsbeautifyrc" />
+    <Content Include="Assets\libs\angular-timeago\.jshintrc" />
+    <Content Include="Assets\libs\angular-timeago\.travis.yml" />
+    <Content Include="Assets\libs\angular-timeago\bower.json" />
+    <Content Include="Assets\libs\angular-timeago\LICENSE" />
+    <Content Include="Assets\libs\angular-timeago\package.json" />
+    <Content Include="Assets\libs\angular-timeago\README.md" />
     <Content Include="Assets\libs\angular-ui-router\.bower.json" />
     <Content Include="Assets\libs\angular-ui-router\bower.json" />
     <Content Include="Assets\libs\angular-ui-router\CHANGELOG.md" />
@@ -5348,7 +5301,6 @@
     <Content Include="Assets\libs\angular\angular.min.js.gzip" />
     <Content Include="Assets\libs\angular\angular.min.js.map" />
     <Content Include="Assets\libs\angular\bower.json" />
-    <Content Include="Assets\libs\angular\LICENSE.md" />
     <Content Include="Assets\libs\angular\package.json" />
     <Content Include="Assets\libs\angular\README.md" />
     <Content Include="Assets\libs\bootbox\.bower.json" />
@@ -5360,6 +5312,8 @@
     <Content Include="Assets\libs\bootbox\LICENSE.md" />
     <Content Include="Assets\libs\bootbox\package.json" />
     <Content Include="Assets\libs\bootbox\README.md" />
+    <Content Include="Assets\libs\bootstrapValidator\.bower.json" />
+    <Content Include="Assets\libs\bootstrapValidator\bower.json" />
     <Content Include="Assets\libs\bootstrap\.bower.json" />
     <Content Include="Assets\libs\bootstrap\bower.json" />
     <Content Include="Assets\libs\bootstrap\CHANGELOG.md" />
@@ -5375,13 +5329,9 @@
     <Content Include="Assets\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\libs\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Assets\libs\bootstrap\Gemfile" />
-    <Content Include="Assets\libs\bootstrap\Gemfile.lock" />
     <Content Include="Assets\libs\bootstrap\grunt\.jshintrc" />
     <Content Include="Assets\libs\bootstrap\grunt\configBridge.json" />
-    <Content Include="Assets\libs\bootstrap\grunt\npm-shrinkwrap.json" />
     <Content Include="Assets\libs\bootstrap\grunt\sauce_browsers.yml" />
-    <Content Include="Assets\libs\bootstrap\ISSUE_TEMPLATE.md" />
     <Content Include="Assets\libs\bootstrap\js\.jscsrc" />
     <Content Include="Assets\libs\bootstrap\js\.jshintrc" />
     <Content Include="Assets\libs\bootstrap\less\.csscomb.json" />
@@ -5463,6 +5413,11 @@
     <Content Include="Assets\libs\bootstrap\nuget\MyGet.ps1" />
     <Content Include="Assets\libs\bootstrap\package.json" />
     <Content Include="Assets\libs\bootstrap\README.md" />
+    <Content Include="Assets\libs\Chart.js\.bower.json" />
+    <Content Include="Assets\libs\Chart.js\bower.json" />
+    <Content Include="Assets\libs\checklist-model\.bower.json" />
+    <Content Include="Assets\libs\checklist-model\bower.json" />
+    <Content Include="Assets\libs\checklist-model\readme.md" />
     <Content Include="Assets\libs\ckeditor\.bower.json" />
     <Content Include="Assets\libs\ckeditor\bower.json" />
     <Content Include="Assets\libs\ckeditor\CHANGES.md" />
@@ -5476,10 +5431,61 @@
     <Content Include="Assets\libs\ckeditor\plugins\scayt\LICENSE.md" />
     <Content Include="Assets\libs\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Assets\libs\ckeditor\README.md" />
+    <Content Include="Assets\libs\ckeditor\samples\old\assets\posteddata.php" />
+    <Content Include="Assets\libs\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Assets\libs\ckeditor\samples\old\sample_posteddata.php" />
+    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="Assets\libs\ckeditor\skins\kama\readme.md" />
+    <Content Include="Assets\libs\ckeditor\skins\moono\readme.md" />
     <Content Include="Assets\libs\fastclick\.bower.json" />
     <Content Include="Assets\libs\fastclick\bower.json" />
     <Content Include="Assets\libs\fastclick\LICENSE" />
     <Content Include="Assets\libs\fastclick\README.md" />
+    <Content Include="Assets\libs\font-awesome\.bower.json" />
+    <Content Include="Assets\libs\font-awesome\.npmignore" />
+    <Content Include="Assets\libs\font-awesome\bower.json" />
+    <Content Include="Assets\libs\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\libs\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Assets\libs\font-awesome\less\animated.less" />
+    <Content Include="Assets\libs\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Assets\libs\font-awesome\less\core.less" />
+    <Content Include="Assets\libs\font-awesome\less\fixed-width.less" />
+    <Content Include="Assets\libs\font-awesome\less\font-awesome.less" />
+    <Content Include="Assets\libs\font-awesome\less\icons.less" />
+    <Content Include="Assets\libs\font-awesome\less\larger.less" />
+    <Content Include="Assets\libs\font-awesome\less\list.less" />
+    <Content Include="Assets\libs\font-awesome\less\mixins.less" />
+    <Content Include="Assets\libs\font-awesome\less\path.less" />
+    <Content Include="Assets\libs\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Assets\libs\font-awesome\less\screen-reader.less" />
+    <Content Include="Assets\libs\font-awesome\less\stacked.less" />
+    <Content Include="Assets\libs\font-awesome\less\variables.less" />
+    <Content Include="Assets\libs\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_animated.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_core.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_icons.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_larger.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_list.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_mixins.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_path.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_stacked.scss" />
+    <Content Include="Assets\libs\font-awesome\scss\_variables.scss" />
+    <Content Include="Assets\libs\icheck-bootstrap\.bower.json" />
+    <Content Include="Assets\libs\icheck-bootstrap\LICENSE" />
+    <Content Include="Assets\libs\jquery-ajax-unobtrusive\.bower.json" />
+    <Content Include="Assets\libs\jquery-ajax-unobtrusive\bower.json" />
     <Content Include="Assets\libs\jquery-ui\.bower.json" />
     <Content Include="Assets\libs\jquery-ui\bower.json" />
     <Content Include="Assets\libs\jquery-ui\component.json" />
@@ -5491,9 +5497,33 @@
     <Content Include="Assets\libs\jquery\.bower.json" />
     <Content Include="Assets\libs\jquery\bower.json" />
     <Content Include="Assets\libs\jquery\dist\jquery.min.map" />
-    <Content Include="Assets\libs\jquery\external\sizzle\dist\sizzle.min.map" />
+    <Content Include="Assets\libs\jquery\dist\jquery.slim.min.map" />
     <Content Include="Assets\libs\jquery\README.md" />
+    <Content Include="Assets\libs\jquery\sizzle\dist\sizzle.min.map" />
     <Content Include="Assets\libs\jquery\src\.jshintrc" />
+    <Content Include="Assets\libs\mustache\.bower.json" />
+    <Content Include="Assets\libs\mustache\bin\mustache" />
+    <Content Include="Assets\libs\mustache\bower.json" />
+    <Content Include="Assets\libs\mustache\CHANGELOG.md" />
+    <Content Include="Assets\libs\mustache\hooks\install-hooks.sh" />
+    <Content Include="Assets\libs\mustache\hooks\pre-commit" />
+    <Content Include="Assets\libs\mustache\LICENSE" />
+    <Content Include="Assets\libs\mustache\MIGRATING.md" />
+    <Content Include="Assets\libs\mustache\mustache.js.nuspec" />
+    <Content Include="Assets\libs\mustache\package.json" />
+    <Content Include="Assets\libs\mustache\Rakefile" />
+    <Content Include="Assets\libs\mustache\README.md" />
+    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.mustache" />
+    <Content Include="Assets\libs\mustache\wrappers\dojo\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\dojo\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\jquery\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\jquery\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\mootools\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\mootools\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\qooxdoo\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\qooxdoo\mustache.js.pre" />
+    <Content Include="Assets\libs\mustache\wrappers\yui3\mustache.js.post" />
+    <Content Include="Assets\libs\mustache\wrappers\yui3\mustache.js.pre" />
     <Content Include="Assets\libs\ng-ckeditor\.bower.json" />
     <Content Include="Assets\libs\ng-ckeditor\.bowerrc" />
     <Content Include="Assets\libs\ng-ckeditor\.travis.yml" />
@@ -5522,47 +5552,95 @@
     <Content Include="Assets\libs\ngBootbox\package.json" />
     <Content Include="Assets\libs\ngBootbox\README.md" />
     <Content Include="Assets\libs\ngBootbox\tsd.json" />
+    <Content Include="Assets\libs\numeral\.bower.json" />
+    <Content Include="Assets\libs\numeral\.travis.yml" />
+    <Content Include="Assets\libs\numeral\bower.json" />
+    <Content Include="Assets\libs\numeral\component.json" />
+    <Content Include="Assets\libs\numeral\LICENSE" />
+    <Content Include="Assets\libs\numeral\package.json" />
+    <Content Include="Assets\libs\numeral\README.md" />
     <Content Include="Assets\libs\slimScroll\.bower.json" />
-    <Content Include="Assets\libs\slimScroll\bower.json" />
     <Content Include="Assets\libs\slimScroll\package.json" />
     <Content Include="Assets\libs\slimScroll\README.md" />
     <Content Include="Assets\libs\toastr\.bower.json" />
     <Content Include="Assets\libs\toastr\bower.json" />
-    <Content Include="Assets\libs\toastr\LICENSE" />
     <Content Include="Assets\libs\toastr\README.md" />
     <Content Include="Assets\libs\toastr\toastr.js.map" />
     <Content Include="Assets\libs\toastr\toastr.less" />
     <Content Include="Assets\libs\toastr\toastr.scss" />
+    <Content Include="Assets\libs\datetimepicker\.bower.json" />
+    <Content Include="Assets\libs\datetimepicker\bower.json" />
+    <Content Include="Assets\libs\datetimepicker\package.json" />
+    <Content Include="Assets\libs\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Assets\libs\ngBootbox\typings\angularjs\angular.d.ts" />
-    <TypeScriptCompile Include="Assets\libs\ngBootbox\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Assets\libs\ngBootbox\typings\tsd.d.ts" />
+    <Folder Include="app\shared\footer\" />
+    <Folder Include="app\shared\navigation\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Assets\libs\checklist-model\test\" />
+    <Folder Include="Assets\libs\datetimepicker\tests\" />
+    <Folder Include="Libs\" />
+    <Folder Include="Reports\" />
+    <Folder Include="Views\AjaxProduct\" />
+    <Folder Include="Views\Brand\" />
+    <Folder Include="Views\Common\" />
+    <Folder Include="Views\TrackOrder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\uStora.Common\uStora.Common.csproj">
+      <Project>{0dfe4be0-ba36-44fa-862f-3498a973638b}</Project>
+      <Name>uStora.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\uStora.Data\uStora.Data.csproj">
+      <Project>{62e44a07-9b2d-4aff-aa4f-3734c33c08aa}</Project>
+      <Name>uStora.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\uStora.Model\uStora.Model.csproj">
+      <Project>{c6cc56e5-1d98-4f7c-9726-f4c4a1be901a}</Project>
+      <Name>uStora.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\uStora.Service\uStora.Service.csproj">
+      <Project>{29093b10-b51b-4482-8bf8-b5a6a9f65fff}</Project>
+      <Name>uStora.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppSettings.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConnectionString.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".bowerrc" />
+    <Content Include="bower.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\ckeditor\samples\old\assets\posteddata.php" />
-    <Content Include="Assets\libs\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="Assets\libs\ckeditor\samples\old\sample_posteddata.php" />
-    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\config.json" />
-    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
-    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
-    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
-    <Content Include="Assets\libs\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
-    <Content Include="Assets\libs\ckeditor\skins\kama\readme.md" />
-    <Content Include="Assets\libs\ckeditor\skins\moono\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -5601,50 +5679,7 @@
     <Content Include="Views\Product\_AjaxProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\libs\jquery-ajax-unobtrusive\.bower.json" />
-    <Content Include="Assets\libs\jquery-ajax-unobtrusive\bower.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Account\Register.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\font-awesome\.bower.json" />
-    <Content Include="Assets\libs\font-awesome\.npmignore" />
-    <Content Include="Assets\libs\font-awesome\bower.json" />
-    <Content Include="Assets\libs\font-awesome\css\font-awesome.css.map" />
-    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Assets\libs\font-awesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Assets\libs\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Assets\libs\font-awesome\less\animated.less" />
-    <Content Include="Assets\libs\font-awesome\less\bordered-pulled.less" />
-    <Content Include="Assets\libs\font-awesome\less\core.less" />
-    <Content Include="Assets\libs\font-awesome\less\fixed-width.less" />
-    <Content Include="Assets\libs\font-awesome\less\font-awesome.less" />
-    <Content Include="Assets\libs\font-awesome\less\icons.less" />
-    <Content Include="Assets\libs\font-awesome\less\larger.less" />
-    <Content Include="Assets\libs\font-awesome\less\list.less" />
-    <Content Include="Assets\libs\font-awesome\less\mixins.less" />
-    <Content Include="Assets\libs\font-awesome\less\path.less" />
-    <Content Include="Assets\libs\font-awesome\less\rotated-flipped.less" />
-    <Content Include="Assets\libs\font-awesome\less\screen-reader.less" />
-    <Content Include="Assets\libs\font-awesome\less\stacked.less" />
-    <Content Include="Assets\libs\font-awesome\less\variables.less" />
-    <Content Include="Assets\libs\font-awesome\scss\font-awesome.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_animated.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_bordered-pulled.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_core.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_fixed-width.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_icons.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_larger.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_list.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_mixins.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_path.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_rotated-flipped.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_screen-reader.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_stacked.scss" />
-    <Content Include="Assets\libs\font-awesome\scss\_variables.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Product\ProductsByTag.cshtml" />
@@ -5656,78 +5691,16 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\libs\mustache\.bower.json" />
-    <Content Include="Assets\libs\mustache\bin\mustache" />
-    <Content Include="Assets\libs\mustache\bower.json" />
-    <Content Include="Assets\libs\mustache\CHANGELOG.md" />
-    <Content Include="Assets\libs\mustache\hooks\install-hooks.sh" />
-    <Content Include="Assets\libs\mustache\hooks\pre-commit" />
-    <Content Include="Assets\libs\mustache\LICENSE" />
-    <Content Include="Assets\libs\mustache\MIGRATING.md" />
-    <Content Include="Assets\libs\mustache\mustache.js.nuspec" />
-    <Content Include="Assets\libs\mustache\package.json" />
-    <Content Include="Assets\libs\mustache\Rakefile" />
-    <Content Include="Assets\libs\mustache\README.md" />
-    <Content Include="Assets\libs\mustache\spec\_files\bom_as_whitespace.mustache" />
-    <Content Include="Assets\libs\mustache\wrappers\dojo\mustache.js.post" />
-    <Content Include="Assets\libs\mustache\wrappers\dojo\mustache.js.pre" />
-    <Content Include="Assets\libs\mustache\wrappers\jquery\mustache.js.post" />
-    <Content Include="Assets\libs\mustache\wrappers\jquery\mustache.js.pre" />
-    <Content Include="Assets\libs\mustache\wrappers\mootools\mustache.js.post" />
-    <Content Include="Assets\libs\mustache\wrappers\mootools\mustache.js.pre" />
-    <Content Include="Assets\libs\mustache\wrappers\qooxdoo\mustache.js.post" />
-    <Content Include="Assets\libs\mustache\wrappers\qooxdoo\mustache.js.pre" />
-    <Content Include="Assets\libs\mustache\wrappers\yui3\mustache.js.post" />
-    <Content Include="Assets\libs\mustache\wrappers\yui3\mustache.js.pre" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\numeral\.bower.json" />
-    <Content Include="Assets\libs\numeral\.travis.yml" />
-    <Content Include="Assets\libs\numeral\bower.json" />
-    <Content Include="Assets\libs\numeral\component.json" />
-    <Content Include="Assets\libs\numeral\LICENSE" />
-    <Content Include="Assets\libs\numeral\package.json" />
-    <Content Include="Assets\libs\numeral\README.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\ShoppingCart\_AjaxProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\libs\checklist-model\.bower.json" />
-    <Content Include="Assets\libs\checklist-model\bower.json" />
-    <Content Include="Assets\libs\checklist-model\readme.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\angular-chart.js\.bower.json" />
-    <Content Include="Assets\libs\angular-chart.js\angular-chart.less" />
-    <Content Include="Assets\libs\angular-chart.js\bower.json" />
-    <Content Include="Assets\libs\angular-chart.js\CONTRIBUTING.md" />
-    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.js.tar.gz" />
-    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.css.map" />
-    <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.min.js.map" />
-    <Content Include="Assets\libs\angular-chart.js\Dockerfile" />
-    <Content Include="Assets\libs\angular-chart.js\ISSUE_TEMPLATE.md" />
-    <Content Include="Assets\libs\angular-chart.js\LICENSE" />
-    <Content Include="Assets\libs\angular-chart.js\package.json" />
-    <Content Include="Assets\libs\angular-chart.js\PULL_REQUEST_TEMPLATE.md" />
-    <Content Include="Assets\libs\angular-chart.js\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\Chart.js\.bower.json" />
-    <Content Include="Assets\libs\Chart.js\bower.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Wishlist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Wishlist\_AjaxProductList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\icheck-bootstrap\.bower.json" />
-    <Content Include="Assets\libs\icheck-bootstrap\LICENSE" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -5745,29 +5718,12 @@
     <Content Include="Views\Live\NoOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\libs\datetimepicker\bower.json" />
-    <Content Include="Assets\libs\datetimepicker\datetimepicker.jquery.json" />
-    <Content Include="Assets\libs\datetimepicker\doc.tpl" />
-    <Content Include="Assets\libs\datetimepicker\package.json" />
-    <Content Include="Assets\libs\datetimepicker\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\bootstrapValidator\.bower.json" />
-    <Content Include="Assets\libs\bootstrapValidator\bower.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\libs\angular-timeago\.bower.json" />
-    <Content Include="Assets\libs\angular-timeago\.editorconfig" />
-    <Content Include="Assets\libs\angular-timeago\.gittrack" />
-    <Content Include="Assets\libs\angular-timeago\.jsbeautifyrc" />
-    <Content Include="Assets\libs\angular-timeago\.jshintrc" />
-    <Content Include="Assets\libs\angular-timeago\bower.json" />
-    <Content Include="Assets\libs\angular-timeago\LICENSE" />
-    <Content Include="Assets\libs\angular-timeago\package.json" />
-    <Content Include="Assets\libs\angular-timeago\README.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Scripts\angular.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Assets\libs\ngBootbox\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="Assets\libs\ngBootbox\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Assets\libs\ngBootbox\typings\tsd.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

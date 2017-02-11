@@ -33,6 +33,6 @@
     "commit": "086565fed869f7f6485ef35f796fcbab067e8dff"
   },
   "_source": "https://github.com/bantikyan/icheck-bootstrap.git",
-  "_target": "*",
+  "_target": "1.0.7",
   "_originalSource": "icheck-bootstrap"
 }

@@ -1,5 +1,6 @@
 ﻿namespace uStora.Data.Migrations
 {
+    using Common;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
@@ -7,6 +8,7 @@
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Validation;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<uStoraDbContext>
@@ -38,35 +40,40 @@
                     UserName = "dvbtham",
                     Email = "dvbtham@gmail.com",
                     EmailConfirmed = true,
-                    BirthDay = DateTime.Now,
+                    Image = CommonConstants.DefaultAvatar,
+                    CreatedDate = DateTime.ParseExact(DateTime.Now.ToShortDateString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    BirthDay = DateTime.ParseExact("15/09/1996", "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     Gender = "Nam",
                     FullName = "Thâm David",
                     Address = "Gia Lai",
                     PhoneNumber = "01652130546"
                 };
-
-                manager.Create(user, "123123$");
-
-                if (!roleManager.Roles.Any())
+                if (manager.Users.Count() == 0)
                 {
-                    roleManager.Create(new IdentityRole { Name = "Admin" });
-                    roleManager.Create(new IdentityRole { Name = "User" });
+                    manager.Create(user, "123123$");
+
+                    if (!roleManager.Roles.Any())
+                    {
+                        roleManager.Create(new IdentityRole { Name = "Admin" });
+                        roleManager.Create(new IdentityRole { Name = "User" });
+                    }
+
+                    var adminUser = manager.FindByEmail("dvbtham@gmail.com");
+
+                    manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+
                 }
-
-                var adminUser = manager.FindByEmail("dvbtham@gmail.com");
-
-                manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
             }
         }
 
         private void BrandDefault(uStoraDbContext context)
         {
-            if(context.Brands.Count() == 0)
+            if (context.Brands.Count() == 0)
             {
                 var brand = new Brand()
                 {
-                    Name = "Không xác định",
-                    Alias = "khong-xac-dinh",
+                    Name = "Apple",
+                    Alias = "apple",
                     CreatedBy = "system",
                     Status = true
                 };
@@ -105,7 +112,7 @@
 
         private void CreateSystemConfig(uStoraDbContext context)
         {
-            if(!context.SystemConfigs.Any(x=>x.Code == "Hometitle"))
+            if (!context.SystemConfigs.Any(x => x.Code == "Hometitle"))
             {
                 context.SystemConfigs.Add(new SystemConfig()
                 {

@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using uStora.Common;
 using uStora.Data.Infrastructure;
 using uStora.Model.Models;
 using uStora.Service;
@@ -87,7 +88,7 @@ namespace uStora.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var listDrivers = _appUserService.GetUserIdByGroupId(5);
+                var listDrivers = _appUserService.GetUserIdByGroupId(CommonConstants.DriverId);
                 List<ApplicationUserViewModel> userVm = new List<ApplicationUserViewModel>();
                 foreach (var id in listDrivers)
                 {

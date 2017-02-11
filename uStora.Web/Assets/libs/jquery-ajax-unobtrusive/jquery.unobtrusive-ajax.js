@@ -91,7 +91,7 @@
         $.extend(options, {
             type: element.getAttribute("data-ajax-method") || undefined,
             url: element.getAttribute("data-ajax-url") || undefined,
-            cache: (element.getAttribute("data-ajax-cache") || "").toLowerCase() === "true",
+            cache: !!element.getAttribute("data-ajax-cache"),
             beforeSend: function (xhr) {
                 var result;
                 asyncOnBeforeSend(xhr, method);
