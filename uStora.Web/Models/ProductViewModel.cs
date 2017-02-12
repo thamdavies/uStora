@@ -41,6 +41,8 @@ namespace uStora.Web.Models
 
         public string Tags { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual ProductCategoryViewModel ProductCategory { get; set; }
         public IPagedList<ProductViewModel> ListProducts { get; set; }
         public virtual BrandViewModel Brand { get; set; }

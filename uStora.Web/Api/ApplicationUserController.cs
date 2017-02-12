@@ -21,6 +21,7 @@ namespace uStora.Web.Api
     public class ApplicationUserController : ApiControllerBase
     {
         private ICommonService _commonService;
+        private IApplicationUserService _userService;
         private IApplicationUserService _appUser;
         private ApplicationUserManager _userManager;
         private IApplicationGroupService _appGroupService;
@@ -32,9 +33,11 @@ namespace uStora.Web.Api
             IApplicationRoleService appRoleService,
             ApplicationUserManager userManager,
             IErrorService errorService,
-            ICommonService commonService)
+            ICommonService commonService,
+            IApplicationUserService userService)
             : base(errorService)
         {
+            _userService = userService;
             _appRoleService = appRoleService;
             _appUser = appUser;
             _appGroupService = appGroupService;
@@ -42,6 +45,7 @@ namespace uStora.Web.Api
             _commonService = commonService;
         }
 
+        #region Methods
         [Route("getlistpaging")]
         [HttpGet]
         [Authorize(Roles = "ViewUser")]
@@ -146,7 +150,7 @@ namespace uStora.Web.Api
                             }
                         }
                         _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
-                        _appGroupService.SaveShanges();
+                        _appGroupService.SaveChanges();
 
                         return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
                     }
@@ -199,7 +203,7 @@ namespace uStora.Web.Api
                             }
                         }
                         _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
-                        _appGroupService.SaveShanges();
+                        _appGroupService.SaveChanges();
                         return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
                     }
                     else
@@ -237,14 +241,11 @@ namespace uStora.Web.Api
         [HttpDelete]
         [Route("delete")]
         [Authorize(Roles = "DeleteUser")]
-        public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
+        public HttpResponseMessage Delete(HttpRequestMessage request, string id)
         {
-            var appUser = await _userManager.FindByIdAsync(id);
-            var result = await _userManager.DeleteAsync(appUser);
-            if (result.Succeeded)
-                return request.CreateResponse(HttpStatusCode.OK, id);
-            else
-                return request.CreateErrorResponse(HttpStatusCode.OK, string.Join(",", result.Errors));
+            _userService.IsDeleted(id);
+            return request.CreateResponse(HttpStatusCode.OK);
         }
+        #endregion
     }
 }

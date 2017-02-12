@@ -8,6 +8,7 @@ using uStora.Model.Models;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.Owin.Security.DataProtection;
 
 namespace uStora.Web.App_Start
 {
@@ -18,48 +19,47 @@ namespace uStora.Web.App_Start
         {
         }
     }
-
+    
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
-        }
-
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
-        {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<uStoraDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            UserValidator = new UserValidator<ApplicationUser>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
             // Configure validation logic for passwords
-            manager.PasswordValidator = new PasswordValidator
+            PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = true,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = true,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults
-            manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            UserLockoutEnabledByDefault = true;
+            DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            MaxFailedAccessAttemptsBeforeLockout = 5;
 
-            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
-
-            var dataProtectionProvider = options.DataProtectionProvider;
+            RegisterTwoFactorProvider("Mã bảo mật qua Email", new EmailTokenProvider<ApplicationUser>
+            {
+                Subject = "Mã bảo mật",
+                BodyFormat = "Mã bảo mật của bạn là {0}"
+            });
+            var dataProtectionProvider = Startup.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider =
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                IDataProtector dataProtector = dataProtectionProvider.Create("ASP.NET Identity");
+
+                UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
             }
-            return manager;
         }
     }
 

@@ -16,8 +16,10 @@ namespace uStora.Service
 
         IEnumerable<Vehicle> GetAll(string keyword);
 
-        Vehicle Delete(int id);
+        void IsDeleted(int id);
 
+        Vehicle Delete(int id);
+        
         void SaveChanges();
 
     }
@@ -64,9 +66,16 @@ namespace uStora.Service
         public IEnumerable<Vehicle> GetAll(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
-                return _vehicleRepository.GetMulti(x => x.ModelID.Contains(keyword) || x.Model.Contains(keyword) || x.DriverName.Contains(keyword) || x.Name.Contains(keyword));
+                return _vehicleRepository.GetMulti(x => x.ModelID.Contains(keyword) || x.Model.Contains(keyword) || x.DriverName.Contains(keyword) || x.Name.Contains(keyword) && x.IsDeleted == false);
             else
-                return _vehicleRepository.GetMulti(x => x.Status);
+                return _vehicleRepository.GetMulti(x => x.Status && x.IsDeleted == false);
+        }
+
+        public void IsDeleted(int id)
+        {
+            var vehicle = GetById(id);
+            vehicle.IsDeleted = true;
+            SaveChanges();
         }
     }
 }

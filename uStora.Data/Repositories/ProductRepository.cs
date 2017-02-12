@@ -22,7 +22,7 @@ namespace uStora.Data.Repositories
             var query = from p in DbContext.Products
                         join pt in DbContext.ProductTags
                         on p.ID equals pt.ProductID
-                        where pt.TagID == tagId
+                        where pt.TagID == tagId && p.IsDeleted == false
                         select p;
             if(brandId != 0)
             {
@@ -31,7 +31,7 @@ namespace uStora.Data.Repositories
                         on p.BrandID equals brand.ID
                         join pt in DbContext.ProductTags
                         on p.ID equals pt.ProductID
-                        where pt.TagID == tagId && p.BrandID == brandId
+                        where pt.TagID == tagId && p.BrandID == brandId && p.IsDeleted == false
                         select p;
             }
 

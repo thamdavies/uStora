@@ -25,6 +25,8 @@ namespace uStora.Web.Models
 
         public int? ViewCount { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual PostCategoryViewModel PostCategory { get; set; }
 
         public virtual IEnumerable<PostTagViewModel> PostTags { get; set; }

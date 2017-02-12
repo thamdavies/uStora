@@ -183,6 +183,9 @@
                     $('#phone').val(user.PhoneNumber);
                     $('#address').val(user.Address);
                 }
+                else {
+                    toastr.warning(res.message);
+                }
             }
         })
     },

@@ -13,6 +13,8 @@ namespace uStora.Service
         IEnumerable<string> GetUserIdByGroupId(int id);
 
         void SetViewed(string id);
+
+        void IsDeleted(string id);
     }
 
     public class ApplicationUserService : IApplicationUserService
@@ -42,6 +44,14 @@ namespace uStora.Service
         public IEnumerable<string> GetUserIdByGroupId(int id)
         {
             return _applicationUserRepository.GetUserIdByGroupId(id);
+        }
+
+        public void IsDeleted(string id)
+        {
+            var user = _applicationUserRepository.GetSingleById(id);
+            user.IsDeleted = true;
+            _applicationUserRepository.Update(user);
+            _unitOfWork.Commit();
         }
 
         public void SetViewed(string id)

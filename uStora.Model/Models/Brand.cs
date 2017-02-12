@@ -35,6 +35,8 @@ namespace uStora.Model.Models
 
         public bool? HotFlag { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual IEnumerable<Product> Products { get; set; }
     }
 }

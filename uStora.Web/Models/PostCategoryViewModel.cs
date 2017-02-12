@@ -19,5 +19,7 @@ namespace uStora.Web.Models
         public string Image { get; set; }
 
         public bool? HomeFlag { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

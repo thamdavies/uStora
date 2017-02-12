@@ -18,7 +18,7 @@
                     <p>Đơn hàng</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="fa fa-shopping-cart"></i>
                 </div>
                 <a ui-sref="orders" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
@@ -46,7 +46,7 @@
                     <p>Người dùng</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="fa fa-users"></i>
                 </div>
                 <a ui-sref="application_users" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
@@ -103,7 +103,6 @@
                 <!-- /.box-footer -->
             </div>
             <!--/.box -->
-
             <!-- /.content -->
         </div>
         <div class="col-md-4">
@@ -128,16 +127,16 @@
                             <div class="product-info">
                                 <a href="javascript:void(0)" class="product-title">
                                     {{product.Name}}
-                                    <span class="label label-warning pull-right">{{product.Price | currency:"đ "}}</span>
+                                    <span class="label label-warning pull-right">{{product.Price | currency:"đ ":0}}</span>
                                 </a>
-                                <span class="product-description" ng-bind-html="htmlRaw(product.Description| limitTo:30 )"></span>
+                                <span class="product-description" ng-bind-html="product.Description| limitTo:30"></span>
                             </div>
                         </li>
                     </ul>
                 </div>
                 <!-- /.box-body -->
-                <div class="box-footer text-center">Xem tất cả sản phẩm
-                    <a ui-sref="products" class="uppercase"></a>
+                <div class="box-footer text-center">
+                    <a ui-sref="products" class="uppercase">Xem tất cả sản phẩm</a>
                 </div>
                 <!-- /.box-footer -->
             </div>

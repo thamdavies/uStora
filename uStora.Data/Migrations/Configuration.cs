@@ -5,6 +5,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Validation;
     using System.Diagnostics;
@@ -25,8 +26,9 @@
             CreateContactDetail(context);
             CreateSystemConfig(context);
             CreatePage(context);
+            CreateGroup(context);
         }
-
+        #region Methods
         private void CreateUser(uStoraDbContext context)
         {
             if (context.Users.Count() == 0)
@@ -46,7 +48,9 @@
                     Gender = "Nam",
                     FullName = "Thâm David",
                     Address = "Gia Lai",
-                    PhoneNumber = "01652130546"
+                    PhoneNumber = "01652130546",
+                    IsDeleted = false,
+                    IsViewed = true
                 };
                 if (manager.Users.Count() == 0)
                 {
@@ -75,7 +79,9 @@
                     Name = "Apple",
                     Alias = "apple",
                     CreatedBy = "system",
-                    Status = true
+                    CreatedDate = DateTime.Now,
+                    Status = true,
+                    IsDeleted = false
                 };
                 context.Brands.Add(brand);
                 context.SaveChanges();
@@ -172,5 +178,53 @@
 
             }
         }
+
+        private void CreateGroup(uStoraDbContext context)
+        {
+            if (context.ApplicationGroups.Count() == 0)
+            {
+                try
+                {
+                    var appGroups = new List<ApplicationGroup>();
+
+                    appGroups.Add(new ApplicationGroup()
+                    {
+                        Name = "Ban quản trị",
+                        Description = "Ban quản trị",
+                        IsDeleted = false
+                    });
+                    appGroups.Add(new ApplicationGroup()
+                    {
+                        Name = "Người quản lý",
+                        Description = "Người quản lý",
+                        IsDeleted = false
+                    });
+                    appGroups.Add(new ApplicationGroup()
+                    {
+                        Name = "Thành viên",
+                        Description = "Thành viên",
+                        IsDeleted = false
+                    });
+                    appGroups.Add(new ApplicationGroup()
+                    {
+                        Name = "Tài xế",
+                        Description = "Tài xế",
+                        IsDeleted = false
+                    });
+
+                    foreach (var appGroup in appGroups)
+                    {
+                        context.ApplicationGroups.Add(appGroup);
+                        context.SaveChanges();
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.Message);
+                }
+            }
+        }
+        #endregion
     }
 }

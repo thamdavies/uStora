@@ -143,11 +143,8 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var oldVehicle = _vehicleService.Delete(id);
-                    _vehicleService.SaveChanges();
-
-                    var responseData = Mapper.Map<Vehicle, VehicleViewModel>(oldVehicle);
-                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                    _vehicleService.IsDeleted(id);
+                    response = request.CreateResponse(HttpStatusCode.OK);
                 }
 
                 return response;

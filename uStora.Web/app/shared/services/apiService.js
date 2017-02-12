@@ -55,7 +55,6 @@
                     if (failure != null) {
                         failure(error);
                     }
-
             });
         }
 
@@ -64,7 +63,13 @@
             $http.get(url, params).then(function (result) {
                 success(result);
             }, function (error) {
-                failure(error);
+                if (error.status === '401') {
+                    notificationService.displayError('Authenticate is required');
+                }
+                else
+                    if (failure != null) {
+                        failure(error);
+                    }
             });
         }
     }

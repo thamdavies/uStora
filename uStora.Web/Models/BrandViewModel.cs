@@ -19,5 +19,7 @@ namespace uStora.Web.Models
         public string Website { get; set; }
 
         public bool? HotFlag { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

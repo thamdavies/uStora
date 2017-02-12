@@ -198,11 +198,8 @@ namespace uStora.Web.API
                 }
                 else
                 {
-                    var oldProductCategory = _productService.Delete(id);
-                    _productService.SaveChanges();
-
-                    var responseData = Mapper.Map<Product, ProductViewModel>(oldProductCategory);
-                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                    _productService.IsDeleted(id);
+                    response = request.CreateResponse(HttpStatusCode.OK);
                 }
 
                 return response;

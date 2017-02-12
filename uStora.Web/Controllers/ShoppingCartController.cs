@@ -14,7 +14,7 @@ using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
 {
-   
+
     public class ShoppingCartController : Controller
     {
         private IProductService _productService;
@@ -29,7 +29,6 @@ namespace uStora.Web.Controllers
             _orderService = orderService;
         }
 
-        [Authorize]
         // GET: ShoppingCart
         public ActionResult Index(string searchString, int? page)
         {
@@ -62,10 +61,11 @@ namespace uStora.Web.Controllers
             }
             return Json(new
             {
-                status = false
+                status = false,
+                message = "Bạn cần đăng nhập để sử dụng tính năng này!!!"
             });
         }
-        
+
         public JsonResult GetAll()
         {
             if (Session[CommonConstants.ShoppingCartSession] == null)
@@ -240,12 +240,12 @@ namespace uStora.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var orders = _orderService.GetListOrders(User.Identity.GetUserId());
-           
+
             return Json(new
             {
                 data = orders,
                 status = true
-            },JsonRequestBehavior.AllowGet);
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

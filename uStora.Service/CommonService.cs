@@ -49,7 +49,8 @@ namespace uStora.Service
         {
             if (!string.IsNullOrEmpty(filter))
             {
-                return _applicationUserRepository.GetMulti(x => x.FullName.Contains(filter));
+                filter = filter.ToLower();
+                return _applicationUserRepository.GetMulti(x => x.FullName.ToLower().Contains(filter) || x.UserName.ToLower().Contains(filter) && x.IsDeleted == false);
             }
             else
             {

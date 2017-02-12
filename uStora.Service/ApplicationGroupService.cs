@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using uStora.Common.Exceptions;
 using uStora.Data.Infrastructure;
@@ -27,7 +28,9 @@ namespace uStora.Service
 
         IEnumerable<ApplicationUser> GetListUserByGroupId(int groupId);
 
-        void SaveShanges();
+        void IsDeleted(int id);
+
+        void SaveChanges();
     }
 
     public class ApplicationGroupService : IApplicationGroupService
@@ -69,14 +72,14 @@ namespace uStora.Service
 
         public IEnumerable<ApplicationGroup> GetAll()
         {
-            return _appGroupRepository.GetAll();
+            return _appGroupRepository.GetMulti(x => x.IsDeleted == false);
         }
 
         public IEnumerable<ApplicationGroup> GetAll(int page, int pageSize, out int totalRow, string filter)
         {
-            var query = _appGroupRepository.GetAll();
+            var query = _appGroupRepository.GetMulti(x => x.IsDeleted == false);
             if (!string.IsNullOrEmpty(filter))
-                query = query.Where(x => x.Name.Contains(filter));
+                query = query.Where(x => x.Name.Contains(filter) || x.IsDeleted == false);
 
             totalRow = query.Count();
             return query.OrderBy(x => x.Name).Skip(page * pageSize).Take(pageSize);
@@ -97,7 +100,14 @@ namespace uStora.Service
             return _appGroupRepository.GetListUserByGroupId(groupId);
         }
 
-        public void SaveShanges()
+        public void IsDeleted(int id)
+        {
+            var group = _appGroupRepository.GetSingleById(id);
+            group.IsDeleted = true;
+            SaveChanges();
+        }
+
+        public void SaveChanges()
         {
             _unitOfWork.Commit();
         }

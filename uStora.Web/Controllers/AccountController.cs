@@ -89,6 +89,7 @@ namespace uStora.Web.Controllers
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -114,7 +115,11 @@ namespace uStora.Web.Controllers
                 {
                     FullName = info.DefaultUserName,
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
+                    Image = CommonConstants.DefaultAvatar,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = info.Login.LoginProvider + "Account",
+                    IsDeleted = false
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -163,7 +168,8 @@ namespace uStora.Web.Controllers
                     UserName = registerVm.Username,
                     Email = registerVm.Email,
                     IsViewed = false,
-                    EmailConfirmed = true,
+                    IsDeleted = false,
+                    EmailConfirmed = false,
                     Gender = registerVm.Gender,
                     Image = CommonConstants.DefaultAvatar,
                     BirthDay = registerVm.Birthdate,
@@ -173,22 +179,38 @@ namespace uStora.Web.Controllers
                     Address = registerVm.Address
                 };
 
-                await UserManager.CreateAsync(user, registerVm.Password);
+                var result = await UserManager.CreateAsync(user, registerVm.Password);
+                if (result.Succeeded)
+                {
+                    var newUser = await _userManager.FindByEmailAsync(registerVm.Email);
+                    if (newUser != null)
+                        await _userManager.AddToRolesAsync(newUser.Id, new string[] { "ViewUser" });
 
-                var adminUser = await _userManager.FindByEmailAsync(registerVm.Email);
-                if (adminUser != null)
-                    await _userManager.AddToRolesAsync(adminUser.Id, new string[] { "ViewUser" });
-
-                string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/templates/newuser.html"));
-                content = content.Replace("{{Username}}", adminUser.FullName);
-                content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "login.htm");
-
-                MailHelper.SendMail(adminUser.Email, "Đăng ký thành công", content);
-
-                ViewData["SuccessMsg"] = "Đăng ký thành công";
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/templates/newuser.html"));
+                    content = content.Replace("{{Username}}", newUser.FullName);
+                    content = content.Replace("{{Link}}", callbackUrl);
+                    ViewBag.Email = registerVm.Email;
+                    MailHelper.SendMail(newUser.Email, "Kích hoạt tài khoản uStora", content);
+                    return View("EmailConfirmMessage");
+                }
+                AddErrors(result);
             }
 
             return View();
+        }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
         public ActionResult Login(string returnUrl)
         {
@@ -205,6 +227,11 @@ namespace uStora.Web.Controllers
                 ApplicationUser user = await _userManager.FindAsync(model.Username, model.Password);
                 if (user != null)
                 {
+                    if (!user.EmailConfirmed)
+                    {
+                        ModelState.AddModelError("", "Tài khoản chưa được kích hoạt. Vui lòng kiểm tra trong hộp thư Email của bạn.");
+                        return View(model);
+                    }
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
                     authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                     ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
@@ -235,6 +262,92 @@ namespace uStora.Web.Controllers
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             authenticationManager.SignOut();
             return RedirectToAction("Login", "Account");
+        }
+
+        //
+        // GET: /Account/ForgotPassword
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(ExternalLoginConfirmationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return View("ForgotPasswordConfirmation");
+                }
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                MailHelper.SendMail(model.Email, "Đặt lại mật khẩu tài khoản uStora", "Để đặt lại mật khẩu, vui lòng <a href=\"" + callbackUrl + "\"> click theo đường dẫn này</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/ResetPassword
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string code)
+        {
+            return code == null ? View("Error") : View();
+        }
+
+        //
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+            AddErrors(result);
+            return View();
+        }
+
+        //
+        // GET: /Account/ResetPasswordConfirmation
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Account/ForgotPasswordConfirmation
+        [AllowAnonymous]
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
         }
 
         #region Helpers

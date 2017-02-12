@@ -109,6 +109,42 @@ namespace uStora.Web
               defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
               namespaces: new string[] { "uStora.Web.Controllers" }
           );
+            routes.MapRoute(
+              name: "Manage",
+              url: "tai-khoan.htm",
+              defaults: new { controller = "Manage", action = "Index", id = UrlParameter.Optional },
+              namespaces: new string[] { "uStora.Web.Controllers" }
+          );
+            routes.MapRoute(
+              name: "ChangePassword", 
+              url: "thay-doi-mat-khau.htm",
+              defaults: new { controller = "Manage", action = "ChangePassword", id = UrlParameter.Optional },
+              namespaces: new string[] { "uStora.Web.Controllers" }
+          );
+            routes.MapRoute(
+             name: "SetPassword", 
+             url: "dat-lai-mat-khau.htm",
+             defaults: new { controller = "Manage", action = "SetPassword", id = UrlParameter.Optional },
+             namespaces: new string[] { "uStora.Web.Controllers" }
+         );
+            routes.MapRoute(
+            name: "ConfirmEmail",
+            url: "kich-hoat-thanh-cong.htm",
+            defaults: new { controller = "Account", action = "ConfirmEmail", id = UrlParameter.Optional },
+            namespaces: new string[] { "uStora.Web.Controllers" }
+        );
+            routes.MapRoute(
+            name: "ForgotPassword",
+            url: "quen-mat-khau.htm",
+            defaults: new { controller = "Account", action = "ForgotPassword", id = UrlParameter.Optional },
+            namespaces: new string[] { "uStora.Web.Controllers" }
+        );
+            routes.MapRoute(
+            name: "ForgotPasswordConfirmation",
+            url: "xac-nhan-mat-khau.htm",
+            defaults: new { controller = "Account", action = "ForgotPasswordConfirmation", id = UrlParameter.Optional },
+            namespaces: new string[] { "uStora.Web.Controllers" }
+        );
             //live
             routes.MapRoute(
                name: "Live",

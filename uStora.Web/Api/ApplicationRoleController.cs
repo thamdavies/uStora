@@ -143,8 +143,7 @@ namespace uStora.Web.Api
         [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage Delete(HttpRequestMessage request, string id)
         {
-            _appRoleService.Delete(id);
-            _appRoleService.Save();
+            _appRoleService.IsDeleted(id);
             return request.CreateResponse(HttpStatusCode.OK, id);
         }
 

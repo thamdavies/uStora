@@ -37,6 +37,8 @@ namespace uStora.Model.Models
         public bool? HotFlag { get; set; }
         public int? ViewCount { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { get; set; }
 

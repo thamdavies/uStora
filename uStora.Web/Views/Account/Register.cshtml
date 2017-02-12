@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 custom-breadcrumb">
             <ol class="breadcrumb">
-                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
                 <li class="active">Đăng ký thành viên</li>
             </ol>
         </div>
@@ -43,13 +43,6 @@
             new { @class = "well form-horizontal contact-form" }))
             {
                 <fieldset>
-                    @if (ViewData["SuccessMsg"] != null)
-                    {
-                        <div class="alert alert-success" role="alert">
-                            <strong>Chúc mừng bạn! </strong> đã đăng ký thành công.
-                            <br />Vui lòng click <a href="/login.htm" class="text-danger">vào đây </a>để đăng nhập.
-                        </div>
-                    }
                     <legend>Thông tin tài khoản</legend>
                     <h5 class="text-danger"><span>*</span> là bắt buộc</h5>
                     @Html.AntiForgeryToken()
@@ -110,6 +103,15 @@
                                 <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
                                 @Html.DropDownListFor(model => model.Gender, selectList , new { @class = "form-control" })
                                 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                @Html.TextBoxFor(model => model.Birthdate, new { @class = "form-control", placeholder = "ngày sinh" })
                             </div>
                         </div>
                     </div>

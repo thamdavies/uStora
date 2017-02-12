@@ -21,6 +21,7 @@ namespace uStora.Web.App_Start
 {
     public partial class Startup
     {
+        public static IDataProtectionProvider DataProtectionProvider { get; private set; }
         public void Configuration(IAppBuilder app)
         {
             app.MapSignalR();
@@ -43,6 +44,8 @@ namespace uStora.Web.App_Start
             builder.RegisterType<uStoraDbContext>().AsSelf().InstancePerRequest();
 
             //Asp.net Identity
+            DataProtectionProvider = app.GetDataProtectionProvider();
+            builder.Register(c => DataProtectionProvider).InstancePerRequest();
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();

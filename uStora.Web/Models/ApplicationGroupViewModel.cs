@@ -10,6 +10,8 @@ namespace uStora.Web.Models
 
         public string Description { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public IEnumerable<ApplicationRoleViewModel> Roles { set; get; }
     }
 }

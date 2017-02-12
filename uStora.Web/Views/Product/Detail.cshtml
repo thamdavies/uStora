@@ -16,17 +16,6 @@
         </div>
     </div>
 </div>
-@*@using (Html.BeginForm("ExportExcel", "Product", FormMethod.Post))
-{
-    <button type="submit" class="btn btn-success">Export</button>
-}
-@using (Html.BeginForm("ImportFromXlsx", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="col-md-10">
-        <input type="file" id="importexcelfile" name="importexcelfile" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Import</button>
-}*@
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -63,7 +52,7 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <ol class="breadcrumb">
-                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
                         @{
                             var category = (uStora.Web.Models.ProductCategoryViewModel)ViewBag.Category;
                             <li><a href="/category/@(category.Alias)-@(category.ID).htm">@category.Name</a></li>

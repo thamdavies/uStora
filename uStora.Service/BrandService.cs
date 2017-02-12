@@ -14,6 +14,8 @@ namespace uStora.Service
 
         Brand Delete(int id);
 
+        void IsDeleted(int id);
+
         void SaveChanges();
 
         Brand GetByID(int id);
@@ -61,11 +63,11 @@ namespace uStora.Service
         {
             if(!string.IsNullOrEmpty(keyword))
             {
-                return _brandRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+                return _brandRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.IsDeleted == false);
             }
             else
             {
-                return _brandRepository.GetMulti(x => x.Status);
+                return _brandRepository.GetMulti(x => x.Status && x.IsDeleted == false);
             }
         }
         
@@ -73,6 +75,13 @@ namespace uStora.Service
         public Brand GetByID(int id)
         {
             return _brandRepository.GetSingleById(id);
+        }
+
+        public void IsDeleted(int id)
+        {
+            var brand = GetByID(id);
+            brand.IsDeleted = true;
+            SaveChanges();
         }
 
         public void SaveChanges()

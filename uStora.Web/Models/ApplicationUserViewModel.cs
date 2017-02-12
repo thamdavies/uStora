@@ -14,6 +14,7 @@ namespace uStora.Web.Models
         public string UserName { set; get; }
         public string Gender { set; get; }
         public string Image { get; set; }
+        public bool IsDeleted { get; set; }
         public bool IsViewed { get; set; }
 
         public DateTime? CreatedDate { get; set; }

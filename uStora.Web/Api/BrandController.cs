@@ -135,24 +135,8 @@ namespace uStora.Web.Api
         [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                if (!ModelState.IsValid)
-                {
-                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var oldBrand = _brandService.Delete(id);
-                    _brandService.SaveChanges();
-
-                    var responseData = Mapper.Map<Brand, BrandViewModel>(oldBrand);
-                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
-                }
-
-                return response;
-            });
+            _brandService.IsDeleted(id);
+            return request.CreateResponse(HttpStatusCode.OK);
         }
 
         [Route("deletemulti")]

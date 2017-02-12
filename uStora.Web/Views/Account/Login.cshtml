@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 custom-breadcrumb">
             <ol class="breadcrumb">
-                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
                 <li class="active">Đăng nhập</li>
             </ol>
         </div>
@@ -62,11 +62,9 @@
                     </div>
 
                     <div class="checkbox icheck-primary">
-                        @*<input type="checkbox" id="RememberMe" />
-                        <label for="@Model.RememberMe">Ghi nhớ</label>*@
                         @Html.CheckBoxFor(model => model.RememberMe, new { @class = "btn" })
                         @Html.LabelFor(model => model.RememberMe)
-                        <a href="/reset-mat-khau.htm" class="btn btn-link pull-right">Quên mật khẩu?</a>
+                        <a href="/quen-mat-khau.htm" class="btn btn-link pull-right">Quên mật khẩu?</a>
                     </div>
 
                     <!-- Button -->

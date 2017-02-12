@@ -22,6 +22,8 @@ namespace uStora.Web.Models
 
         public string Description { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual IEnumerable<TrackOrderViewModel> TrackOrders { get; set; }
     }
 }

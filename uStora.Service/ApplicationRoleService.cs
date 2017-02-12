@@ -27,6 +27,8 @@ namespace uStora.Service
         //Get list role by group id
         IEnumerable<ApplicationRole> GetListRoleByGroupId(int groupId);
 
+        void IsDeleted(string id);
+
         void Save();
     }
 
@@ -68,12 +70,12 @@ namespace uStora.Service
 
         public IEnumerable<ApplicationRole> GetAll()
         {
-            return _appRoleRepository.GetAll();
+            return _appRoleRepository.GetMulti(x => x.IsDeleted == false || x.IsDeleted == null);
         }
 
         public IEnumerable<ApplicationRole> GetAll(int page, int pageSize, out int totalRow, string filter = null)
         {
-            var query = _appRoleRepository.GetAll();
+            var query = _appRoleRepository.GetMulti(x => x.IsDeleted == false || x.IsDeleted == null);
             if (!string.IsNullOrEmpty(filter))
                 query = query.Where(x => x.Description.Contains(filter));
 
@@ -101,6 +103,13 @@ namespace uStora.Service
         public IEnumerable<ApplicationRole> GetListRoleByGroupId(int groupId)
         {
             return _appRoleRepository.GetListRoleByGroupId(groupId);
+        }
+
+        public void IsDeleted(string id)
+        {
+            var role = _appRoleRepository.GetSingleById(id);
+            role.IsDeleted = true;
+            Save();
         }
     }
 }

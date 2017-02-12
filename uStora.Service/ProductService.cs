@@ -9,6 +9,7 @@ namespace uStora.Service
 {
     public interface IProductService
     {
+        #region Methods
         Product Add(Product product);
 
         void Update(Product product);
@@ -53,7 +54,10 @@ namespace uStora.Service
 
         IEnumerable<Product> GetHot(int top);
 
+        void IsDeleted(long id);
+
         void SaveChanges();
+        #endregion
     }
 
     public class ProductService : IProductService
@@ -72,7 +76,7 @@ namespace uStora.Service
             _tagRepository = tagRepository;
             _unitOfWork = unitOfWork;
         }
-
+        #region Methods
         public Product Add(Product product)
         {
             product.PromotionPrice = 0;
@@ -136,30 +140,37 @@ namespace uStora.Service
             return _productRepository.Delete(id);
         }
 
+        public void IsDeleted(long id)
+        {
+            var product = GetByID(id);
+            product.IsDeleted = true;
+            SaveChanges();
+        }
+
         public IEnumerable<Product> GetAll()
         {
-            return _productRepository.GetAll(new string[] { "ProductCategory" });
+            return _productRepository.GetMulti(x => x.IsDeleted == false, new string[] { "ProductCategory" });
         }
 
         public List<Product> GetAllPagingAjax(string keyword)
         {
             if (string.IsNullOrEmpty(keyword))
-                return _productRepository.GetAll().ToList();
+                return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false).ToList();
             else
-                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Content.Contains(keyword)).ToList();
+                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Content.Contains(keyword) && x.IsDeleted == false).ToList();
         }
 
         public IEnumerable<Product> GetAll(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
-                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.IsDeleted == false);
             else
-                return _productRepository.GetAll();
+                return _productRepository.GetMulti(x => x.IsDeleted == false);
         }
 
         public IEnumerable<Product> GetAllPaging(int page, int brandid, string sort, int pageSize, out int totalRow)
         {
-            var query = _productRepository.GetMulti(x => x.Status);
+            var query = _productRepository.GetMulti(x => x.Status && x.IsDeleted == false);
             switch (sort)
             {
                 case "popular":
@@ -197,7 +208,7 @@ namespace uStora.Service
 
         public IEnumerable<Product> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
-            return _productRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+            return _productRepository.GetMultiPaging(x => x.Status && x.IsDeleted == false, out totalRow, page, pageSize);
         }
 
         public void SaveChanges()
@@ -207,17 +218,17 @@ namespace uStora.Service
 
         public IEnumerable<Product> GetLastest(int top)
         {
-            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetTopSales(int top)
         {
-            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true && x.IsDeleted == false).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetByCategoryIDPaging(int categoryId, int brandid, int page, int pageSize, string sort, out int totalRow)
         {
-            var query = _productRepository.GetMulti(x => x.Status && x.CategoryID == categoryId);
+            var query = _productRepository.GetMulti(x => x.Status && x.IsDeleted == false && x.CategoryID == categoryId && x.IsDeleted == false);
             switch (sort)
             {
                 case "popular":
@@ -254,12 +265,12 @@ namespace uStora.Service
 
         public IEnumerable<string> GetProductsByName(string name)
         {
-            return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(n => n.Name);
+            return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false && x.Name.Contains(name)).Select(n => n.Name);
         }
 
         public IEnumerable<Product> GetByKeywordPaging(string keyword, int brandid, int page, int pageSize, string sort, out int totalRow)
         {
-            var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
+            var query = _productRepository.GetMulti(x => x.Status && x.IsDeleted == false && x.Name.Contains(keyword) && x.IsDeleted == false);
             switch (sort)
             {
                 case "popular":
@@ -297,7 +308,7 @@ namespace uStora.Service
         public IEnumerable<Product> GetRelatedProducts(long id, int top)
         {
             var product = _productRepository.GetSingleById(id);
-            return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Tag> GetTagsByProduct(long id)
@@ -341,7 +352,7 @@ namespace uStora.Service
 
         public void IncreaseView(long id)
         {
-            var product = _productRepository.GetSingleById(id);
+            var product = GetByID(id);
             if (product.ViewCount.HasValue)
                 product.ViewCount += 1;
             else
@@ -356,12 +367,12 @@ namespace uStora.Service
 
         public IEnumerable<Product> GetTopView(int top)
         {
-            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.ViewCount).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false).OrderByDescending(x => x.ViewCount).Take(top);
         }
 
         public IEnumerable<Product> GetHot(int top)
         {
-            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public bool SellingProduct(long productId, int quantity)
@@ -372,5 +383,6 @@ namespace uStora.Service
             product.Quantity -= quantity;
             return true;
         }
+        #endregion
     }
 }

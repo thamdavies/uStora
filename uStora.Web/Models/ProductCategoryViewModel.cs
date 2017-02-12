@@ -1,9 +1,5 @@
-﻿using uStora.Model.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
+using uStora.Model.Abstracts;
 
 namespace uStora.Web.Models
 {
@@ -14,7 +10,7 @@ namespace uStora.Web.Models
         [Required]
         public string Name { get; set; }
 
-         [Required]
+        [Required]
         public string Alias { get; set; }
 
         public string Description { get; set; }
@@ -26,5 +22,7 @@ namespace uStora.Web.Models
         public string Image { get; set; }
 
         public bool? HomeFlag { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

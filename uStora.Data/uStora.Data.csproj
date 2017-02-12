@@ -76,6 +76,18 @@
     <Compile Include="Migrations\201702110552373_AddListShoppingCartSP.Designer.cs">
       <DependentUpon>201702110552373_AddListShoppingCartSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702111310590_AddIsDeletedToTables.cs" />
+    <Compile Include="Migrations\201702111310590_AddIsDeletedToTables.Designer.cs">
+      <DependentUpon>201702111310590_AddIsDeletedToTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702111327320_AddIsDeletedToTables#2.cs" />
+    <Compile Include="Migrations\201702111327320_AddIsDeletedToTables#2.Designer.cs">
+      <DependentUpon>201702111327320_AddIsDeletedToTables#2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702120905228_IsDeletedNullableInAppRole.cs" />
+    <Compile Include="Migrations\201702120905228_IsDeletedNullableInAppRole.Designer.cs">
+      <DependentUpon>201702120905228_IsDeletedNullableInAppRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -132,6 +144,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702110552373_AddListShoppingCartSP.resx">
       <DependentUpon>201702110552373_AddListShoppingCartSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702111310590_AddIsDeletedToTables.resx">
+      <DependentUpon>201702111310590_AddIsDeletedToTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702111327320_AddIsDeletedToTables#2.resx">
+      <DependentUpon>201702111327320_AddIsDeletedToTables#2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702120905228_IsDeletedNullableInAppRole.resx">
+      <DependentUpon>201702120905228_IsDeletedNullableInAppRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

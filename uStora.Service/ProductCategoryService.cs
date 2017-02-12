@@ -1,8 +1,8 @@
-﻿using uStora.Data.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
-using System;
-using System.Collections.Generic;
 
 namespace uStora.Service
 {
@@ -21,6 +21,8 @@ namespace uStora.Service
         IEnumerable<ProductCategory> GetAllByParentID(int parentID);
 
         ProductCategory GetByID(int id);
+
+        void IsDeleted(int id);
 
         void SaveChanges();
     }
@@ -55,7 +57,7 @@ namespace uStora.Service
 
         public IEnumerable<ProductCategory> GetAll()
         {
-            return _productCategoryRepository.GetAll();
+            return _productCategoryRepository.GetMulti(x => x.IsDeleted == false);
         }
 
         public void SaveChanges()
@@ -73,13 +75,19 @@ namespace uStora.Service
             return _productCategoryRepository.GetSingleById(id);
         }
 
-
         public IEnumerable<ProductCategory> GetAll(string keyword)
         {
-            if(!string.IsNullOrEmpty(keyword))
-                return _productCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            if (!string.IsNullOrEmpty(keyword))
+                return _productCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.IsDeleted == false);
             else
-                return _productCategoryRepository.GetAll();
+                return _productCategoryRepository.GetMulti(x => x.IsDeleted == false);
+        }
+
+        public void IsDeleted(int id)
+        {
+            var category = GetByID(id);
+            category.IsDeleted = true;
+            SaveChanges();
         }
     }
 }

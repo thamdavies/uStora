@@ -32,6 +32,8 @@ namespace uStora.Model.Models
 
         public string Description { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual IEnumerable<TrackOrder> TrackOrders { get; set; }
     }
 }

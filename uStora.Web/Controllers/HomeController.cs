@@ -27,7 +27,7 @@ namespace uStora.Web.Controllers
             _brandService = brandService;
             _systemConfigService = systemConfigService;
         }
-
+        #region Methods
         public ActionResult Index()
         {
             var listSlide = _commonService.GetSlides();
@@ -91,5 +91,6 @@ namespace uStora.Web.Controllers
             var footerVm = Mapper.Map<Footer, FooterViewModel>(footerModel);
             return PartialView(footerVm);
         }
+        #endregion
     }
 }

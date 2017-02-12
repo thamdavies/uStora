@@ -32,6 +32,8 @@ namespace uStora.Model.Models
 
         public bool? HomeFlag { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual IEnumerable<Post> Posts { get; set; }
     }
 }

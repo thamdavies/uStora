@@ -105,10 +105,12 @@ namespace uStora.Web.Api
             {
                 var newAppGroup = new ApplicationGroup();
                 newAppGroup.Name = appGroupViewModel.Name;
+                newAppGroup.IsDeleted = false;
                 try
                 {
+
                     var appGroup = _appGroupService.Add(newAppGroup);
-                    _appGroupService.SaveShanges();
+                    _appGroupService.SaveChanges();
 
                     //save group
                     var listRoleGroup = new List<ApplicationRoleGroup>();
@@ -152,7 +154,6 @@ namespace uStora.Web.Api
                 {
                     appGroup.UpdateApplicationGroup(appGroupViewModel);
                     _appGroupService.Update(appGroup);
-                    //_appGroupService.Save();
 
                     //save group
                     var listRoleGroup = new List<ApplicationRoleGroup>();
@@ -198,9 +199,8 @@ namespace uStora.Web.Api
         [Authorize(Roles = "DeleteUser")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
-            var appGroup = _appGroupService.Delete(id);
-            _appGroupService.SaveShanges();
-            return request.CreateResponse(HttpStatusCode.OK, appGroup);
+            _appGroupService.IsDeleted(id);
+            return request.CreateResponse(HttpStatusCode.OK);
         }
 
         [Route("deletemulti")]
@@ -223,7 +223,7 @@ namespace uStora.Web.Api
                         _appGroupService.Delete(item);
                     }
 
-                    _appGroupService.SaveShanges();
+                    _appGroupService.SaveChanges();
 
                     response = request.CreateResponse(HttpStatusCode.OK, listItem.Count);
                 }

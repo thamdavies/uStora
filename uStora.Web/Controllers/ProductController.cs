@@ -33,7 +33,7 @@ namespace uStora.Web.Controllers
             _brandService = brandService;
             _productCategoryService = productCategoryService;
         }
-
+        #region Methods
         public void IncreaseView(List<ViewCounterViewModel> viewCounterViewModel, long productId)
         {
             if (viewCounterViewModel != null)
@@ -198,45 +198,6 @@ namespace uStora.Web.Controllers
 
             return View(paginationSet);
         }
-
-        [HttpPost]
-        public ActionResult ExportExcel()
-        {
-            try
-            {
-                var products = _productService.GetAll();
-                var bytes = _exportManager.ExportProductsToXlsx(products);
-
-                return File(bytes, CommonConstants.TextXlsx, "products.xlsx");
-            }
-            catch (Exception exc)
-            {
-                var err = exc.Message;
-                return RedirectToAction("Shop");
-            }
-        }
-
-        [HttpPost]
-        public ActionResult ImportFromXlsx()
-        {
-            try
-            {
-                var file = Request.Files["importexcelfile"];
-                if (file != null && file.ContentLength > 0)
-                {
-                    _importManager.ImportProductsFromXlsx(file.InputStream);
-                }
-                else
-                {
-                    return RedirectToAction("Shop");
-                }
-                return RedirectToAction("Shop");
-            }
-            catch (Exception exc)
-            {
-                var err = exc.Message;
-                return RedirectToAction("Shop");
-            }
-        }
+        #endregion
     }
 }

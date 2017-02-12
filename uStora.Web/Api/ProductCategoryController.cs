@@ -191,12 +191,8 @@ namespace uStora.Web.API
 
                 if (ModelState.IsValid)
                 {
-                    var productCategory = _productCategoryService.Delete(id);
-                    _productCategoryService.SaveChanges();
-
-                    var responeData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
-
-                    response = request.CreateResponse(HttpStatusCode.Created, responeData);
+                    _productCategoryService.IsDeleted(id);
+                    response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 else
                 {

@@ -17,6 +17,7 @@ namespace uStora.Web.Infrastructure.Extensions
             postCategory.DisplayOrder = postCategoryViewModel.DisplayOrder;
             postCategory.HomeFlag = postCategoryViewModel.HomeFlag;
             postCategory.Image = postCategoryViewModel.Image;
+            postCategory.IsDeleted = postCategoryViewModel.IsDeleted;
 
             postCategory.CreatedDate = postCategoryViewModel.CreatedDate;
             postCategory.CreatedBy = postCategoryViewModel.CreatedBy;
@@ -40,6 +41,7 @@ namespace uStora.Web.Infrastructure.Extensions
             post.Image = postViewModel.Image;
             post.ViewCount = postViewModel.ViewCount;
             post.Content = postViewModel.Content;
+            post.IsDeleted = postViewModel.IsDeleted;
 
             post.MetaKeyword = postViewModel.MetaKeyword;
             post.MetaDescription = postViewModel.MetaDescription;
@@ -61,6 +63,7 @@ namespace uStora.Web.Infrastructure.Extensions
             productCategory.DisplayOrder = productCategoryViewModel.DisplayOrder;
             productCategory.HomeFlag = productCategoryViewModel.HomeFlag;
             productCategory.Image = productCategoryViewModel.Image;
+            productCategory.IsDeleted = productCategoryViewModel.IsDeleted;
 
             productCategory.CreatedDate = productCategoryViewModel.CreatedDate;
             productCategory.CreatedBy = productCategoryViewModel.CreatedBy;
@@ -92,6 +95,7 @@ namespace uStora.Web.Infrastructure.Extensions
             product.ViewCount = productViewModel.ViewCount;
             product.Tags = productViewModel.Tags;
             product.Quantity = productViewModel.Quantity;
+            product.IsDeleted = productViewModel.IsDeleted;
 
             product.CreatedDate = productViewModel.CreatedDate;
             product.CreatedBy = productViewModel.CreatedBy;
@@ -133,6 +137,7 @@ namespace uStora.Web.Infrastructure.Extensions
             brand.Country = brandViewModel.Country;
             brand.Website = brandViewModel.Website;
             brand.HotFlag = brandViewModel.HotFlag;
+            brand.IsDeleted = brandViewModel.IsDeleted;
 
             brand.CreatedDate = brandViewModel.CreatedDate;
             brand.CreatedBy = brandViewModel.CreatedBy;
@@ -177,6 +182,7 @@ namespace uStora.Web.Infrastructure.Extensions
             appGroup.ID = appGroupViewModel.ID;
             appGroup.Name = appGroupViewModel.Name;
             appGroup.Description = appGroupViewModel.Description;
+            appGroup.IsDeleted = appGroupViewModel.IsDeleted;
         }
 
         public static void UpdateApplicationRole(this ApplicationRole appRole, ApplicationRoleViewModel appRoleViewModel, string action = "add")
@@ -187,6 +193,7 @@ namespace uStora.Web.Infrastructure.Extensions
                 appRole.Id = Guid.NewGuid().ToString();
             appRole.Name = appRoleViewModel.Name;
             appRole.Description = appRoleViewModel.Description;
+            appRole.IsDeleted = appRoleViewModel.IsDeleted;
         }
 
         public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
@@ -198,6 +205,7 @@ namespace uStora.Web.Infrastructure.Extensions
             appUser.Image = appUserViewModel.Image;
             appUser.UserName = appUserViewModel.UserName;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
+            appUser.IsDeleted = appUserViewModel.IsDeleted;
             appUser.Gender = appUserViewModel.Gender;
             appUser.CreatedDate = appUserViewModel.CreatedDate;
             appUser.UpdatedDate = appUserViewModel.UpdatedDate;
@@ -221,6 +229,7 @@ namespace uStora.Web.Infrastructure.Extensions
             vehicle.DriverName = vehicleViewModel.DriverName;
             vehicle.ModelID = vehicleViewModel.ModelID;
             vehicle.Description = vehicleViewModel.Description;
+            vehicle.IsDeleted = vehicleViewModel.IsDeleted;
 
             vehicle.MetaDescription = vehicleViewModel.MetaDescription;
             vehicle.MetaKeyword = vehicleViewModel.MetaKeyword;

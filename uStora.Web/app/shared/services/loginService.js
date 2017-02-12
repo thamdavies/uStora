@@ -39,7 +39,7 @@
 
             })
             .error(function (err, status) {
-                resetValue();
+                initialValue();
                 deferred.resolve(err);
             });
             return deferred.promise;
@@ -48,11 +48,11 @@
         this.logOut = function () {
             apiService.post('/api/account/logout', null, function (response) {
                 authenticationService.removeToken();
-                resetValue();
+                initialValue();
                 authData.authenticationData.accessToken = "";
             }, null);
         }
-        function resetValue() {
+        function initialValue() {
             authData.authenticationData.IsAuthenticated = false;
             authData.authenticationData.userName = "";
             authData.authenticationData.image = "";

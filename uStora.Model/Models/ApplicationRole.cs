@@ -11,5 +11,7 @@ namespace uStora.Model.Models
 
         [MaxLength(500)]
         public string Description { get; set; }
+
+        public bool? IsDeleted { get; set; }
     }
 }
