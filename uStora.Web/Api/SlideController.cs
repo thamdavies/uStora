@@ -27,7 +27,7 @@ namespace uStora.Web.Api
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser, Admin")]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -44,7 +44,7 @@ namespace uStora.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        [Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "ViewUser, Admin")]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
@@ -72,7 +72,7 @@ namespace uStora.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        [Authorize(Roles = "AddUser")]
+        [Authorize(Roles = "AddUser, Admin")]
         public HttpResponseMessage Create(HttpRequestMessage request, SlideViewModel slideVm)
         {
             return CreateHttpResponse(request, () =>
@@ -102,7 +102,7 @@ namespace uStora.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser, Admin")]
         public HttpResponseMessage Update(HttpRequestMessage request, SlideViewModel slideVm)
         {
             return CreateHttpResponse(request, () =>
@@ -133,7 +133,7 @@ namespace uStora.Web.Api
         [Route("delete")]
         [HttpDelete]
         [AllowAnonymous]
-        [Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser, Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -159,7 +159,7 @@ namespace uStora.Web.Api
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
-        [Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser, Admin")]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string selectedSlides)
         {
             return CreateHttpResponse(request, () =>

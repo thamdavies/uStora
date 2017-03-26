@@ -33,20 +33,13 @@
         }
 
         function thisClose(img) {
-            var value = commonService.objectToString(img);
-            var split1 = value.substring(7);
-            var split2 = split1.substring(-split1.length, split1.length - 3);
-            value = split2;
-            var array = $scope.moreImages;
-            var index = array.indexOf(value);
-            if (index > -1)
-            {
-                array.splice(index, 1);
+            var listImage = $scope.moreImages;
+            var index = listImage.indexOf(img);
+            if (index > -1) {
+                listImage.splice(index, 1);
             }
             console.log(index);
         }
-
-        
 
         $scope.chooseMoreImages = function () {
             var finder = new CKFinder();
@@ -76,7 +69,7 @@
         function loadProductDetail() {
             apiService.get('/api/product/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
-                if ($scope.product.MoreImages != "null" && $scope.product.MoreImages != "NULL")
+                if ($scope.product.MoreImages !== "null" && $scope.product.MoreImages !== "NULL")
                 {
                     $scope.moreImages = JSON.parse($scope.product.MoreImages);
                 }

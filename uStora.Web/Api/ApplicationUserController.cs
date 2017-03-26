@@ -48,7 +48,7 @@ namespace uStora.Web.Api
         #region Methods
         [Route("getlistpaging")]
         [HttpGet]
-        [Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "ViewUser, Admin")]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
@@ -96,7 +96,7 @@ namespace uStora.Web.Api
 
         [Route("detail/{id}")]
         [HttpGet]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser, Admin")]
         public HttpResponseMessage Details(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -120,7 +120,7 @@ namespace uStora.Web.Api
 
         [HttpPost]
         [Route("add")]
-        [Authorize(Roles = "AddUser")]
+        [Authorize(Roles = "AddUser, Admin")]
         public async Task<HttpResponseMessage> Create(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
@@ -174,7 +174,7 @@ namespace uStora.Web.Api
 
         [HttpPut]
         [Route("update")]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser, Admin")]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
@@ -240,7 +240,7 @@ namespace uStora.Web.Api
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser, Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, string id)
         {
             _userService.IsDeleted(id);

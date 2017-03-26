@@ -5240,6 +5240,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Libs\CKFinder.dll" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -5293,12 +5294,6 @@
     <Content Include="Assets\libs\angular-timeago\LICENSE" />
     <Content Include="Assets\libs\angular-timeago\package.json" />
     <Content Include="Assets\libs\angular-timeago\README.md" />
-    <Content Include="Assets\libs\angular-ui-router\.bower.json" />
-    <Content Include="Assets\libs\angular-ui-router\bower.json" />
-    <Content Include="Assets\libs\angular-ui-router\CHANGELOG.md" />
-    <Content Include="Assets\libs\angular-ui-router\CONTRIBUTING.md" />
-    <Content Include="Assets\libs\angular-ui-router\LICENSE" />
-    <Content Include="Assets\libs\angular-ui-router\README.md" />
     <Content Include="Assets\libs\angular\.bower.json" />
     <Content Include="Assets\libs\angular\angular.min.js.gzip" />
     <Content Include="Assets\libs\angular\angular.min.js.map" />
@@ -5578,6 +5573,12 @@
     <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\libs\angular-ui-router\.bower.json" />
+    <Content Include="Assets\libs\angular-ui-router\bower.json" />
+    <Content Include="Assets\libs\angular-ui-router\CHANGELOG.md" />
+    <Content Include="Assets\libs\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="Assets\libs\angular-ui-router\LICENSE" />
+    <Content Include="Assets\libs\angular-ui-router\README.md" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -5606,7 +5607,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\libs\checklist-model\test\" />
     <Folder Include="Assets\libs\datetimepicker\tests\" />
-    <Folder Include="Libs\" />
     <Folder Include="Reports\" />
     <Folder Include="Views\AjaxProduct\" />
     <Folder Include="Views\Brand\" />

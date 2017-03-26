@@ -26,7 +26,7 @@ namespace uStora.Web.Api
         }
 
         [Route("list")]
-        [Authorize(Roles = "AddUser")]
+        [Authorize(Roles = "AddUser, Admin")]
         public HttpResponseMessage GetListFeedback(HttpRequestMessage request, string keyword, int page, int pageSize = 10)
         {
             return CreateHttpResponse(request, () =>
@@ -49,7 +49,7 @@ namespace uStora.Web.Api
         }
         [Route("getbyid/{id:int}")]
         [HttpGet]
-        [Authorize(Roles = "AddUser")]
+        [Authorize(Roles = "AddUser, Admin")]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -67,7 +67,7 @@ namespace uStora.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser, Admin")]
         public HttpResponseMessage Update(HttpRequestMessage request, FeedbackViewModel feedbackVm)
         {
             return CreateHttpResponse(request, () =>
@@ -96,7 +96,7 @@ namespace uStora.Web.Api
         [Route("delete")]
         [HttpDelete]
         [AllowAnonymous]
-        [Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser, Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -122,7 +122,7 @@ namespace uStora.Web.Api
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
-        [Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser, Admin")]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string selectedFeedbacks)
         {
             return CreateHttpResponse(request, () =>

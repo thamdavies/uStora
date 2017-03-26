@@ -36,7 +36,7 @@ namespace uStora.Web.Api
         }
         [Route("getlistpaging")]
         [HttpGet]
-        [Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "ViewUser, Admin")]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
 
@@ -62,7 +62,7 @@ namespace uStora.Web.Api
         }
         [Route("getlistall")]
         [HttpGet]
-        [Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "ViewUser, Admin")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -78,7 +78,7 @@ namespace uStora.Web.Api
         }
         [Route("detail/{id:int}")]
         [HttpGet]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser, Admin")]
         public HttpResponseMessage Details(HttpRequestMessage request, int id)
         {
             if (id == 0)
@@ -98,7 +98,7 @@ namespace uStora.Web.Api
 
         [HttpPost]
         [Route("add")]
-        [Authorize(Roles = "AddUser")]
+        [Authorize(Roles = "AddUser, Admin")]
         public HttpResponseMessage Create(HttpRequestMessage request, ApplicationGroupViewModel appGroupViewModel)
         {
             if (ModelState.IsValid)
@@ -144,7 +144,7 @@ namespace uStora.Web.Api
 
         [HttpPut]
         [Route("update")]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser, Admin")]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationGroupViewModel appGroupViewModel)
         {
             if (ModelState.IsValid)
@@ -196,7 +196,7 @@ namespace uStora.Web.Api
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser, Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             _appGroupService.IsDeleted(id);
@@ -205,7 +205,7 @@ namespace uStora.Web.Api
 
         [Route("deletemulti")]
         [HttpDelete]
-        [Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser, Admin")]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedList)
         {
             return CreateHttpResponse(request, () =>

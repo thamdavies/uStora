@@ -14,11 +14,19 @@
         $scope.AddProduct = AddProduct;
         $scope.GetSeoTitle = GetSeoTitle;
         $scope.moreImages = [];
+        $scope.thisClose = thisClose;
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px'
         }
-
+        function thisClose(img) {
+            var listImage = $scope.moreImages;
+            var index = listImage.indexOf(img);
+            if (index > -1) {
+                listImage.splice(index, 1);
+            }
+            console.log(index);
+        }
         function loadBrands() {
             apiService.get('/api/product/listbrands', null,
                function (result) {
