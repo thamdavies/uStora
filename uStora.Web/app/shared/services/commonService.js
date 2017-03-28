@@ -7,10 +7,10 @@
             getSeoTitle: getSeoTitle,
             objectToString: objectToString,
             strToDate: strToDate
-        }
+        };
 
         function getSeoTitle(input) {
-            if (input == undefined || input == '')
+            if (input === undefined || input === '')
                 return '';
             //Đổi chữ hoa thành chữ thường
             var slug = input.toLowerCase();
@@ -49,7 +49,7 @@
             //    I am checking to see if they have the property
             //    join, which normal objects don't have but
             //    arrays do.
-            if (typeof (obj) == "object" && (obj.join == undefined)) {
+            if (typeof (obj) === "object" && (obj.join === undefined)) {
                 string.push("{");
                 for (prop in obj) {
                     string.push(prop, ": ", objectToString(obj[prop]), ",");
@@ -57,7 +57,7 @@
                 string.push("}");
 
                 //is array
-            } else if (typeof (obj) == "object" && !(obj.join == undefined)) {
+            } else if (typeof (obj) === "object" && !(obj.join === undefined)) {
                 string.push("[")
                 for (prop in obj) {
                     string.push(convertToText(obj[prop]), ",");
@@ -65,7 +65,7 @@
                 string.push("]")
 
                 //is function
-            } else if (typeof (obj) == "function") {
+            } else if (typeof (obj) === "function") {
                 string.push(obj.toString())
 
                 //all other values can be done with JSON.stringify

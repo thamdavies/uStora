@@ -5,7 +5,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.DataProtection;
 using Owin;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -28,7 +30,8 @@ namespace uStora.Web.App_Start
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
             ConfigAutofac(app);
             ConfigureAuth(app);
-            
+            var cul = CultureInfo.GetCultureInfo("vi-VN");
+            CultureInfo.DefaultThreadCurrentCulture = cul;
         }
 
         private void ConfigAutofac(IAppBuilder app)

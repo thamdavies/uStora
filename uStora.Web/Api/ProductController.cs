@@ -250,15 +250,22 @@ namespace uStora.Web.API
                 HttpResponseMessage response = null;
                 try
                 {
-                    string fileName = string.Concat("products.xlsx");
+                    string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    string fileName = string.Concat("products_" + DateTime.Now.ToString("yyyyMMddhhmmssffff") + ".xlsx");
                     string filePath = HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-                    var listProduct = _productService.GetAll();
-                    _exportManager.ExportProductsToXlsxApi(listProduct, filePath);
 
+                    if (!Directory.Exists(filePath))
+                        Directory.CreateDirectory(filePath);
+                    var listProduct = _productService.GetAll();
+                    
+                    _exportManager.ExportProductsToXlsxApi(listProduct, filePath);
+                    
                     response = request.CreateResponse(HttpStatusCode.OK);
-                    response.Content = new StreamContent(new FileStream(filePath, FileMode.Open));
+                    response.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
                     response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
                     response.Content.Headers.ContentDisposition.FileName = fileName;
+                    response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+                    
                     return response;
                 }
                 catch (Exception exc)
@@ -268,7 +275,7 @@ namespace uStora.Web.API
                 }
             });
         }
-
+        
         [Route("importtoexcel")]
         [HttpPost]
         public HttpResponseMessage ImportProductsToXlsx(HttpRequestMessage request)

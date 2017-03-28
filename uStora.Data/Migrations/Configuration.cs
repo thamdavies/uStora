@@ -102,7 +102,7 @@
                         Email = "dvbtham@gmail.com",
                         Lat = 16.034562,
                         Lng = 108.222603,
-                        Website = "http://ustora.com.vn",
+                        Website = "http://ustora.somee.com",
                         Description = "",
                         Status = true
                     };

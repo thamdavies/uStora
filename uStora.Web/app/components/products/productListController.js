@@ -1,7 +1,7 @@
 ﻿(function (app) {
     app.controller('productListController', productListController);
 
-    productListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
+    productListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter'];
     function productListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.products = [];
         $scope.page = 0;
@@ -26,7 +26,7 @@
                     params: {
                         selectedProducts: JSON.stringify(listId)
                     }
-                }
+                };
                 apiService.del('/api/product/deletemulti', config, function (result) {
                     notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
                     search();
@@ -69,13 +69,13 @@
                     params: {
                         id: id
                     }
-                }
+                };
                 apiService.del('/api/product/delete', config, function () {
                     notificationService.displaySuccess('Đã xóa thành công.');
                     search();
                 }, function () {
                     notificationService.displayWarning('Xóa không thành công!!!');
-                })
+                });
             });
         }
 
@@ -94,7 +94,7 @@
                     page: page,
                     pageSize: 5
                 }
-            }
+            };
             apiService.get('/api/product/getall', config, function (result) {
                 $scope.products = result.data.Items;
                 $scope.page = result.data.Page;
@@ -111,11 +111,10 @@
             $scope.loading = true;
             apiService.post('/api/product/exporttoexcel', null, function (result) {
                 notificationService.displaySuccess('Xuất file thành công');
-                $scope.loading = false;
             }, function () {
                 notificationService.displayError('Xuất file thất bại');
-                $scope.loading = false;
             });
+            $scope.loading = false;
         }
         function importProductToXsls() {
             $scope.loading = true;

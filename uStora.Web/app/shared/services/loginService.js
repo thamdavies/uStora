@@ -17,7 +17,7 @@
                     params: {
                         username: userName
                     }
-                }
+                };
                 apiService.get('/api/applicationuser/getbyname/', config, function (res) {
                     userInfo = {
                         accessToken: response.access_token,
@@ -26,7 +26,6 @@
                         createdDate: res.data.CreatedDate
                     };
 
-                    authenticationService.setHeader();
                     authenticationService.setTokenInfo(userInfo);
                     authData.authenticationData.IsAuthenticated = true;
                     authData.authenticationData.accessToken = userInfo.accessToken;
@@ -35,7 +34,7 @@
                     authData.authenticationData.createdDate = userInfo.createdDate;
                     deferred.resolve(null);
 
-                }, function (error) { });
+                }, function (error) { deferred.resolve(null); });
 
             })
             .error(function (err, status) {
@@ -43,20 +42,21 @@
                 deferred.resolve(err);
             });
             return deferred.promise;
-        }
+        };
        
         this.logOut = function () {
             apiService.post('/api/account/logout', null, function (response) {
                 authenticationService.removeToken();
                 initialValue();
-                authData.authenticationData.accessToken = "";
+                
             }, null);
-        }
+        };
         function initialValue() {
             authData.authenticationData.IsAuthenticated = false;
             authData.authenticationData.userName = "";
             authData.authenticationData.image = "";
             authData.authenticationData.createdDate = "";
+            authData.authenticationData.accessToken = "";
         }
     }]);
 })(angular.module('uStora.common'));

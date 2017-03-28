@@ -9,7 +9,7 @@ using uStora.Web.Infrastructure.Core;
 
 namespace uStora.Web.Api
 {
-   // [Authorize]
+    [Authorize]
     [RoutePrefix("api/statistic")]
     public class StatisticController : ApiControllerBase
     {
@@ -22,7 +22,7 @@ namespace uStora.Web.Api
         }
 
         [Route("getrevenue")]
-        //[Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetRevenue(HttpRequestMessage request, string fromDate, string toDate, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>

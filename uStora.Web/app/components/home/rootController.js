@@ -6,7 +6,7 @@
         $scope.logOut = function () {
             loginService.logOut();
             $state.go('login');
-        }
+        };
         $scope.authentication = authData.authenticationData;
     }
 })(angular.module('uStora'));

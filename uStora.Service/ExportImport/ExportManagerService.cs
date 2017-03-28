@@ -73,11 +73,10 @@ namespace uStora.Service.ExportImport
                 {
                     // uncomment this line if you want the XML written out to the outputDir
                     //xlPackage.DebugMode = true;
-
                     // get handle to the existing worksheet
                     var worksheet = xlPackage.Workbook.Worksheets.Add(typeof(T).Name + "s");
                     //create Headers and format them
-
+                    worksheet.Cells.AutoFitColumns();
                     var manager = new PropertyManager<T>(properties.Where(p => !p.Ignore).ToArray());
                     manager.WriteCaption(worksheet, SetCaptionStyle);
 

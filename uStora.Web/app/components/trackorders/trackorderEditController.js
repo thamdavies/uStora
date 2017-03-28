@@ -52,7 +52,7 @@
         function UpdateTrackOrder() {
             apiService.put('/api/trackorder/update', $scope.trackorder,
                 function (result) {
-                    notificationService.displaySuccess('Đã cập nhật ' + result.data.Name + ' thành công');
+                    notificationService.displaySuccess('Cập nhật thành công');
                     $state.go('trackorders');
                 }, function (error) {
                     console.log(error);

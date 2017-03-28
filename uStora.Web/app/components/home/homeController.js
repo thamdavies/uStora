@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../Assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('homeController', homeController);
-    homeController.$inject = ['$scope', 'apiService', 'notificationService', '$sce']
+    homeController.$inject = ['$scope', 'apiService', 'notificationService', '$sce'];
     function homeController($scope, apiService, notificationService, $sce) {
         $scope.getItemCount = getItemCount;
         $scope.productsCount = 0;
@@ -16,12 +16,12 @@
         function latestUsers() {
             apiService.get('/api/home/getlatestusers', null, function (res) {
                 $scope.users = res.data;
-            })
+            });
         }
         function latestProducts() {
             apiService.get('/api/home/getlatestproducts', null, function (res) {
                 $scope.products = res.data;
-            })
+            });
         }
         
         $scope.htmlRaw = function (input) {
@@ -35,7 +35,7 @@
                 $scope.usersCount = res.data.TotalUsers;
             }, function (res) {
 
-            })
+            });
         }
         latestUsers();
         getItemCount();
