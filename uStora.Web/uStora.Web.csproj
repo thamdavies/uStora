@@ -276,6 +276,7 @@
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
+    <Compile Include="Infrastructure\NganLuongAPI\APICheckout.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
@@ -486,6 +487,7 @@
     <Content Include="Assets\Client\css\style.css" />
     <Content Include="Assets\Client\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Client\img\bank_logo.png" />
     <Content Include="Assets\Client\img\box.gif" />
     <Content Include="Assets\Client\img\brand1.png" />
     <Content Include="Assets\Client\img\brand2.png" />
@@ -535,7 +537,6 @@
     <Content Include="Assets\libs\angular-sanitize\angular-sanitize.min.js" />
     <Content Include="Assets\libs\angular-sanitize\index.js" />
     <Content Include="Assets\libs\angular-timeago\.gitattributes" />
-    <Content Include="Assets\libs\angular-timeago\.gitignore" />
     <Content Include="Assets\libs\angular-timeago\dist\angular-timeago-core.js" />
     <Content Include="Assets\libs\angular-timeago\dist\angular-timeago-core.min.js" />
     <Content Include="Assets\libs\angular-timeago\dist\angular-timeago.js" />
@@ -5489,7 +5490,6 @@
     <Content Include="Assets\libs\jquery-ui\composer.json" />
     <Content Include="Assets\libs\jquery-ui\package.json" />
     <Content Include="Assets\libs\jquery-ui\README.md" />
-    <Content Include="Assets\libs\jquery-ui\ui\.DS_Store" />
     <Content Include="Assets\libs\jquery-ui\ui\.jshintrc" />
     <Content Include="Assets\libs\jquery\.bower.json" />
     <Content Include="Assets\libs\jquery\bower.json" />
@@ -5600,6 +5600,8 @@
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\ShoppingCart\CancelOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\ConfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\shared\footer\" />

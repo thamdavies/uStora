@@ -11,7 +11,7 @@ namespace uStora.Service
 {
     public interface IOrderService
     {
-        bool Add(Order order, List<OrderDetail> orderDetails);
+        Order Add(ref Order order, List<OrderDetail> orderDetails);
         Order Add(Order order);
         IEnumerable<OrderClientViewModel> GetListOrders(string userId);
         Order GetOrderById(int id);
@@ -20,6 +20,7 @@ namespace uStora.Service
         IEnumerable<Order> GetUnCompletedOrder();
         Order Delete(int id);
         void SaveChanges();
+        void UpdateStatus(int orderId);
     }
 
     public class OrderService : IOrderService
@@ -36,7 +37,7 @@ namespace uStora.Service
             _orderDetailRepository = orderDetailRepository;
         }
 
-        public bool Add(Order order, List<OrderDetail> orderDetails)
+        public Order Add(ref Order order, List<OrderDetail> orderDetails)
         {
             try
             {
@@ -47,7 +48,7 @@ namespace uStora.Service
                     orderDetail.OrderID = order.ID;
                     _orderDetailRepository.Add(orderDetail);
                 }
-                return true;
+                return order;
             }
             catch (DbEntityValidationException e)
             {
@@ -106,6 +107,12 @@ namespace uStora.Service
         public Order Delete(int id)
         {
             return _orderRepository.Delete(id);
+        }
+        public void UpdateStatus(int orderId)
+        {
+            var order = _orderRepository.GetSingleById(orderId);
+            order.Status = true;
+            _orderRepository.Update(order);
         }
     }
 }

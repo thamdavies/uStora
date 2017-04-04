@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using uStora.Common;
 using uStora.Model.Models;
 using uStora.Service;
 using uStora.Service.ExportImport;
@@ -241,39 +243,28 @@ namespace uStora.Web.API
         #region Export/Import
 
         [Route("exporttoexcel")]
-        [HttpPost]
         [Authorize(Roles = "AddUser")]
-        public HttpResponseMessage ExportProductsToXlsx(HttpRequestMessage request)
+        [HttpGet]
+        public async Task<HttpResponseMessage> ExportProductsToXlsx(HttpRequestMessage request, string filter = null)
         {
-            return CreateHttpResponse(request, () =>
+            string fileName = string.Concat("Products_" + DateTime.Now.ToString("yyyyMMddhhmmsss") + ".xlsx");
+            var folderReport = @"/Reports";
+            string filePath = HttpContext.Current.Server.MapPath(folderReport);
+            if (!Directory.Exists(filePath))
             {
-                HttpResponseMessage response = null;
-                try
-                {
-                    string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    string fileName = string.Concat("products_" + DateTime.Now.ToString("yyyyMMddhhmmssffff") + ".xlsx");
-                    string filePath = HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-
-                    if (!Directory.Exists(filePath))
-                        Directory.CreateDirectory(filePath);
-                    var listProduct = _productService.GetAll();
-                    
-                    _exportManager.ExportProductsToXlsxApi(listProduct, filePath);
-                    
-                    response = request.CreateResponse(HttpStatusCode.OK);
-                    response.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
-                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-                    response.Content.Headers.ContentDisposition.FileName = fileName;
-                    response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
-                    
-                    return response;
-                }
-                catch (Exception exc)
-                {
-                    response = request.CreateResponse(HttpStatusCode.InternalServerError, exc.Message);
-                    return response;
-                }
-            });
+                Directory.CreateDirectory(filePath);
+            }
+            string fullPath = Path.Combine(filePath, fileName);
+            try
+            {
+                var data = _productService.GetAll(filter).ToList();
+                await ReportHelper.GenerateXls(data, fullPath);
+                return request.CreateErrorResponse(HttpStatusCode.OK, Path.Combine(folderReport, fileName));
+            }
+            catch (Exception ex)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
         
         [Route("importtoexcel")]

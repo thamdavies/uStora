@@ -64,7 +64,7 @@ namespace uStora.Data.Infrastructure
 
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
-            IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
+            IQueryable<T> objects = dbSet.Where<T>(where);
             foreach (T obj in objects)
                 dbSet.Remove(obj);
         }
@@ -84,9 +84,9 @@ namespace uStora.Data.Infrastructure
             return dbSet.Find(id);
         }
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
+        public virtual IQueryable<T> GetMany(Expression<Func<T, bool>> where, string includes)
         {
-            return dbSet.Where(where).ToList();
+            return dbSet.Where(where);
         }
 
         public virtual int Count(Expression<Func<T, bool>> where)
@@ -94,7 +94,7 @@ namespace uStora.Data.Infrastructure
             return dbSet.Count(where);
         }
 
-        public IEnumerable<T> GetAll(string[] includes = null)
+        public IQueryable<T> GetAll(string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -123,7 +123,7 @@ namespace uStora.Data.Infrastructure
             }
         }
 
-        public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -131,13 +131,13 @@ namespace uStora.Data.Infrastructure
                 var query = dataContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
-                return query.Where<T>(predicate).AsQueryable<T>();
+                return query.Where(predicate).AsQueryable<T>();
             }
 
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
-        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+        public virtual IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;
@@ -148,7 +148,7 @@ namespace uStora.Data.Infrastructure
                 var query = dataContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
-                _resetSet = predicate != null ? query.Where<T>(predicate).AsQueryable() : query.AsQueryable();
+                _resetSet = predicate != null ? query.Where(predicate).AsQueryable() : query.AsQueryable();
             }
             else
             {
@@ -162,7 +162,7 @@ namespace uStora.Data.Infrastructure
 
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
-            return dataContext.Set<T>().Count<T>(predicate) > 0;
+            return dataContext.Set<T>().Count(predicate) > 0;
         }
 
         #endregion Implementation

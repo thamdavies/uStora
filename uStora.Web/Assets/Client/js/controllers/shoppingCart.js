@@ -22,7 +22,7 @@
                 $('#amount_' + productId).text(numeral(amount).format('0,0') + ' đ');
                 $('span.product-count').text(cart.getTotalOrder().quantity);
                 $('#lblTotalOrder').text(numeral(cart.getTotalOrder().amount).format('0,0'));
-                $('#amount').text(numeral(cart.getTotalOrder().amount).format('0,0') );
+                $('#amount').text(numeral(cart.getTotalOrder().amount).format('0,0'));
             }
             else {
                 $('#amount_' + productId).text(0);
@@ -43,10 +43,25 @@
         });
         $('#btnCheckout').off('click').on('click', function (e) {
             e.preventDefault();
+
+            $('#paymentMethodTow').removeClass('hide');
             $('.bangthanhtoan').removeClass('hide');
             $('html, body').animate({
                 scrollTop: $("#bangthanhtoan").offset().top
             }, 1000);
+        });
+        $('select[name="paymentMethod"]').off('click').on('click', function () {
+            if ($(this).val() == 'NL') {
+                $('.boxContent').hide();
+                $('#nganluongContent').show();
+            }
+            else if ($(this).val() == 'ATM_ONLINE') {
+                $('.boxContent').hide();
+                $('#bankContent').show();
+            }
+            else {
+                $('.boxContent').hide();
+            }
         });
         $('#btnDeleteAll').off('click').on('click', function (e) {
             e.preventDefault();
@@ -195,7 +210,8 @@
             CustomerEmail: $('#email').val(),
             CustomerAddress: $('#address').val(),
             CustomerMobile: $('#phone').val(),
-            PaymentMethod: $('#paymentMethod').val(),
+            PaymentMethod: $('select[name="paymentMethod"] option:selected').val(),
+            BankCode: $('input[groupname="bankcode"]:checked').prop('id'),
             CustomerMessage: $('#message').val(),
             PaymentStatus: 0,
             Status: true
@@ -209,9 +225,19 @@
             },
             success: function (res) {
                 if (res.status) {
-                    $('.bangthanhtoan').addClass('hide');
+                    if (res.urlCheckout != undefined && res.urlCheckout != '') {
+                        window.location.href = res.urlCheckout;
+                    }
+                    else {
+                        $('.bangthanhtoan').addClass('hide');
+                        window.location.href = "/xem-trang-thai-mat-hang.htm";
+                    }
                     cart.deleteAll("");
-                    window.location.href = "/xem-trang-thai-mat-hang.htm";
+                }
+                else {
+                    $('#divMessage').text(res.message);
+                    $('#divMessage').show();
+                    return false;
                 }
             }
         })
@@ -232,10 +258,10 @@
                             ProductName: item.Product.Name,
                             Image: item.Product.Image,
                             Price: (item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price),
-                            FPrice: numeral(( item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
+                            FPrice: numeral((item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
                             Quantity: item.Quantity,
                             Alias: item.Product.Alias,
-                            Amount: numeral(item.Quantity * ( item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
+                            Amount: numeral(item.Quantity * (item.Product.PromotionPrice != 0 ? item.Product.PromotionPrice : item.Product.Price)).format('0,0'),
                         });
                     });
                     $('#cartBody').html(html);

@@ -109,10 +109,18 @@
 
         function exportProductToXsls() {
             $scope.loading = true;
-            apiService.post('/api/product/exporttoexcel', null, function (result) {
-                notificationService.displaySuccess('Xuất file thành công');
-            }, function () {
-                notificationService.displayError('Xuất file thất bại');
+            var config = {
+                params: {
+                    filter: $scope.keyword
+                }
+            }
+            apiService.get('/api/product/exporttoexcel', config, function (response) {
+                if (response.status == 200) {
+                    window.location.href = response.data.Message;
+                }
+            }, function (error) {
+                notificationService.displayError(error);
+
             });
             $scope.loading = false;
         }

@@ -10,6 +10,7 @@ using uStora.Model.Models;
 using uStora.Service;
 using uStora.Web.App_Start;
 using uStora.Web.Infrastructure.Extensions;
+using uStora.Web.Infrastructure.NganLuongAPI;
 using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
@@ -20,6 +21,11 @@ namespace uStora.Web.Controllers
         private IProductService _productService;
         private IOrderService _orderService;
         private ApplicationUserManager _userManager;
+
+        private string merchantId = ConfigHelper.GetByKey("MerchantId");
+        private string merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
+        private string merchantEmail = ConfigHelper.GetByKey("MerchantEmail");
+
 
         public ShoppingCartController(IProductService productService,
             ApplicationUserManager userManager, IOrderService orderService)
@@ -179,10 +185,15 @@ namespace uStora.Web.Controllers
             });
         }
 
-        [Authorize]
         [HttpPost]
         public JsonResult CreateOrder(string orderViewModel)
         {
+            if (!Request.IsAuthenticated)
+                return Json(new
+                {
+                    status = false,
+                    message = "Bạn phải đăng nhập để thanh toán"
+                });
             var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
             var orderNew = new Order();
             bool isEnough = true;
@@ -194,24 +205,70 @@ namespace uStora.Web.Controllers
                 orderNew.CreatedBy = User.Identity.GetUserName();
             }
             var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
-            List<OrderDetail> ordersDetail = new List<OrderDetail>();
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
             foreach (var item in cart)
             {
                 var detail = new OrderDetail();
                 detail.ProductID = item.ProductId;
                 detail.Quantity = item.Quantity;
                 detail.Price = item.Product.Price;
-                ordersDetail.Add(detail);
+                orderDetails.Add(detail);
                 isEnough = _productService.SellingProduct(item.ProductId, item.Quantity);
             }
             if (isEnough)
             {
-                _orderService.Add(orderNew, ordersDetail);
+                var orderReturn = _orderService.Add(ref orderNew, orderDetails);
                 _productService.SaveChanges();
-                return Json(new
+                if (order.PaymentMethod == "CASH")
                 {
-                    status = true
-                });
+                    return Json(new
+                    {
+                        status = true
+                    });
+                }
+                else
+                {
+                    var currentLink = ConfigHelper.GetByKey("CurrentLink");
+                    RequestInfo info = new RequestInfo();
+                    info.Merchant_id = merchantId;
+                    info.Merchant_password = merchantPassword;
+                    info.Receiver_email = merchantEmail;
+
+
+
+                    info.cur_code = "vnd";
+                    info.bank_code = order.BankCode;
+
+                    info.Order_code = orderReturn.ID.ToString();
+                    info.Total_amount = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
+                    info.fee_shipping = "0";
+                    info.Discount_amount = "0";
+                    info.order_description = "Thanh toán đơn hàng tại uStora shop";
+                    info.return_url = currentLink + "xac-nhan-don-hang.html";
+                    info.cancel_url = currentLink + "huy-don-hang.html";
+
+                    info.Buyer_fullname = order.CustomerName;
+                    info.Buyer_email = order.CustomerEmail;
+                    info.Buyer_mobile = order.CustomerMobile;
+
+                    APICheckout objNLChecout = new APICheckout();
+                    ResponseInfo result = objNLChecout.GetUrlCheckout(info, order.PaymentMethod);
+                    if (result.Error_code == "00")
+                    {
+                        return Json(new
+                        {
+                            status = true,
+                            urlCheckout = result.Checkout_url,
+                            message = result.Description
+                        });
+                    }
+                    else
+                        return Json(new
+                        {
+                            status = false,
+                            message = result.Description
+                        });
+                }
             }
             else
             {
@@ -246,6 +303,33 @@ namespace uStora.Web.Controllers
                 data = orders,
                 status = true
             }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ConfirmOrder()
+        {
+            string token = Request["token"];
+            RequestCheckOrder info = new RequestCheckOrder();
+            info.Merchant_id = merchantId;
+            info.Merchant_password = merchantPassword;
+            info.Token = token;
+            APICheckout objNLChecout = new APICheckout();
+            ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+            if (result.errorCode == "00")
+            {
+                _orderService.UpdateStatus(int.Parse(result.order_code));
+                _orderService.SaveChanges();
+                ViewBag.IsSuccess = true;
+                ViewBag.Result = "Thanh toán thành công. Chúng tôi sẽ liên hệ lại sớm nhất.";
+            }
+            else
+            {
+                ViewBag.IsSuccess = false;
+                ViewBag.Result = "Có lỗi xảy ra. Vui lòng liên hệ admin.";
+            }
+            return View();
+        }
+        public ActionResult CancelOrder()
+        {
+            return View();
         }
     }
 }

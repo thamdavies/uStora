@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using uStora.Common;
 using uStora.Data.Infrastructure;
@@ -195,7 +196,7 @@ namespace uStora.Service
             }
             if (brandid != 0)
             {
-                query = _productRepository.GetMulti(x => x.BrandID == brandid);
+                query = _productRepository.GetMulti(x => x.BrandID == brandid).OrderBy(x => x.Price);
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
@@ -257,7 +258,7 @@ namespace uStora.Service
             }
             if (brandid != 0)
             {
-                query = _productRepository.GetMulti(x => x.BrandID == brandid && x.CategoryID == categoryId);
+                query = _productRepository.GetMulti(x => x.BrandID == brandid && x.CategoryID == categoryId).OrderBy(x => x.Price);
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
@@ -270,7 +271,9 @@ namespace uStora.Service
 
         public IEnumerable<Product> GetByKeywordPaging(string keyword, int brandid, int page, int pageSize, string sort, out int totalRow)
         {
-            var query = _productRepository.GetMulti(x => x.Status && x.IsDeleted == false && x.Name.Contains(keyword) && x.IsDeleted == false);
+            var query = _productRepository.GetMulti(x => x.Status
+            && x.Name.Contains(keyword) && x.IsDeleted == false
+            || x.Tags.Contains(keyword) || x.Content.Contains(keyword));
             switch (sort)
             {
                 case "popular":
@@ -299,7 +302,7 @@ namespace uStora.Service
             }
             if (brandid != 0)
             {
-                query = _productRepository.GetMulti(x => x.BrandID == brandid);
+                query = _productRepository.GetMulti(x => x.BrandID == brandid).OrderBy(x => x.Price);
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
@@ -383,6 +386,7 @@ namespace uStora.Service
             product.Quantity -= quantity;
             return true;
         }
+
         #endregion
     }
 }

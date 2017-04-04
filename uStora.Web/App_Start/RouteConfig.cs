@@ -89,6 +89,18 @@ namespace uStora.Web
                defaults: new { controller = "ShoppingCart", action = "CheckOutSuccess", id = UrlParameter.Optional },
                namespaces: new string[] { "uStora.Web.Controllers" }
            );
+            routes.MapRoute(
+               name: "Confirm Order",
+               url: "xac-nhan-don-hang.html",
+               defaults: new { controller = "ShoppingCart", action = "ConfirmOrder", id = UrlParameter.Optional },
+               namespaces: new string[] { "TeduShop.Web.Controllers" }
+              );
+            routes.MapRoute(
+               name: "Cancel Order",
+               url: "huy-don-hang.html",
+               defaults: new { controller = "ShoppingCart", action = "CancelOrder", id = UrlParameter.Optional },
+               namespaces: new string[] { "TeduShop.Web.Controllers" }
+              );
             //contact
             routes.MapRoute(
                name: "Contact",

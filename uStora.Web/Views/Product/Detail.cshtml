@@ -23,8 +23,8 @@
             <div class="col-md-4">
 
                 @using (Ajax.BeginForm("Detail", "Product",
-                new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
-                new { id = "frm-search" }))
+            new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },
+            new { id = "frm-search" }))
                 {
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Tìm nhanh</h2>
@@ -34,7 +34,7 @@
                     <div id="grid-list">
                         @{ Html.RenderPartial("_AjaxProductList", Model.ListProducts); }
                     </div>
-                }
+                            }
 
 
                 <div class="single-sidebar">
@@ -105,14 +105,14 @@
 
                                 <form action="" method="post" class="cart">
                                     <div class="input-group">
-                                       @if (Model.Quantity > 0)
-                                       {
-                                        <p>Số lượng trong kho: <span class="badge text-success">@Model.Quantity</span></p>
-                                       }
-                                       else
-                                       {
-                                           <p class="text-danger">Hết hàng.</p>
-                                       }
+                                        @if (Model.Quantity > 0)
+                                        {
+                                            <p>Số lượng trong kho: <span class="badge text-success">@Model.Quantity</span></p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-danger">Hết hàng.</p>
+                                        }
                                         <p>Lượt xem: <span class="badge text-primary">@Model.ViewCount</span></p>
                                         <button id="btnAddToCart" data-id="@Model.ID" type="submit">Thêm vào giỏ</button>
                                     </div>
@@ -122,30 +122,31 @@
                                     int i = 1;
                                 }
                                 <div class="product-inner-category">
-                                    <p>Danh mục: 
-                                    <a href="/category/@(category.Alias)-@(category.ID).htm">@category.Name</a>.
+                                    <p>
+                                        Danh mục:
+                                        <a href="/category/@(category.Alias)-@(category.ID).htm">@category.Name</a>.
 
-                                    @if (tags.Count() > 0)
-                                    {
-                                        <span>Tags:</span>
-                                        foreach (var tag in tags)
+                                        @if (tags.Count() > 0)
                                         {
-                                            if (i == tags.Count())
+                                            <span>Tags:</span>
+                                            foreach (var tag in tags)
                                             {
-                                                <a href="/products/tags-@(tag.ID).htm">@tag.Name.ToLower().</a>
+                                                if (i == tags.Count())
+                                                {
+                                                    <a href="/products/tags-@(tag.ID).htm">@tag.Name.ToLower().</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/products/tags-@(tag.ID).htm">@tag.Name.ToLower(),</a>
+                                                }
+                                                i++;
                                             }
-                                            else
-                                            {
-                                                <a href="/products/tags-@(tag.ID).htm">@tag.Name.ToLower(),</a>
-                                            }
-                                            i++;
                                         }
-                                    }
-                                    else
-                                    {
-                                        <span>Tags:</span>
-                                        <a href="javascripts:void();" class="text-center text-danger no-underline">Không có thẻ gán cho sản phẩm này.</a>
-                                    }
+                                        else
+                                        {
+                                            <span>Tags:</span>
+                                            <a href="javascripts:void();" class="text-center text-danger no-underline">Không có thẻ gán cho sản phẩm này.</a>
+                                        }
                                     </p>
                                 </div>
 
@@ -201,7 +202,6 @@
                                             <div class="product-hover">
                                                 <a href="#" class="action-box">
                                                     <i class="fa fa-shopping-cart add-to-cart" id="btnAddToCart" data-id="@rl_product.ID" data-toggle="tooltip" title="Thêm vào giỏ"></i>
-                                                    <i class="fa fa-heart" id="btnAddWishlist" data-id="@rl_product.ID" data-toggle="tooltip" title="Yêu thích"></i>
                                                     @if (Request.IsAuthenticated)
                                                     {
                                                         <i class="fa fa-heart" id="btnAddWishlist" data-id="@rl_product.ID" data-toggle="tooltip" title="Yêu thích"></i>
@@ -240,11 +240,11 @@
 </div>
 
 @section scripts{
- @Scripts.Render("~/js/etalage")
+    @Scripts.Render("~/js/etalage")
     <script src="~/Assets/Client/js/ajaxPaging.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-           
+
             $('#etalage').etalage({
                 thumb_image_width: 300,
                 thumb_image_height: 300,

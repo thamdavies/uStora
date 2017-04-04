@@ -45,6 +45,8 @@ namespace uStora.Web.Models
         [Required]
         public bool Status { get; set; }
 
+        public string BankCode { get; set; }
+
         [MaxLength(128)]
         public string CustomerId { get; set; }
         

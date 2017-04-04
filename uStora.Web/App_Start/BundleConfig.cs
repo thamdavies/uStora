@@ -39,6 +39,7 @@ namespace uStora.Web
 
             #region~/js/core
             bundles.Add(new ScriptBundle("~/js/core").Include(
+                "~/Assets/libs/bootstrap/dist/js/bootstrap.min.js",
                 "~/Assets/libs/jquery-ui/jquery-ui.min.js",
                 "~/Assets/libs/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js",
                 "~/Assets/Client/js/owl.carousel.min.js",
