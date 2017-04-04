@@ -5499,7 +5499,6 @@
     <Content Include="Assets\libs\jquery\sizzle\dist\sizzle.min.map" />
     <Content Include="Assets\libs\jquery\src\.jshintrc" />
     <Content Include="Assets\libs\mustache\.bower.json" />
-    <Content Include="Assets\libs\mustache\bin\mustache" />
     <Content Include="Assets\libs\mustache\bower.json" />
     <Content Include="Assets\libs\mustache\CHANGELOG.md" />
     <Content Include="Assets\libs\mustache\hooks\install-hooks.sh" />
@@ -5579,6 +5578,7 @@
     <Content Include="Assets\libs\angular-ui-router\CONTRIBUTING.md" />
     <Content Include="Assets\libs\angular-ui-router\LICENSE" />
     <Content Include="Assets\libs\angular-ui-router\README.md" />
+    <None Include="Properties\PublishProfiles\uStora.pubxml" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -5609,6 +5609,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\libs\checklist-model\test\" />
     <Folder Include="Assets\libs\datetimepicker\tests\" />
+    <Folder Include="Assets\libs\mustache\bin\" />
     <Folder Include="Reports\" />
     <Folder Include="Views\AjaxProduct\" />
     <Folder Include="Views\Brand\" />
