@@ -15,7 +15,6 @@ using uStora.Web.Models;
 
 namespace uStora.Web.Controllers
 {
-
     public class ShoppingCartController : Controller
     {
         private IProductService _productService;
@@ -129,7 +128,7 @@ namespace uStora.Web.Controllers
             });
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult Update(string cartData)
         {
@@ -154,7 +153,7 @@ namespace uStora.Web.Controllers
             });
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult DeleteItem(int productId)
         {
@@ -173,7 +172,7 @@ namespace uStora.Web.Controllers
             });
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult DeleteAll()
         {
@@ -186,14 +185,13 @@ namespace uStora.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateOrder(string orderViewModel)
+        public ActionResult CreateOrder(string orderViewModel)
         {
             if (!Request.IsAuthenticated)
-                return Json(new
-                {
-                    status = false,
-                    message = "Bạn phải đăng nhập để thanh toán"
-                });
+            {
+                TempData["UnAuthenticated"] = "Bạn phải đăng nhập để thanh toán";
+                return Json(new { status = false });
+            }
             var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
             var orderNew = new Order();
             bool isEnough = true;

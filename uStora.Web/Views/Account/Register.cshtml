@@ -101,8 +101,8 @@
                         <div class="col-md-12 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                                @Html.DropDownListFor(model => model.Gender, selectList , new { @class = "form-control" })
-                                
+                                @Html.DropDownListFor(model => model.Gender, selectList, new { @class = "form-control" })
+
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                         <div class="col-md-12 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                @Html.TextBoxFor(model => model.Birthdate, new { @class = "form-control", placeholder = "ngày sinh" })
+                                @Html.TextBoxFor(model => model.Birthdate, new { @class = "form-control", type = "date", placeholder = "ngày sinh" })
                             </div>
                         </div>
                     </div>

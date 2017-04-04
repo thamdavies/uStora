@@ -54,7 +54,7 @@ namespace uStora.Service
             }
             else
             {
-                return _applicationUserRepository.GetAll();
+                return _applicationUserRepository.GetMulti(x => x.IsDeleted == false);
             }
         }
     }

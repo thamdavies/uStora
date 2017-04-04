@@ -50,6 +50,10 @@
 
             <div class="col-md-8">
                 <div class="product-content-right" id="tblCartTable">
+                    @if (TempData["UnAuthenticated"] != null)
+                    {
+                        <div class="alert alert-danger" id="divMessage">@TempData["UnAuthenticated"]</div>
+                    }
                     <div class="woocommerce">
                         <form method="post" action="#">
                             <div class="table-responsive">
@@ -307,6 +311,7 @@
                                         <br />Giao dịch. Đăng ký ví NgânLượng.vn miễn phí <a href="https://www.nganluong.vn/?portal=nganluong&amp;page=user_register" target="_blank">tại đây</a>
                                     </p>
                                 </div>
+
                             </div>
                             <div class="col-md-6 bangthanhtoan hide" id="bangthanhtoan">
                                 <form class="form-horizontal contact-form" id="frmCheckout" method="post" role="form" novalidate>
@@ -376,8 +381,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <br />
-                                        <div class="alert alert-danger" id="divMessage" style="display:none;"></div>
+                                                                                
                                         <br />
                                         <!-- Button -->
                                         <div class="form-group">

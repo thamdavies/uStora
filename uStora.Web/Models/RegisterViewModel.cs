@@ -36,6 +36,7 @@ namespace uStora.Web.Models
         [MaxLength(ErrorMessage = "Chỉ nhập 30 chữ số")]
         public string PhoneNumber { get; set; }
 
-        public DateTime? Birthdate { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập ngày tháng năm sinh")]
+        public DateTime Birthdate { get; set; }
     }
 }

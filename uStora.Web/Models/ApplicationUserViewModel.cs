@@ -16,7 +16,7 @@ namespace uStora.Web.Models
         public string Image { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsViewed { get; set; }
-
+        public bool? EmailConfirmed { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 

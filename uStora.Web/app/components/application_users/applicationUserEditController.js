@@ -12,7 +12,7 @@
         $scope.updateAccount = updateAccount;
 
         function updateAccount() {
-            apiService.put('/api/applicationUser/update', $scope.account, addSuccessed, addFailed);
+            apiService.put('/api/applicationUser/update', $scope.account, editSuccessed, editFailed);
         }
         function loadDetail() {
             $scope.loading = true;
@@ -27,14 +27,13 @@
             });
         }
 
-        function addSuccessed() {
+        function editSuccessed() {
             notificationService.displaySuccess($scope.account.FullName + ' đã được cập nhật thành công.');
 
             $location.url('application_users');
         }
-        function addFailed(response) {
+        function editFailed(response) {
             notificationService.displayError(response.data.Message);
-            notificationService.displayErrorValidation(response);
         }
         function loadGroups() {
             apiService.get('/api/applicationGroup/getlistall',

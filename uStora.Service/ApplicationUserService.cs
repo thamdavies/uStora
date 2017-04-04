@@ -15,6 +15,8 @@ namespace uStora.Service
         void SetViewed(string id);
 
         void IsDeleted(string id);
+
+        void SaveChanges();
     }
 
     public class ApplicationUserService : IApplicationUserService
@@ -31,14 +33,7 @@ namespace uStora.Service
 
         public ApplicationUser GetUserById(string userId)
         {
-            try
-            {
-                return _applicationUserRepository.GetSingleById(userId);
-            }
-            catch
-            {
-                throw;
-            }
+            return _applicationUserRepository.GetSingleById(userId);
         }
 
         public IEnumerable<string> GetUserIdByGroupId(int id)
@@ -51,16 +46,21 @@ namespace uStora.Service
             var user = _applicationUserRepository.GetSingleById(id);
             user.IsDeleted = true;
             _applicationUserRepository.Update(user);
+            SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
             _unitOfWork.Commit();
         }
+
 
         public void SetViewed(string id)
         {
             var user = _applicationUserRepository.GetSingleById(id);
             user.IsViewed = true;
             _applicationUserRepository.Update(user);
-            _unitOfWork.Commit();
-
+            SaveChanges();
         }
     }
 }

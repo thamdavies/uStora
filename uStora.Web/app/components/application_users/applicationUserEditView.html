@@ -63,6 +63,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="account.EmailConfirmed" ng-checked="account.EmailConfirmed" />Kích hoạt
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
                                     <a ui-sref="application_users" class="btn btn-default">Hủy bỏ</a>
                                     <input type="submit" ng-disabled="frmUpdateAccount.$invalid" class="btn btn-primary" value="Lưu lại" />
                                 </div>

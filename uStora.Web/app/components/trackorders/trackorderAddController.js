@@ -41,11 +41,11 @@
         function AddTrackOrder() {
             apiService.post('/api/trackorder/create', $scope.trackorder,
                 function (result) {
-                    notificationService.displaySuccess('Đã thêm ' + result.data.Name + ' thành công');
+                    notificationService.displaySuccess('Đơn hàng của ' + result.data.Order.CustomerName + ' sẽ được ' + result.data.Vehicle.DriverName + ' giao');
                     $state.go('trackorders');
                 }, function (error) {
                     console.log(error);
-                    notificationService.displayError('Thêm không thành công');
+                    notificationService.displayError('Phân công không thành công');
                 });
         }
         loadOrders();

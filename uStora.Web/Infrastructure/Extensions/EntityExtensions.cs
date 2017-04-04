@@ -196,7 +196,7 @@ namespace uStora.Web.Infrastructure.Extensions
             appRole.IsDeleted = appRoleViewModel.IsDeleted;
         }
 
-        public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
+        public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel)
         {
             appUser.Id = appUserViewModel.Id;
             appUser.FullName = appUserViewModel.FullName;

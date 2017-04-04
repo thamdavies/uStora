@@ -234,11 +234,6 @@
                     }
                     cart.deleteAll("");
                 }
-                else {
-                    $('#divMessage').text(res.message);
-                    $('#divMessage').show();
-                    return false;
-                }
             }
         })
     },

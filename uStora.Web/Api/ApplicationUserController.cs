@@ -76,6 +76,7 @@ namespace uStora.Web.Api
             });
         }
 
+
         [Route("getbyname")]
         [HttpGet]
         [AllowAnonymous]
@@ -175,24 +176,28 @@ namespace uStora.Web.Api
         [HttpPut]
         [Route("update")]
         [Authorize(Roles = "UpdateUser, Admin")]
-        public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
+        public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel appUserViewModel)
         {
             if (ModelState.IsValid)
             {
-                var appUser = await _userManager.FindByIdAsync(applicationUserViewModel.Id);
+                var appUser = await _userManager.FindByIdAsync(appUserViewModel.Id);
                 try
                 {
-                    appUser.UpdateUser(applicationUserViewModel);
+                    appUser.UpdateUser(appUserViewModel);
+                    if (appUserViewModel.EmailConfirmed.Value)
+                        appUser.EmailConfirmed = true;
+                    else
+                        appUser.EmailConfirmed = false;
                     var result = await _userManager.UpdateAsync(appUser);
                     if (result.Succeeded)
                     {
                         var listAppUserGroup = new List<ApplicationUserGroup>();
-                        foreach (var group in applicationUserViewModel.Groups)
+                        foreach (var group in appUserViewModel.Groups)
                         {
                             listAppUserGroup.Add(new ApplicationUserGroup()
                             {
                                 GroupId = group.ID,
-                                UserId = applicationUserViewModel.Id
+                                UserId = appUserViewModel.Id
                             });
                             //add role to user
                             var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
@@ -202,16 +207,21 @@ namespace uStora.Web.Api
                                 await _userManager.AddToRoleAsync(appUser.Id, role.Name);
                             }
                         }
-                        _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
+                        _appGroupService.AddUserToGroups(listAppUserGroup, appUserViewModel.Id);
                         _appGroupService.SaveChanges();
-                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+                        return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
                     }
                     else
                         return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
                 }
-                catch (NameDuplicatedException dex)
+                catch (NameDuplicatedException)
                 {
-                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                    return request.CreateErrorResponse(HttpStatusCode.Conflict, "Tên không được trùng");
+                }
+                catch (Exception dex)
+                {
+                    throw;
+                    //return request.CreateErrorResponse(HttpStatusCode.InternalServerError, dex.Message);
                 }
             }
             else
