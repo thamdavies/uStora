@@ -19,7 +19,7 @@ namespace uStora.Web.App_Start
         {
         }
     }
-    
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -58,7 +58,10 @@ namespace uStora.Web.App_Start
             {
                 IDataProtector dataProtector = dataProtectionProvider.Create("ASP.NET Identity");
 
-                UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
+                UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser, string>(dataProtector)
+                {
+                    TokenLifespan = TimeSpan.FromHours(24),
+                };
             }
         }
     }
@@ -73,7 +76,7 @@ namespace uStora.Web.App_Start
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager,DefaultAuthenticationTypes.ApplicationCookie);
+            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager, DefaultAuthenticationTypes.ApplicationCookie);
         }
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)

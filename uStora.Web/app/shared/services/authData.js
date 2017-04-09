@@ -9,6 +9,7 @@
             image: "",
             createdDate: ""
         };
+
         authDataFactory.authenticationData = authentication;
 
         return authDataFactory;

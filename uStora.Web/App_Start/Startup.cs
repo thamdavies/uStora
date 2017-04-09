@@ -47,13 +47,15 @@ namespace uStora.Web.App_Start
             builder.RegisterType<uStoraDbContext>().AsSelf().InstancePerRequest();
 
             //Asp.net Identity
-            DataProtectionProvider = app.GetDataProtectionProvider();
+            
             builder.Register(c => DataProtectionProvider).InstancePerRequest();
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
+            DataProtectionProvider = app.GetDataProtectionProvider();
+            app.CreatePerOwinContext(()=> DependencyResolver.Current.GetService<ApplicationUserManager>());
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
@@ -67,7 +69,7 @@ namespace uStora.Web.App_Start
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); //Set the WebApi DependencyResolver
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container); //Set the WebApi DependencyResolver
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System.Net;
 using System.Net.Http;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -68,7 +70,8 @@ namespace uStora.Web.API
         public HttpResponseMessage Logout(HttpRequestMessage request)
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            authenticationManager.SignOut();
+            authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie, DefaultAuthenticationTypes.ExternalBearer);
+            authenticationManager.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
             return request.CreateResponse(HttpStatusCode.OK, new { success = true });
         }
     }

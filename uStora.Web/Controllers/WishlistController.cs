@@ -21,11 +21,11 @@ namespace uStora.Web.Controllers
             _wishlistService = wishlistService;
         }
 
-        public ActionResult Index(string searchString,int page = 1)
+        public ActionResult Index(string searchString, int page = 1)
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("pageSize"));
             int totalRow = 0;
-            var wishlists = _wishlistService.GetWishlistByUserIdPaging(User.Identity.GetUserId(), searchString, page, pageSize,out totalRow);
+            var wishlists = _wishlistService.GetWishlistByUserIdPaging(User.Identity.GetUserId(), searchString, page, pageSize, out totalRow);
             var wishlistVm = Mapper.Map<IEnumerable<Wishlist>, IEnumerable<WishlistViewModel>>(wishlists);
             int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
 
@@ -51,7 +51,7 @@ namespace uStora.Web.Controllers
                 wishlist.UserId = User.Identity.GetUserId();
                 wishlist.CreatedDate = DateTime.Now;
                 wishlist.CreatedBy = User.Identity.GetUserName();
-                if (!_wishlistService.CheckContains(productId))
+                if (!_wishlistService.CheckContains(productId, wishlist.UserId))
                 {
                     _wishlistService.Add(wishlist);
                     _wishlistService.SaveChanges();

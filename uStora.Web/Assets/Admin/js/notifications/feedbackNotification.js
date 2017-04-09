@@ -29,7 +29,7 @@
                                 count += 1;
                             }
                             $('li.feedback-status').html('Bạn có ' + response.data.length + ' thông báo.');
-                            var html = "<li class='count-item'><a href='/admin#/detail/" + value.ID + "'>" +
+                            var html = "<li class='count-item'><a href='/admin#!/detail/" + value.ID + "'>" +
                                 "<i class='fa fa-feed text-aqua' title='Thông báo mới.'></i>" +
                                 " Phản hồi từ " + value.Name + " .</a> </li>";
                             $('#feedback-content').append($(html));
@@ -43,14 +43,14 @@
                         if (value.Status) {
                             count += 1;
                             $('li.feedback-status').html('Bạn có ' + response.data.length + ' thông báo.');
-                            var html = "<li class='count-item'  title='Thông báo mới.'><a href='/admin#/detail/" + value.ID + "'>" +
+                            var html = "<li class='count-item'  title='Thông báo mới.'><a href='/admin#!/detail/" + value.ID + "'>" +
                                 "<i class='fa fa-feed text-aqua'></i>" +
                                 " Phản hồi từ " + value.Name + " <i class='fa fa-eye-slash'></i></a> </li>";
                             $('#feedback-content').append(html);
                         }
                         else {
                             $('li.feedback-status').html('Bạn có ' + response.data.length + ' thông báo.');
-                            var html = "<li class='count-item'><a href='/admin#/detail/" + value.ID + "'>" +
+                            var html = "<li class='count-item'><a href='/admin#!/detail/" + value.ID + "'>" +
                                 "<i class='fa fa-feed text-aqua'></i>" +
                                 " Phản hồi từ " + value.Name + " .</a> </li>";
                             $('#feedback-content').append(html);

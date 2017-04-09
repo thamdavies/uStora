@@ -19,7 +19,7 @@ namespace uStora.Service
 
         IEnumerable<Wishlist> GetWishlistByUserIdPaging(string userId, string keyword, int page, int pageSize, out int totalRow);
 
-        bool CheckContains(long productId);
+        bool CheckContains(long productId, string userId);
 
         IEnumerable<Wishlist> GetAll(string input);
 
@@ -64,9 +64,9 @@ namespace uStora.Service
             _unitOfWork.Commit();
         }
 
-        public bool CheckContains(long productId)
+        public bool CheckContains(long productId, string userId)
         {
-            var res = _wishlistRepository.CheckContains(x => x.ProductId == productId);
+            var res = _wishlistRepository.CheckContains(x => x.ProductId == productId && x.UserId == userId);
             if (res)
                 return true;
             else

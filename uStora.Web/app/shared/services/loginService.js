@@ -12,7 +12,7 @@
             $http.post('/oauth/token', data, {
                 headers:
                    { 'Content-Type': 'application/x-www-form-urlencoded' }
-            }).success(function (response) {
+            }).then(function (response) {
                 var config = {
                     params: {
                         username: userName
@@ -20,7 +20,7 @@
                 };
                 apiService.get('/api/applicationuser/getbyname/', config, function (res) {
                     userInfo = {
-                        accessToken: response.access_token,
+                        accessToken: response.data.access_token,
                         userName: res.data.UserName,
                         image: res.data.Image,
                         createdDate: res.data.CreatedDate
@@ -36,11 +36,10 @@
 
                 }, function (error) { deferred.resolve(null); });
 
-            })
-            .error(function (err, status) {
+            }, function (err, status) {
                 initialValue();
                 deferred.resolve(err);
-            });
+            })
             return deferred.promise;
         };
        
@@ -48,7 +47,6 @@
             apiService.post('/api/account/logout', null, function (response) {
                 authenticationService.removeToken();
                 initialValue();
-                
             }, null);
         };
         function initialValue() {

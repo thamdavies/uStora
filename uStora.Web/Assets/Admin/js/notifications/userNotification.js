@@ -29,7 +29,7 @@
                                 count += 1;
                             }
                             $('li.user-status').html('Bạn có ' + response.data.length + ' thành viên đã đăng ký.');
-                            var html = "<li class='count-item' title='Thông báo mới.'><a href='/admin#/user_detail/" +
+                            var html = "<li class='count-item' title='Thông báo mới.'><a href='/admin#!/user_detail/" +
                            value.Id + "'>" + "<i class='fa fa-user text-aqua'></i>" +
                            "" + value.FullName + " đã đăng ký thành viên.</a> </li>";
                             $('#user-content').append($(html));
@@ -43,14 +43,14 @@
                         if (value.IsViewed == false) {
                             count += 1;
                             $('li.user-status').html('Bạn có ' + response.data.length + ' thành viên đã đăng ký.');
-                            var html = "<li class='count-item' title='Thông báo mới.'><a href='/admin#/user_detail/" +
+                            var html = "<li class='count-item' title='Thông báo mới.'><a href='/admin#!/user_detail/" +
                             value.Id + "'>" + "<i class='fa fa-user text-aqua'></i>" +
                             "" + value.FullName + " đã đăng ký thành viên.</a> </li>";
                             $('#user-content').append(html);
                         }
                         else {
                             $('li.user-status').html('Bạn có ' + response.data.length + ' thành viên đã đăng ký.');
-                            var html = "<li class='count-item'><a href='/admin#/user_detail/" +
+                            var html = "<li class='count-item'><a href='/admin#!/user_detail/" +
                             value.Id + "'>" + "<i class='fa fa-user text-aqua'></i>" +
                             "" + value.FullName + " đã đăng ký thành viên.</a> </li>";
                             $('#user-content').append(html);

@@ -1,7 +1,7 @@
 ﻿(function (app) {
     'use strict';
-    app.service('authenticationService', ['authData', '$http', '$q', '$window', 'localStorageService',
-        function (authData, $http, $q, $window, localStorageService) {
+    app.service('authenticationService', ['authData','$injector', '$http', '$q', '$window', 'localStorageService',
+        function (authData,$injector, $http, $q, $window, localStorageService) {
             var tokenInfo;
 
             this.setTokenInfo = function (data) {
@@ -16,6 +16,7 @@
             this.removeToken = function () {
                 tokenInfo = null;
                 localStorageService.set("TokenInfo", null);
+                localStorageService.remove("TokenInfo");
             };
 
             this.init = function () {
@@ -35,6 +36,10 @@
                 if ((authData.authenticationData !== undefined) && (authData.authenticationData.accessToken !== undefined) && (authData.authenticationData.accessToken !== null) && (authData.authenticationData.accessToken !== "")) {
                     $http.defaults.headers.common['Authorization'] = 'Bearer ' + authData.authenticationData.accessToken;
                     $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+                }
+                else {
+                    var stateService = $injector.get('$state');
+                    stateService.go('login');
                 }
             };
             this.init();
