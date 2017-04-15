@@ -32,7 +32,7 @@ namespace uStora.Web.Controllers
         {
             Feedback feedback = new Feedback();
             feedback.UpdateFeedback(feedbackViewModel);
-            _feedbackService.Create(feedback);
+            _feedbackService.Add(feedback);
             _feedbackService.SaveChanges();
 
             var feedBackModel = feedback;

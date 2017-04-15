@@ -15,8 +15,8 @@ namespace uStora.Common
                 using (ExcelPackage pck = new ExcelPackage(new FileInfo(filePath)))
                 {
                     //Create the worksheet
-                    ExcelWorksheet ws = pck.Workbook.Worksheets.Add(nameof(T));
-                    ws.Cells["A1"].LoadFromCollection(datasource, true, TableStyles.Light1);
+                    ExcelWorksheet ws = pck.Workbook.Worksheets.Add(typeof(T).Name + "s");
+                    ws.Cells["A1"].LoadFromCollection(datasource, true, TableStyles.Medium18);
                     ws.Cells.AutoFitColumns();
                     pck.Save();
                 }

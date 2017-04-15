@@ -71,7 +71,7 @@ namespace uStora.Web.API
                 }
                 else
                 {
-                    var postCategoryDb = _postCategoryService.GetByID(postCategoryVm.ID);
+                    var postCategoryDb = _postCategoryService.FindById(postCategoryVm.ID);
                     postCategoryDb.UpdatePostCategory(postCategoryVm);
                     _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.SaveChanges();

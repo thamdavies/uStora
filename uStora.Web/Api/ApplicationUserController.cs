@@ -220,8 +220,7 @@ namespace uStora.Web.Api
                 }
                 catch (Exception dex)
                 {
-                    throw;
-                    //return request.CreateErrorResponse(HttpStatusCode.InternalServerError, dex.Message);
+                    return request.CreateErrorResponse(HttpStatusCode.InternalServerError, dex.Message);
                 }
             }
             else

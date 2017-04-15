@@ -1,18 +1,18 @@
 ﻿(function () {
     angular.module('uStora',
         ['uStora.products',
-         'uStora.product_categories',
-         'uStora.slides',
-         'uStora.brands',
-         'uStora.application_groups',
-         'uStora.application_roles',
-         'uStora.application_users',
-         'uStora.statistics',
-         'uStora.vehicles',
-         'uStora.trackorders',
-         'uStora.feedbacks',
-         'uStora.orders',
-         'uStora.common'])
+            'uStora.product_categories',
+            'uStora.slides',
+            'uStora.brands',
+            'uStora.application_groups',
+            'uStora.application_roles',
+            'uStora.application_users',
+            'uStora.statistics',
+            'uStora.vehicles',
+            'uStora.trackorders',
+            'uStora.feedbacks',
+            'uStora.orders',
+            'uStora.common'])
         .config(config)
         .config(configAuthentication);
 
@@ -67,4 +67,5 @@
             };
         });
     }
+    
 })();

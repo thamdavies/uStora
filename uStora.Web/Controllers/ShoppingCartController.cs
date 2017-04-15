@@ -90,7 +90,7 @@ namespace uStora.Web.Controllers
         public JsonResult Add(long productId)
         {
             var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
-            var product = _productService.GetByID(productId);
+            var product = _productService.FindById(productId);
             if (cart == null)
             {
                 cart = new List<ShoppingCartViewModel>();

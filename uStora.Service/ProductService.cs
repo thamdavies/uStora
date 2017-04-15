@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using uStora.Common;
+using uStora.Common.Services.Int64;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface IProductService
+    public interface IProductService : ICrudService<Product>, IGetDataService<Product>
     {
         #region Methods
-        Product Add(Product product);
-
-        void Update(Product product);
-
-        Product Delete(long id);
-
-        IEnumerable<Product> GetAll();
 
         IEnumerable<Product> GetLastest(int top);
 
@@ -25,15 +18,11 @@ namespace uStora.Service
 
         IEnumerable<Product> GetTopView(int top);
 
-        IEnumerable<Product> GetAll(string keyword);
-
         IEnumerable<string> GetProductsByName(string name);
 
         IEnumerable<Product> GetRelatedProducts(long id, int top);
 
         IEnumerable<Product> GetAllPaging(int page, int brandid, string sort, int pageSize, out int totalRow);
-
-        Product GetByID(long id);
 
         List<Product> GetAllPagingAjax(string keyword);
 
@@ -55,9 +44,6 @@ namespace uStora.Service
 
         IEnumerable<Product> GetHot(int top);
 
-        void IsDeleted(long id);
-
-        void SaveChanges();
         #endregion
     }
 
@@ -136,14 +122,14 @@ namespace uStora.Service
             }
         }
 
-        public Product Delete(long id)
+        public void Delete(long id)
         {
-            return _productRepository.Delete(id);
+            _productRepository.Delete(id);
         }
 
         public void IsDeleted(long id)
         {
-            var product = GetByID(id);
+            var product = FindById(id);
             product.IsDeleted = true;
             SaveChanges();
         }
@@ -153,7 +139,7 @@ namespace uStora.Service
             return _productRepository.GetMulti(x => x.IsDeleted == false, new string[] { "ProductCategory" });
         }
 
-        public List<Product> GetAllPagingAjax(string keyword)
+        public List<Product> GetAllPagingAjax(string keyword = null)
         {
             if (string.IsNullOrEmpty(keyword))
                 return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false).ToList();
@@ -161,7 +147,7 @@ namespace uStora.Service
                 return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Content.Contains(keyword) && x.IsDeleted == false).ToList();
         }
 
-        public IEnumerable<Product> GetAll(string keyword)
+        public IEnumerable<Product> GetAll(string keyword = null)
         {
             if (!string.IsNullOrEmpty(keyword))
                 return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.IsDeleted == false);
@@ -196,13 +182,13 @@ namespace uStora.Service
             }
             if (brandid != 0)
             {
-                query = _productRepository.GetMulti(x => x.BrandID == brandid).OrderBy(x => x.Price);
+                query = query.Where(x => x.BrandID == brandid).OrderBy(x => x.Price);
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
-        public Product GetByID(long id)
+        public Product FindById(long id)
         {
             return _productRepository.GetSingleById(id);
         }
@@ -258,7 +244,7 @@ namespace uStora.Service
             }
             if (brandid != 0)
             {
-                query = _productRepository.GetMulti(x => x.BrandID == brandid && x.CategoryID == categoryId).OrderBy(x => x.Price);
+                query = query.Where(x => x.BrandID == brandid && x.CategoryID == categoryId).OrderBy(x => x.Price);
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
@@ -302,7 +288,7 @@ namespace uStora.Service
             }
             if (brandid != 0)
             {
-                query = _productRepository.GetMulti(x => x.BrandID == brandid).OrderBy(x => x.Price);
+                query = query.Where(x => x.BrandID == brandid).OrderBy(x => x.Price);
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
@@ -355,7 +341,7 @@ namespace uStora.Service
 
         public void IncreaseView(long id)
         {
-            var product = GetByID(id);
+            var product = FindById(id);
             if (product.ViewCount.HasValue)
                 product.ViewCount += 1;
             else

@@ -1,29 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using uStora.Common.Services.Int32;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface IWishlistService
+    public interface IWishlistService : ICrudService<Wishlist>, IGetDataService<Wishlist>
     {
-        Wishlist Add(Wishlist wishlist);
-
-        void Update(Wishlist wishlist);
-
-        Wishlist Delete(int id);
-
         IEnumerable<Wishlist> GetWishlistByUserId(string userId);
 
         IEnumerable<Wishlist> GetWishlistByUserIdPaging(string userId, string keyword, int page, int pageSize, out int totalRow);
 
         bool CheckContains(long productId, string userId);
 
-        IEnumerable<Wishlist> GetAll(string input);
-
-        void SaveChanges();
     }
 
     public class WishlistService : IWishlistService
@@ -44,9 +36,9 @@ namespace uStora.Service
             return _wishlistRepository.Add(wishlist);
         }
 
-        public Wishlist Delete(int id)
+        public void Delete(int id)
         {
-            return _wishlistRepository.Delete(id);
+            _wishlistRepository.Delete(id);
         }
 
         public IEnumerable<Wishlist> GetWishlistByUserId(string userId)
@@ -95,6 +87,11 @@ namespace uStora.Service
                 totalRow = query.Count();
                 return query.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
             }
+        }
+
+        public Wishlist FindById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

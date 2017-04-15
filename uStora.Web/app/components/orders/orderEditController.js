@@ -5,15 +5,12 @@
         $scope.order = {
             UpdatedDate: new Date()
         }
-        $scope.loading = true;
         $scope.loadOrderDetail = loadOrderDetail;
         $scope.UpdateOrder = UpdateOrder;
 
         function loadOrderDetail() {
-            $scope.loading = true;
             apiService.get('/api/order/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.order = result.data;
-                $scope.loading = false;
             }, function (error) {
                 notificationService.displayError(error.data);
             });

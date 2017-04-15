@@ -32,7 +32,7 @@ namespace uStora.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _slideService.GetByID(id);
+                var model = _slideService.FindById(id);
 
                 var responseData = Mapper.Map<Slide, SlideViewModel>(model);
 
@@ -114,7 +114,7 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var dbSlide = _slideService.GetByID(slideVm.ID);
+                    var dbSlide = _slideService.FindById(slideVm.ID);
 
                     dbSlide.UpdateSlide(slideVm);
                     dbSlide.UpdatedDate = DateTime.Now;
@@ -145,7 +145,8 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var oldSlide = _slideService.Delete(id);
+                    var oldSlide = _slideService.FindById(id);
+                    _slideService.Delete(oldSlide.ID);
                     _slideService.SaveChanges();
 
                     var responseData = Mapper.Map<Slide, SlideViewModel>(oldSlide);

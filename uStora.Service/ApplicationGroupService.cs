@@ -2,25 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using uStora.Common.Exceptions;
+using uStora.Common.Services.Int32;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface IApplicationGroupService
+    public interface IApplicationGroupService : ICrudService<ApplicationGroup>, IGetDataService<ApplicationGroup>
     {
         ApplicationGroup GetDetail(int id);
 
         IEnumerable<ApplicationGroup> GetAll(int page, int pageSize, out int totalRow, string filter);
-
-        IEnumerable<ApplicationGroup> GetAll();
-
-        ApplicationGroup Add(ApplicationGroup appGroup);
-
-        void Update(ApplicationGroup appGroup);
-
-        ApplicationGroup Delete(int id);
 
         bool AddUserToGroups(IEnumerable<ApplicationUserGroup> userGroups, string userId);
 
@@ -29,8 +22,6 @@ namespace uStora.Service
         IEnumerable<ApplicationUser> GetListUserByGroupId(int groupId);
 
         void IsDeleted(int id);
-
-        void SaveChanges();
     }
 
     public class ApplicationGroupService : IApplicationGroupService
@@ -64,13 +55,19 @@ namespace uStora.Service
             return true;
         }
 
-        public ApplicationGroup Delete(int id)
+        public void Delete(int id)
         {
-            var appGroup = _appGroupRepository.GetSingleById(id);
-            return _appGroupRepository.Delete(appGroup);
+            var appGroup = FindById(id);
+            _appGroupRepository.Delete(appGroup);
         }
 
-        public IEnumerable<ApplicationGroup> GetAll()
+        public ApplicationGroup FindById(int id)
+        {
+            var appGroup = _appGroupRepository.GetSingleById(id);
+            return appGroup;
+        }
+
+        public IEnumerable<ApplicationGroup> GetAll(string keyword = null)
         {
             return _appGroupRepository.GetMulti(x => x.IsDeleted == false);
         }

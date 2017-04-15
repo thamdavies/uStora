@@ -2,24 +2,15 @@
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 using System.Collections.Generic;
+using uStora.Common.Services.Int64;
+using System;
 
 namespace uStora.Service
 {
-    public interface IPostCategoryService
+    public interface IPostCategoryService : ICrudService<PostCategory>, IGetDataService<PostCategory>
     {
-        PostCategory Add(PostCategory postCategory);
-
-        void Update(PostCategory postCategory);
-
-        PostCategory Delete(long id);
-
-        IEnumerable<PostCategory> GetAll();
-
         IEnumerable<PostCategory> GetAllByParentID(int parentID);
 
-        PostCategory GetByID(int id);
-
-        void SaveChanges();
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -43,15 +34,11 @@ namespace uStora.Service
             _postCategoryRepository.Update(postCategory);
         }
 
-        public PostCategory Delete(long id)
+        public void Delete(long id)
         {
-            return _postCategoryRepository.Delete(id);
+            _postCategoryRepository.Delete(id);
         }
 
-        public IEnumerable<PostCategory> GetAll()
-        {
-            return _postCategoryRepository.GetAll();
-        }
 
         public void SaveChanges()
         {
@@ -63,9 +50,29 @@ namespace uStora.Service
             return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentID);
         }
 
-        public PostCategory GetByID(int id)
+
+        public void IsDeleted(long id)
+        {
+            var postCategory = FindById(id);
+            postCategory.IsDeleted = true;
+            Update(postCategory);
+        }
+
+        public PostCategory FindById(long id)
         {
             return _postCategoryRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<PostCategory> GetAll(string keyword = null)
+        {
+            IEnumerable<PostCategory> data = GetAll();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                data = _postCategoryRepository.GetMulti(x => !x.IsDeleted && !x.Status
+                || x.Name.Contains(keyword)
+                || x.Description.Contains(keyword));
+            }
+            return data;
         }
     }
 }

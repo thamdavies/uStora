@@ -32,7 +32,7 @@ namespace uStora.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _vehicleService.GetById(id);
+                var model = _vehicleService.FindById(id);
 
                 var responseData = Mapper.Map<Vehicle, VehicleViewModel>(model);
 
@@ -113,7 +113,7 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var dbVehicle = _vehicleService.GetById(VehicleVm.ID);
+                    var dbVehicle = _vehicleService.FindById(VehicleVm.ID);
 
                     dbVehicle.UpdateVehicle(VehicleVm);
                     dbVehicle.UpdatedBy = User.Identity.Name;

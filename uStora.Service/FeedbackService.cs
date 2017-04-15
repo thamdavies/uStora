@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using uStora.Common.Services.Int32;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface IFeedbackService
+    public interface IFeedbackService : ICrudService<Feedback>, IGetDataService<Feedback>
     {
-        Feedback Create(Feedback feedback);
-        void Update(Feedback feedback);
-        IEnumerable<Feedback> GetAll(string keyword);
-        Feedback GetSingleById(int id);
-        Feedback Delete(int id);
-        void SaveChanges();
     }
 
     public class FeedbackService : IFeedbackService
@@ -28,18 +23,18 @@ namespace uStora.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public Feedback Create(Feedback feedback)
+        public Feedback Add(Feedback feedback)
         {
             feedback.Status = true;
             return _feedbackRepository.Add(feedback);
         }
 
-        public Feedback Delete(int id)
+        public void Delete(int id)
         {
-            return _feedbackRepository.Delete(id);
+            _feedbackRepository.Delete(id);
         }
 
-        public IEnumerable<Feedback> GetAll(string keyword)
+        public IEnumerable<Feedback> GetAll(string keyword = null)
         {
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -51,7 +46,7 @@ namespace uStora.Service
             }
         }
 
-        public Feedback GetSingleById(int id)
+        public Feedback FindById(int id)
         {
             return _feedbackRepository.GetSingleById(id);
         }
