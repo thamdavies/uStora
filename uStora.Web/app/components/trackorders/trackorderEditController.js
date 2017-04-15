@@ -10,7 +10,6 @@
         $scope.users = [];
         $scope.loadTrackOrderDetail = loadTrackOrderDetail;
         $scope.UpdateTrackOrder = UpdateTrackOrder;
-        $scope.loading = true;
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px'
@@ -40,10 +39,8 @@
                })
         }
         function loadTrackOrderDetail() {
-            $scope.loading = true;
             apiService.get('/api/trackorder/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.trackorder = result.data;
-                $scope.loading = false;
             }, function (error) {
                 notificationService.displayError(error.data);
             });

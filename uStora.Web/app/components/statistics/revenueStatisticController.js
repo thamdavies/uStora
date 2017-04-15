@@ -15,7 +15,6 @@
         $scope.toDate = '01/12/' + new Date().getFullYear();
 
         function getStatistic(page) {
-            $scope.loading = true;
             page = page || 0;
             var config = {
                 params: {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using uStora.Model.Models;
+using uStora.Web.API;
 using uStora.Web.Models;
 
 namespace uStora.Web.Mappings
@@ -16,6 +17,7 @@ namespace uStora.Web.Mappings
                 x.CreateMap<PostTag, PostTagViewModel>();
                 x.CreateMap<Tag, TagViewModel>();
                 x.CreateMap<Product, ProductViewModel>();
+                x.CreateMap<Product, ExportedProduct>();
                 x.CreateMap<ProductTag, ProductTagViewModel>();
                 x.CreateMap<Brand, BrandViewModel>();
                 x.CreateMap<ContactDetail, ContactDetailViewModel>();

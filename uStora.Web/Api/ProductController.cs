@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -87,7 +86,7 @@ namespace uStora.Web.API
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _productService.GetByID(id);
+                var model = _productService.FindById(id);
 
                 var responseData = Mapper.Map<Product, ProductViewModel>(model);
 
@@ -169,7 +168,7 @@ namespace uStora.Web.API
                 }
                 else
                 {
-                    var dbProduct = _productService.GetByID(productVm.ID);
+                    var dbProduct = _productService.FindById(productVm.ID);
 
                     dbProduct.UpdateProduct(productVm);
                     dbProduct.UpdatedDate = DateTime.Now;
@@ -258,7 +257,8 @@ namespace uStora.Web.API
             try
             {
                 var data = _productService.GetAll(filter).ToList();
-                await ReportHelper.GenerateXls(data, fullPath);
+                var products = Mapper.Map<List<Product>, List<ExportedProduct>>(data);
+                await ReportHelper.GenerateXls(products, fullPath);
                 return request.CreateErrorResponse(HttpStatusCode.OK, Path.Combine(folderReport, fileName));
             }
             catch (Exception ex)
@@ -266,7 +266,7 @@ namespace uStora.Web.API
                 return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-        
+
         [Route("importtoexcel")]
         [HttpPost]
         public HttpResponseMessage ImportProductsToXlsx(HttpRequestMessage request)
@@ -299,4 +299,45 @@ namespace uStora.Web.API
 
         #endregion Export/Import
     }
+    #region Extension class
+    public class ExportedProduct
+    {
+        public long ID { get; set; }
+
+        public string Name { get; set; }
+
+        public string Alias { get; set; }
+
+        public int CategoryID { get; set; }
+
+        public int BrandID { get; set; }
+
+        public string Image { get; set; }
+
+        public string MoreImages { get; set; }
+
+        public decimal Price { get; set; }
+
+        public decimal OriginalPrice { get; set; }
+
+        public decimal? PromotionPrice { get; set; }
+
+        public int? Warranty { get; set; }
+
+        public string Description { get; set; }
+
+        public string Content { get; set; }
+
+        public bool? HomeFlag { get; set; }
+        public bool? HotFlag { get; set; }
+        public long? ViewCount { get; set; }
+
+        public int? Quantity { get; set; }
+
+        public string Tags { get; set; }
+
+        public bool IsDeleted { get; set; }
+    }
+    #endregion
+
 }

@@ -72,7 +72,7 @@ namespace uStora.Service.ExportImport
 
                     manager.ReadFromXlsx(worksheet, iRow);
 
-                    var product = _productService.GetByID(manager.GetProperty("ID").IntValue);
+                    var product = _productService.FindById(manager.GetProperty("ID").IntValue);
                     var isNew = product == null;
                     product = product ?? new Product();
 

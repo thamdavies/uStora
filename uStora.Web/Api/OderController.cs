@@ -31,7 +31,7 @@ namespace uStora.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _orderService.GetOrderById(id);
+                var model = _orderService.FindById(id);
 
                 var responseData = Mapper.Map<Order, OrderViewModel>(model);
 
@@ -113,7 +113,7 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var dbOrder = _orderService.GetOrderById(OrderVm.ID);
+                    var dbOrder = _orderService.FindById(OrderVm.ID);
 
                     dbOrder.UpdateOrder(OrderVm);
                     _orderService.Update(dbOrder);
@@ -142,7 +142,8 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var oldOrder = _orderService.Delete(id);
+                    var oldOrder = _orderService.FindById(id);
+                    _orderService.Delete(oldOrder.ID);
                     _orderService.SaveChanges();
 
                     var responseData = Mapper.Map<Order, OrderViewModel>(oldOrder);

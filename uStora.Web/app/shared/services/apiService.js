@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../Assets/admin/libs/angular/angular.min.js" />
-(function (app) {
+﻿(function (app) {
     app.service('apiService', apiService);
 
     apiService.$inject = ['$http', 'notificationService','authenticationService'];

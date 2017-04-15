@@ -3,31 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using uStora.Common.Services.Int32;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface ITrackOrderService
+    public interface ITrackOrderService : ICrudService<TrackOrder>, IGetDataService<TrackOrder>
     {
-        TrackOrder Add(TrackOrder trackOrder);
-
-        void Update(TrackOrder trackOrder);
-
-        IEnumerable<TrackOrder> GetAll(string keyword);
-
-        IEnumerable<TrackOrder> GetAll();
-
         IEnumerable<TrackOrder> GetByUserId(string userId);
 
-        TrackOrder Delete(int id);
-
         IEnumerable<TrackOrder> GetLocation(string cusId);
-
-        TrackOrder GetById(int id);
-
-        void SaveChanges();
     }
     public class TrackOrderService : ITrackOrderService
     {
@@ -45,9 +32,9 @@ namespace uStora.Service
             return _trackOrderRepository.Add(trackOrder);
         }
 
-        public TrackOrder Delete(int id)
+        public void Delete(int id)
         {
-            return _trackOrderRepository.Delete(id);
+            _trackOrderRepository.Delete(id);
         }
 
         public IEnumerable<TrackOrder> GetAll()
@@ -61,7 +48,7 @@ namespace uStora.Service
             {
                 if (string.IsNullOrEmpty(keyword))
                 {
-                    return _trackOrderRepository.GetAll(new string[] { "Order", "ApplicationUser", "Vehicle" }).OrderByDescending(x=>x.Status);
+                    return _trackOrderRepository.GetAll(new string[] { "Order", "ApplicationUser", "Vehicle" }).OrderByDescending(x => x.Status);
                 }
                 else
                     return _trackOrderRepository.GetMulti(x => x.Order.CustomerName.Contains(keyword)
@@ -74,7 +61,7 @@ namespace uStora.Service
             }
         }
 
-        public TrackOrder GetById(int id)
+        public TrackOrder FindById(int id)
         {
             return _trackOrderRepository.GetSingleById(id);
         }
@@ -98,6 +85,10 @@ namespace uStora.Service
         {
             _trackOrderRepository.Update(trackOrder);
         }
-        
+
+        public void IsDeleted(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

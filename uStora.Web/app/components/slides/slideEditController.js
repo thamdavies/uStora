@@ -5,7 +5,6 @@
         $scope.slide = {
             UpdatedDate: new Date()
         }
-        $scope.loading = true;
         $scope.loadSlideDetail = loadSlideDetail;
         $scope.UpdateSlide = UpdateSlide;
 
@@ -26,10 +25,8 @@
         }
 
         function loadSlideDetail() {
-            $scope.loading = true;
             apiService.get('/api/slide/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.slide = result.data;
-                $scope.loading = false;
             }, function (error) {
                 notificationService.displayError(error.data);
             });

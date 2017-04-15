@@ -5,7 +5,6 @@
         $scope.brand = {
             UpdatedDate: new Date()
         }
-        $scope.loading = true;
         $scope.loadBrandDetail = loadBrandDetail;
         $scope.UpdateBrand = UpdateBrand;
 
@@ -26,10 +25,8 @@
         }
 
         function loadBrandDetail() {
-            $scope.loading = true;
             apiService.get('/api/brand/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.brand = result.data;
-                $scope.loading = false;
             }, function (error) {
                 notificationService.displayError(error.data);
             });

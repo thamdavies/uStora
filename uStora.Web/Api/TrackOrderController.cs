@@ -46,7 +46,7 @@ namespace uStora.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _trackOrderService.GetById(id);
+                var model = _trackOrderService.FindById(id);
 
                 var responseData = Mapper.Map<TrackOrder, TrackOrderViewModel>(model);
 
@@ -141,7 +141,7 @@ namespace uStora.Web.Api
                     newTrackOrder.UpdateTrackOrder(trackOrderVm);
                     newTrackOrder.Status = true;
                     _trackOrderService.Add(newTrackOrder);
-                    var order = _orderService.GetOrderById(newTrackOrder.OrderId);
+                    var order = _orderService.FindById(newTrackOrder.OrderId);
                     order.PaymentStatus = 1;
                     _orderService.Update(order);
                     _trackOrderService.SaveChanges();
@@ -168,10 +168,10 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var dbTrackOrder = _trackOrderService.GetById(TrackOrderVm.ID);
-                    if(TrackOrderVm.isDone)
+                    var dbTrackOrder = _trackOrderService.FindById(TrackOrderVm.ID);
+                    if (TrackOrderVm.isDone)
                     {
-                        var order = _orderService.GetOrderById(dbTrackOrder.OrderId);
+                        var order = _orderService.FindById(dbTrackOrder.OrderId);
                         order.PaymentStatus = 2;
                         TrackOrderVm.Status = false;
                         _orderService.Update(order);
@@ -202,7 +202,8 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var oldTrackOrder = _trackOrderService.Delete(id);
+                    var oldTrackOrder = _trackOrderService.FindById(id);
+                    _trackOrderService.Delete(oldTrackOrder.ID);
                     _trackOrderService.SaveChanges();
 
                     var responseData = Mapper.Map<TrackOrder, TrackOrderViewModel>(oldTrackOrder);

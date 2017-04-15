@@ -54,7 +54,7 @@ namespace uStora.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _feedbackService.GetSingleById(id);
+                var model = _feedbackService.FindById(id);
                 model.Status = false;
                 _feedbackService.SaveChanges();
                 var responseData = Mapper.Map<Feedback, FeedbackViewModel>(model);
@@ -79,7 +79,7 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var dbFeedback = _feedbackService.GetSingleById(feedbackVm.ID);
+                    var dbFeedback = _feedbackService.FindById(feedbackVm.ID);
 
                     dbFeedback.UpdateFeedback(feedbackVm);
                     _feedbackService.Update(dbFeedback);
@@ -108,7 +108,8 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var feedback = _feedbackService.Delete(id);
+                    var feedback = _feedbackService.FindById(id);
+                    _feedbackService.Delete(feedback.ID);
                     _feedbackService.SaveChanges();
 
                     var responseData = Mapper.Map<Feedback, FeedbackViewModel>(feedback);

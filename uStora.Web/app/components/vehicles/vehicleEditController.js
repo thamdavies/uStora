@@ -7,16 +7,13 @@
         }
         $scope.loadVehicleDetail = loadVehicleDetail;
         $scope.UpdateVehicle = UpdateVehicle;
-        $scope.loading = true;
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px'
         }
         function loadVehicleDetail() {
-            $scope.loading = true;
             apiService.get('/api/vehicle/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.vehicle = result.data;
-                $scope.loading = false;
             }, function (error) {
                 notificationService.displayError(error.data);
             });

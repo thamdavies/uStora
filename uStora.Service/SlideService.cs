@@ -1,23 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using uStora.Common.Services.Int32;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface ISlideService
+    public interface ISlideService : ICrudService<Slide>, IGetDataService<Slide>
     {
-        Slide Add(Slide slide);
-
-        void Update(Slide slide);
-
-        Slide Delete(int id);
-
-        void SaveChanges();
-
-        Slide GetByID(int id);
-
-        IEnumerable<Slide> GetAll(string keyword);
     }
 
     public class SlideService : ISlideService
@@ -37,9 +28,9 @@ namespace uStora.Service
             return _slideRepository.Add(slide);
         }
 
-        public Slide Delete(int id)
+        public void Delete(int id)
         {
-            return _slideRepository.Delete(id);
+            _slideRepository.Delete(id);
         }
 
         public IEnumerable<Slide> GetAll(string keyword)
@@ -54,7 +45,7 @@ namespace uStora.Service
             }
         }
 
-        public Slide GetByID(int id)
+        public Slide FindById(int id)
         {
             return _slideRepository.GetSingleById(id);
         }
@@ -68,5 +59,11 @@ namespace uStora.Service
         {
             _slideRepository.Update(slide);
         }
+
+        public void IsDeleted(int id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

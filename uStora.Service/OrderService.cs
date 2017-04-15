@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using uStora.Common.Services.Int32;
 using uStora.Common.ViewModels;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
@@ -9,17 +10,11 @@ using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface IOrderService
+    public interface IOrderService : ICrudService<Order>, IGetDataService<Order>
     {
         Order Add(ref Order order, List<OrderDetail> orderDetails);
-        Order Add(Order order);
         IEnumerable<OrderClientViewModel> GetListOrders(string userId);
-        Order GetOrderById(int id);
-        IEnumerable<Order> GetAll(string keyword);
-        void Update(Order order);
         IEnumerable<Order> GetUnCompletedOrder();
-        Order Delete(int id);
-        void SaveChanges();
         void UpdateStatus(int orderId);
     }
 
@@ -71,7 +66,7 @@ namespace uStora.Service
             return _orderRepository.GetListOrder(userId).OrderBy(x => x.PaymentStatus);
         }
 
-        public Order GetOrderById(int id)
+        public Order FindById(int id)
         {
             return _orderRepository.GetSingleById(id);
         }
@@ -104,9 +99,9 @@ namespace uStora.Service
             _unitOfWork.Commit();
         }
 
-        public Order Delete(int id)
+        public void Delete(int id)
         {
-            return _orderRepository.Delete(id);
+            _orderRepository.Delete(id);
         }
         public void UpdateStatus(int orderId)
         {
@@ -114,5 +109,11 @@ namespace uStora.Service
             order.Status = true;
             _orderRepository.Update(order);
         }
+
+        public void IsDeleted(int id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

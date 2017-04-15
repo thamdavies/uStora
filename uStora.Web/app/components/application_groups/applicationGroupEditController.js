@@ -7,7 +7,6 @@
 
     function applicationGroupEditController($scope, apiService, notificationService, $location, $stateParams) {
         $scope.group = {}
-        $scope.loading = true;
 
         $scope.updateApplicationGroup = updateApplicationGroup;
 
@@ -15,11 +14,10 @@
             apiService.put('/api/applicationGroup/update', $scope.group, addSuccessed, addFailed);
         }
         function loadDetail() {
-            $scope.loading = true;
             apiService.get('/api/applicationGroup/detail/' + $stateParams.id, null,
             function (result) {
                 $scope.group = result.data;
-                $scope.loading = false;
+                
             },
             function (result) {
                 notificationService.displayError(result.data);

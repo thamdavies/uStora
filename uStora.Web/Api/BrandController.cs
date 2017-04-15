@@ -31,7 +31,7 @@ namespace uStora.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _brandService.GetByID(id);
+                var model = _brandService.FindById(id);
 
                 var responseData = Mapper.Map<Brand, BrandViewModel>(model);
 
@@ -113,7 +113,7 @@ namespace uStora.Web.Api
                 }
                 else
                 {
-                    var dbBrand = _brandService.GetByID(brandVm.ID);
+                    var dbBrand = _brandService.FindById(brandVm.ID);
 
                     dbBrand.UpdateBrand(brandVm);
                     dbBrand.UpdatedDate = DateTime.Now;

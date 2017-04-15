@@ -1,28 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using uStora.Common.Services.Int64;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface IBrandService
+    public interface IBrandService : ICrudService<Brand>, IGetDataService<Brand>
     {
-        Brand Add(Brand brand);
-
-        void Update(Brand brand);
-
-        Brand Delete(int id);
-
-        void IsDeleted(int id);
-
-        void SaveChanges();
-
-        Brand GetByID(int id);
-
-        IEnumerable<Brand> GetAll(string keyword);
-
-        IEnumerable<Brand> GetActivedBrand(string keyword);
+        IEnumerable<Brand> GetActivedBrand(string keyword = null);
     }
 
     public class BrandService : IBrandService
@@ -42,16 +29,16 @@ namespace uStora.Service
             return _brandRepository.Add(brand);
         }
 
-        public Brand Delete(int id)
+        public void Delete(long id)
         {
-            return _brandRepository.Delete(id);
+            _brandRepository.Delete(id);
         }
 
         public IEnumerable<Brand> GetActivedBrand(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
             {
-                return _brandRepository.GetMulti(x =>x.Status && x.Name.Contains(keyword) || x.Description.Contains(keyword));
+                return _brandRepository.GetMulti(x => x.Status && x.Name.Contains(keyword) || x.Description.Contains(keyword));
             }
             else
             {
@@ -61,7 +48,7 @@ namespace uStora.Service
 
         public IEnumerable<Brand> GetAll(string keyword)
         {
-            if(!string.IsNullOrEmpty(keyword))
+            if (!string.IsNullOrEmpty(keyword))
             {
                 return _brandRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.IsDeleted == false);
             }
@@ -70,16 +57,16 @@ namespace uStora.Service
                 return _brandRepository.GetMulti(x => x.Status && x.IsDeleted == false);
             }
         }
-        
 
-        public Brand GetByID(int id)
+
+        public Brand FindById(long id)
         {
             return _brandRepository.GetSingleById(id);
         }
 
-        public void IsDeleted(int id)
+        public void IsDeleted(long id)
         {
-            var brand = GetByID(id);
+            var brand = FindById(id);
             brand.IsDeleted = true;
             SaveChanges();
         }

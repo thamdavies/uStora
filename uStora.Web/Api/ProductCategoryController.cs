@@ -93,7 +93,7 @@ namespace uStora.Web.API
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _productCategoryService.GetByID(id);
+                var model = _productCategoryService.FindById(id);
 
                 var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
 
@@ -155,7 +155,7 @@ namespace uStora.Web.API
 
                 if (ModelState.IsValid)
                 {
-                    var productCategory = _productCategoryService.GetByID(productCategoryVm.ID);
+                    var productCategory = _productCategoryService.FindById(productCategoryVm.ID);
 
                     productCategory.UpdateProductCategory(productCategoryVm);
 

@@ -1,27 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using uStora.Common.Services.Int32;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
 
 namespace uStora.Service
 {
-    public interface IVehicleService
+    public interface IVehicleService : ICrudService<Vehicle>, IGetDataService<Vehicle>
     {
-        Vehicle Add(Vehicle vehicle);
-
-        void Update(Vehicle vehicle);
-
-        Vehicle GetById(int id);
-
-        IEnumerable<Vehicle> GetAll(string keyword);
-
         void IsDeleted(int id);
-
-        Vehicle Delete(int id);
-        
-        void SaveChanges();
-
     }
 
     public class VehicleService : IVehicleService
@@ -48,9 +36,9 @@ namespace uStora.Service
             _vehicleRepository.Update(vehicle);
         }
 
-        public Vehicle Delete(int id)
+        public void Delete(int id)
         {
-            return _vehicleRepository.Delete(id);
+            _vehicleRepository.Delete(id);
         }
 
         public void SaveChanges()
@@ -58,7 +46,7 @@ namespace uStora.Service
             _unitOfWork.Commit();
         }
 
-        public Vehicle GetById(int id)
+        public Vehicle FindById(int id)
         {
             return _vehicleRepository.GetSingleById(id);
         }
@@ -73,7 +61,7 @@ namespace uStora.Service
 
         public void IsDeleted(int id)
         {
-            var vehicle = GetById(id);
+            var vehicle = FindById(id);
             vehicle.IsDeleted = true;
             SaveChanges();
         }
