@@ -58,9 +58,12 @@
                 <label for="inputPassword3" class="col-sm-2 control-label">Danh mục</label>
 
                 <div class="col-sm-10">
-                    <select name="categoryID" required class="form-control" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in productCategories">
-                        <option value="">--- Chọn danh mục ---</option>
-                    </select>
+                    <ui-select ng-model="product.CategoryID" theme="bootstrap" title="Chọn danh mục">
+                        <ui-select-match placeholder="Click vào đây để chọn...">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="item.ID as item in flatFolders | filter: $select.search">
+                            <span ng-bind-html="item.Name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
                     <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
                     <div ng-show="frmAddProduct.categoryID.$touched">
                         <span ng-show="frmAddProduct.categoryID.$invalid" class="invalid">Chưa chọn danh mục</span>
@@ -202,14 +205,13 @@
                     </div>
                 </div>
             </div>
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-        <button ui-sref="products" class="btn btn-default">Hủy</button>
-        <button type="submit" ng-disabled="frmAddProduct.$invalid" class="btn btn-info">Lưu lại</button>
-    </div>
-    <!-- /.box-footer -->
-    </form>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="products" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddProduct.$invalid" class="btn btn-info">Lưu lại</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
     </div>
     <!-- /.box -->
 </section><!-- /.content -->

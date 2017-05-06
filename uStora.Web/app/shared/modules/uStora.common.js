@@ -7,6 +7,7 @@
             'chart.js',
             'LocalStorageModule',
             'yaru22.angular-timeago',
+            'ui.select',
             'ngSanitize',
             'angular-loading-bar']);
 })();

@@ -12,6 +12,9 @@
     -ms-transition: all 0.5s;
     transition: all 0.5s;
 }
+ol, ul {
+    list-style: none;
+}
 .add_to_wishlist_button {
     background: none repeat scroll 0 0 #5a88ca;
     border: medium none;

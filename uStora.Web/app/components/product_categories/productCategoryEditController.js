@@ -5,7 +5,7 @@
         $scope.productCategory = {
             UpdatedDate: new Date()
         }
-        $scope.parentCategories = [];
+        $scope.flatFolders = [];
         $scope.loadParentCategories = loadParentCategories;
         $scope.loadProductCategoryDetail = loadProductCategoryDetail;
         $scope.UpdateProductCategory = UpdateProductCategory;
@@ -52,11 +52,35 @@
         function loadParentCategories() {
             apiService.get('/api/productcategory/getallparents', null,
                 function (result) {
-                    $scope.parentCategories = result.data;
+                    $scope.parentCategories = commonService.getTree(result.data, "ID", "ParentID");
+                    $scope.parentCategories.forEach(function (item) {
+                        recur(item, 0, $scope.flatFolders);
+                    });
                 }, function () {
                     console.log('Không có dữ liệu!!!');
                 });
         }
+
+        function times(n, str) {
+            var result = '';
+            for (var i = 0; i < n; i++) {
+                result += str;
+            }
+            return result;
+        };
+        function recur(item, level, arr) {
+            arr.push({
+                Name: times(level, '–') + ' ' + item.Name,
+                ID: item.ID,
+                Level: level,
+                Indent: times(level, '–')
+            });
+            if (item.children) {
+                item.children.forEach(function (item) {
+                    recur(item, level + 1, arr);
+                });
+            }
+        };
 
         loadParentCategories();
         loadProductCategoryDetail();

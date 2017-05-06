@@ -24,7 +24,6 @@ namespace uStora.Web.Models
         public bool? HomeFlag { get; set; }
 
         public bool IsDeleted { get; set; }
-
-        public bool HasChild { get; set; }
+        
     }
 }

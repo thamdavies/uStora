@@ -189,7 +189,7 @@
 
                     appGroups.Add(new ApplicationGroup()
                     {
-                        Name = "Ban quản trị",
+                        Name = "Admin",
                         Description = "Ban quản trị",
                         IsDeleted = false
                     });

@@ -231,8 +231,8 @@
                     else {
                         $('.bangthanhtoan').addClass('hide');
                         window.location.href = "/xem-trang-thai-mat-hang.htm";
-                    }
-                    cart.deleteAll("");
+                        cart.deleteAll("");
+                    }                    
                 }
             }
         })

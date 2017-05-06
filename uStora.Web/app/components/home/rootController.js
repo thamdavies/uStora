@@ -8,5 +8,6 @@
             $state.go('login');
         };
         $scope.authentication = authData.authenticationData;
+        $scope.sidebar = "/app/shared/views/sidebar.html";
     }
 })(angular.module('uStora'));

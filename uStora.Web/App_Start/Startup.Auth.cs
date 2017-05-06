@@ -7,10 +7,13 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using uStora.Data;
 using uStora.Model.Models;
+using uStora.Service;
+using uStora.Web.Infrastructure.Core;
 
 [assembly: OwinStartup(typeof(uStora.Web.App_Start.Startup))]
 
@@ -98,19 +101,27 @@ namespace uStora.Web.App_Start
                 }
                 if (user != null)
                 {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
+                    var appGroupService = ServiceFactory.Get<IApplicationGroupService>();
+                    var groups = appGroupService.GetListGroupByUserId(user.Id).ToList();
+                    if (groups.Count(x => x.Name == "Admin") > 0)
+                    {
+                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ExternalBearer);
+                        context.Validated(identity);
+                    }
+                    else
+                    {
+                        context.Rejected();
+                        context.SetError("invalid_group", "Bạn không có quyền truy cập.");                       
+                    }
                 }
                 else
                 {
-                    context.SetError("invalid_grant", "Tên đăng nhập hoặc mật khẩu không đúng.'");
                     context.Rejected();
+                    context.SetError("invalid_grant", "Tên đăng nhập hoặc mật khẩu không đúng.'");                    
                 }
             }
         }
-       
+
         private static UserManager<ApplicationUser> CreateManager(IdentityFactoryOptions<UserManager<ApplicationUser>> options, IOwinContext context)
         {
             var userStore = new UserStore<ApplicationUser>(context.Get<uStoraDbContext>());
