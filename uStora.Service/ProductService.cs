@@ -134,25 +134,23 @@ namespace uStora.Service
             SaveChanges();
         }
 
-        public IEnumerable<Product> GetAll()
-        {
-            return _productRepository.GetMulti(x => x.IsDeleted == false, new string[] { "ProductCategory" });
-        }
-
         public List<Product> GetAllPagingAjax(string keyword = null)
         {
-            if (string.IsNullOrEmpty(keyword))
-                return _productRepository.GetMulti(x => x.Status && x.IsDeleted == false).ToList();
-            else
-                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Content.Contains(keyword) && x.IsDeleted == false).ToList();
+            var query = _productRepository.GetMulti(x => x.Status && !x.IsDeleted);
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                query = query.Where(x => x.Name.ToLower().Contains(keyword) || x.Description.ToLower().Contains(keyword));
+            }                
+            return query.ToList();
         }
 
         public IEnumerable<Product> GetAll(string keyword = null)
         {
             if (!string.IsNullOrEmpty(keyword))
-                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.IsDeleted == false);
+                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) && x.IsDeleted == false && x.Status);
             else
-                return _productRepository.GetMulti(x => x.IsDeleted == false);
+                return _productRepository.GetMulti(x => x.IsDeleted == false && x.Status);
         }
 
         public IEnumerable<Product> GetAllPaging(int page, int brandid, string sort, int pageSize, out int totalRow)

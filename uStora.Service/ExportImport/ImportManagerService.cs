@@ -3,6 +3,8 @@ using System;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Web;
 using uStora.Common.Exceptions;
 using uStora.Model.Models;
 using uStora.Service.ExportImport.Help;
@@ -30,6 +32,7 @@ namespace uStora.Service.ExportImport
                new PropertyByName<Product>("Name"),
                new PropertyByName<Product>("Alias"),
                new PropertyByName<Product>("CategoryID"),
+               new PropertyByName<Product>("BrandID"),
                new PropertyByName<Product>("Image"),
                new PropertyByName<Product>("MoreImages"),
                new PropertyByName<Product>("Price"),
@@ -42,13 +45,8 @@ namespace uStora.Service.ExportImport
                new PropertyByName<Product>("HomeFlag"),
                new PropertyByName<Product>("ViewCount"),
                new PropertyByName<Product>("Quantity"),
-               new PropertyByName<Product>("BrandID"),
                new PropertyByName<Product>("Tags"),
-               new PropertyByName<Product>("MetaDescription"),
-               new PropertyByName<Product>("MetaKeyword"),
-               new PropertyByName<Product>("CreatedDate"),
-               new PropertyByName<Product>("CreatedBy"),
-               new PropertyByName<Product>("Status")
+               new PropertyByName<Product>("IsDeleted")
             };
             #endregion
             var manager = new PropertyManager<Product>(properties);
@@ -79,6 +77,7 @@ namespace uStora.Service.ExportImport
                     product.Name = manager.GetProperty("Name").StringValue;
                     product.Alias = manager.GetProperty("Alias").StringValue;
                     product.CategoryID = manager.GetProperty("CategoryID").IntValue;
+                    product.BrandID = manager.GetProperty("BrandID").IntValue;
                     product.Image = manager.GetProperty("Image").StringValue;
                     product.MoreImages = manager.GetProperty("MoreImages").StringValue;
                     product.Price = manager.GetProperty("Price").DecimalValue;
@@ -91,18 +90,16 @@ namespace uStora.Service.ExportImport
                     product.HomeFlag = manager.GetProperty("HomeFlag").BooleanValue;
                     product.ViewCount = manager.GetProperty("ViewCount").IntValue;
                     product.Quantity = manager.GetProperty("Quantity").IntValue;
-                    product.BrandID = manager.GetProperty("BrandID").IntValue;
                     product.Tags = manager.GetProperty("Tags").StringValue;
-                    product.MetaDescription = manager.GetProperty("MetaDescription").StringValue;
-                    product.MetaKeyword = manager.GetProperty("MetaKeyword").StringValue;
-                    product.CreatedDate = DateTime.Now;
-                    product.CreatedBy = manager.GetProperty("CreatedBy").StringValue;
-                    product.Status = manager.GetProperty("Status").BooleanValue;
+                    product.IsDeleted = manager.GetProperty("IsDeleted").BooleanValue;
 
                     if (isNew)
                     {
                         try
                         {
+                            product.Status = true;
+                            product.CreatedDate = DateTime.Now;
+                            product.CreatedBy = HttpContext.Current.User.Identity.Name;
                             _productService.Add(product);
                         }
                         catch (Exception e)
@@ -114,8 +111,8 @@ namespace uStora.Service.ExportImport
                     {
                         try
                         {
-                            product.UpdatedBy = manager.GetProperty("CreatedBy").StringValue;
                             product.UpdatedDate = DateTime.Now;
+                            product.UpdatedBy = HttpContext.Current.User.Identity.Name;
                             _productService.Update(product);
                         }
                         catch (Exception e)

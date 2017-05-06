@@ -20,5 +20,6 @@ namespace uStora.Common
             return controller == currentController && action == currentAction ?
                 cssClass : String.Empty;
         }
+        
     }
 }

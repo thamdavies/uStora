@@ -80,9 +80,10 @@ namespace uStora.Web.Controllers
         {
             var model = _productCategoryService.GetAll().ToList();
             var listProductCategoryVm = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+            
             return PartialView(listProductCategoryVm);
         }
-
+        
         [ChildActionOnly]
         [OutputCache(Duration = 3600)]
         public ActionResult Footer()
