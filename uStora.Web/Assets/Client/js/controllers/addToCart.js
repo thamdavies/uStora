@@ -6,13 +6,8 @@
     registerEvents: function () {
         $('#btnAddToCart, i#btnAddToCart').off('click').on('click', function (e) {
             e.preventDefault();
-            var res = confirm("Bạn muốn thêm sản phẩm này vào giỏ hàng?");
-            if (res)
-            {
-                var productId = parseInt($(this).data('id'));
-                cart.addItem(productId);
-            }
-            
+            var productId = parseInt($(this).data('id'));
+            cart.addItem(productId);
         });
     },
     addItem: function (productId) {
