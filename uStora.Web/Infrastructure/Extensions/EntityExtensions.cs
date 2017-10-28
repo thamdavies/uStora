@@ -175,6 +175,7 @@ namespace uStora.Web.Infrastructure.Extensions
             order.CreatedDate = DateTime.Now;
             order.CreatedBy = orderViewModel.CreatedBy;
             order.Status = orderViewModel.Status;
+            order.IsCancel = orderViewModel.IsCancel;
         }
 
         public static void UpdateApplicationGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupViewModel)

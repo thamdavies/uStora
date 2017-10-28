@@ -18,7 +18,7 @@ namespace uStora.Web.Api
     [Authorize]
     public class OderController : ApiControllerBase
     {
-        private IOrderService _orderService;
+        private readonly IOrderService _orderService;
         public OderController(IOrderService orderService, IErrorService errorService) : base(errorService)
         {
             _orderService = orderService;

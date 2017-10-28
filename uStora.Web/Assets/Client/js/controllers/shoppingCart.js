@@ -223,19 +223,21 @@
             data: {
                 orderViewModel: JSON.stringify(order)
             },
-            success: function (res) {
+            success: function(res) {
                 if (res.status) {
                     if (res.urlCheckout != undefined && res.urlCheckout != '') {
                         window.location.href = res.urlCheckout;
-                    }
-                    else {
+                    } else {
                         $('.bangthanhtoan').addClass('hide');
                         window.location.href = "/xem-trang-thai-mat-hang.htm";
                         cart.deleteAll("");
-                    }                    
+                    }
                 }
+            },
+            error: function(res) {
+                console.log(res);
             }
-        })
+        });
     },
     loadData: function (isOrder) {
         $.ajax({

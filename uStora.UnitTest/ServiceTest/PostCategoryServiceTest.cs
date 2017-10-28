@@ -5,6 +5,7 @@ using uStora.Data.Repositories;
 using uStora.Model.Models;
 using uStora.Service;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace uStora.UnitTest.ServiceTest
 {
@@ -34,7 +35,7 @@ namespace uStora.UnitTest.ServiceTest
         public void PostCategory_Service_GetAll()
         {
             //setup method
-            _mockPostCategoryRepository.Setup(x => x.GetAll(null)).Returns(_listCategory);
+            _mockPostCategoryRepository.Setup(x => x.GetAll(null)).Returns(_listCategory.AsQueryable());
 
             //call action
             var result = _postCategoryService.GetAll() as List<PostCategory>;

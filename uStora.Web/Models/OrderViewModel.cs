@@ -45,6 +45,8 @@ namespace uStora.Web.Models
         [Required]
         public bool Status { get; set; }
 
+        public bool IsCancel { get; set; } = false;
+
         public string BankCode { get; set; }
 
         [MaxLength(128)]

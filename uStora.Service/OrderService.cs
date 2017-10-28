@@ -20,9 +20,9 @@ namespace uStora.Service
 
     public class OrderService : IOrderService
     {
-        private IOrderRepository _orderRepository;
-        private IOrderDetailRepository _orderDetailRepository;
-        private IUnitOfWork _unitOfWork;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderDetailRepository _orderDetailRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public OrderService(IOrderRepository orderRepository, IUnitOfWork unitOfWork,
             IOrderDetailRepository orderDetailRepository)
@@ -49,11 +49,11 @@ namespace uStora.Service
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    Console.WriteLine(@"Entity of type ""{0}"" in state ""{1}"" has the following validation errors:",
                         eve.Entry.Entity.GetType().Name, eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                        Console.WriteLine(@"- Property: ""{0}"", Error: ""{1}""",
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
@@ -61,7 +61,7 @@ namespace uStora.Service
             }
         }
 
-        IEnumerable<OrderClientViewModel> IOrderService.GetListOrders(string userId)
+        public IEnumerable<OrderClientViewModel> GetListOrders(string userId)
         {
             return _orderRepository.GetListOrder(userId).OrderBy(x => x.PaymentStatus);
         }
@@ -75,8 +75,7 @@ namespace uStora.Service
         {
             if (string.IsNullOrEmpty(keyword))
                 return _orderRepository.GetAll();
-            else
-                return _orderRepository.GetMulti(x => x.CustomerName.Contains(keyword));
+            return _orderRepository.GetMulti(x => x.CustomerName.Contains(keyword));
         }
 
         public IEnumerable<Order> GetUnCompletedOrder()
@@ -109,11 +108,6 @@ namespace uStora.Service
             order.Status = true;
             _orderRepository.Update(order);
         }
-
-        public void IsDeleted(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        
     }
 }

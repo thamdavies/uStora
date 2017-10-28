@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -503,6 +504,7 @@
     <Content Include="Assets\Client\img\h4-slide3.png" />
     <Content Include="Assets\Client\img\h4-slide4.png" />
     <Content Include="Assets\Client\img\h4-slide7.png" />
+    <Content Include="Assets\Client\img\unnamed.jpg" />
     <Content Include="Assets\Client\js\ajaxPaging.js" />
     <Content Include="Assets\Client\js\checkbox.js" />
     <Content Include="Assets\Client\js\common.js" />
@@ -513,6 +515,7 @@
     <Content Include="Assets\Client\js\controllers\shoppingCart.js" />
     <Content Include="Assets\Client\js\myLocation.js" />
     <Content Include="Assets\Client\templates\newUser.html" />
+    <Content Include="Assets\Client\templates\orderTemplate.html" />
     <Content Include="Assets\libs\angular-chart.js\angular-chart.js" />
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.css" />
     <Content Include="Assets\libs\angular-chart.js\dist\angular-chart.js" />
@@ -5586,12 +5589,6 @@
     <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Assets\libs\angular-ui-router\.bower.json" />
-    <Content Include="Assets\libs\angular-ui-router\bower.json" />
-    <Content Include="Assets\libs\angular-ui-router\CHANGELOG.md" />
-    <Content Include="Assets\libs\angular-ui-router\CONTRIBUTING.md" />
-    <Content Include="Assets\libs\angular-ui-router\LICENSE" />
-    <Content Include="Assets\libs\angular-ui-router\README.md" />
     <Content Include="Assets\libs\angular-ui-select\.bower.json" />
     <Content Include="Assets\libs\angular-ui-select\bower.json" />
     <Content Include="Assets\libs\angular-ui-select\CHANGELOG.md" />
@@ -5603,6 +5600,12 @@
     <Content Include="Assets\libs\angular-ui-select\LICENSE" />
     <Content Include="Assets\libs\angular-ui-select\package.json" />
     <Content Include="Assets\libs\angular-ui-select\README.md" />
+    <Content Include="Assets\libs\angular-ui-router\.bower.json" />
+    <Content Include="Assets\libs\angular-ui-router\bower.json" />
+    <Content Include="Assets\libs\angular-ui-router\CHANGELOG.md" />
+    <Content Include="Assets\libs\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="Assets\libs\angular-ui-router\LICENSE" />
+    <Content Include="Assets\libs\angular-ui-router\README.md" />
     <None Include="Properties\PublishProfiles\uStora.pubxml" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config">

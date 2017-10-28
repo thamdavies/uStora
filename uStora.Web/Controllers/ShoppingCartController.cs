@@ -1,8 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using MvcPaging;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using uStora.Common;
@@ -17,13 +21,13 @@ namespace uStora.Web.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private IProductService _productService;
-        private IOrderService _orderService;
-        private ApplicationUserManager _userManager;
+        private readonly IProductService _productService;
+        private readonly IOrderService _orderService;
+        private readonly ApplicationUserManager _userManager;
 
-        private string merchantId = ConfigHelper.GetByKey("MerchantId");
-        private string merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
-        private string merchantEmail = ConfigHelper.GetByKey("MerchantEmail");
+        private readonly string _merchantId = ConfigHelper.GetByKey("MerchantId");
+        private readonly string _merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
+        private readonly string _merchantEmail = ConfigHelper.GetByKey("MerchantEmail");
 
 
         public ShoppingCartController(IProductService productService,
@@ -43,31 +47,29 @@ namespace uStora.Web.Controllers
             }
             var cart = new ShoppingCartViewModel();
             int defaultPageSize = int.Parse(ConfigHelper.GetByKey("pageSizeAjax"));
-            CommonController common = new CommonController(_productService);
-            int currentPageIndex = page.HasValue ? page.Value : 1;
+            var common = new CommonController(_productService);
+            int currentPageIndex = page ?? 1;
             cart.ListProducts = common.ProductListAjax(page, searchString).ToPagedList(currentPageIndex, defaultPageSize);
             if (Request.IsAjaxRequest())
                 return PartialView("_AjaxProductList", cart.ListProducts);
-            else
-                return View(cart);
+            return View(cart);
         }
         [Authorize]
         public JsonResult GetUserInfo()
         {
-            if (Request.IsAuthenticated)
-            {
-                var userId = User.Identity.GetUserId();
-                var user = _userManager.FindById(userId);
+            if (!Request.IsAuthenticated)
                 return Json(new
                 {
-                    data = user,
-                    status = true
+                    status = false,
+                    message = "Bạn cần đăng nhập để sử dụng tính năng này!!!"
                 });
-            }
+
+            var userId = User.Identity.GetUserId();
+            var user = _userManager.FindById(userId);
             return Json(new
             {
-                status = false,
-                message = "Bạn cần đăng nhập để sử dụng tính năng này!!!"
+                data = user,
+                status = true
             });
         }
 
@@ -114,13 +116,16 @@ namespace uStora.Web.Controllers
             }
             else
             {
-                ShoppingCartViewModel newItem = new ShoppingCartViewModel();
-                newItem.ProductId = productId;
-                newItem.Product = Mapper.Map<Product, ProductViewModel>(product);
-                newItem.Quantity = 1;
+                var newItem = new ShoppingCartViewModel
+                {
+                    ProductId = productId,
+                    Product = Mapper.Map<Product, ProductViewModel>(product),
+                    Quantity = 1
+                };
                 cart.Add(newItem);
             }
             Session[CommonConstants.ShoppingCartSession] = cart;
+            Session[CommonConstants.SendCartSession] = cart;
             Session[CommonConstants.SelledProducts] = cart;
             return Json(new
             {
@@ -146,6 +151,7 @@ namespace uStora.Web.Controllers
             }
 
             Session[CommonConstants.ShoppingCartSession] = cartSession;
+            Session[CommonConstants.SendCartSession] = cartSession;
 
             return Json(new
             {
@@ -158,17 +164,15 @@ namespace uStora.Web.Controllers
         public JsonResult DeleteItem(int productId)
         {
             var cartSession = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
-            if (cartSession != null)
-            {
-                cartSession.RemoveAll(x => x.ProductId == productId);
+            if (cartSession == null)
                 return Json(new
                 {
-                    status = true
+                    status = false
                 });
-            }
+            cartSession.RemoveAll(x => x.ProductId == productId);
             return Json(new
             {
-                status = false
+                status = true
             });
         }
 
@@ -203,89 +207,87 @@ namespace uStora.Web.Controllers
                 orderNew.CreatedBy = User.Identity.GetUserName();
             }
             var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
-            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            var orderDetails = new List<OrderDetail>();
             foreach (var item in cart)
             {
-                var detail = new OrderDetail();
-                detail.ProductID = item.ProductId;
-                detail.Quantity = item.Quantity;
-                detail.Price = item.Product.Price;
+                var detail = new OrderDetail
+                {
+                    ProductID = item.ProductId,
+                    Quantity = item.Quantity,
+                    Price = item.Product.Price
+                };
                 orderDetails.Add(detail);
                 isEnough = _productService.SellingProduct(item.ProductId, item.Quantity);
             }
-            if (isEnough)
-            {
-                var orderReturn = _orderService.Add(ref orderNew, orderDetails);
-                _productService.SaveChanges();
-                if (order.PaymentMethod == "CASH")
-                {
-                    return Json(new
-                    {
-                        status = true
-                    });
-                }
-                else
-                {
-                    var currentLink = ConfigHelper.GetByKey("CurrentLink");
-                    RequestInfo info = new RequestInfo();
-                    info.Merchant_id = merchantId;
-                    info.Merchant_password = merchantPassword;
-                    info.Receiver_email = merchantEmail;
-
-
-
-                    info.cur_code = "vnd";
-                    info.bank_code = order.BankCode;
-
-                    info.Order_code = orderReturn.ID.ToString();
-                    info.Total_amount = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
-                    info.fee_shipping = "0";
-                    info.Discount_amount = "0";
-                    info.order_description = "Thanh toán đơn hàng tại uStora shop";
-                    info.return_url = currentLink + "/xac-nhan-don-hang.htm";
-                    info.cancel_url = currentLink + "/huy-don-hang.htm";
-
-                    info.Buyer_fullname = order.CustomerName;
-                    info.Buyer_email = order.CustomerEmail;
-                    info.Buyer_mobile = order.CustomerMobile;
-
-                    APICheckout objNLChecout = new APICheckout();
-                    ResponseInfo result = objNLChecout.GetUrlCheckout(info, order.PaymentMethod);
-                    if (result.Error_code == "00")
-                    {
-                        return Json(new
-                        {
-                            status = true,
-                            urlCheckout = result.Checkout_url,
-                            message = result.Description
-                        });
-                    }
-                    else
-                        return Json(new
-                        {
-                            status = false,
-                            message = result.Description
-                        });
-                }
-            }
-            else
-            {
+            if (!isEnough)
                 return Json(new
                 {
                     status = false,
                     message = "Sản phẩm này hiện tại đang hết hàng."
                 });
+
+            var orderReturn = _orderService.Add(ref orderNew, orderDetails);
+            _orderService.SaveChanges();
+
+            var totalAmount = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
+            Session["totalAmount"] = totalAmount;
+
+            if (order.PaymentMethod == "CASH")
+            {
+                ApplySendHtmlOrder();
+                return Json(new
+                {
+                    status = true
+                });
             }
 
+
+            var currentLink = ConfigHelper.GetByKey("CurrentLink");
+            var info = new RequestInfo
+            {
+                Merchant_id = _merchantId,
+                Merchant_password = _merchantPassword,
+                Receiver_email = _merchantEmail,
+                cur_code = "vnd",
+                bank_code = order.BankCode,
+                Order_code = orderReturn.ID.ToString(),
+                Total_amount = totalAmount,
+                fee_shipping = "0",
+                Discount_amount = "0",
+                order_description = "Thanh toán đơn hàng tại uStora shop",
+                return_url = currentLink + "/xac-nhan-don-hang.htm",
+                cancel_url = currentLink + "/huy-don-hang.htm",
+                Buyer_fullname = order.CustomerName,
+                Buyer_email = order.CustomerEmail,
+                Buyer_mobile = order.CustomerMobile
+            };
+
+            Session["OrderId"] = orderReturn.ID;
+
+            var objNlChecout = new APICheckout();
+            var result = objNlChecout.GetUrlCheckout(info, order.PaymentMethod);
+            if (result.Error_code == "00")
+            {
+                return Json(new
+                {
+                    status = true,
+                    urlCheckout = result.Checkout_url,
+                    message = result.Description
+                });
+            }
+            return Json(new
+            {
+                status = false,
+                message = result.Description
+            });
         }
 
         [Authorize]
         public ActionResult CheckOutSuccess()
         {
-            var userId = User.Identity.GetUserId();
             var orders = _orderService.GetListOrders(User.Identity.GetUserId());
             ViewBag.isNull = false;
-            if (orders.Count() == 0)
+            if (!orders.Any())
                 ViewBag.isNull = true;
             return View(orders);
         }
@@ -294,7 +296,7 @@ namespace uStora.Web.Controllers
         public JsonResult GetListOrder()
         {
             var userId = User.Identity.GetUserId();
-            var orders = _orderService.GetListOrders(User.Identity.GetUserId());
+            var orders = _orderService.GetListOrders(userId);
 
             return Json(new
             {
@@ -302,20 +304,52 @@ namespace uStora.Web.Controllers
                 status = true
             }, JsonRequestBehavior.AllowGet);
         }
+
+        private void ApplySendHtmlOrder()
+        {
+            var items = (List<ShoppingCartViewModel>)Session[CommonConstants.SendCartSession];
+            var htmlItems = "";
+
+            foreach (var cart in items)
+            {
+                
+                string url = "http://localhost:7493/";
+                htmlItems += "<div style=\"width:100%; float: left\">" +
+                             $"<img style=\"float: left\" src=\"{url + cart.Product.Image}\"/>" +
+                             "<div style=\"float: left\">" +
+                             $"<p><a href=\"{ url + "product/" + cart.Product.Alias + "-" + cart.Product.ID + ".htm" }\"> { cart.Product.Name }</a></p>" +
+                             $"<p> Giá bán: { cart.Product.Price }</p>" +
+                             $"<p> Số lượng: { cart.Quantity }</p>" +
+                             "</div>" +
+                             "</div>";
+            }
+
+            var totalAmount = Session["totalAmount"];
+            decimal totalAmountCasted = decimal.Parse(totalAmount.ToString());
+            string htmlContent = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/templates/orderTemplate.html"));
+            htmlContent = htmlContent.Replace("{{contentHtml}}", htmlItems);
+            htmlContent = htmlContent.Replace("{{orderDate}}", DateTime.Today.ToShortDateString());
+            htmlContent = htmlContent.Replace("{{total}}", totalAmountCasted.ToString("c0"));
+            MailHelper.SendMail(_userManager.GetEmail(User.Identity.GetUserId()), "Đơn hàng từ uStora.", htmlContent);
+        }
+
         public ActionResult ConfirmOrder()
         {
-            string token = Request["token"];
-            RequestCheckOrder info = new RequestCheckOrder();
-            info.Merchant_id = merchantId;
-            info.Merchant_password = merchantPassword;
-            info.Token = token;
-            APICheckout objNLChecout = new APICheckout();
-            ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+
+            var token = Request["token"];
+            var info = new RequestCheckOrder
+            {
+                Merchant_id = _merchantId,
+                Merchant_password = _merchantPassword,
+                Token = token
+            };
+            var objNlCheckout = new APICheckout();
+            var result = objNlCheckout.GetTransactionDetail(info);
             if (result.errorCode == "00")
             {
                 _orderService.UpdateStatus(int.Parse(result.order_code));
-                _orderService.SaveChanges();
                 ViewBag.IsSuccess = true;
+                ApplySendHtmlOrder();
                 ViewBag.Result = "Thanh toán thành công. Chúng tôi sẽ liên hệ lại sớm nhất.";
             }
             else
@@ -327,6 +361,11 @@ namespace uStora.Web.Controllers
         }
         public ActionResult CancelOrder()
         {
+            var orderId = Session["OrderId"];
+            var order = _orderService.FindById((int)orderId);
+            Session["OrderId"] = null;
+            order.IsCancel = true;
+            _orderService.SaveChanges();
             return View();
         }
     }

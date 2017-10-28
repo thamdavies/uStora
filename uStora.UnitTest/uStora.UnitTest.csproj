@@ -72,6 +72,10 @@
     <Compile Include="ServiceTest\PostCategoryServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\uStora.Common\uStora.Common.csproj">
+      <Project>{0DFE4BE0-BA36-44FA-862F-3498A973638B}</Project>
+      <Name>uStora.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\uStora.Data\uStora.Data.csproj">
       <Project>{62e44a07-9b2d-4aff-aa4f-3734c33c08aa}</Project>
       <Name>uStora.Data</Name>
