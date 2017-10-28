@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -10,8 +13,11 @@ using uStora.Web.Models;
 using uStora.Web.App_Start;
 using uStora.Service;
 using AutoMapper;
+using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
 using uStora.Model.Models;
 using uStora.Common;
+using ZXing;
 
 namespace uStora.Web.Controllers
 {
@@ -20,7 +26,7 @@ namespace uStora.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private IApplicationUserService _userService;
+        private readonly IApplicationUserService _userService;
 
         public ManageController()
         {
@@ -259,6 +265,33 @@ namespace uStora.Web.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        [Authorize]
+        public ActionResult GenerateQrCode()
+        {
+            var userName = User.Identity.Name;
+            var user = _userService.GetUserById(User.Identity.GetUserId());
+            string barcodeText = userName + "_" + user.PasswordHash;
+            var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+            var qrCode = new QrCode();
+            qrEncoder.TryEncode(barcodeText, out qrCode);
+            var renderer = new GraphicsRenderer(new FixedModuleSize(4, QuietZoneModules.Four), Brushes.Black, Brushes.White);
+
+            Stream memoryStream = new MemoryStream();
+            renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, memoryStream);
+
+            memoryStream.Position = 0;
+
+            var resultStream = new FileStreamResult(memoryStream, "image/png")
+            {
+                FileDownloadName = $"uStora_qr_{userName}_{DateTime.Now:yyyyMMddhhmmsss}.png"
+            };
+
+            user.QrCode = barcodeText;
+            _userService.SaveChanges();
+
+            return resultStream;
         }
 
         #region Helpers

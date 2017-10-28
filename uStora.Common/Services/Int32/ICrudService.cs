@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace uStora.Common.Services.Int32
+﻿namespace uStora.Common.Services.Int32
 {
     public interface ICrudService<T> where T : class
     {

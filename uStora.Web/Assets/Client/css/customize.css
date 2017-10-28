@@ -327,3 +327,87 @@ ul.bankList {
             -moz-border-radius: 6px 0 6px 6px;
             border-radius: 6px 0 6px 6px;
         }
+
+.custom-tab .nav-tabs  {
+    border-bottom: 2px solid #DDD;
+}
+.custom-tab .nav-tabs > li.active > a, .custom-tab .nav-tabs  > li.active > a:focus, .custom-tab .nav-tabs  > li.active > a:hover { border-width: 0; }
+.custom-tab .nav-tabs > li > a { border: none; color: #666; }
+.custom-tab .nav-tabs > li.active > a, .custom-tab .nav-tabs  > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+.custom-tab .nav-tabs > li > a:after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+.custom-tab .nav-tabs > li.active > a::after, .custom-tab .nav-tabs  > li:hover > a:after { transform: scale(1); }
+.tab-nav > li > a:after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 15px 0; }
+.tab-content{padding:20px}
+
+#app {
+    background: #263238;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    height: 100%;
+}
+.sidebar {
+    background: #eceff1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+}
+.sidebar h2 {
+    font-weight: normal;
+    font-size: 1.0rem;
+    background: #607d8b;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+}
+.sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.sidebar li {
+    line-height: 175%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-wrap: none;
+    text-overflow: ellipsis;
+}
+.cameras ul {
+    padding: 15px 20px;
+}
+.cameras .active {
+    font-weight: bold;
+    color: #009900;
+}
+.cameras a {
+    color: #555;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cameras a:hover {
+    text-decoration: underline;
+}
+.scans li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+.scans-enter-active {
+    transition: background 3s;
+}
+.scans-enter {
+    background: yellow;
+}
+.empty {
+    font-style: italic;
+}
+.preview-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}

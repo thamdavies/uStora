@@ -1,4 +1,4 @@
-﻿
+﻿@model uStora.Web.Models.OrderResultViewModel
 @{
     ViewBag.Title = "Kết quả giao dịch";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,16 +22,21 @@
             <div class="col-md-12">
                 <div class="product-content-right" id="tblCartTable">
                     <div class="woocommerce">
-                        @{
-                            var success = (bool)ViewBag.IsSuccess;
-                        }
-                        @if (success)
+                        @if (Model.Result)
                         {
-                            <div class="alert alert-success">@ViewBag.Result Vui lòng <a href="/">click vào đây</a> để về trang chủ.</div>
+                            <div class="alert alert-success">Thanh toán thành công. Chúng tôi sẽ liên hệ lại sớm nhất. Vui lòng <a href="/">click vào đây</a> để về trang chủ.</div>
                         }
                         else
                         {
-                            <div class="alert alert-danger">@ViewBag.Result. Vui lòng <a href="/">click vào đây</a> để về trang chủ.</div>
+                            if (!string.IsNullOrEmpty(Model.Message))
+                            {
+                                <div class="alert alert-danger">@Model.Message</div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger">Có lỗi xảy ra trong quá trình thanh toán. Vui lòng kiểm tra lại.</div>
+                            }
+
                         }
                     </div>
                 </div>

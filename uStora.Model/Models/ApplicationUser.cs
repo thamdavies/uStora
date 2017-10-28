@@ -38,6 +38,9 @@ namespace uStora.Model.Models
         [MaxLength(128)]
         public string CreatedBy { get; set; }
 
+        [MaxLength(700)]
+        public string QrCode { get; set; }
+
         public bool IsViewed { get; set; }
 
         public bool IsDeleted { get; set; }

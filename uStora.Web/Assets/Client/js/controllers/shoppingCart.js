@@ -232,6 +232,9 @@
                         window.location.href = "/xem-trang-thai-mat-hang.htm";
                         cart.deleteAll("");
                     }
+                } else {
+                    if (res.message)
+                        toastr.error(res.message);
                 }
             },
             error: function(res) {

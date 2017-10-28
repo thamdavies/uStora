@@ -91,10 +91,16 @@ namespace uStora.Web
            );
             routes.MapRoute(
                name: "Confirm Order",
-               url: "xac-nhan-don-hang.htm",
+               url: "ket-qua-giao-dich.htm",
                defaults: new { controller = "ShoppingCart", action = "ConfirmOrder", id = UrlParameter.Optional },
                namespaces: new string[] { "TeduShop.Web.Controllers" }
               );
+            routes.MapRoute(
+                name: "QR Order",
+                url: "qr-order.htm",
+                defaults: new { controller = "ShoppingCart", action = "QrOrder", id = UrlParameter.Optional },
+                namespaces: new string[] { "TeduShop.Web.Controllers" }
+            );
             routes.MapRoute(
                name: "Cancel Order",
                url: "huy-don-hang.htm",

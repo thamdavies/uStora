@@ -3,10 +3,7 @@ using AutoMapper;
 using Microsoft.AspNet.Identity;
 using MvcPaging;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Mail;
-using System.Net.Mime;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using uStora.Common;
@@ -23,7 +20,7 @@ namespace uStora.Web.Controllers
     {
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
-        private readonly ApplicationUserManager _userManager;
+        private readonly IApplicationUserService _userManager;
 
         private readonly string _merchantId = ConfigHelper.GetByKey("MerchantId");
         private readonly string _merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
@@ -31,7 +28,7 @@ namespace uStora.Web.Controllers
 
 
         public ShoppingCartController(IProductService productService,
-            ApplicationUserManager userManager, IOrderService orderService)
+            IApplicationUserService userManager, IOrderService orderService)
         {
             _productService = productService;
             _userManager = userManager;
@@ -65,7 +62,7 @@ namespace uStora.Web.Controllers
                 });
 
             var userId = User.Identity.GetUserId();
-            var user = _userManager.FindById(userId);
+            var user = _userManager.GetUserById(userId);
             return Json(new
             {
                 data = user,
@@ -187,6 +184,7 @@ namespace uStora.Web.Controllers
                 status = true
             });
         }
+
 
         [HttpPost]
         public ActionResult CreateOrder(string orderViewModel)
@@ -312,7 +310,7 @@ namespace uStora.Web.Controllers
 
             foreach (var cart in items)
             {
-                
+
                 string url = "http://localhost:7493/";
                 htmlItems += "<div style=\"width:100%; float: left\">" +
                              $"<img style=\"float: left\" src=\"{url + cart.Product.Image}\"/>" +
@@ -330,7 +328,7 @@ namespace uStora.Web.Controllers
             htmlContent = htmlContent.Replace("{{contentHtml}}", htmlItems);
             htmlContent = htmlContent.Replace("{{orderDate}}", DateTime.Today.ToShortDateString());
             htmlContent = htmlContent.Replace("{{total}}", totalAmountCasted.ToString("c0"));
-            MailHelper.SendMail(_userManager.GetEmail(User.Identity.GetUserId()), "Đơn hàng từ uStora.", htmlContent);
+            MailHelper.SendMail(_userManager.GetUserById(User.Identity.GetUserId()).Email, "Đơn hàng từ uStora.", htmlContent);
         }
 
         public ActionResult ConfirmOrder()
@@ -348,17 +346,19 @@ namespace uStora.Web.Controllers
             if (result.errorCode == "00")
             {
                 _orderService.UpdateStatus(int.Parse(result.order_code));
-                ViewBag.IsSuccess = true;
-                ApplySendHtmlOrder();
-                ViewBag.Result = "Thanh toán thành công. Chúng tôi sẽ liên hệ lại sớm nhất.";
+               ApplySendHtmlOrder();
+                return RedirectToAction("CompleteOrder", new OrderResultViewModel{ Result = true});
             }
-            else
-            {
-                ViewBag.IsSuccess = false;
-                ViewBag.Result = "Có lỗi xảy ra. Vui lòng liên hệ admin.";
-            }
-            return View();
+            
+            return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = false });
         }
+
+        public ActionResult CompleteOrder(OrderResultViewModel viewModel)
+        {
+            Session["GoToQROrder"] = null;
+            return View("CompleteOrder", viewModel);
+        }
+
         public ActionResult CancelOrder()
         {
             var orderId = Session["OrderId"];
@@ -366,7 +366,70 @@ namespace uStora.Web.Controllers
             Session["OrderId"] = null;
             order.IsCancel = true;
             _orderService.SaveChanges();
+            Session["GoToQROrder"] = null;
             return View();
+        }
+
+        [Authorize]
+        public ActionResult QrScanner()
+        {
+            var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
+            if (cart.Count == 0)
+                return RedirectToAction("Shop", "Product");
+            Session["GoToQROrder"] = Guid.NewGuid().ToString();
+            var viewModel = new QrViewModel { QrCode = _userManager.GetUserById(User.Identity.GetUserId()).QrCode };
+            return View("QrScanner", viewModel);
+        }
+
+        public ActionResult QrOrder()
+        {
+            var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
+            var orderDetails = new List<OrderDetail>();
+
+            if (Session["GoToQROrder"] == null || cart.Count == 0)
+                return RedirectToAction("QrScanner");
+            Session["GoToQROrder"] = null;
+            var user = _userManager.GetUserById(User.Identity.GetUserId());
+           
+            var orderViewModel = new OrderViewModel
+            {
+                CustomerAddress = user.Address,
+                CustomerEmail = user.Email,
+                CustomerMobile = user.PhoneNumber,
+                CustomerId = user.Id,
+                CustomerMessage = "Thanh toán bằng QR Code",
+                PaymentMethod = "QR",
+                CustomerName = user.FullName,
+                CreatedDate = DateTime.Now,
+                CreatedBy = user.UserName,
+                PaymentStatus = 0
+            };
+            if (orderViewModel.CustomerAddress == null) orderViewModel.CustomerAddress = "Địa chỉ";
+            var order = new Order();
+            bool isEnough = true;
+            order.UpdateOrder(orderViewModel);
+
+            foreach (var item in cart)
+            {
+                var detail = new OrderDetail
+                {
+                    ProductID = item.ProductId,
+                    Quantity = item.Quantity,
+                    Price = item.Product.Price
+                };
+                orderDetails.Add(detail);
+                isEnough = _productService.SellingProduct(item.ProductId, item.Quantity);
+            }
+            if (!isEnough)
+                return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = false, Message = "Sản phẩm đã hết hàng"});
+
+            _orderService.Add(ref order, orderDetails);
+            _orderService.SaveChanges();
+            
+            Session["totalAmount"] = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
+
+            ApplySendHtmlOrder();
+            return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = true });
         }
     }
 }

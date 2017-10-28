@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201710280544096_AddIsCancelColunm.Designer.cs">
       <DependentUpon>201710280544096_AddIsCancelColunm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710281215202_AddQrCodeColunm.cs" />
+    <Compile Include="Migrations\201710281215202_AddQrCodeColunm.Designer.cs">
+      <DependentUpon>201710281215202_AddQrCodeColunm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -160,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710280544096_AddIsCancelColunm.resx">
       <DependentUpon>201710280544096_AddIsCancelColunm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710281215202_AddQrCodeColunm.resx">
+      <DependentUpon>201710281215202_AddQrCodeColunm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
