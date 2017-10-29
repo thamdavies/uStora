@@ -177,15 +177,13 @@ namespace uStora.Web.Controllers
         [HttpPost]
         public JsonResult DeleteAll()
         {
-            Session[CommonConstants.ShoppingCartSession] = new List<ShoppingCartViewModel>();
-
+            DeleteCart();
             return Json(new
             {
                 status = true
             });
         }
-
-
+        
         [HttpPost]
         public ActionResult CreateOrder(string orderViewModel)
         {
@@ -452,7 +450,12 @@ namespace uStora.Web.Controllers
             Session["totalAmount"] = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
 
             ApplySendHtmlOrder();
+            DeleteCart();
             return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = true });
+        }
+
+        private void DeleteCart() {
+            Session[CommonConstants.ShoppingCartSession] = new List<ShoppingCartViewModel>();
         }
     }
 }
