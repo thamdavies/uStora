@@ -21,6 +21,14 @@ namespace uStora.Web
            );
             //products by tag
             routes.MapRoute(
+               name: "Card Controller",
+               url: "nap-xu.htm",
+               defaults: new { controller = "Coin", action = "Deposit", tagId = UrlParameter.Optional },
+               namespaces: new string[] { "uStora.Web.Controllers" }
+           );
+
+            //products by tag
+            routes.MapRoute(
                name: "Products by tag",
                url: "products/tags-{tagId}.htm",
                defaults: new { controller = "Product", action = "ProductsByTag", tagId = UrlParameter.Optional },

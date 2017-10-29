@@ -266,6 +266,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CoinController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -288,11 +289,13 @@
     <Compile Include="Infrastructure\Core\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Infrastructure\NganLuongAPI\APICheckout.cs" />
+    <Compile Include="Infrastructure\NganLuongAPI\Card\NLCardLib.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
+    <Compile Include="Models\CardsViewModel.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
     <Compile Include="Models\DashBoardViewModel.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
@@ -5643,6 +5646,9 @@
     <Content Include="Views\ShoppingCart\CancelOrder.cshtml" />
     <Content Include="Views\ShoppingCart\QrScanner.cshtml" />
     <Content Include="Views\ShoppingCart\CompleteOrder.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Coin\Deposit.cshtml" />
+    <Content Include="Views\Shared\_CoinPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\shared\footer\" />

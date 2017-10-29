@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
@@ -45,6 +46,10 @@ namespace uStora.Model.Models
 
         public bool IsDeleted { get; set; }
 
+        public int Coin { get; set; } = 0;
+
+        public ICollection<TransactionHistory> TransactionHistory { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -56,5 +61,10 @@ namespace uStora.Model.Models
         public virtual IEnumerable<Order> Orders { get; set; }
         public virtual IEnumerable<TrackOrder> TrackOrders { get; set; }
         public virtual IEnumerable<Wishlist> Wishlists { get; set; }
+
+        public ApplicationUser()
+        {
+            TransactionHistory = new Collection<TransactionHistory>();
+        }
     }
 }

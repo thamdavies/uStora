@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
 using uStora.Common;
+using Microsoft.AspNet.Identity;
 
 namespace uStora.Web.Controllers
 {
@@ -15,17 +16,19 @@ namespace uStora.Web.Controllers
         IProductService _productService;
         IBrandService _brandService;
         ISystemConfigService _systemConfigService;
+        private readonly IApplicationUserService _applicationUserService;
         ICommonService _commonService;
 
         public HomeController(IProductCategoryService productCategoryService,
             ICommonService commonService, IProductService productService,
-            IBrandService brandService, ISystemConfigService systemConfigService)
+            IBrandService brandService, ISystemConfigService systemConfigService, IApplicationUserService applicationUserService)
         {
             _productCategoryService = productCategoryService;
             _productService = productService;
             _commonService = commonService;
             _brandService = brandService;
             _systemConfigService = systemConfigService;
+            _applicationUserService = applicationUserService;
         }
         #region Methods
         public ActionResult Index()
@@ -83,7 +86,15 @@ namespace uStora.Web.Controllers
             
             return PartialView(listProductCategoryVm);
         }
-        
+
+        [ChildActionOnly]
+        public ActionResult GetMyCoin()
+        {
+            var coin = _applicationUserService.GetUserById(User.Identity.GetUserId()).Coin;
+            var viewModel = new CoinViewModel { Coin = coin };
+            return PartialView("_CoinPartial", viewModel);
+        }
+
         [ChildActionOnly]
         [OutputCache(Duration = 3600)]
         public ActionResult Footer()

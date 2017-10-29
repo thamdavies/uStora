@@ -29,17 +29,20 @@
         {
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="user-menu">
                             <ul>
                                 <li><a href="/tai-khoan.htm"><i class="fa fa-user"></i> Tài khoản của tôi</a></li>
                                 <li><a href="/san-pham-yeu-thich.htm" class="btnAddWishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
                                 <li><a href="/gio-hang.htm"><i class="fa fa-shopping-cart"></i> Giỏ hàng và Thanh toán</a></li>
                                 <li><a href="/xem-trang-thai-mat-hang.htm"><i class="fa fa-history"></i> Lịch sử mua hàng</a></li>
+                                @{Html.RenderAction("GetMyCoin", "Home");}
+                               
                                 @if (this.User.IsInRole("LiveLocation"))
                                 {
                                     <li><a href="/vi-tri-truc-tuyen.htm" class="btnLive text-blue"><i class="fa fa-map-signs"></i> Live</a></li>
                                 }
+                                
                             </ul>
                         </div>
                     </div>

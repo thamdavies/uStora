@@ -1,4 +1,4 @@
-﻿$(function() {
+﻿$(function () {
     var app = new Vue({
         el: '#app',
         data: {
@@ -13,10 +13,19 @@
             self.scanner.addListener('scan', function (content, image) {
                 self.scans.unshift({ date: +(Date.now()), content: content });
                 var qrCode = $("#qrCode").val();
+                var IsEnoughCoin = $("#IsEnoughCoin").val();
                 console.log(qrCode);
+                
                 if (content === qrCode) {
                     toastr.success("Mã QR hợp lệ");
-                    window.location.href = "/qr-order.htm";
+                    if (IsEnoughCoin === "True") {
+                        console.log(IsEnoughCoin === true);
+                        window.location.href = "/qr-order.htm";
+                    }
+                    else {
+                        toastr.error("Bạn không đủ tiền để thực hiện giao dịch! Vui lòng nạp tiền.");
+                    }
+                        
                 } else {
                     toastr.error("Mã QR không hợp lệ hoặc bạn chưa tạo.");
                 }

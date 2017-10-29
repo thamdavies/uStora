@@ -411,3 +411,29 @@ ul.bankList {
     width: 100%;
     overflow: hidden;
 }
+
+.coin ul {
+    list-style: initial;
+}
+.coin h4 {
+    color: #739ad2;
+}
+.coin em {
+    color: #666;
+    font-style: italic;
+}
+
+.coin-addon {
+    color: #fff;
+    background-color: #739ad2;
+    border: none;
+}
+
+#CaptchaCodeCoin {
+    margin-top: 16px;
+}
+.BDC_CaptchaIconsDiv {
+    position: absolute;
+    right: -21px;
+    top: auto;
+}

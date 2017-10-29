@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using uStora.Data.Infrastructure;
 using uStora.Data.Repositories;
 using uStora.Model.Models;
@@ -9,6 +8,10 @@ namespace uStora.Service
     public interface IApplicationUserService
     {
         ApplicationUser GetUserById(string userId);
+
+        void UpdateCoin(string userId, int coin);
+
+        ApplicationUser TransactionHistory(string userId);
 
         IEnumerable<string> GetUserIdByGroupId(int id);
 
@@ -22,9 +25,12 @@ namespace uStora.Service
     public class ApplicationUserService : IApplicationUserService
     {
         private IApplicationUserRepository _applicationUserRepository;
+
         private IUnitOfWork _unitOfWork;
 
-        public ApplicationUserService(IApplicationUserRepository applicationUserRepository,
+        public ApplicationUserService(
+            IApplicationUserRepository applicationUserRepository,
+            ITransactionHistoryRepository transactionHistoryRepository,
             IUnitOfWork unitOfWork)
         {
             _applicationUserRepository = applicationUserRepository;
@@ -61,6 +67,19 @@ namespace uStora.Service
             user.IsViewed = true;
             _applicationUserRepository.Update(user);
             SaveChanges();
+        }
+
+        public ApplicationUser TransactionHistory(string userId)
+        {
+            var query = _applicationUserRepository.GetSingleByCondition(x => x.Id == userId, new[] { "TransactionHistory" });
+
+            return query;
+        }
+
+        public void UpdateCoin(string userId, int coin)
+        {
+            var user = GetUserById(userId);
+            user.Coin += coin;
         }
     }
 }

@@ -96,6 +96,10 @@
     <Compile Include="Migrations\201710281215202_AddQrCodeColunm.Designer.cs">
       <DependentUpon>201710281215202_AddQrCodeColunm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710290527259_AddTransactionHistoryTable.cs" />
+    <Compile Include="Migrations\201710290527259_AddTransactionHistoryTable.Designer.cs">
+      <DependentUpon>201710290527259_AddTransactionHistoryTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
@@ -123,6 +127,7 @@
     <Compile Include="Repositories\SystemConfigRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\TrackOrderRepository.cs" />
+    <Compile Include="Repositories\TransactionHistoryRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\VisitorStatisticRepository.cs" />
     <Compile Include="Repositories\WishlistRepository.cs" />
@@ -167,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710281215202_AddQrCodeColunm.resx">
       <DependentUpon>201710281215202_AddQrCodeColunm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710290527259_AddTransactionHistoryTable.resx">
+      <DependentUpon>201710290527259_AddTransactionHistoryTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

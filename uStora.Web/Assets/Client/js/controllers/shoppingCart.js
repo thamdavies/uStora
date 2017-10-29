@@ -22,12 +22,14 @@
                 $('#amount_' + productId).text(numeral(amount).format('0,0') + ' đ');
                 $('span.product-count').text(cart.getTotalOrder().quantity);
                 $('#lblTotalOrder').text(numeral(cart.getTotalOrder().amount).format('0,0'));
+                $('#lblTotalOrder').val(numeral(cart.getTotalOrder().amount).format('0,0'));
                 $('#amount').text(numeral(cart.getTotalOrder().amount).format('0,0'));
             }
             else {
                 $('#amount_' + productId).text(0);
                 $('span.product-count').text(0);
                 $('#lblTotalOrder').text(0);
+                $('#lblTotalOrder').val(0);
                 $('#amount').text(0);
             }
         });

@@ -346,10 +346,10 @@ namespace uStora.Web.Controllers
             if (result.errorCode == "00")
             {
                 _orderService.UpdateStatus(int.Parse(result.order_code));
-               ApplySendHtmlOrder();
-                return RedirectToAction("CompleteOrder", new OrderResultViewModel{ Result = true});
+                ApplySendHtmlOrder();
+                return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = true });
             }
-            
+
             return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = false });
         }
 
@@ -374,10 +374,25 @@ namespace uStora.Web.Controllers
         public ActionResult QrScanner()
         {
             var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.ShoppingCartSession];
-            if (cart.Count == 0)
+            if (cart == null || cart.Count == 0)
                 return RedirectToAction("Shop", "Product");
             Session["GoToQROrder"] = Guid.NewGuid().ToString();
-            var viewModel = new QrViewModel { QrCode = _userManager.GetUserById(User.Identity.GetUserId()).QrCode };
+
+            var orderDetails = new List<OrderDetail>();
+            foreach (var item in cart)
+            {
+                var detail = new OrderDetail
+                {
+                    ProductID = item.ProductId,
+                    Quantity = item.Quantity,
+                    Price = item.Product.Price
+                };
+                orderDetails.Add(detail);
+            }
+            var totalAmountSession = orderDetails.Sum(x => x.Quantity * x.Price);
+           
+            var totalAmountInt = decimal.ToInt32(totalAmountSession);
+            var viewModel = new QrViewModel { QrCode = _userManager.GetUserById(User.Identity.GetUserId()).QrCode, IsEnoughCoin = totalAmountInt < _userManager.GetUserById(User.Identity.GetUserId()).Coin ? true : false };
             return View("QrScanner", viewModel);
         }
 
@@ -390,7 +405,7 @@ namespace uStora.Web.Controllers
                 return RedirectToAction("QrScanner");
             Session["GoToQROrder"] = null;
             var user = _userManager.GetUserById(User.Identity.GetUserId());
-           
+
             var orderViewModel = new OrderViewModel
             {
                 CustomerAddress = user.Address,
@@ -421,11 +436,19 @@ namespace uStora.Web.Controllers
                 isEnough = _productService.SellingProduct(item.ProductId, item.Quantity);
             }
             if (!isEnough)
-                return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = false, Message = "Sản phẩm đã hết hàng"});
+                return RedirectToAction("CompleteOrder", new OrderResultViewModel { Result = false, Message = "Sản phẩm đã hết hàng" });
+
+            var totalAmountSession = orderDetails.Sum(x => x.Quantity * x.Price);
+
+            var totalAmountInt = decimal.ToInt32(totalAmountSession);
+
+            var myAccount = _userManager.GetUserById(User.Identity.GetUserId());
+
+            myAccount.Coin -= totalAmountInt;
 
             _orderService.Add(ref order, orderDetails);
             _orderService.SaveChanges();
-            
+
             Session["totalAmount"] = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
 
             ApplySendHtmlOrder();

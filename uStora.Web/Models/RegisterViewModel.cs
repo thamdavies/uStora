@@ -27,6 +27,7 @@ namespace uStora.Web.Models
         public string Email { get; set; }
 
         [MaxLength(256, ErrorMessage = "Mật khẩu không quá 256 ký tự.")]
+        [Required(ErrorMessage = "Vui lòng nhập địa chỉ")]
         public string Address { get; set; }
 
         [MaxLength(20, ErrorMessage = "Chỉ nhập 20 ký tự")]
