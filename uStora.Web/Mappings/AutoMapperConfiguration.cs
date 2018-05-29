@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using uStora.Model.Models;
+using uStora.Service.ExportImport;
 using uStora.Web.API;
 using uStora.Web.Models;
 
@@ -23,6 +24,7 @@ namespace uStora.Web.Mappings
                 x.CreateMap<ContactDetail, ContactDetailViewModel>();
                 x.CreateMap<Slide, SlideViewModel>();
                 x.CreateMap<Order, OrderViewModel>();
+                x.CreateMap<Order, OrderReportViewModel>();
                 x.CreateMap<OrderDetail, OrderDetailViewModel>();
                 x.CreateMap<Feedback, FeedbackViewModel>();
                 x.CreateMap<Footer, FooterViewModel>();

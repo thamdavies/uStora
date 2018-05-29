@@ -53,7 +53,7 @@ namespace uStora.Model.Models
         [ForeignKey("CustomerId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         public virtual IEnumerable<TrackOrder> TrackOrders { get; set; }
     }

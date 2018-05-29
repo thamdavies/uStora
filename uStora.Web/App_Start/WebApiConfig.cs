@@ -16,6 +16,9 @@ namespace uStora.Web
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
             new DefaultContractResolver { IgnoreSerializableAttribute = true };
 
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
+                = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 

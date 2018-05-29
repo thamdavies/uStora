@@ -55,7 +55,7 @@ namespace uStora.Model.Models
         public bool IsDeleted { get; set; }
 
         [ForeignKey("CategoryID")]
-        public virtual ProductCategory ProductCategory { get; set; }
+        public ProductCategory ProductCategory { get; set; }
 
         [ForeignKey("BrandID")]
         public virtual Brand Brands { get; set; }

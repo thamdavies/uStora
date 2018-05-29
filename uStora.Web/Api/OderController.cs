@@ -11,6 +11,11 @@ using uStora.Web.Infrastructure.Core;
 using uStora.Web.Infrastructure.Extensions;
 using System.Web.Script.Serialization;
 using uStora.Web.Models;
+using System.Threading.Tasks;
+using System.Web;
+using System.IO;
+using uStora.Common;
+using uStora.Service.ExportImport;
 
 namespace uStora.Web.Api
 {
@@ -24,14 +29,16 @@ namespace uStora.Web.Api
             _orderService = orderService;
         }
 
-        [Route("getbyid/{id:int}")]
+        [Route("getbyid/{id:int}/{rm?}")]
         [HttpGet]
         [Authorize(Roles = "UpdateUser")]
-        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id, bool rm = false)
         {
             return CreateHttpResponse(request, () =>
             {
                 var model = _orderService.FindById(id);
+
+                if (rm) model = _orderService.FindWithRelationData(id, related: true);
 
                 var responseData = Mapper.Map<Order, OrderViewModel>(model);
 
@@ -182,6 +189,32 @@ namespace uStora.Web.Api
 
                 return response;
             });
+        }
+
+        [Route("exporttoexcel/{id:int}")]
+        [Authorize(Roles = "AddUser")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> ExportProductsToXlsx(HttpRequestMessage request, int id)
+        {
+            string fileName = string.Concat("Order_" + DateTime.Now.ToString("yyyyMMddhhmmsss") + ".xlsx");
+            var folderReport = @"/Reports";
+            string filePath = HttpContext.Current.Server.MapPath(folderReport);
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+            string fullPath = Path.Combine(filePath, fileName);
+            try
+            {
+                var order = _orderService.GetAll().Where(x => x.ID == id).ToList();
+                var source = Mapper.Map<List<Order>, List<OrderReportViewModel>>(order);
+                await _orderService.GenerateXls(source, fullPath);
+                return request.CreateErrorResponse(HttpStatusCode.OK, Path.Combine(folderReport, fileName));
+            }
+            catch (Exception ex)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
     }
 }

@@ -20,6 +20,11 @@
                 parent: 'base',
                 templateUrl: "/app/components/orders/orderEditView.html",
                 controller: "orderEditController"
+            }).state('order_detail', {
+                url: "/orders/:id",
+                parent: 'base',
+                templateUrl: "/app/components/orders/orderDetailView.html",
+                controller: "orderDetailController"
             });
     }
 })();

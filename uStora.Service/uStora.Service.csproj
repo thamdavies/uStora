@@ -102,6 +102,7 @@
     <Compile Include="CommonService.cs" />
     <Compile Include="ContactDetailService.cs" />
     <Compile Include="ErrorService.cs" />
+    <Compile Include="ExportImport\OrderReportViewModel.cs" />
     <Compile Include="ExportImport\ExportManagerService.cs" />
     <Compile Include="ExportImport\Help\PropertyByName.cs" />
     <Compile Include="ExportImport\Help\PropertyManager.cs" />

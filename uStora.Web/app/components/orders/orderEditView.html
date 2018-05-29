@@ -78,6 +78,13 @@
                             </label>
                             <span ng-show="frmUpdateOrder.Status.$invalid" class="invalid">Phải chọn trạng thái</span>
                         </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="isCancel" ng-model="order.IsCancel" ng-checked="order.IsCancel" /> Hủy đơn hàng
+                            </label>
+                            <span ng-show="frmUpdateOrder.IsCancel.$invalid" class="invalid">Phải chọn trạng thái</span>
+                        </div>
                     </div>
                 </div>
             </div>

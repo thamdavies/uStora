@@ -373,6 +373,8 @@
     <Content Include="app\components\orders\order.module.js" />
     <Content Include="app\components\orders\orderAddController.js" />
     <Content Include="app\components\orders\orderAddView.html" />
+    <Content Include="app\components\orders\orderDetailView.html" />
+    <Content Include="app\components\orders\orderDetailController.js" />
     <Content Include="app\components\orders\orderEditController.js" />
     <Content Include="app\components\orders\orderEditView.html" />
     <Content Include="app\components\orders\orderListController.js" />

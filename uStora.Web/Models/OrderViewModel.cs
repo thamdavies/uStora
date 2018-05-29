@@ -53,5 +53,5 @@ namespace uStora.Web.Models
         public string CustomerId { get; set; }
         
         public virtual IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
-    }
+    }    
 }

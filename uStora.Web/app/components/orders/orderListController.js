@@ -1,6 +1,4 @@
-﻿/// <reference path="../../../Assets/admin/libs/angular/angular.js" />
-
-(function (app) {
+﻿(function (app) {
     app.controller('orderListController', orderListController);
 
     orderListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter']
